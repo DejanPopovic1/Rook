@@ -27,6 +27,20 @@ bool isSamePosition(const T_position a, const T_position b){
         return false;
 }
 
+bool isSameRank(T_position a, T_position b){
+    if(a.r == b.r){
+        return true;
+    }
+    return false;
+}
+
+bool isSameFile(T_position a, T_position b){
+    if(a.f == b.f){
+        return true;
+    }
+    return false;
+}
+
 void assignPosition(T_position *dest, const T_position *src){
     dest->r = src->r;
     dest->f = src->f;

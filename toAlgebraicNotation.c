@@ -38,10 +38,22 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
 
 bool arePiecesInSameRank(T_positions *ps, T_position p){
     for(int i = 0; i < ps->freeIndex; i++){
-        if(ps->positions[i] == i){
+        if(isSamePosition(ps->positions[i], p)){
             continue;
         }
-        if(pieceType == c[p.r][i]){
+        if(isSameRank(ps->positions[i], p)){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool arePiecesInSameFile(T_positions *ps, T_position p){
+    for(int i = 0; i < ps->freeIndex; i++){
+        if(isSamePosition(ps->positions[i], p)){
+            continue;
+        }
+        if(isSameRank(ps->positions[i], p)){
             return true;
         }
     }
@@ -54,7 +66,7 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
 
 
     }
-    else if(areSamePiecesInSameRank()){
+    else if(arePiecesInSameRank()){
 
 
 

@@ -50,6 +50,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output.h" />
+		<Unit filename="testCases.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="testCases.h" />
 		<Unit filename="testInitialisations.c">
 			<Option compilerVar="CC" />
 		</Unit>
