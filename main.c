@@ -11,14 +11,18 @@
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
+#define MAX_DISAMBIGUATOR 3
 
 char* specifyMove();
 
 //Todo List:
 //DONT FORGET TO FREE ALL MALLOCS!
 //Try making function pointer to iterating through the board. This will then be shared across all functions that iterate board
+//Error handle all malloc allocations by defining your own "wrapper" function
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
+
+T_positions* whereAreSamePieces(int, T_chessboard);
 char* moveInput();
 //T_chessboard updateCurrentState(T_states *successorStates, char* input);
 
@@ -212,7 +216,6 @@ void (*generator)(T_chessboard currentState, int rank, int file, T_states *conso
 //
 //}
 
-//CHANGE THE FIRST CASE!
 int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
@@ -244,11 +247,42 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
             assert(false);
     }
 }
+//    char temp1[1];
+//    T_position positions[MAX_POSITIONS];
+//    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
+//        if(isFileDifferent(positions[0], positions[1])){
+//            sprintf(temp1, "%d", departure.f);
+//            strcat(result, temp1);
+//        }
+//        else if(isRankDifferent(positions[0], positions[1])){
+//            sprintf(temp1, "%d", departure.r);
+//            strcat(result, temp1);
+//        }
+//        else{
+//            assert(false);
+//        }
+//    }
+//    else if(false/*numOfSamePiecesGoingToArrival(positions, movedPiece, arrival) > 2*/){
+//        //To be added in
+//    }
+//    else{
+//        assert(false);
+//    }
 
-void disambiguator(T_chessboard c, T_position p){
+char* toFileRank(T_positions p){
+    char *result = malloc(2 * sizeof(char))
+    //Do stuff with p;
+    strcpy(result, "ab")
+    return result;
+}
 
-
-    return;
+char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
+    char* result = malloc(MAX_DISAMBIGUATOR * sizeof(char))
+    int pieceType = c[departure.r][departure.f];
+    T_positions *samePieces = whereAreSamePieces(pieceType, c);
+    samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
+    result = toFileRank(samePieces);
+    return result;
 }
 
 T_positions* whereAreSamePieces(int pieceType, T_chessboard c){
@@ -342,29 +376,8 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
         //Determine all like pieces and add them to a list
         //From the list above copy only those ones that end up in the same destination into another list
 
+    strcat(result, disambiguator(c, departure, arrival));
 
-
-    char temp1[1];
-    T_position positions[MAX_POSITIONS];
-    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
-        if(isFileDifferent(positions[0], positions[1])){
-            sprintf(temp1, "%d", departure.f);
-            strcat(result, temp1);
-        }
-        else if(isRankDifferent(positions[0], positions[1])){
-            sprintf(temp1, "%d", departure.r);
-            strcat(result, temp1);
-        }
-        else{
-            assert(false);
-        }
-    }
-    else if(false/*numOfSamePiecesGoingToArrival(positions, movedPiece, arrival) > 2*/){
-        //To be added in
-    }
-    else{
-        assert(false);
-    }
     //Part 3: Take?
     if(isPieceCaptured){
         strcat(result, "x");
