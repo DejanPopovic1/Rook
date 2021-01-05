@@ -1,0 +1,54 @@
+# depslib dependency file v1.0
+1609845316 source:c:\c_c++ code\rook\main.c
+	<stdio.h>
+	"chess_pieces.h"
+	"applicableActions.h"
+	"GlobalDeclarations.h"
+	"memoryUtilities.h"
+	<stdbool.h>
+	"output.h"
+	"testInitialisations.h"
+	<assert.h>
+	<string.h>
+
+1598392101 source:c:\c_c++ code\rook\chessboard.c
+
+1598392101 c:\c_c++ code\rook\chessboard.h
+
+1598393671 c:\c_c++ code\rook\chess_pieces.h
+
+1609705307 c:\c_c++ code\rook\applicableactions.h
+	"GlobalDeclarations.h"
+
+1609622091 source:c:\c_c++ code\rook\applicableactions.c
+	<stdio.h>
+	<stdbool.h>
+	"applicableActions.h"
+	"GlobalDeclarations.h"
+	"memoryUtilities.h"
+
+1609844827 c:\c_c++ code\rook\globaldeclarations.h
+
+1609412581 source:c:\c_c++ code\rook\globaldeclarations.c
+	"GlobalDeclarations.h"
+	<stdbool.h>
+
+1608734001 source:c:\c_c++ code\rook\memoryutilities.c
+	"GlobalDeclarations.h"
+
+1608733204 c:\c_c++ code\rook\memoryutilities.h
+
+1609843871 c:\c_c++ code\rook\output.h
+
+1609845166 source:c:\c_c++ code\rook\output.c
+	"GlobalDeclarations.h"
+	<wchar.h>
+	<Windows.h>
+	<stdio.h>
+	<stdbool.h>
+
+1609268885 c:\c_c++ code\rook\testinitialisations.h
+
+1609340505 source:c:\c_c++ code\rook\testinitialisations.c
+	"GlobalDeclarations.h"
+
