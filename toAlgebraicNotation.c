@@ -53,7 +53,7 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
         if(isSamePosition(ps->positions[i], p)){
             continue;
         }
-        if(isSameRank(ps->positions[i], p)){
+        if(isSameFile(ps->positions[i], p)){
             return true;
         }
     }
@@ -62,43 +62,24 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
 
 char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, T_position arrival){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-    if(areSamePiecesInSameFile(c, ))){
-
-
+    if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
+        char temp[MAX_DISAMBIGUATOR_STRING];
+        sprintf(temp, "%d%d", departure.f, departure.r);
+        strcpy(result, temp);
     }
-    else if(arePiecesInSameRank()){
-
-
-
+    else if(arePiecesInSameFile(departures, departure))){
+        char temp[MAX_DISAMBIGUATOR_STRING];
+        sprintf(temp, "%d", departure.f);
+        strcpy(result, temp);
+    }
+    else if(arePiecesInSameRank(departures, departure)){
+        char temp[MAX_DISAMBIGUATOR_STRING];
+        sprintf(temp, "%d", departure.r);
+        strcpy(result, temp);
     }
     else{
         assert(false);
     }
-
-
-//    char temp1[1];
-//    T_position positions[MAX_POSITIONS];
-//    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
-//        if(isFileDifferent(positions[0], positions[1])){
-//            sprintf(temp1, "%d", departure.f);
-//            strcat(result, temp1);
-//        }
-//        else if(isRankDifferent(positions[0], positions[1])){
-//            sprintf(temp1, "%d", departure.r);
-//            strcat(result, temp1);
-//        }
-//        else{
-//            assert(false);
-//        }
-//    }
-//    else if(false/*numOfSamePiecesGoingToArrival(positions, movedPiece, arrival) > 2*/){
-//        //To be added in
-//    }
-//    else{
-//        assert(false);
-//    }
-
-
     strcpy(result, "ab");
     return result;
 }

@@ -19,6 +19,7 @@ char* specifyMove();
 //Error handle all malloc allocations by defining your own "wrapper" function
 //Move copyState into GlobalDeclarations
 //When creating and allocating memory for structs, make a single function that does this and intialises freeIndex to zero
+//We have allocated memory for strings but have not possible allocated space for null terminating character - check this
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
