@@ -104,9 +104,8 @@ T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
     for(int i = 0; i < RANK_SIZE; i++){
         for(int j = 0; i < FILE_SIZE; j++){
             if(pieceType == c[i][j]){
-
                 T_position *pos = createPosition(i, j);
-                assignPosition(&(p->positions[p->freeIndex]), pos);
+                assignPosition(p->positions[p->freeIndex], pos);
                 p->freeIndex++;
                 free(pos);
             }
