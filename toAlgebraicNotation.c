@@ -94,7 +94,7 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     int pieceType = c[departure.r][departure.f];
     T_positions *samePieces = whereAreSamePieces(c, pieceType);
-    samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
+    samePieces = whatPiecesMoveToArrival(c, samePieces, arrival);
     return toFileRank(samePieces, departure, arrival);
 }
 
@@ -114,19 +114,25 @@ T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
     return p;
 }
 
-T_positions* whichSamePiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
+T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
     int pieceType = c[departures->positions[0].r][departures->positions[0].f];
-    T_positions *p = malloc(sizeof(T_positions));
-    p->freeIndex = 0;
-    T_states *movementStates = malloc(100 * sizeof(T_chessboard));
+    T_positions *revDepartures = malloc(sizeof(T_positions));
+    revDepartures->freeIndex = 0;
+    T_states *movementStates = malloc(sizeof(T_states));
     for(int i = 0; i < departures->freeIndex; i++){
         movementPtr = generatorPtr(c, departures->positions[i]);
         (*movementPtr)(c, departures->positions[i], movementStates);
+    }
+    for(int i; i < departures->freeIndex; i++){
+        if(){
+            //copyState
+        }
     }
 }
 
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
+//Use the position creation functions over here!
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
     bool isPieceCaptured = false;
@@ -135,7 +141,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     T_position arrival;
     //Determine departure location
     for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
+        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){S
             if(c[i][j] != empty && ss[i][j] == empty){
                 departure.r = i;
                 departure.f = j;
