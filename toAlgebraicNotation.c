@@ -36,20 +36,80 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
     }
 }
 
-char* toFileRank(T_positions *p){
-    char *result = malloc(2 * sizeof(char));
-    //Do stuff with p;
+bool areSamePiecesInSameRank(T_chessboard c, T_position p){
+    int pieceType = c[p.r][p.f];
+    for(int i = 0; i < FILE_SIZE; i++){
+        if(p.f == i){
+            continue;
+        }
+        if(pieceType == c[p.r][i]){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool areSamePiecesInSameFile(T_chessboard c, T_position p){
+    int pieceType = c[p.r][p.f];
+    for(int i = 0; i < RANK_SIZE; i++){
+        if(p.r == i){
+            continue;
+        }
+        if(pieceType == c[i][p.f]){
+            return true;
+        }
+    }
+    return false;
+}
+
+char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, T_position arrival){
+    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+    if(areSamePiecesInSameFile(c, ))){
+
+
+    }
+    else if(areSamePiecesInSameRank()){
+
+
+
+    }
+    else{
+        assert(false);
+    }
+
+
+//    char temp1[1];
+//    T_position positions[MAX_POSITIONS];
+//    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
+//        if(isFileDifferent(positions[0], positions[1])){
+//            sprintf(temp1, "%d", departure.f);
+//            strcat(result, temp1);
+//        }
+//        else if(isRankDifferent(positions[0], positions[1])){
+//            sprintf(temp1, "%d", departure.r);
+//            strcat(result, temp1);
+//        }
+//        else{
+//            assert(false);
+//        }
+//    }
+//    else if(false/*numOfSamePiecesGoingToArrival(positions, movedPiece, arrival) > 2*/){
+//        //To be added in
+//    }
+//    else{
+//        assert(false);
+//    }
+
+
     strcpy(result, "ab");
     return result;
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    char* result = malloc(MAX_DISAMBIGUATOR * sizeof(char));
     int pieceType = c[departure.r][departure.f];
     T_positions *samePieces = whereAreSamePieces(pieceType, c);
     samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
-    result = toFileRank(samePieces);
-    return result;
+    return toFileRank(samePieces, departure, arrival);
 }
 
 T_positions* whereAreSamePieces(int pieceType, T_chessboard c){

@@ -11,7 +11,7 @@
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
-#define MAX_DISAMBIGUATOR 3
+
 
 enum PlayingAs{asWhite, asBlack};
 

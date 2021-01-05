@@ -216,27 +216,7 @@ bool isRankDifferent(T_position pos1, T_position pos2){
 //}
 
 
-//    char temp1[1];
-//    T_position positions[MAX_POSITIONS];
-//    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
-//        if(isFileDifferent(positions[0], positions[1])){
-//            sprintf(temp1, "%d", departure.f);
-//            strcat(result, temp1);
-//        }
-//        else if(isRankDifferent(positions[0], positions[1])){
-//            sprintf(temp1, "%d", departure.r);
-//            strcat(result, temp1);
-//        }
-//        else{
-//            assert(false);
-//        }
-//    }
-//    else if(false/*numOfSamePiecesGoingToArrival(positions, movedPiece, arrival) > 2*/){
-//        //To be added in
-//    }
-//    else{
-//        assert(false);
-//    }
+
 
 
 
