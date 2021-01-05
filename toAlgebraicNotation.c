@@ -67,7 +67,7 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
         sprintf(temp, "%d%d", departure.f, departure.r);
         strcpy(result, temp);
     }
-    else if(arePiecesInSameFile(departures, departure))){
+    else if(arePiecesInSameFile(departures, departure)){
         char temp[MAX_DISAMBIGUATOR_STRING];
         sprintf(temp, "%d", departure.f);
         strcpy(result, temp);
@@ -88,7 +88,7 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     int pieceType = c[departure.r][departure.f];
     T_positions *samePieces = whereAreSamePieces(c, pieceType);
     samePieces = whatPiecesMoveToArrival(c, samePieces, arrival);
-    return toFileRank(samePieces, departure, arrival);
+    return toFileRank(c, samePieces, departure, arrival);
 }
 
 T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
@@ -117,9 +117,8 @@ T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_
         (*movementPtr)(c, departures->positions[i], movementStates);
     }
     for(int i = 0; i < departures->freeIndex; i++){
-        if(whatPiece(movementStates->states[i], arrival){
-            revDepartures.positions[i] = movementStates->states[i];
-            //copyState
+        if(whatPiece(movementStates->states[i], arrival) == pieceType){
+            (revDepartures->positions)[i] = (departures->positions)[i];
         }
     }
     return revDepartures;
@@ -136,7 +135,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     T_position arrival;
     //Determine departure location
     for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){S
+        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
             if(c[i][j] != empty && ss[i][j] == empty){
                 departure.r = i;
                 departure.f = j;
