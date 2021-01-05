@@ -23,6 +23,8 @@ char* specifyMove();
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
 T_positions* whereAreSamePieces(int, T_chessboard);
+T_positions* whichSamePiecesMoveToArrival(T_chessboard, T_positions *, T_position);
+
 char* moveInput();
 //T_chessboard updateCurrentState(T_states *successorStates, char* input);
 
@@ -269,15 +271,15 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
 //        assert(false);
 //    }
 
-char* toFileRank(T_positions p){
-    char *result = malloc(2 * sizeof(char))
+char* toFileRank(T_positions *p){
+    char *result = malloc(2 * sizeof(char));
     //Do stuff with p;
-    strcpy(result, "ab")
+    strcpy(result, "ab");
     return result;
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    char* result = malloc(MAX_DISAMBIGUATOR * sizeof(char))
+    char* result = malloc(MAX_DISAMBIGUATOR * sizeof(char));
     int pieceType = c[departure.r][departure.f];
     T_positions *samePieces = whereAreSamePieces(pieceType, c);
     samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
