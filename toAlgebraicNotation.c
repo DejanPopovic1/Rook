@@ -123,11 +123,13 @@ T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_
         movementPtr = generatorPtr(c, departures->positions[i]);
         (*movementPtr)(c, departures->positions[i], movementStates);
     }
-    for(int i; i < departures->freeIndex; i++){
-        if(){
+    for(int i = 0; i < departures->freeIndex; i++){
+        if(whatPiece(movementStates->states[i], arrival){
+            revDepartures.positions[i] = movementStates->states[i];
             //copyState
         }
     }
+    return revDepartures;
 }
 
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
