@@ -18,6 +18,7 @@ char* specifyMove();
 //Try making function pointer to iterating through the board. This will then be shared across all functions that iterate board
 //Error handle all malloc allocations by defining your own "wrapper" function
 //Move copyState into GlobalDeclarations
+//When creating and allocating memory for structs, make a single function that does this and intialises freeIndex to zero
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 

@@ -26,3 +26,15 @@ bool isSamePosition(T_position a, T_position b){
     else
         return false;
 }
+
+void assignPosition(T_position *dest, T_position src){
+    dest->r = src.r;
+    dest->f = src.f;
+}
+
+T_position* createPosition(int rank, int file){
+    T_position result = malloc(sizeof(T_position));
+    result.r = rank;
+    result.f = file;
+    return result;
+}

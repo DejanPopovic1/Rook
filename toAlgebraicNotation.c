@@ -93,22 +93,22 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     int pieceType = c[departure.r][departure.f];
-    T_positions *samePieces = whereAreSamePieces(pieceType, c);
+    T_positions *samePieces = whereAreSamePieces(c, pieceType);
     samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
     return toFileRank(samePieces, departure, arrival);
 }
 
-T_positions* whereAreSamePieces(int pieceType, T_chessboard c){
+T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
     T_positions *p = malloc(sizeof(T_positions));
     p->freeIndex = 0;
-    T_position pos;
     for(int i = 0; i < RANK_SIZE; i++){
         for(int j = 0; i < FILE_SIZE; j++){
             if(pieceType == c[i][j]){
-                pos.r = i;
-                pos.f = j;
-                p->positions[p->freeIndex] = pos;
+
+                T_position *pos = createPosition(i, j);
+                assignPosition(&(p->positions[p->freeIndex]), pos);
                 p->freeIndex++;
+                free(pos);
             }
         }
     }
@@ -125,7 +125,6 @@ T_positions* whichSamePiecesMoveToArrival(T_chessboard c, T_positions *departure
         (*movementPtr)(c, departures->positions[i], movementStates);
     }
 }
-
 
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
