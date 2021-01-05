@@ -18,3 +18,11 @@ int alternatePlayer(int playingAs){
     }
     return white;
 }
+
+bool isSamePosition(T_position a, T_position b){
+    if(a.r == b.r && a.f == b.f){
+        return true;
+    }
+    else
+        return false;
+}

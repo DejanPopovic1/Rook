@@ -36,26 +36,12 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
     }
 }
 
-bool areSamePiecesInSameRank(T_chessboard c, T_position p){
-    int pieceType = c[p.r][p.f];
-    for(int i = 0; i < FILE_SIZE; i++){
-        if(p.f == i){
+bool arePiecesInSameRank(T_positions *ps, T_position p){
+    for(int i = 0; i < ps->freeIndex; i++){
+        if(ps->positions[i] == i){
             continue;
         }
         if(pieceType == c[p.r][i]){
-            return true;
-        }
-    }
-    return false;
-}
-
-bool areSamePiecesInSameFile(T_chessboard c, T_position p){
-    int pieceType = c[p.r][p.f];
-    for(int i = 0; i < RANK_SIZE; i++){
-        if(p.r == i){
-            continue;
-        }
-        if(pieceType == c[i][p.f]){
             return true;
         }
     }
