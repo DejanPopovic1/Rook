@@ -45,7 +45,9 @@ int whatPiece(T_chessboard c, T_position p){
     return c[p.r][p.f];
 }
 
-void generateWhitePawnSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whitePawn)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);

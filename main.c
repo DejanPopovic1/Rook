@@ -89,16 +89,15 @@ void multiPlayerSession(char *firstMoveColour){
     T_chessboard currentState;
     initialiseBoard(currentState);
     char *multiPlayerInput;
-    //printBoard(firstMover, currentState);
+    printBoard(firstMover, currentState);
     while(true){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-
         //updateCurrentState(currentState, multiPlayerInput, turn);
 
         T_states *successorStates = generateSuccessorStates(turn, currentState);
         //printBoard(black, successorStates->states[15]);
-        printBoards(white, successorStates);
+        printBoards(turn, successorStates);
         //printBoard(white, successorStates->states[0]);
 
         //currentState = updateCurrentState(currentState, successorStates, multiPlayerInput);
@@ -112,7 +111,7 @@ void multiPlayerSession(char *firstMoveColour){
 
 int main() {
     const char* selection1 = "mp";
-    const char* selection2 = "single_player";
+    const char* selection2 = "sp";
     const char* selection3 = "exit";
     const char* selection4 = "help";
     const char* selection5 = "version";
@@ -212,11 +211,12 @@ void (*generator)(T_chessboard currentState, int rank, int file, T_states *conso
 //
 //}
 
+//CHANGE THE FIRST CASE!
 int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_chessboard, T_position, T_position, T_position*){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
         case whitePawn:
-            return &generateWhitePawnSuccessorStates;
+            return &generateWhiteBishopSuccessorStates;
         case whiteBishop:
             return &generateWhiteBishopSuccessorStates;
         case whiteKnight:
@@ -438,15 +438,18 @@ T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
     T_chessboard *pawnSuccessorStates, *bishopSuccessorStates, *knightSuccessorStates, *rookSuccessorStates, *queenSuccessorStates, *kingSuccessorStates;
     T_states *consolidatedStates = malloc(sizeof(T_states));
     consolidatedStates->freeIndex = 0;
+    T_position p;
     for (int i = 0; i < RANK_SIZE; i++){
         for(int j = 0; j < FILE_SIZE; j++){
+            p.r = i;
+            p.f = j;
             assert(playingAs == asWhite || playingAs == asBlack);
             if(playingAs == asWhite){
                 switch (chessboard[i][j]){
                     case empty:
                         break;
                     case whitePawn:
-                        generateWhitePawnSuccessorStates(chessboard, i, j, consolidatedStates);
+                        generateWhitePawnSuccessorStates(chessboard, p, consolidatedStates);
                         //printf("White Pawn at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
                         break;
                     case whiteBishop:

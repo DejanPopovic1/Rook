@@ -2,7 +2,7 @@
 
 //void copyState(int successorStates [RANK_SIZE][FILE_SIZE][MAX_SUCCESSOR_STATES], int chessBoard[RANK_SIZE][FILE_SIZE], int numOfStates);
 
-void generateWhitePawnSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhitePawnSuccessorStates(T_chessboard, T_position, T_states *);
 
 void generateWhiteBishopSuccessorStates(T_chessboard, int, int, T_states *);
 
