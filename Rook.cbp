@@ -54,6 +54,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="testInitialisations.h" />
+		<Unit filename="toAlgebraicNotation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="toAlgebraicNotation.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

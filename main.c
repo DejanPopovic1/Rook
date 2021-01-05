@@ -9,9 +9,7 @@
 #include <assert.h>
 #include <string.h>
 
-#define MAIN_SELECTION 100
-#define MOVE_INPUT 100
-#define MAX_DISAMBIGUATOR 3
+
 
 char* specifyMove();
 
@@ -22,8 +20,7 @@ char* specifyMove();
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
-T_positions* whereAreSamePieces(int, T_chessboard);
-T_positions* whichSamePiecesMoveToArrival(T_chessboard, T_positions *, T_position);
+
 
 char* moveInput();
 //T_chessboard updateCurrentState(T_states *successorStates, char* input);
@@ -211,44 +208,14 @@ bool isRankDifferent(T_position pos1, T_position pos2){
     return false;
 }
 
-void (*generator)(T_chessboard currentState, int rank, int file, T_states *consolidatedStates);
+
 
 //generatorSelector(int ){
 //
 //
 //}
 
-int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
-    int movedPiece = whatPiece(c, p);
-    switch(movedPiece){
-        case whitePawn:
-            return &generateWhitePawnSuccessorStates;
-        case whiteBishop:
-            return &generateWhiteBishopSuccessorStates;
-        case whiteKnight:
-            return &generateWhiteKnightSuccessorStates;
-        case whiteRook:
-            return &generateWhiteRookSuccessorStates;
-        case whiteQueen:
-            return &generateWhiteQueenSuccessorStates;
-        case whiteKing:
-            return &generateWhiteKingSuccessorStates;
-        case blackPawn:
-            return &generateBlackPawnSuccessorStates;
-        case blackBishop:
-            return &generateBlackBishopSuccessorStates;
-        case blackKnight:
-            return &generateBlackKnightSuccessorStates;
-        case blackRook:
-            return &generateBlackKnightSuccessorStates;
-        case blackQueen:
-            return &generateBlackKnightSuccessorStates;
-        case blackKing:
-            return &generateBlackKnightSuccessorStates;
-        default:
-            assert(false);
-    }
-}
+
 //    char temp1[1];
 //    T_position positions[MAX_POSITIONS];
 //    if(true/*numOfSamePiecesGoingToArrival(c, positions, movedPiece, arrival) == 2*/){
@@ -271,129 +238,9 @@ int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_st
 //        assert(false);
 //    }
 
-char* toFileRank(T_positions *p){
-    char *result = malloc(2 * sizeof(char));
-    //Do stuff with p;
-    strcpy(result, "ab");
-    return result;
-}
-
-char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    char* result = malloc(MAX_DISAMBIGUATOR * sizeof(char));
-    int pieceType = c[departure.r][departure.f];
-    T_positions *samePieces = whereAreSamePieces(pieceType, c);
-    samePieces = whichSamePiecesMoveToArrival(c, samePieces, arrival);
-    result = toFileRank(samePieces);
-    return result;
-}
-
-T_positions* whereAreSamePieces(int pieceType, T_chessboard c){
-    T_positions *p = malloc(sizeof(T_positions));
-    p->freeIndex = 0;
-    T_position pos;
-    for(int i = 0; i < RANK_SIZE; i++){
-        for(int j = 0; i < FILE_SIZE; j++){
-            if(pieceType == c[i][j]){
-                pos.r = i;
-                pos.f = j;
-                p->positions[p->freeIndex] = pos;
-                p->freeIndex++;
-            }
-        }
-    }
-    return p;
-}
-
-T_positions* whichSamePiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
-    int pieceType = c[departures->positions[0].r][departures->positions[0].f];
-    T_positions *p = malloc(sizeof(T_positions));
-    p->freeIndex = 0;
-    for(int i = 0; i < departures->freeIndex; i++){
-        generator = generatorPtr(c, departures->positions[i]);
 
 
-    }
-}
 
-//THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
-//Refactor so that parts 1, 2 and 3 each return individual strings
-char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
-    char* result = malloc(MOVE_INPUT * sizeof(char));
-    bool isPieceCaptured = false;
-    bool breakOut = false;
-    T_position departure;
-    T_position arrival;
-    //Determine departure location
-    for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
-            if(c[i][j] != empty && ss[i][j] == empty){
-                departure.r = i;
-                departure.f = j;
-                breakOut = true;
-            }
-        }
-    }
-    //Determine arrival location and whether piece is captured
-    for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
-            if(c[i][j] != ss[i][j] && ss[i][j] != empty){
-                arrival.r = i;
-                arrival.f = j;
-                breakOut = true;
-                if(c[i][j] != empty){
-                    isPieceCaptured = true;
-                }
-            }
-        }
-    }
-    int movedPiece = c[departure.r][departure.f];
-    //Part 1: Piece to be moved
-    switch(movedPiece){
-        case whitePawn:
-        case blackPawn:
-            ;//strcpy(result, "");
-            break;
-        case whiteBishop:
-        case blackBishop:
-            strcpy(result, "B");
-            break;
-        case whiteKnight:
-        case blackKnight:
-            strcpy(result, "N");
-            break;
-        case whiteRook:
-        case blackRook:
-            strcpy(result, "R");
-            break;
-        case whiteQueen:
-        case blackQueen:
-            strcpy(result, "Q");
-            break;
-        case whiteKing:
-        case blackKing:
-            strcpy(result, "K");
-            break;
-    }
-    //Part 2: Disambiguator
-        //Determine all like pieces and add them to a list
-        //From the list above copy only those ones that end up in the same destination into another list
-
-    strcat(result, disambiguator(c, departure, arrival));
-
-    //Part 3: Take?
-    if(isPieceCaptured){
-        strcat(result, "x");
-    }
-    //Part 4: Arrival
-        char temp2[1];
-        char temp3[1];
-        sprintf(temp2, "%d", arrival.f);
-        sprintf(temp3, "%d", arrival.r);
-        strcat(result, temp2);
-        strcat(result, temp3);
-    //Part 5: Check(mate)?
-    return "c3";
-}
 
 void consumeInput(char** input){
 
