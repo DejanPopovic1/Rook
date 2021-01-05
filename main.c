@@ -213,49 +213,55 @@ void (*generator)(T_chessboard currentState, int rank, int file, T_states *conso
 //}
 
 //CHANGE THE FIRST CASE!
-int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_position*){
+int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
         case whitePawn:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhitePawnSuccessorStates;
         case whiteBishop:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhiteBishopSuccessorStates;
         case whiteKnight:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhiteKnightSuccessorStates;
         case whiteRook:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhiteRookSuccessorStates;
         case whiteQueen:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhiteQueenSuccessorStates;
         case whiteKing:
-            return &generateBlackKingSuccessorStates;
+            return &generateWhiteKingSuccessorStates;
         case blackPawn:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackPawnSuccessorStates;
         case blackBishop:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackBishopSuccessorStates;
         case blackKnight:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackKnightSuccessorStates;
         case blackRook:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackKnightSuccessorStates;
         case blackQueen:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackKnightSuccessorStates;
         case blackKing:
-            return &generateBlackKingSuccessorStates;
+            return &generateBlackKnightSuccessorStates;
         default:
             assert(false);
     }
 }
 
+void disambiguator(T_chessboard c, T_position p){
+
+
+    return;
+}
+
 T_positions* whereAreSamePieces(int pieceType, T_chessboard c){
     T_positions *p = malloc(sizeof(T_positions));
-    p->freeIndex2 = 0;
+    p->freeIndex = 0;
     T_position pos;
     for(int i = 0; i < RANK_SIZE; i++){
         for(int j = 0; i < FILE_SIZE; j++){
             if(pieceType == c[i][j]){
                 pos.r = i;
                 pos.f = j;
-                p->positions[p->freeIndex2] = pos;
-                p->freeIndex2++;
+                p->positions[p->freeIndex] = pos;
+                p->freeIndex++;
             }
         }
     }
@@ -265,10 +271,10 @@ T_positions* whereAreSamePieces(int pieceType, T_chessboard c){
 T_positions* whichSamePiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
     int pieceType = c[departures->positions[0].r][departures->positions[0].f];
     T_positions *p = malloc(sizeof(T_positions));
-    //T_position test;
-    p->freeIndex2 = 0;
-    for(int i = 0; i < departures->freeIndex2; i++){
+    p->freeIndex = 0;
+    for(int i = 0; i < departures->freeIndex; i++){
         generator = generatorPtr(c, departures->positions[i]);
+
 
     }
 }

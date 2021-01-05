@@ -37,7 +37,7 @@ typedef struct Positions T_positions;
 
 struct Positions{
     T_position positions[MAX_POSITIONS];
-    int freeIndex2;
+    int freeIndex;
 };
 
 //char** listOfMoves(){
