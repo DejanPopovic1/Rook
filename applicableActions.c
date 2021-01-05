@@ -122,7 +122,9 @@ void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T
 }
 
 //FOR THIS AND WHITE PAWN INSERT MACRO CALLED PAWN STARTING RANK
-void generateBlackPawnSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackPawnSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackPawn)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -197,7 +199,9 @@ void generateBlackPawnSuccessorStates(T_chessboard currentState, int rank, int f
 }
 
 //Change rank and file to position
-void generateWhiteBishopSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whiteBishop)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -270,7 +274,9 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, int rank, int
     }
 }
 
-void generateBlackBishopSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackBishop)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -343,7 +349,9 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, int rank, int
     }
 }
 
-void generateWhiteKnightSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhiteKnightSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whiteKnight)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -406,7 +414,9 @@ void generateWhiteKnightSuccessorStates(T_chessboard currentState, int rank, int
     }
 }
 
-void generateBlackKnightSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackKnightSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackKnight)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -469,7 +479,9 @@ void generateBlackKnightSuccessorStates(T_chessboard currentState, int rank, int
     }
 }
 
-void generateWhiteRookSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whiteRook)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -538,7 +550,9 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, int rank, int f
     }
 }
 
-void generateBlackRookSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackRook)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -607,7 +621,9 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, int rank, int f
     }
 }
 
-void generateWhiteQueenSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whiteQueen)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -741,7 +757,9 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, int rank, int 
     return;
 }
 
-void generateBlackQueenSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackQueen)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -875,7 +893,9 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, int rank, int 
     return;
 }
 
-void generateWhiteKingSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateWhiteKingSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, whiteKing)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);
@@ -939,7 +959,9 @@ void generateWhiteKingSuccessorStates(T_chessboard currentState, int rank, int f
 }
 
 //ADD CASTLING AS AN OPTION
-void generateBlackKingSuccessorStates(T_chessboard currentState, int rank, int file, T_states *consolidatedStates){
+void generateBlackKingSuccessorStates(T_chessboard currentState, T_position p, T_states *consolidatedStates){
+    int rank = p.r;
+    int file = p.f;
     if(!isPiece(currentState, rank, file, blackKing)){
         fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
         exit(-1);

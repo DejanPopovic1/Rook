@@ -4,24 +4,24 @@
 
 void generateWhitePawnSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateWhiteBishopSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhiteBishopSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateWhiteKnightSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhiteKnightSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateWhiteRookSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhiteRookSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateWhiteQueenSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhiteQueenSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateWhiteKingSuccessorStates(T_chessboard, int, int, T_states *);
+void generateWhiteKingSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackPawnSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackPawnSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackBishopSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackBishopSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackKnightSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackKnightSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackRookSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackRookSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackQueenSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackQueenSuccessorStates(T_chessboard, T_position, T_states *);
 
-void generateBlackKingSuccessorStates(T_chessboard, int, int, T_states *);
+void generateBlackKingSuccessorStates(T_chessboard, T_position, T_states *);
