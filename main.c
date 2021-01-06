@@ -21,6 +21,17 @@ char* specifyMove();
 //Apply const correctness
 //Address all compiler warnings
 //Cycle through previous commands
+//Provide USER HINTS for the next best move
+//Duplicate version to Linux
+//Thread usage
+//Ponder functionality
+//Undo Move
+//Randomise AI moves or keep fixed (option)
+//Set difficulty
+//Set heuristics
+//Display time
+//Timed/non timed game as argument to starting new game (multiplayer and against AI)
+//struct to keep all user settings as a conf object
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
@@ -122,11 +133,14 @@ int main() {
     T_chessboard c;
     initialiseRandomTest1(c);
     T_positions *ps;
-    T_position p;
-    p.r = 1;
-    p.f = 1;
+    T_position d;
+    T_position a;
+    d.r = 3;
+    d.f = 5;
+    a.r = 4;
+    a.f = 7;
     //ps = whereAreOtherSamePieces(c, p);
-    disambiguator(c, p, p);
+    printf("%s\n", disambiguator(c, d, a));
 
     //printPosition(ps->positions[0]);
     //printPosition(ps->positions[1]);

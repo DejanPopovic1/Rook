@@ -89,7 +89,8 @@ bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
     T_states *s = malloc(sizeof(T_states));
     T_position *p = createPosition(2, 3);
     mvmntRulePtr = returnMvmntRule(c, d);
-    generateWhitePawnSuccessorStates(c, *p, s);
+    (*mvmntRulePtr)(c, d, s);
+    //generateWhitePawnSuccessorStates(c, *p, s);
     return true;
 }
 
