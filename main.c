@@ -11,31 +11,7 @@
 
 char* specifyMove();
 
-//Todo List:
-//DONT FORGET TO FREE ALL MALLOCS!
-//Try making function pointer to iterating through the board. This will then be shared across all functions that iterate board
-//Error handle all malloc allocations by defining your own "wrapper" function
-//Move copyState into GlobalDeclarations
-//When creating and allocating memory for structs, make a single function that does this and intialises freeIndex to zero
-//We have allocated memory for strings but have not possible allocated space for null terminating character - check this
-//Apply const correctness
-//Address all compiler warnings
-//Cycle through previous commands
-//Provide USER HINTS for the next best move
-//Duplicate version to Linux
-//Thread usage
-//Ponder functionality
-//Undo Move
-//Randomise AI moves or keep fixed (option)
-//Set difficulty
-//Set heuristics
-//Display time
-//Timed/non timed game as argument to starting new game (multiplayer and against AI)
-//struct to keep all user settings as a conf object
-
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
-
-
 
 char* moveInput();
 //T_chessboard updateCurrentState(T_states *successorStates, char* input);

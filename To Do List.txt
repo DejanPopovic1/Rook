@@ -19,3 +19,5 @@ Set heuristics
 Display time
 Timed/non timed game as argument to starting new game (multiplayer and against AI)
 struct to keep all user settings as a conf object
+export to PNG notation
+choose movement notation

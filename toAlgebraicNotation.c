@@ -84,13 +84,32 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
     return result;
 }
 
+//Need to account for en passant castling and promotion
+T_position whereArrival(T_chessboard c, T_chessboard ss){
+    bool breakOut = false;
+    T_position arrival;
+    for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
+        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
+            if(c[i][j] != ss[i][j] && ss[i][j] != empty){
+                arrival.r = i;
+                arrival.f = j;
+                breakOut = true;
+            }
+        }
+    }
+    return arrival;
+}
+
 bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
-    int pieceType = c[d.f][d.r];
     T_states *s = malloc(sizeof(T_states));
     T_position *p = createPosition(2, 3);
     mvmntRulePtr = returnMvmntRule(c, d);
     (*mvmntRulePtr)(c, d, s);
-    //generateWhitePawnSuccessorStates(c, *p, s);
+    for(int i = 0; i < s->freeIndex; i++){
+        if(isSamePosition(whereArrival(c, s->states[i]), a)){
+            return true;
+        }
+    }
     return true;
 }
 
@@ -158,7 +177,7 @@ T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_
     return revDepartures;
 }
 
-//THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
+//THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
 //Use the position creation functions over here!
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
