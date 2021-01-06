@@ -15,6 +15,12 @@ void printPosition(T_position p){
     printf("(%d, %d)\n", p.r, p.f);
 }
 
+void printPositions(T_positions ps){
+    for(int i = 0; i < ps.freeIndex; i++){
+        printPosition(ps.positions[i]);
+    }
+}
+
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
     return;

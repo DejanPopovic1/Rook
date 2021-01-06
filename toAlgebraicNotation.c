@@ -84,18 +84,34 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
     return result;
 }
 
+void trimPositionsThatMoveToArrival(T_positions *ps, T_position arrival){
+    T_positions *result = malloc(sizeof(T_positions));
+    result->freeIndex = 0;
+    for(int i = 0; i < ps->freeIndex; i++){
+        result->positions[i] = ps->positions[i];
+    }
+    free(ps);
+    return;
+}
+
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
+    T_positions *ps = whereAreOtherSamePieces(c, departure);
+    trimPositionsThatMoveToArrival(ps, arrival);
     //int pieceType = c[departure.r][departure.f];
     //T_positions *samePieces = whereAreSamePieces(c, pieceType);
     //whatPiecesMoveToArrival(c, samePieces, arrival);
     //return toFileRank(c, samePieces, departure, arrival);
 }
 
-T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
+T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
     T_positions *result = malloc(sizeof(T_positions));
     result->freeIndex = 0;
+    int pieceType = c[p.r][p.f];
     for(int i = 0; i < RANK_SIZE; i++){
         for(int j = 0; j < FILE_SIZE; j++){
+            if(i == p.r && j == p.f){
+                continue;
+            }
             if(pieceType == c[i][j]){
                 T_position *pos = createPosition(i, j);
                 result->positions[result->freeIndex] = *pos;
@@ -104,13 +120,6 @@ T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
             }
         }
     }
-    return result;
-}
-
-T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
-    T_positions *result = malloc(sizeof(T_positions));
-    int pieceType = c[p.r][p.f];
-    whereAreSamePieces(c, pieceType);
     return result;
 }
 

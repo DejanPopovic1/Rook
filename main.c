@@ -121,7 +121,15 @@ int main() {
     T_chessboard c;
     initialiseRandomTest1(c);
     T_positions *ps;
-    ps = whereAreSamePieces(c, whiteKnight);
+    T_position p;
+    p.r = 1;
+    p.f = 1;
+    ps = whereAreOtherSamePieces(c, p);
+    printPositions(*ps);
+
+    //printPosition(ps->positions[0]);
+    //printPosition(ps->positions[1]);
+    //printPosition(ps->positions[2]);
 
 
 
