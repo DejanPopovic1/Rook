@@ -110,7 +110,7 @@ bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
             return true;
         }
     }
-    return true;
+    return false;
 }
 
 T_positions* trimPositionsMovingToArrival(T_chessboard c, T_positions *ps, T_position arrival){
@@ -120,6 +120,9 @@ T_positions* trimPositionsMovingToArrival(T_chessboard c, T_positions *ps, T_pos
         if(doesDepartureGoToArrival(c, ps->positions[i], arrival)){
             result->positions[i] = ps->positions[i];
             result->freeIndex++;
+//            printf("Matched Position: ");
+//            printPosition(result->positions[i]);
+//            printf("\n");
         }
     }
     return result;
@@ -131,7 +134,7 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     T_positions *rps;
     rps = trimPositionsMovingToArrival(c, ps, arrival);
     free(ps);
-    printPositions(*rps);
+    printPosition(rps->positions[0]);
     return "Test";
 }
 

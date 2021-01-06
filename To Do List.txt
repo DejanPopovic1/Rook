@@ -22,3 +22,5 @@ struct to keep all user settings as a conf object
 export to PNG notation
 choose movement notation
 Choose search tree algorithm Minmax and Alpha Beta
+Function declarations
+Neaten up file structure
