@@ -117,7 +117,7 @@ int main() {
     T_position a;
     d.r = 3;
     d.f = 5;
-    a.r = 4;//4//2
+    a.r = 2;//4//2
     a.f = 7;//7//7
     printf("%s\n", disambiguator(c, d, a));
     //doesDepartureGoToArrival(c,

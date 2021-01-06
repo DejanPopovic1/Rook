@@ -230,6 +230,7 @@ void initialiseRandomTest1(int chessboard [RANK_SIZE][FILE_SIZE]) {
     chessboard[6][6] = whiteKnight;
     chessboard[1][1] = whiteKnight;
     chessboard[0][6] = whiteKnight;
+    chessboard[4][6] = whiteKnight;
     chessboard[5][3] = whiteBishop;
     chessboard[1][0] = blackPawn;
     return;

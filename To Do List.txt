@@ -1,4 +1,11 @@
 Todo List:
+
+denote moves using algebraic notation
+Even in multi player, you can denote what the best move is at any point in time! This is good analysis in analysing what your move in a game should have done
+Import PNG at any step into multi-player
+Develop Minmax tree
+Complete play against AI
+Highlight from and to tiles
 DONT FORGET TO FREE ALL MALLOCS!
 Try making function pointer to iterating through the board. This will then be shared across all functions that iterate board
 Error handle all malloc allocations by defining your own "wrapper" function
@@ -19,8 +26,11 @@ Set heuristics
 Display time
 Timed/non timed game as argument to starting new game (multiplayer and against AI)
 struct to keep all user settings as a conf object
-export to PNG notation
+export to PNG notation (plus optional export settings)
 choose movement notation
 Choose search tree algorithm Minmax and Alpha Beta
 Function declarations
 Neaten up file structure
+Opening libraries
+Read on chess engine optimisations wiki
+Display Heuristic score
