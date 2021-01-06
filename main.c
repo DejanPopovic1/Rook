@@ -8,6 +8,7 @@
 #include "testInitialisations.h"
 #include <assert.h>
 #include <string.h>
+#include "testCases.h"
 
 char* specifyMove();
 
@@ -104,20 +105,22 @@ void multiPlayerSession(char *firstMoveColour){
     return;
 }
 
+void testCases(){
+    return;
+}
+
 int main() {
-    //TESTING***
+    testCases();
     T_chessboard c;
     initialiseRandomTest1(c);
-    T_positions *ps;
     T_position d;
     T_position a;
     d.r = 3;
     d.f = 5;
     a.r = 4;
     a.f = 7;
-    //ps = whereAreOtherSamePieces(c, p);
     printf("%s\n", disambiguator(c, d, a));
-
+    //doesDepartureGoToArrival(c,
     //printPosition(ps->positions[0]);
     //printPosition(ps->positions[1]);
     //printPosition(ps->positions[2]);

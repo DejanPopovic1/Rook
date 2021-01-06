@@ -60,7 +60,7 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
     return false;
 }
 
-char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, T_position arrival){
+char* toFileRank(T_chessboard c, T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
         char temp[MAX_DISAMBIGUATOR_STRING];
@@ -126,18 +126,13 @@ T_positions* trimPositionsMovingToArrival(T_chessboard c, T_positions *ps, T_pos
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
+    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     T_positions *ps = whereAreOtherSamePieces(c, departure);
     T_positions *rps;
     rps = trimPositionsMovingToArrival(c, ps, arrival);
     free(ps);
-    //printPosition(rps->positions[3]);
-    //printf("%d", rps->freeIndex);
     printPositions(*rps);
-    //int pieceType = c[departure.r][departure.f];
-    //T_positions *samePieces = whereAreSamePieces(c, pieceType);
-    //whatPiecesMoveToArrival(c, samePieces, arrival);
-    //return toFileRank(c, samePieces, departure, arrival);
-    return "test";
+    return "Test";
 }
 
 T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
