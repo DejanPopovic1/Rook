@@ -9,8 +9,6 @@
 #include <assert.h>
 #include <string.h>
 
-
-
 char* specifyMove();
 
 //Todo List:
@@ -21,6 +19,7 @@ char* specifyMove();
 //When creating and allocating memory for structs, make a single function that does this and intialises freeIndex to zero
 //We have allocated memory for strings but have not possible allocated space for null terminating character - check this
 //Apply const correctness
+//Address all compiler warnings
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
@@ -118,6 +117,28 @@ void multiPlayerSession(char *firstMoveColour){
 }
 
 int main() {
+    //TESTING***
+    T_chessboard c;
+    initialiseRandomTest1(c);
+    T_positions *ps;
+    ps = whereAreSamePieces(c, whiteKnight);
+
+
+
+
+
+    printBoard(white, c);
+//    T_position *p = createPosition(3, 4);
+//    T_position *q = createPosition(3, 5);
+//    if(isSameFile(p, q)){
+//        printf("Same file");
+//    }
+//    else
+//        printf("Different file");
+
+//    T_positions* p = whereAreSamePieces(c, whiteBishop);
+    //TESTING***
+
     const char* selection1 = "mp";
     const char* selection2 = "sp";
     const char* selection3 = "exit";

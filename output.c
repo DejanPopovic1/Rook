@@ -11,6 +11,10 @@ void landingMessage(){
     printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
 }
 
+void printPosition(T_position p){
+    printf("(%d, %d)\n", p.r, p.f);
+}
+
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
     return;

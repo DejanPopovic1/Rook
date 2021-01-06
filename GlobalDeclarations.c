@@ -41,10 +41,10 @@ bool isSameFile(T_position a, T_position b){
     return false;
 }
 
-void assignPosition(T_position *dest, const T_position *src){
-    dest->r = src->r;
-    dest->f = src->f;
-}
+//void assignPosition(T_position *dest, const T_position *src){
+//    dest->r = src->r;
+//    dest->f = src->f;
+//}
 
 T_position* createPosition(const int rank, const int file){
     T_position *result = malloc(sizeof(T_position));

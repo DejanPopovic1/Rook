@@ -85,36 +85,43 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    int pieceType = c[departure.r][departure.f];
-    T_positions *samePieces = whereAreSamePieces(c, pieceType);
-    samePieces = whatPiecesMoveToArrival(c, samePieces, arrival);
-    return toFileRank(c, samePieces, departure, arrival);
+    //int pieceType = c[departure.r][departure.f];
+    //T_positions *samePieces = whereAreSamePieces(c, pieceType);
+    //whatPiecesMoveToArrival(c, samePieces, arrival);
+    //return toFileRank(c, samePieces, departure, arrival);
 }
 
 T_positions* whereAreSamePieces(T_chessboard c, int pieceType){
-    T_positions *p = malloc(sizeof(T_positions));
-    p->freeIndex = 0;
+    T_positions *result = malloc(sizeof(T_positions));
+    result->freeIndex = 0;
     for(int i = 0; i < RANK_SIZE; i++){
-        for(int j = 0; i < FILE_SIZE; j++){
+        for(int j = 0; j < FILE_SIZE; j++){
             if(pieceType == c[i][j]){
                 T_position *pos = createPosition(i, j);
-                assignPosition(p->positions[p->freeIndex], pos);
-                p->freeIndex++;
+                result->positions[result->freeIndex] = *pos;
+                (result->freeIndex)++;
                 free(pos);
             }
         }
     }
-    return p;
+    return result;
+}
+
+T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
+    T_positions *result = malloc(sizeof(T_positions));
+    int pieceType = c[p.r][p.f];
+    whereAreSamePieces(c, pieceType);
+    return result;
 }
 
 T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
-    int pieceType = c[departures->positions[0].r][departures->positions[0].f];
+    int pieceType = 1;// = c[departures->positions[0].r][departures->positions[0].f];
     T_positions *revDepartures = malloc(sizeof(T_positions));
     revDepartures->freeIndex = 0;
     T_states *movementStates = malloc(sizeof(T_states));
     for(int i = 0; i < departures->freeIndex; i++){
-        movementPtr = generatorPtr(c, departures->positions[i]);
-        (*movementPtr)(c, departures->positions[i], movementStates);
+//        movementPtr = generatorPtr(c, departures->positions[i]);
+;//        (*movementPtr)(c, departures->positions[i], movementStates);
     }
     for(int i = 0; i < departures->freeIndex; i++){
         if(whatPiece(movementStates->states[i], arrival) == pieceType){
