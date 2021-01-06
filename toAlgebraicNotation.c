@@ -62,25 +62,25 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
 
 char* toFileRank(T_chessboard c, T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-    if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
-        char temp[MAX_DISAMBIGUATOR_STRING];
+    char temp[MAX_DISAMBIGUATOR_STRING];
+    if(!arePiecesInSameRank(departures, departure) && !arePiecesInSameFile(departures, departure)){
+        strcpy(result, "");
+    }
+    else if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
         sprintf(temp, "%d%d", departure.f, departure.r);
         strcpy(result, temp);
     }
     else if(arePiecesInSameFile(departures, departure)){
-        char temp[MAX_DISAMBIGUATOR_STRING];
         sprintf(temp, "%d", departure.f);
         strcpy(result, temp);
     }
     else if(arePiecesInSameRank(departures, departure)){
-        char temp[MAX_DISAMBIGUATOR_STRING];
         sprintf(temp, "%d", departure.r);
         strcpy(result, temp);
     }
     else{
         assert(false);
     }
-    strcpy(result, "ab");
     return result;
 }
 
@@ -134,9 +134,10 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     T_positions *rps;
     rps = trimPositionsMovingToArrival(c, ps, arrival);
     free(ps);
+    //printBoard(white, c);
+    return "Test";//toFileRank(c, rps, departure);
     //printPosition(rps->positions[0]);
-    printPositions(*rps);
-    return "Test";
+    //printPositions(*rps);
 }
 
 T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
@@ -157,23 +158,6 @@ T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
         }
     }
     return result;
-}
-
-T_positions* whatPiecesMoveToArrival(T_chessboard c, T_positions *departures, T_position arrival){
-    int pieceType = 1;// = c[departures->positions[0].r][departures->positions[0].f];
-    T_positions *revDepartures = malloc(sizeof(T_positions));
-    revDepartures->freeIndex = 0;
-    T_states *movementStates = malloc(sizeof(T_states));
-    for(int i = 0; i < departures->freeIndex; i++){
-//        movementPtr = generatorPtr(c, departures->positions[i]);
-;//        (*movementPtr)(c, departures->positions[i], movementStates);
-    }
-    for(int i = 0; i < departures->freeIndex; i++){
-        if(whatPiece(movementStates->states[i], arrival) == pieceType){
-            (revDepartures->positions)[i] = (departures->positions)[i];
-        }
-    }
-    return revDepartures;
 }
 
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn

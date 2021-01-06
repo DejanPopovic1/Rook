@@ -106,20 +106,13 @@ void multiPlayerSession(char *firstMoveColour){
 }
 
 void testCases(){
+    TESTdisambiguator();
     return;
 }
 
 int main() {
     testCases();
-    T_chessboard c;
-    initialiseRandomTest1(c);
-    T_position d;
-    T_position a;
-    d.r = 3;
-    d.f = 5;
-    a.r = 2;//4//2
-    a.f = 7;//7//7
-    printf("%s\n", disambiguator(c, d, a));
+
     //doesDepartureGoToArrival(c,
     //printPosition(ps->positions[0]);
     //printPosition(ps->positions[1]);
@@ -129,7 +122,7 @@ int main() {
 
 
 
-    printBoard(white, c);
+//    printBoard(white, c);
 //    T_position *p = createPosition(3, 4);
 //    T_position *q = createPosition(3, 5);
 //    if(isSameFile(p, q)){
