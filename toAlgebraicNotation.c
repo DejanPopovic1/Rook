@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <stdbool.h>
 
-int (*generatorPtr(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
+int (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
         case whitePawn:
@@ -84,23 +84,40 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure, 
     return result;
 }
 
-void trimPositionsThatMoveToArrival(T_positions *ps, T_position arrival){
+bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
+    int pieceType = c[d.f][d.r];
+    T_states *s = malloc(sizeof(T_states));
+    T_position *p = createPosition(2, 3);
+    mvmntRulePtr = returnMvmntRule(c, d);
+    generateWhitePawnSuccessorStates(c, *p, s);
+    return true;
+}
+
+T_positions* trimPositionsMovingToArrival(T_chessboard c, T_positions *ps, T_position arrival){
     T_positions *result = malloc(sizeof(T_positions));
     result->freeIndex = 0;
     for(int i = 0; i < ps->freeIndex; i++){
-        result->positions[i] = ps->positions[i];
+        if(doesDepartureGoToArrival(c, ps->positions[i], arrival)){
+            result->positions[i] = ps->positions[i];
+            result->freeIndex++;
+        }
     }
-    free(ps);
-    return;
+    return result;
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     T_positions *ps = whereAreOtherSamePieces(c, departure);
-    trimPositionsThatMoveToArrival(ps, arrival);
+    T_positions *rps;
+    rps = trimPositionsMovingToArrival(c, ps, arrival);
+    free(ps);
+    //printPosition(rps->positions[3]);
+    //printf("%d", rps->freeIndex);
+    printPositions(*rps);
     //int pieceType = c[departure.r][departure.f];
     //T_positions *samePieces = whereAreSamePieces(c, pieceType);
     //whatPiecesMoveToArrival(c, samePieces, arrival);
     //return toFileRank(c, samePieces, departure, arrival);
+    return "test";
 }
 
 T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){

@@ -20,6 +20,7 @@ char* specifyMove();
 //We have allocated memory for strings but have not possible allocated space for null terminating character - check this
 //Apply const correctness
 //Address all compiler warnings
+//Cycle through previous commands
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
@@ -124,8 +125,8 @@ int main() {
     T_position p;
     p.r = 1;
     p.f = 1;
-    ps = whereAreOtherSamePieces(c, p);
-    printPositions(*ps);
+    //ps = whereAreOtherSamePieces(c, p);
+    disambiguator(c, p, p);
 
     //printPosition(ps->positions[0]);
     //printPosition(ps->positions[1]);

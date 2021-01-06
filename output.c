@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-
 //TODO: Illuminate the from and to tiles for every move
 void landingMessage(){
     printf("Rook Chess Engine\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
