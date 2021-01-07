@@ -89,7 +89,8 @@ void multiPlayerSession(char *firstMoveColour){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
         nextState(currentState, "c3", white);
-        //printBoardsAndAlgNot(currentState, asWhite,successorStates);
+        T_states* successorStates = generateSuccessorStates(asWhite, currentState);
+        printBoardsAndAlgNot(currentState, asWhite, successorStates);
     }
     return;
 }
@@ -141,7 +142,7 @@ int main() {
     return 0;
 }
 
-void initialiseBoard(int chessboard [RANK_SIZE][FILE_SIZE]) {
+void initialiseBoard(T_chessboard chessboard) {
     for(int i = 0; i < FILE_SIZE; i++){
         chessboard[1][i] = whitePawn;
     }
