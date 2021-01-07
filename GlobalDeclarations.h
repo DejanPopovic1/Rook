@@ -45,6 +45,13 @@ struct Positions{
     int freeIndex;
 };
 
+typedef struct Moves T_moves;
+
+struct Moves{
+    char *moves[MAX_SUCCESSOR_STATES];
+    int freeIndex;
+};
+
 //char** listOfMoves(){
 
 

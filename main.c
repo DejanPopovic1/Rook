@@ -14,6 +14,8 @@ char* specifyMove();
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
+T_chessboard* nextState(T_chessboard, char*, int);
+
 char* moveInput();
 
 struct ApplicableActions{
@@ -86,8 +88,8 @@ void multiPlayerSession(char *firstMoveColour){
     while(true){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        T_states *successorStates = generateSuccessorStates(turn, currentState);
-        printBoardsAndAlgNot(currentState, asWhite,successorStates);
+        nextState(currentState, "c3", white);
+        //printBoardsAndAlgNot(currentState, asWhite,successorStates);
     }
     return;
 }
@@ -193,20 +195,6 @@ bool isRankDifferent(T_position pos1, T_position pos2){
     return false;
 }
 
-
-
-//generatorSelector(int ){
-//
-//
-//}
-
-
-
-
-
-
-
-
 void consumeInput(char** input){
 
     return;
@@ -251,20 +239,19 @@ void toListOfMoves(T_states *consolidatedStates){
     }
 }
 
-void updateCurrentState(T_chessboard currentState, char* input, int turn){
-    int p = pieceToBeMoved(input, turn);
-    T_position potentialDepartures[MAX_POSITIONS][MAX_POSITIONS];
-//    generatePotentialDepartures(p, currentState, potentialDepartures);
-    //AT THIS POINT IN TIME, WE HAVE ALL DEPARTURES
-    //Now, depending on the value of p, we generatePSuccessorStates for all the positions
+T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
+    T_moves *a = malloc(sizeof(T_moves));
+    for(int i = 0; i < ss->freeIndex; i++){
+        a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
+    }
+    return a;
+}
+
+T_chessboard* nextState(T_chessboard currentState, char* input, int turn){
+    T_chessboard *result = malloc(sizeof(T_chessboard));
     T_states *successorStates = generateSuccessorStates(turn, currentState);
-    //possiblePieceStates;
-//    convertListOfStatesToListOfInputs();
-
-    //Do a bunch of stuff...
-
-    currentState;
-    return;
+    T_moves *a = generateListOfMoves(currentState, successorStates);
+    return result;
 }
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
@@ -354,11 +341,6 @@ void iterateChessBoard(int chessboard [RANK_SIZE][FILE_SIZE], bool turn){
 void validBlackMoves(int chessboard [RANK_SIZE][FILE_SIZE]){
 
 }
-
-//void movePiece(int playingAs, int chessboard [RANK_SIZE][FILE_SIZE], char *moveString){
-//    generateSuccessorStates(playingAs, chessboard);
-//    return;
-//}
 
 void generateAllWhite(){
 
