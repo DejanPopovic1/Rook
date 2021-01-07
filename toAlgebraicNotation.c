@@ -79,7 +79,10 @@ char* formatRankDisplay(int r){
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     char temp[MAX_DISAMBIGUATOR_STRING];
-    if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
+    if(departures->freeIndex == 0){
+            return "";
+    }
+    else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
         sprintf(temp, "%d%d", departure.f, departure.r);
         strcpy(result, temp);
     }
@@ -250,11 +253,11 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     }
     //Part 4: Arrival
     strcat(result, "-");
-        char temp3[2];
-        char *ff = formatFileDisplay(arrival.f);
-        char *fr = formatRankDisplay(arrival.r);
-        strcat(result, ff);
-        strcat(result, fr);
+    char temp3[2];
+    char *ff = formatFileDisplay(arrival.f);
+    char *fr = formatRankDisplay(arrival.r);
+    strcat(result, ff);
+    strcat(result, fr);
     //Part 5: Check(mate)?
     strcat(result, "-");
     strcat(result, "|");
