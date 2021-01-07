@@ -9,12 +9,13 @@
 #include <assert.h>
 #include <string.h>
 #include "testCases.h"
+#include <stdlib.h>
 
 char* specifyMove();
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
-T_chessboard* nextState(T_chessboard, char*, int);
+T_chessboard* nextState(T_chessboard *, char*, int);
 T_chessboard* initialiseBoard();
 
 char* moveInput();
@@ -86,19 +87,20 @@ void multiPlayerSession(char *firstMoveColour){
     c = initialiseBoard();
     char *multiPlayerInput;
     while(true){
+        //printf("%d", (*c)[0][0]);
         printBoard(firstMover, *c);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        //T_states* successorStates = generateSuccessorStates(asWhite, *c);
-        c = nextState(*c, multiPlayerInput, white);
-        //printBoardsAndAlgNot(*c, asWhite, successorStates);
+        T_states* successorStates = generateSuccessorStates(asWhite, *c);
+        //c = nextState(c, multiPlayerInput, white);
+        printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
     return;
 }
 
 void testCases(){
-    TESTformatFileDisplay();
-    TESTdisambiguator();
+    //TESTformatFileDisplay();
+    //TESTdisambiguator();
     return;
 }
 
@@ -235,12 +237,12 @@ int pieceToBeMoved(char* input, int turn){
     return movedPiece;
 }
 
-void toListOfMoves(T_states *consolidatedStates){
-    char** a = malloc(MOVE_INPUT * MAX_SUCCESSOR_STATES * sizeof(char));
-    for(int i = 0; i < consolidatedStates->freeIndex; i++){
-        consolidatedStates[i];
-    }
-}
+//void toListOfMoves(T_states *consolidatedStates){
+//    char** a = malloc(MOVE_INPUT * MAX_SUCCESSOR_STATES * sizeof(char));
+//    for(int i = 0; i < consolidatedStates->freeIndex; i++){
+//        consolidatedStates[i];
+//    }
+//}
 
 T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
@@ -250,22 +252,26 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     return a;
 }
 
-T_chessboard* nextState(T_chessboard c, char* input, int turn){
+T_chessboard* nextState(T_chessboard *c, char* input, int turn){
     T_chessboard *result = malloc(sizeof(T_chessboard));
-    T_states *successorStates = generateSuccessorStates(turn, c);
-    T_moves *a = generateListOfMoves(c, successorStates);
+    T_states *successorStates = generateSuccessorStates(turn, *c);
+    T_moves *a = generateListOfMoves(*c, successorStates);
+    //Iterate through moves list until it matches input. Save index and fetch it. Load successor state with that index
     for(int i = 0; i < a->freeIndex; i++){
         if(!strcmp(a->moves[i], input)){
-            return successorStates->states[i];
+            T_chessboard *p = malloc(sizeof(T_chessboard));
+            p = &successorStates->states[i];
+            printf("Hello\n");
+            return p;
         }
     }
-    //Iterate through moves list until it matches input. Save index and fetch it. Load successor state with that index
-    return &c;
+    printf("Hello_2\n");
+    return c;
 }
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
     int numOfStates = 0;
-    T_chessboard *pawnSuccessorStates, *bishopSuccessorStates, *knightSuccessorStates, *rookSuccessorStates, *queenSuccessorStates, *kingSuccessorStates;
+    //T_chessboard *pawnSuccessorStates, *bishopSuccessorStates, *knightSuccessorStates, *rookSuccessorStates, *queenSuccessorStates, *kingSuccessorStates;
     T_states *consolidatedStates = malloc(sizeof(T_states));
     consolidatedStates->freeIndex = 0;
     T_position p;

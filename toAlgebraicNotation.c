@@ -3,6 +3,8 @@
 #include "applicableActions.h"
 #include <assert.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 int (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states){
     int movedPiece = whatPiece(c, p);
@@ -117,7 +119,7 @@ T_position whereArrival(T_chessboard c, T_chessboard ss){
 
 bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
     T_states *s = malloc(sizeof(T_states));
-    T_position *p = createPosition(2, 3);
+//    T_position *p = createPosition(2, 3);
     mvmntRulePtr = returnMvmntRule(c, d);
     (*mvmntRulePtr)(c, d, s);
     for(int i = 0; i < s->freeIndex; i++){
@@ -144,7 +146,7 @@ T_positions* trimOtherSamePieces(T_chessboard c, T_positions *ps, T_position arr
 }
 
 char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+    //char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     T_positions *ps = whereAreOtherSamePieces(c, departure);
     T_positions *rps;
     rps = trimOtherSamePieces(c, ps, arrival);
@@ -253,7 +255,6 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     }
     //Part 4: Arrival
     strcat(result, "-");
-    char temp3[2];
     char *ff = formatFileDisplay(arrival.f);
     char *fr = formatRankDisplay(arrival.r);
     strcat(result, ff);

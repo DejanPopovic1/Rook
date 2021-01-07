@@ -39,7 +39,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="applicableActions.h" />
-		<Unit filename="chess_pieces.h" />
 		<Unit filename="chessboard.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -3,6 +3,8 @@
 #include "applicableActions.h"
 #include "GlobalDeclarations.h"
 #include "memoryUtilities.h"
+#include "output.h"
+#include <stdlib.h>
 
 //MOVEMENTS "UP", "DOWN", "LEFT" AND "RIGHT" ARE RELATIVE TO AN APPLICABLE COLOUR
 
@@ -54,35 +56,35 @@ void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //MOVE UP ONE
     if(currentState[rank + 1][file] == empty && rank != 6){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP TWO
     if(rank == 1 && currentState[rank + 1][file] == empty && currentState[rank + 2][file] == empty){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 2][file] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //CAPTURE LEFT
     if(isBlack(currentState, rank + 1, file - 1) && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 1] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //CAPTURE RIGHT
     if(isBlack(currentState, rank + 1, file + 1) && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 1] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //EN PASSANT LEFT
     if(isBlack(currentState, rank, file - 1) && rank == 4 && isNeighbouringPawnDoubleMoved(rank, file - 1)){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 1] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file - 1] = empty;
@@ -90,7 +92,7 @@ void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //EN PASSANT RIGHT
     if(isBlack(currentState, rank, file + 1) && rank == 4 && isNeighbouringPawnDoubleMoved(rank, file + 1)){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 1] = whitePawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file + 1] = empty;
@@ -99,22 +101,22 @@ void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T
     //PROMOTIONS
     if(rank == 6){
         //BISHOP
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whiteBishop;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //KNIGHT
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //ROOK
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whiteRook;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //QUEEN
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whiteQueen;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
@@ -131,35 +133,35 @@ void generateBlackPawnSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //MOVE FORWARD ONE
     if(currentState[rank - 1][file] == empty && rank != 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE FORWARD TWO
     if(rank == 6 && currentState[rank - 1][file] == empty && currentState[rank - 2][file] == empty){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 2][file] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //CAPTURE LEFTHAND
     if(isWhite(currentState, rank - 1, file + 1) && file < FILE_SIZE){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 1] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //CAPTURE RIGHTHAND
     if(isWhite(currentState, rank - 1, file - 1) && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 1] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //EN PASSANT LEFTHAND
     if(isWhite(currentState, rank, file + 1) && rank == 3 && isNeighbouringPawnDoubleMoved(rank, file + 1)){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 1] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file + 1] = empty;
@@ -167,7 +169,7 @@ void generateBlackPawnSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //EN PASSANT RIGHTHAND
     if(isWhite(currentState, rank, file - 1) && rank == 3 && isNeighbouringPawnDoubleMoved(rank, file - 1)){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 1] = blackPawn;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file - 1] = empty;
@@ -176,22 +178,22 @@ void generateBlackPawnSuccessorStates(T_chessboard currentState, T_position p, T
     //PROMOTIONS
     if(rank == 1){
         //BISHOP
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackBishop;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //KNIGHT
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //ROOK
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackRook;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
         //QUEEN
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackQueen;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
@@ -216,7 +218,7 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentBlack = isBlack(i, r + 1, f + 1);
         i[r + 1][f + 1] = whiteBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f++;
@@ -232,7 +234,7 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentBlack = isBlack(i, r - 1, f + 1);
         i[r - 1][f + 1] = whiteBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f++;
@@ -248,7 +250,7 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentBlack = isBlack(i, r - 1, f - 1);
         i[r - 1][f - 1] = whiteBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f--;
@@ -264,7 +266,7 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentBlack = isBlack(i, r + 1, f - 1);
         i[r + 1][f - 1] = whiteBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f--;
@@ -291,7 +293,7 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentWhite = isWhite(i, r + 1, f + 1);
         i[r + 1][f + 1] = blackBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f++;
@@ -307,7 +309,7 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentWhite = isWhite(i, r - 1, f + 1);
         i[r - 1][f + 1] = blackBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f++;
@@ -323,7 +325,7 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentWhite = isWhite(i, r - 1, f - 1);
         i[r - 1][f - 1] = blackBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f--;
@@ -339,7 +341,7 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p,
         bool isAdjacentWhite = isWhite(i, r + 1, f - 1);
         i[r + 1][f - 1] = blackBishop;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f--;
@@ -358,56 +360,58 @@ void generateWhiteKnightSuccessorStates(T_chessboard currentState, T_position p,
     }
     //MOVE UP-UP-RIGHT
     if(!isWhite(currentState, rank + 2, file + 1) && rank < RANK_SIZE - 2 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        //printf("Printing Test: \n");
+        //printBoard(asWhite, consolidatedStates->states);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 2][file + 1] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-RIGHT-RIGHT
     if(!isWhite(currentState, rank + 1, file + 2) && rank < RANK_SIZE - 1 && file < FILE_SIZE - 2){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 2] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-DOWN-RIGHT
     if(!isWhite(currentState, rank - 2, file + 1) && rank > 1 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 2][file + 1] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-RIGHT-RIGHT
     if(!isWhite(currentState, rank - 1, file + 2) && rank > 0 && file < FILE_SIZE - 2){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 2] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-DOWN-LEFT
     if(!isWhite(currentState, rank - 2, file - 1) && rank > 1 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 2][file - 1] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-LEFT-LEFT
     if(!isWhite(currentState, rank - 1, file - 2) && rank > 0 && file > 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 2] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-LEFT-LEFT
     if(!isWhite(currentState, rank + 1, file - 2) && rank < RANK_SIZE - 1 && file > 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 2] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-UP-LEFT
     if(!isWhite(currentState, rank + 2, file - 1) && rank < RANK_SIZE - 2 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 2][file - 1] = whiteKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
@@ -423,56 +427,56 @@ void generateBlackKnightSuccessorStates(T_chessboard currentState, T_position p,
     }
     //MOVE UP-UP-RIGHT
     if(!isBlack(currentState, rank + 2, file + 1) && rank < RANK_SIZE - 2 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 2][file + 1] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-RIGHT-RIGHT
     if(!isBlack(currentState, rank + 1, file + 2) && rank < RANK_SIZE - 1 && file < FILE_SIZE - 2){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 2] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-DOWN-RIGHT
     if(!isBlack(currentState, rank - 2, file + 1) && rank > 1 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 2][file + 1] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-RIGHT-RIGHT
     if(!isBlack(currentState, rank - 1, file + 2) && rank > 0 && file < FILE_SIZE - 2){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 2] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-DOWN-LEFT
     if(!isBlack(currentState, rank - 2, file - 1) && rank > 1 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 2][file - 1] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN-LEFT-LEFT
     if(!isBlack(currentState, rank - 1, file - 2) && rank > 0 && file > 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 2] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-LEFT-LEFT
     if(!isBlack(currentState, rank + 1, file - 2) && rank < RANK_SIZE - 1 && file > 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 2] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP-UP-LEFT
     if(!isBlack(currentState, rank + 2, file - 1) && rank < RANK_SIZE - 2 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 2][file - 1] = blackKnight;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
@@ -496,7 +500,7 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentBlack = isBlack(i, r + 1, f);
         i[r + 1][f] = whiteRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         if(isAdjacentBlack){
@@ -511,7 +515,7 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentBlack = isBlack(i, r, f + 1);
         i[r][f + 1] = whiteRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f++;
         if(isAdjacentBlack){
@@ -526,7 +530,7 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentBlack = isBlack(i, r - 1, f);
         i[r - 1][f] = whiteRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         if(isAdjacentBlack){
@@ -541,7 +545,7 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentBlack = isBlack(i, r, f - 1);
         i[r][f - 1] = whiteRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f--;
         if(isAdjacentBlack){
@@ -567,7 +571,7 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentWhite = isWhite(i, r + 1, f);
         i[r + 1][f] = blackRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         if(isAdjacentWhite){
@@ -582,7 +586,7 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentWhite = isWhite(i, r, f + 1);
         i[r][f + 1] = blackRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f++;
         if(isAdjacentWhite){
@@ -597,7 +601,7 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentWhite = isWhite(i, r - 1, f);
         i[r - 1][f] = blackRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         if(isAdjacentWhite){
@@ -612,7 +616,7 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T
         bool isAdjacentWhite = isWhite(i, r, f - 1);
         i[r][f - 1] = blackRook;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f--;
         if(isAdjacentWhite){
@@ -638,7 +642,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r + 1, f);
         i[r + 1][f] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         if(isAdjacentBlack){
@@ -653,7 +657,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r + 1, f + 1);
         i[r + 1][f + 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f++;
@@ -669,7 +673,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r, f + 1);
         i[r][f + 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f++;
         if(isAdjacentBlack){
@@ -684,7 +688,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r - 1, f + 1);
         i[r - 1][f + 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f++;
@@ -700,7 +704,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r - 1, f);
         i[r - 1][f] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         if(isAdjacentBlack){
@@ -715,7 +719,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r - 1, f - 1);
         i[r - 1][f - 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f--;
@@ -731,7 +735,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r, f - 1);
         i[r][f - 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f--;
         if(isAdjacentBlack){
@@ -746,7 +750,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentBlack = isBlack(i, r + 1, f - 1);
         i[r + 1][f - 1] = whiteQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f--;
@@ -774,7 +778,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r + 1, f);
         i[r + 1][f] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         if(isAdjacentWhite){
@@ -789,7 +793,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r + 1, f + 1);
         i[r + 1][f + 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f++;
@@ -805,7 +809,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r, f + 1);
         i[r][f + 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f++;
         if(isAdjacentWhite){
@@ -820,7 +824,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r - 1, f + 1);
         i[r - 1][f + 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f++;
@@ -836,7 +840,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r - 1, f);
         i[r - 1][f] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         if(isAdjacentWhite){
@@ -851,7 +855,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r - 1, f - 1);
         i[r - 1][f - 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r--;
         f--;
@@ -867,7 +871,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r, f - 1);
         i[r][f - 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         f--;
         if(isAdjacentWhite){
@@ -882,7 +886,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
         bool isAdjacentWhite = isWhite(i, r + 1, f - 1);
         i[r + 1][f - 1] = blackQueen;
         i[r][f] = empty;
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], i);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), i);
         consolidatedStates->freeIndex++;
         r++;
         f--;
@@ -902,56 +906,56 @@ void generateWhiteKingSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //MOVE UP
     if(!isWhite(currentState, rank + 1, file) && rank < RANK_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP RIGHT
     if(!isWhite(currentState, rank + 1, file + 1) && rank < RANK_SIZE - 1 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE RIGHT
     if(!isWhite(currentState, rank, file + 1) && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file + 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN RIGHT
     if(!isWhite(currentState, rank - 1, file + 1) && rank > 0 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN
     if(!isWhite(currentState, rank - 1, file) && rank > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN LEFT
     if(!isWhite(currentState, rank - 1, file - 1) && rank > 0 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE LEFT
     if(!isWhite(currentState, rank, file - 1) && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file - 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP LEFT
     if(!isWhite(currentState, rank + 1, file - 1) && file > 0 && rank < RANK_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 1] = whiteKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
@@ -968,56 +972,56 @@ void generateBlackKingSuccessorStates(T_chessboard currentState, T_position p, T
     }
     //MOVE UP
     if(!isBlack(currentState, rank + 1, file) && rank < RANK_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP RIGHT
     if(!isBlack(currentState, rank + 1, file + 1) && rank < RANK_SIZE - 1 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file + 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE RIGHT
     if(!isBlack(currentState, rank, file + 1) && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file + 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN RIGHT
     if(!isBlack(currentState, rank - 1, file + 1) && rank > 0 && file < FILE_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file + 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN
     if(!isBlack(currentState, rank - 1, file) && rank > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE DOWN LEFT
     if(!isBlack(currentState, rank - 1, file - 1) && rank > 0 && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank - 1][file - 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE LEFT
     if(!isBlack(currentState, rank, file - 1) && file > 0){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file - 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
     }
     //MOVE UP LEFT
     if(!isBlack(currentState, rank + 1, file - 1) && file > 0 && rank < RANK_SIZE - 1){
-        copyState(consolidatedStates->states[consolidatedStates->freeIndex], currentState);
+        copyState(&(consolidatedStates->states[consolidatedStates->freeIndex]), currentState);
         consolidatedStates->states[consolidatedStates->freeIndex][rank + 1][file - 1] = blackKing;
         consolidatedStates->states[consolidatedStates->freeIndex][rank][file] = empty;
         consolidatedStates->freeIndex++;
