@@ -210,7 +210,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             }
         }
     }
-    strcpy(result, "|");
+    //strcpy(result, "|");
     int movedPiece = c[departure.r][departure.f];
     //Part 1: Piece to be moved
     switch(movedPiece){
@@ -239,28 +239,21 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             strcat(result, "K");
             break;
     }
-    strcat(result, "-");
-    //strcpy(result, "-");
-    //printf("Testing\n");
-    //Part 2: Disambiguator
-        //Determine all like pieces and add them to a list
-        //From the list above copy only those ones that end up in the same destination into another list
-
+    //strcat(result, "-");
     strcat(result, disambiguator(c, departure, arrival));
-
     //Part 3: Take?
-    strcat(result, "-");
+    //strcat(result, "-");
     if(isPieceCaptured){
         strcat(result, "x");
     }
     //Part 4: Arrival
-    strcat(result, "-");
+    //strcat(result, "-");
     char *ff = formatFileDisplay(arrival.f);
     char *fr = formatRankDisplay(arrival.r);
     strcat(result, ff);
     strcat(result, fr);
     //Part 5: Check(mate)?
-    strcat(result, "-");
-    strcat(result, "|");
+    //strcat(result, "-");
+    //strcat(result, "|");
     return result;
 }

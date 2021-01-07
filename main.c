@@ -93,7 +93,7 @@ void multiPlayerSession(char *firstMoveColour){
         multiPlayerInput = moveInput();
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
         c = nextState(c, multiPlayerInput, white);
-        printBoardsAndAlgNot(*c, asWhite, successorStates);
+       //printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
     return;
 }
@@ -263,11 +263,12 @@ T_chessboard* nextState(T_chessboard *c, char* input, int turn){
         if(!strcmp(a->moves[i], input)){
             T_chessboard *p = malloc(sizeof(T_chessboard));
             p = &(successorStates->states[i]);
-            printf("Hello\n");
+            //printf("Hello\n");
             return p;
         }
     }
     //printf("Hello_2\n");
+    printf("Invalid move\n");
     return c;
 }
 
