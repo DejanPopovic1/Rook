@@ -206,26 +206,28 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             break;
         case whiteBishop:
         case blackBishop:
-            strcpy(result, "B");
+            strcat(result, "B");
             break;
         case whiteKnight:
         case blackKnight:
-            strcpy(result, "N");
+            strcat(result, "N");
             break;
         case whiteRook:
         case blackRook:
-            strcpy(result, "R");
+            strcat(result, "R");
             break;
         case whiteQueen:
         case blackQueen:
-            strcpy(result, "Q");
+            strcat(result, "Q");
             break;
         case whiteKing:
         case blackKing:
-            strcpy(result, "K");
+            strcat(result, "K");
             break;
     }
-    strcpy(result, "-");
+    strcat(result, "-");
+    //strcpy(result, "-");
+    //printf("Testing\n");
     //Part 2: Disambiguator
         //Determine all like pieces and add them to a list
         //From the list above copy only those ones that end up in the same destination into another list
@@ -233,12 +235,12 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     strcat(result, disambiguator(c, departure, arrival));
 
     //Part 3: Take?
-    strcpy(result, "-");
+    strcat(result, "-");
     if(isPieceCaptured){
         strcat(result, "x");
     }
     //Part 4: Arrival
-    strcpy(result, "-");
+    strcat(result, "-");
         char temp2[1];
         char temp3[1];
         sprintf(temp2, "%d", arrival.f);
@@ -246,7 +248,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
         strcat(result, temp2);
         strcat(result, temp3);
     //Part 5: Check(mate)?
-    strcpy(result, "-");
-    strcpy(result, "|");
+    strcat(result, "-");
+    strcat(result, "|");
     return result;
 }
