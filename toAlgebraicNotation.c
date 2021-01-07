@@ -71,7 +71,7 @@ char* formatFileDisplay(int f){
 char* formatRankDisplay(int r){
     char *result = malloc(FILE_STRING * sizeof(char));
     assert(r >= 0 && r < 8);
-    result[0] = r + 1+ ASCII_NUMBER_OFFSET;
+    result[0] = r + ASCII_NUMBER_OFFSET;
     result[1] = '\0';
     return result;
 }
@@ -250,15 +250,11 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     }
     //Part 4: Arrival
     strcat(result, "-");
-        char temp2[2];
         char temp3[2];
-                //printf("File: %d", arrival.f);
-                //printf("Rank: %d", arrival.r);
-        char *p = formatFileDisplay(arrival.f);
-        //sprintf(temp2, "%d", arrival.f);
-        sprintf(temp3, "%d", arrival.r);
-        strcat(result, p);
-        strcat(result, temp3);
+        char *ff = formatFileDisplay(arrival.f);
+        char *fr = formatRankDisplay(arrival.r);
+        strcat(result, ff);
+        strcat(result, fr);
     //Part 5: Check(mate)?
     strcat(result, "-");
     strcat(result, "|");
