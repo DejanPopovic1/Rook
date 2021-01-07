@@ -220,7 +220,7 @@ void initialiseRandomTest1(int chessboard [RANK_SIZE][FILE_SIZE]) {
     chessboard[2][3] = whitePawn;
     chessboard[5][5] = whitePawn;
     chessboard[5][1] = whiteBishop;
-    chessboard[1][5] = whitePawn;
+    chessboard[1][5] = whiteKnight;
     chessboard[4][3] = whiteKnight;
     chessboard[2][1] = blackBishop;
     chessboard[6][5] = blackPawn;
@@ -233,6 +233,13 @@ void initialiseRandomTest1(int chessboard [RANK_SIZE][FILE_SIZE]) {
     chessboard[4][6] = whiteKnight;
     chessboard[5][3] = whiteBishop;
     chessboard[1][0] = blackPawn;
+    return;
+}
+
+void initialiseDisambiguator(int chessboard [RANK_SIZE][FILE_SIZE]) {
+    clearBoard(chessboard);
+    chessboard[3][3] = whiteKnight;
+    chessboard[5][7] = whiteKnight;
     return;
 }
 

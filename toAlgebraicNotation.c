@@ -71,7 +71,7 @@ char* toFileRank(T_chessboard c, T_positions *departures, T_position departure){
         strcpy(result, temp);
     }
     else if(arePiecesInSameFile(departures, departure)){
-        sprintf(temp, "%d", departure.f);
+        sprintf(temp, "%d", departure.r);
         strcpy(result, temp);
     }
     else if(arePiecesInSameRank(departures, departure)){
@@ -135,7 +135,7 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     rps = trimPositionsMovingToArrival(c, ps, arrival);
     free(ps);
     //printBoard(white, c);
-    return "Test";//toFileRank(c, rps, departure);
+    return toFileRank(c, rps, departure);
     //printPosition(rps->positions[0]);
     //printPositions(*rps);
 }
