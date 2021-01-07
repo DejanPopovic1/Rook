@@ -38,9 +38,9 @@ int (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T
 
 bool arePiecesInSameRank(T_positions *ps, T_position p){
     for(int i = 0; i < ps->freeIndex; i++){
-        if(isSamePosition(ps->positions[i], p)){
-            continue;
-        }
+//        if(isSamePosition(ps->positions[i], p)){
+//            continue;
+//        }
         if(isSameRank(ps->positions[i], p)){
             return true;
         }
@@ -50,9 +50,9 @@ bool arePiecesInSameRank(T_positions *ps, T_position p){
 
 bool arePiecesInSameFile(T_positions *ps, T_position p){
     for(int i = 0; i < ps->freeIndex; i++){
-        if(isSamePosition(ps->positions[i], p)){
-            continue;
-        }
+//        if(isSamePosition(ps->positions[i], p)){
+//            continue;
+//        }
         if(isSameFile(ps->positions[i], p)){
             return true;
         }
@@ -60,11 +60,12 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
     return false;
 }
 
-char* toFileRank(T_chessboard c, T_positions *departures, T_position departure){
+char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     char temp[MAX_DISAMBIGUATOR_STRING];
     if(!arePiecesInSameRank(departures, departure) && !arePiecesInSameFile(departures, departure)){
-        strcpy(result, "");
+        sprintf(temp, "%d", departure.f);
+        strcpy(result, temp);
     }
     else if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
         sprintf(temp, "%d%d", departure.f, departure.r);
@@ -113,7 +114,7 @@ bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
     return false;
 }
 
-T_positions* trimPositionsMovingToArrival(T_chessboard c, T_positions *ps, T_position arrival){
+T_positions* trimOtherSamePieces(T_chessboard c, T_positions *ps, T_position arrival){
     T_positions *result = malloc(sizeof(T_positions));
     result->freeIndex = 0;
     for(int i = 0; i < ps->freeIndex; i++){
@@ -132,10 +133,10 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     T_positions *ps = whereAreOtherSamePieces(c, departure);
     T_positions *rps;
-    rps = trimPositionsMovingToArrival(c, ps, arrival);
+    rps = trimOtherSamePieces(c, ps, arrival);
     free(ps);
     //printBoard(white, c);
-    return toFileRank(c, rps, departure);
+    return toFileRank(rps, departure);
     //printPosition(rps->positions[0]);
     //printPositions(*rps);
 }

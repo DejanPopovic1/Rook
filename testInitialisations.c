@@ -240,6 +240,8 @@ void initialiseDisambiguator(int chessboard [RANK_SIZE][FILE_SIZE]) {
     clearBoard(chessboard);
     chessboard[3][3] = whiteKnight;
     chessboard[5][7] = whiteKnight;
+    chessboard[5][3] = whiteKnight;
+    //chessboard[3][7] = whiteKnight;
     return;
 }
 
