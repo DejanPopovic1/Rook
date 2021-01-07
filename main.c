@@ -82,8 +82,8 @@ void multiPlayerSession(char *firstMoveColour){
     }
     int halfPly = 1;
     T_chessboard currentState;
-    initialiseRandomTest1(currentState);
-    //initialiseBoard(currentState);
+    //initialiseRandomTest1(currentState);
+    initialiseBoard(currentState);
     char *multiPlayerInput;
     printBoard(firstMover, currentState);
     while(true){

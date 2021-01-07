@@ -69,19 +69,16 @@ char formatFileDisplay(int f){
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     char temp[MAX_DISAMBIGUATOR_STRING];
-    if(!arePiecesInSameRank(departures, departure) && !arePiecesInSameFile(departures, departure)){
-        sprintf(temp, "%d", departure.f);
-        strcpy(result, temp);
-    }
-    else if(arePiecesInSameRank(departures, departure) && arePiecesInSameFile(departures, departure)){
+    if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
         sprintf(temp, "%d%d", departure.f, departure.r);
         strcpy(result, temp);
     }
-    else if(arePiecesInSameFile(departures, departure)){
-        sprintf(temp, "%d", departure.r);
+    else if(!arePiecesInSameFile(departures, departure)){
+        temp[0] = formatFileDisplay(departure.f);
+        temp[1] = '\0';
         strcpy(result, temp);
     }
-    else if(arePiecesInSameRank(departures, departure)){
+    else if(arePiecesInSameFile(departures, departure)){
         sprintf(temp, "%d", departure.r);
         strcpy(result, temp);
     }

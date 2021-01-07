@@ -25,6 +25,15 @@ void printBoard(int playingAs, T_chessboard chessboard){
     return;
 }
 //ERROR ON FIRST LINE IN FUNCTION
+
+void printBoardsAndAlgNot(T_chessboard c, int playingAs, T_states* s){
+      for(int i = 0; i < s->freeIndex; i++){
+        printBoard(playingAs, s->states[i]);
+        printf("%s\n", toAlgebraicNotation(c, s[i]));
+    }
+    return;
+}
+
 void printBoards(int playingAs, T_states* s){
 
     //for(int i = 0; i < s.freeIndex; i++){
