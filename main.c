@@ -92,7 +92,7 @@ void multiPlayerSession(char *firstMoveColour){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
-        //c = nextState(c, multiPlayerInput, white);
+        c = nextState(c, multiPlayerInput, white);
         printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
     return;
@@ -248,6 +248,7 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
     for(int i = 0; i < ss->freeIndex; i++){
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
+        (a->freeIndex)++;
     }
     return a;
 }
@@ -258,14 +259,15 @@ T_chessboard* nextState(T_chessboard *c, char* input, int turn){
     T_moves *a = generateListOfMoves(*c, successorStates);
     //Iterate through moves list until it matches input. Save index and fetch it. Load successor state with that index
     for(int i = 0; i < a->freeIndex; i++){
+        //printf("%s\n", a->moves[0]);
         if(!strcmp(a->moves[i], input)){
             T_chessboard *p = malloc(sizeof(T_chessboard));
-            p = &successorStates->states[i];
+            p = &(successorStates->states[i]);
             printf("Hello\n");
             return p;
         }
     }
-    printf("Hello_2\n");
+    //printf("Hello_2\n");
     return c;
 }
 
