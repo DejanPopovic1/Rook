@@ -60,9 +60,11 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
     return false;
 }
 
-char formatFileDisplay(int f){
+char* formatFileDisplay(int f){
+    char *result = malloc(FILE_STRING * sizeof(char));
     assert(f >= 0 && f < 8);
-    char result = f + ASCII_CHARACTER_OFFSET;
+    result[0] = f + ASCII_CHARACTER_OFFSET;
+    result[1] = '\0';
     return result;
 }
 
@@ -74,9 +76,7 @@ char* toFileRank(T_positions *departures, T_position departure){
         strcpy(result, temp);
     }
     else if(!arePiecesInSameFile(departures, departure)){
-        temp[0] = formatFileDisplay(departure.f);
-        temp[1] = '\0';
-        strcpy(result, temp);
+        strcpy(result, formatFileDisplay(departure.f));
     }
     else if(arePiecesInSameFile(departures, departure)){
         sprintf(temp, "%d", departure.r);
@@ -183,10 +183,11 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             }
         }
     }
+    breakOut = false;
     //Determine arrival location and whether piece is captured
     for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
         for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
-            if(c[i][j] != ss[i][j] && ss[i][j] != empty){
+            if((c[i][j] != ss[i][j]) && (ss[i][j] != empty)){
                 arrival.r = i;
                 arrival.f = j;
                 breakOut = true;
@@ -241,8 +242,10 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     }
     //Part 4: Arrival
     strcat(result, "-");
-        char temp2[1];
-        char temp3[1];
+        char temp2[2];
+        char temp3[2];
+                //printf("File: %d", arrival.f);
+                //printf("Rank: %d", arrival.r);
         sprintf(temp2, "%d", arrival.f);
         sprintf(temp3, "%d", arrival.r);
         strcat(result, temp2);
