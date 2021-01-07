@@ -13,6 +13,7 @@
 #define MOVE_INPUT 100
 
 
+
 enum PlayingAs{asWhite, asBlack};
 
 enum Turn{white, black};

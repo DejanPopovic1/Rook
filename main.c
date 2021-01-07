@@ -94,6 +94,7 @@ void multiPlayerSession(char *firstMoveColour){
         T_states *successorStates = generateSuccessorStates(turn, currentState);
         //printBoard(black, successorStates->states[15]);
         printBoards(turn, successorStates);
+        printf("%s\n", toAlgebraicNotation(currentState, successorStates->states[0]));
         //printBoard(white, successorStates->states[0]);
 
         //currentState = updateCurrentState(currentState, successorStates, multiPlayerInput);
