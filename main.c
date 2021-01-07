@@ -15,6 +15,7 @@ char* specifyMove();
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
 T_chessboard* nextState(T_chessboard, char*, int);
+T_chessboard* initialiseBoard();
 
 char* moveInput();
 
@@ -81,16 +82,16 @@ void multiPlayerSession(char *firstMoveColour){
         return;
     }
     int halfPly = 1;
-    T_chessboard currentState;
-    initialiseBoard(currentState);
+    T_chessboard *c;
+    c = initialiseBoard();
     char *multiPlayerInput;
-    printBoard(firstMover, currentState);
+    printBoard(firstMover, *c);
     while(true){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        nextState(currentState, "c3", white);
-        T_states* successorStates = generateSuccessorStates(asWhite, currentState);
-        printBoardsAndAlgNot(currentState, asWhite, successorStates);
+        nextState(*c, "c3", white);
+        T_states* successorStates = generateSuccessorStates(asWhite, *c);
+        printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
     return;
 }
@@ -142,35 +143,36 @@ int main() {
     return 0;
 }
 
-void initialiseBoard(T_chessboard chessboard) {
+T_chessboard* initialiseBoard(){
+    T_chessboard *result = malloc(sizeof(T_chessboard));
     for(int i = 0; i < FILE_SIZE; i++){
-        chessboard[1][i] = whitePawn;
+        (*result)[1][i] = whitePawn;
     }
-    chessboard[0][0] = whiteRook;
-    chessboard[0][1] = whiteKnight;
-    chessboard[0][2] = whiteBishop;
-    chessboard[0][3] = whiteQueen;
-    chessboard[0][4] = whiteKing;
-    chessboard[0][5] = whiteBishop;
-    chessboard[0][6] = whiteKnight;
-    chessboard[0][7] = whiteRook;
+    (*result)[0][0] = whiteRook;
+    (*result)[0][1] = whiteKnight;
+    (*result)[0][2] = whiteBishop;
+    (*result)[0][3] = whiteQueen;
+    (*result)[0][4] = whiteKing;
+    (*result)[0][5] = whiteBishop;
+    (*result)[0][6] = whiteKnight;
+    (*result)[0][7] = whiteRook;
     for(int i = 0; i < FILE_SIZE; i++){
-        chessboard[6][i] = blackPawn;
+        (*result)[6][i] = blackPawn;
     }
-    chessboard[7][0] = blackRook;
-    chessboard[7][1] = blackKnight;
-    chessboard[7][2] = blackBishop;
-    chessboard[7][3] = blackQueen;
-    chessboard[7][4] = blackKing;
-    chessboard[7][5] = blackBishop;
-    chessboard[7][6] = blackKnight;
-    chessboard[7][7] = blackRook;
+    (*result)[7][0] = blackRook;
+    (*result)[7][1] = blackKnight;
+    (*result)[7][2] = blackBishop;
+    (*result)[7][3] = blackQueen;
+    (*result)[7][4] = blackKing;
+    (*result)[7][5] = blackBishop;
+    (*result)[7][6] = blackKnight;
+    (*result)[7][7] = blackRook;
     for(int i = 2; i < RANK_SIZE - 2; i++){
         for(int j = 0; j < FILE_SIZE; j++){
-            chessboard[i][j] = empty;
+            (*result)[i][j] = empty;
         }
     }
-    return;
+    return result;
 }
 
 char* specifyMove(){
