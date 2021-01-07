@@ -15,7 +15,6 @@ char* specifyMove();
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
 char* moveInput();
-//T_chessboard updateCurrentState(T_states *successorStates, char* input);
 
 struct ApplicableActions{
     int chessboard [RANK_SIZE][FILE_SIZE];
@@ -32,16 +31,15 @@ void multiPlayerPrompt(){
     return;
 }
 
-//Change == 0 to !strcmp
 int playingAsPrompt(){
     char playingAs[PLAYING_AS_INPUT];
     while(true){
         printf("Rook > Multiplayer Session > Select colour (w for white / b for black): \n");
         scanf("%s", playingAs);
-        if(strcmp(playingAs, "w") == 0){
+        if(!strcmp(playingAs, "w")){
             return asWhite;
         }
-        else if(strcmp(playingAs, "b") == 0){
+        else if(!strcmp(playingAs, "b")){
             return asBlack;
         }
         else{
@@ -82,27 +80,15 @@ void multiPlayerSession(char *firstMoveColour){
     }
     int halfPly = 1;
     T_chessboard currentState;
-    //initialiseRandomTest1(currentState);
     initialiseBoard(currentState);
     char *multiPlayerInput;
     printBoard(firstMover, currentState);
     while(true){
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        //updateCurrentState(currentState, multiPlayerInput, turn);
-
         T_states *successorStates = generateSuccessorStates(turn, currentState);
-        //printBoard(black, successorStates->states[15]);
-        printBoards(turn, successorStates);
-        printf("%s\n", toAlgebraicNotation(currentState, successorStates->states[0]));
-        //printBoard(white, successorStates->states[0]);
-
-        //currentState = updateCurrentState(currentState, successorStates, multiPlayerInput);
-
-        //printBoard(firstMover, currentState);
-        //turn = alternatePlayer(turn);
+        printBoardsAndAlgNot(currentState, asWhite,successorStates);
     }
-//    free(multiPlayerInput);
     return;
 }
 
@@ -114,28 +100,6 @@ void testCases(){
 
 int main() {
     testCases();
-
-    //doesDepartureGoToArrival(c,
-    //printPosition(ps->positions[0]);
-    //printPosition(ps->positions[1]);
-    //printPosition(ps->positions[2]);
-
-
-
-
-
-//    printBoard(white, c);
-//    T_position *p = createPosition(3, 4);
-//    T_position *q = createPosition(3, 5);
-//    if(isSameFile(p, q)){
-//        printf("Same file");
-//    }
-//    else
-//        printf("Different file");
-
-//    T_positions* p = whereAreSamePieces(c, whiteBishop);
-    //TESTING***
-
     const char* selection1 = "mp";
     const char* selection2 = "sp";
     const char* selection3 = "exit";
@@ -147,7 +111,6 @@ int main() {
     landingMessage();
     while(true){
         mainPrompt();
-
         mainInput = mainSelection();
         sscanf(mainInput, "%s %s", &command, &argument1);
         if(!strcmp(mainInput, "\0")){

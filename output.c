@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-//TODO: Illuminate the from and to tiles for every move
 void landingMessage(){
     printf("Rook Chess Engine\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
     printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
@@ -24,20 +23,19 @@ void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
     return;
 }
-//ERROR ON FIRST LINE IN FUNCTION
 
 void printBoardsAndAlgNot(T_chessboard c, int playingAs, T_states* s){
-      for(int i = 0; i < s->freeIndex; i++){
+    for(int i = 0; i < s->freeIndex; i++){
         printBoard(playingAs, s->states[i]);
-        printf("%s\n", toAlgebraicNotation(c, s[i]));
+        printf("\n");
+        printf(toAlgebraicNotation(c,s->states[i]));
+        printf("\n");
     }
     return;
 }
 
 void printBoards(int playingAs, T_states* s){
-
-    //for(int i = 0; i < s.freeIndex; i++){
-      for(int i = 0; i < s->freeIndex; i++){
+    for(int i = 0; i < s->freeIndex; i++){
         printBoard(playingAs, s->states[i]);
         printf("\n");
     }
