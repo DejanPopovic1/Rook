@@ -60,6 +60,12 @@ bool arePiecesInSameFile(T_positions *ps, T_position p){
     return false;
 }
 
+char formatFileDisplay(int f){
+    assert(f >= 0 && f < 8);
+    char result = f + ASCII_CHARACTER_OFFSET;
+    return result;
+}
+
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     char temp[MAX_DISAMBIGUATOR_STRING];

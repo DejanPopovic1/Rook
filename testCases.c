@@ -2,6 +2,11 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+void TESTformatFileDisplay(){
+    printf("%c\n", formatFileDisplay(0));
+    return;
+}
+
 void TESTdoesDepartureGoToArrival(){
     T_chessboard c;
     initialiseRandomTest1(c);

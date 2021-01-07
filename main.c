@@ -106,6 +106,7 @@ void multiPlayerSession(char *firstMoveColour){
 }
 
 void testCases(){
+    TESTformatFileDisplay();
     TESTdisambiguator();
     return;
 }
