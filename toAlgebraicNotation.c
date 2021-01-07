@@ -68,6 +68,14 @@ char* formatFileDisplay(int f){
     return result;
 }
 
+char* formatRankDisplay(int r){
+    char *result = malloc(FILE_STRING * sizeof(char));
+    assert(r >= 0 && r < 8);
+    result[0] = r + 1+ ASCII_NUMBER_OFFSET;
+    result[1] = '\0';
+    return result;
+}
+
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     char temp[MAX_DISAMBIGUATOR_STRING];
@@ -246,9 +254,10 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
         char temp3[2];
                 //printf("File: %d", arrival.f);
                 //printf("Rank: %d", arrival.r);
-        sprintf(temp2, "%d", arrival.f);
+        char *p = formatFileDisplay(arrival.f);
+        //sprintf(temp2, "%d", arrival.f);
         sprintf(temp3, "%d", arrival.r);
-        strcat(result, temp2);
+        strcat(result, p);
         strcat(result, temp3);
     //Part 5: Check(mate)?
     strcat(result, "-");

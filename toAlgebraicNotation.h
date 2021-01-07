@@ -2,8 +2,10 @@
 
 #define MAX_DISAMBIGUATOR_STRING 3
 #define ASCII_CHARACTER_OFFSET 97
+#define ASCII_NUMBER_OFFSET 49
 #define MOVE_INPUT 100
 #define FILE_STRING 2
+#define RANK_STRING 2
 
 void (*mvmntRulePtr)(T_chessboard currentState, T_position, T_states *consolidatedStates);
 
