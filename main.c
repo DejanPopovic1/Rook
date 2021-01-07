@@ -85,13 +85,13 @@ void multiPlayerSession(char *firstMoveColour){
     T_chessboard *c;
     c = initialiseBoard();
     char *multiPlayerInput;
-    printBoard(firstMover, *c);
     while(true){
+        printBoard(firstMover, *c);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        nextState(*c, "c3", white);
-        T_states* successorStates = generateSuccessorStates(asWhite, *c);
-        printBoardsAndAlgNot(*c, asWhite, successorStates);
+        //T_states* successorStates = generateSuccessorStates(asWhite, *c);
+        c = nextState(*c, multiPlayerInput, white);
+        //printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
     return;
 }
@@ -250,11 +250,17 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     return a;
 }
 
-T_chessboard* nextState(T_chessboard currentState, char* input, int turn){
+T_chessboard* nextState(T_chessboard c, char* input, int turn){
     T_chessboard *result = malloc(sizeof(T_chessboard));
-    T_states *successorStates = generateSuccessorStates(turn, currentState);
-    T_moves *a = generateListOfMoves(currentState, successorStates);
-    return result;
+    T_states *successorStates = generateSuccessorStates(turn, c);
+    T_moves *a = generateListOfMoves(c, successorStates);
+    for(int i = 0; i < a->freeIndex; i++){
+        if(!strcmp(a->moves[i], input)){
+            return successorStates->states[i];
+        }
+    }
+    //Iterate through moves list until it matches input. Save index and fetch it. Load successor state with that index
+    return &c;
 }
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
