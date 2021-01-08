@@ -10,7 +10,7 @@ void TESTformatFileDisplay(){
 void TESTdoesDepartureGoToArrival(){
     T_chessboard c;
     initialiseRandomTest1(c);
-    printBoard(white, c);
+    printBoard(whiteTurn, c);
     T_position d;
     T_position a;
     d.r = 5;
@@ -30,7 +30,7 @@ void TESTdoesDepartureGoToArrival(){
 void TESTdisambiguator(){
     T_chessboard c;
     initialiseDisambiguator(c);
-    printBoard(white, c);
+    printBoard(whiteTurn, c);
     T_position d;
     T_position a1;
     T_position a2;

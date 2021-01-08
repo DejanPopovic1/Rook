@@ -79,16 +79,12 @@ void multiPlayerSession(char *playerColour){
     c = initialiseBoard();
     char *multiPlayerInput;
     while(true){
-        //printf("Half Ply: %d\n", halfPly);
         printBoard(asWhite, *c);
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
-        //printMoves(generateListOfMoves(*c, successorStates));
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        c = nextState(c, multiPlayerInput, white);
-       //printBoardsAndAlgNot(*c, asWhite, successorStates);
+        c = nextState(c, multiPlayerInput, whiteTurn);
         halfPly++;
-        //turn = nextPlayer(turn);
     }
     return;
 }
@@ -204,19 +200,19 @@ int pieceToBeMoved(char* input, int turn){
     int movedPiece;
     switch(input[0]){
         case 'B':
-            turn == white ? (movedPiece = whiteBishop) : (movedPiece = blackBishop);
+            turn == whiteTurn ? (movedPiece = whiteBishop) : (movedPiece = blackBishop);
             break;
         case 'N':
-            turn == white ? (movedPiece = whiteKnight) : (movedPiece = blackKnight);
+            turn == whiteTurn ? (movedPiece = whiteKnight) : (movedPiece = blackKnight);
             break;
         case 'R':
-            turn == white ? (movedPiece = whiteRook) : (movedPiece = blackRook);
+            turn == whiteTurn ? (movedPiece = whiteRook) : (movedPiece = blackRook);
             break;
         case 'Q':
-            turn == white ? (movedPiece = whiteQueen) : (movedPiece = blackQueen);
+            turn == whiteTurn ? (movedPiece = whiteQueen) : (movedPiece = blackQueen);
             break;
         case 'K':
-            turn == white ? (movedPiece = whiteKing) : (movedPiece = blackKing);
+            turn == whiteTurn ? (movedPiece = whiteKing) : (movedPiece = blackKing);
             break;
         case 'a':
         case 'b':
@@ -226,7 +222,7 @@ int pieceToBeMoved(char* input, int turn){
         case 'f':
         case 'g':
         case 'h':
-            turn == white ? (movedPiece = whitePawn) : (movedPiece = blackPawn);
+            turn == whiteTurn ? (movedPiece = whitePawn) : (movedPiece = blackPawn);
             break;
     }
     return movedPiece;

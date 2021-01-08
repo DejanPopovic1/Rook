@@ -15,7 +15,7 @@
 
 enum PlayingAs{asWhite, asBlack};
 
-enum Turn{white, black};
+enum Turn{whiteTurn, blackTurn};
 
 enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, whiteKing,
             blackPawn, blackBishop, blackKnight, blackRook, blackQueen, blackKing,

@@ -6,18 +6,18 @@ bool isNeighbouringPawnDoubleMoved(const int rank, const int file){
     return false;
 }
 
-int playerTurn(const int halfPly){
+int whosTurn(const int halfPly){
     if(halfPly % 2 == 1){
-        return white;
+        return whiteTurn;
     }
-    return black;
+    return blackTurn;
 }
 
 int alternatePlayer(const int playingAs){
-    if(playingAs == white){
-        return black;
+    if(playingAs == whiteTurn){
+        return blackTurn;
     }
-    return white;
+    return whiteTurn;
 }
 
 bool isSamePosition(const T_position a, const T_position b){
