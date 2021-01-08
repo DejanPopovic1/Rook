@@ -17,7 +17,7 @@ char* specifyMove();
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 T_moves* generateListOfMoves(T_chessboard, T_states *);
 
-T_chessboard* nextState(T_chessboard *, char*, int, bool *);
+bool nextState(T_chessboard **, char*, int);
 T_chessboard* initialiseBoard();
 
 char* moveInput();
@@ -84,22 +84,21 @@ void multiPlayerSession(char *playerColourInput){
     }
     //printf("%d\n", playerColour);
     int halfPly = 1;
-    bool *isValidMove = NULL;
     int colourTurn;
     T_chessboard *c;
     c = initialiseBoard();
     char *multiPlayerInput;
-    bool isValidInput = true;
     while(true){
         colourTurn = whosTurn(halfPly);
-        //printPlayerTurn(halfPly);
+        printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
         //T_states* successorStates = generateSuccessorStates(playerColour, *c);
         //printBoards(playerColour, successorStates);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        c = nextState(c, multiPlayerInput, colourTurn, isValidMove);
-        halfPly++;
+        if(nextState(&c, multiPlayerInput, colourTurn)){
+            halfPly++;
+        }
     }
     return;
 }
@@ -258,19 +257,20 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     return a;
 }
 
-T_chessboard* nextState(T_chessboard *c, char* input, int turn, bool *b){
-    T_chessboard *result = malloc(sizeof(T_chessboard));
-    T_states *successorStates = generateSuccessorStates(turn, *c);
-    T_moves *a = generateListOfMoves(*c, successorStates);
+bool nextState(T_chessboard **c, char* input, int turn){
+    T_states *successorStates = generateSuccessorStates(turn, **c);
+    T_moves *a = generateListOfMoves(**c, successorStates);
     for(int i = 0; i < a->freeIndex; i++){
         if(!strcmp(a->moves[i], input)){
-            T_chessboard *p = malloc(sizeof(T_chessboard));
-            p = &(successorStates->states[i]);
-            return p;
+            T_chessboard *result = malloc(sizeof(T_chessboard));
+            result = &(successorStates->states[i]);
+            free(*c);
+            *c = result;
+            return true;
         }
     }
     printf("Invalid move\n");
-    return c;
+    return false;
 }
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
