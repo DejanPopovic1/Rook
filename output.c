@@ -11,6 +11,16 @@ void landingMessage(){
     printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
 }
 
+void printPlayerTurn(int halfPly){
+    if(whosTurn(halfPly) == whiteTurn){
+        printf("W: ");
+    }
+    else if(whosTurn(halfPly) == blackTurn){
+        printf("B: ");
+    }
+    return;
+}
+
 void printPosition(T_position p){
     printf("(%d, %d)\n", p.r, p.f);
 }

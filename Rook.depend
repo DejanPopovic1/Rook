@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610118593 source:c:\c_c++ code\rook\main.c
+1610121000 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -53,7 +53,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610117746 source:c:\c_c++ code\rook\output.c
+1610121194 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
