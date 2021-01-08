@@ -12,7 +12,6 @@
 #define PLAYING_AS_INPUT 10
 #define MAX_POSITIONS 10
 #define MAIN_SELECTION 100
-#define MOVE_INPUT 100
 
 enum PlayingAs{asWhite, asBlack};
 
@@ -51,11 +50,6 @@ struct Moves{
     char *moves[MAX_SUCCESSOR_STATES];
     int freeIndex;
 };
-
-//char** listOfMoves(){
-
-
-//}
 
 bool isNeighbouringPawnDoubleMoved(const int rank, const int file);
 int playerTurn(const int halfPly);

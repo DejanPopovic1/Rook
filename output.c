@@ -1,4 +1,6 @@
 #include "GlobalDeclarations.h"
+#include "toAlgebraicNotation.h"
+#include "output.h"
 #include <wchar.h>
 #include <Windows.h>
 #include <stdio.h>
@@ -48,7 +50,7 @@ void printMove(char* c){
 }
 
 void printMoves(T_moves *a){
-    printf("Number of valid moves: %d.\n", a->freeIndex);
+    printf("Number of valid moves: %d\n", a->freeIndex);
     for(int i = 0; i < a->freeIndex; i++){
         printf("%s ", a->moves[i]);
     }
