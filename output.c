@@ -42,6 +42,11 @@ void printBoards(int playingAs, T_states* s){
     return;
 }
 
+void printMove(char* c){
+    printf("%s", c);
+    return;
+}
+
 void printMoves(T_moves *a){
     for(int i = 0; i < a->freeIndex; i++){
         printf("%s\n", a->moves[i]);

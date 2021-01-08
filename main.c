@@ -250,7 +250,9 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
-    printMoves(a);
+
+    //printMoves(a);
+    //printBoards(white, ss);
     return a;
 }
 

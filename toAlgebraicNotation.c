@@ -182,6 +182,7 @@ T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
 //Use the position creation functions over here!
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
+    strcpy(result, "");
     bool isPieceCaptured = false;
     bool breakOut = false;
     T_position departure;
@@ -255,5 +256,6 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     //Part 5: Check(mate)?
     //strcat(result, "-");
     //strcat(result, "|");
+    //printf("%s\n", result);
     return result;
 }
