@@ -1,5 +1,6 @@
 Todo List:
 
+Expose the "system output" functions like valid list of moves, to the user
 Show ply number
 Show whos turn it is
 denote moves using algebraic notation

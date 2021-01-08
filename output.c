@@ -48,9 +48,11 @@ void printMove(char* c){
 }
 
 void printMoves(T_moves *a){
+    printf("Number of valid moves: %d. ", a->freeIndex);
     for(int i = 0; i < a->freeIndex; i++){
-        printf("%s\n", a->moves[i]);
+        printf("%s ", a->moves[i]);
     }
+    printf("\n");
 }
 
 bool isWhiteTile(int rank, int file){

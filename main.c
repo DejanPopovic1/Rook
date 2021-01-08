@@ -10,6 +10,7 @@
 #include <string.h>
 #include "testCases.h"
 #include <stdlib.h>
+#include "toAlgebraicNotation.h"
 
 char* specifyMove();
 
@@ -88,16 +89,15 @@ void multiPlayerSession(char *firstMoveColour){
     c = initialiseBoard();
     char *multiPlayerInput;
     while(true){
-        //printf("%d", (*c)[0][0]);
+        printf("Half Ply: %d\n", halfPly);
         printBoard(firstMover, *c);
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
         printMoves(generateListOfMoves(*c, successorStates));
-        //printMoves();
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-
         c = nextState(c, multiPlayerInput, white);
        //printBoardsAndAlgNot(*c, asWhite, successorStates);
+        halfPly++;
     }
     return;
 }
@@ -122,7 +122,7 @@ int main() {
     while(true){
         mainPrompt();
         mainInput = mainSelection();
-        sscanf(mainInput, "%s %s", &command, &argument1);
+        sscanf(mainInput, "%s %s", command, argument1);
         if(!strcmp(mainInput, "\0")){
             ;
         }
@@ -254,6 +254,7 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
+
     //printMoves(a);
     //printBoards(white, ss);
     return a;

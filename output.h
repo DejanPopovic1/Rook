@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void printMove(char* c);
+void printMoves(T_moves *a);
 void landingMessage();
 void printPosition(T_position);
 void printPositions(T_positions);
