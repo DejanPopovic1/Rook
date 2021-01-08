@@ -69,18 +69,8 @@ char* moveInput(){
 }
 
 //Minimise MOVE_INPUT to hold as few characters as possible
-void multiPlayerSession(char *firstMoveColour){
-    int turn;
-    int firstMover;
-    if(!strcmp(firstMoveColour, "w")){
-        turn = white;
-        firstMover = white;
-    }
-    else if(!strcmp(firstMoveColour, "b")){
-        turn = black;
-        firstMover = black;
-    }
-    else{
+void multiPlayerSession(char *playerColour){
+    if(strcmp(playerColour, "w") && strcmp(playerColour, "b")){
         printf("Invalid multi_player argument. See \"help\" for more details\n");
         return;
     }
@@ -90,7 +80,7 @@ void multiPlayerSession(char *firstMoveColour){
     char *multiPlayerInput;
     while(true){
         //printf("Half Ply: %d\n", halfPly);
-        printBoard(firstMover, *c);
+        printBoard(asWhite, *c);
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
         //printMoves(generateListOfMoves(*c, successorStates));
         multiPlayerPrompt();
@@ -98,6 +88,7 @@ void multiPlayerSession(char *firstMoveColour){
         c = nextState(c, multiPlayerInput, white);
        //printBoardsAndAlgNot(*c, asWhite, successorStates);
         halfPly++;
+        //turn = nextPlayer(turn);
     }
     return;
 }
