@@ -17,7 +17,7 @@ char* specifyMove();
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 T_moves* generateListOfMoves(T_chessboard, T_states *);
 
-T_chessboard* nextState(T_chessboard *, char*, int);
+T_chessboard* nextState(T_chessboard *, char*, int, bool *);
 T_chessboard* initialiseBoard();
 
 char* moveInput();
@@ -82,8 +82,9 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-    printf("%d\n", playerColour);
+    //printf("%d\n", playerColour);
     int halfPly = 1;
+    bool *isValidMove = NULL;
     int colourTurn;
     T_chessboard *c;
     c = initialiseBoard();
@@ -91,13 +92,13 @@ void multiPlayerSession(char *playerColourInput){
     bool isValidInput = true;
     while(true){
         colourTurn = whosTurn(halfPly);
-        printPlayerTurn(halfPly);
+        //printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
-        T_states* successorStates = generateSuccessorStates(playerColour, *c);
-        printBoards(playerColour, successorStates);
+        //T_states* successorStates = generateSuccessorStates(playerColour, *c);
+        //printBoards(playerColour, successorStates);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        c = nextState(c, multiPlayerInput, colourTurn);
+        c = nextState(c, multiPlayerInput, colourTurn, isValidMove);
         halfPly++;
     }
     return;
@@ -257,7 +258,7 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     return a;
 }
 
-T_chessboard* nextState(T_chessboard *c, char* input, int turn){
+T_chessboard* nextState(T_chessboard *c, char* input, int turn, bool *b){
     T_chessboard *result = malloc(sizeof(T_chessboard));
     T_states *successorStates = generateSuccessorStates(turn, *c);
     T_moves *a = generateListOfMoves(*c, successorStates);

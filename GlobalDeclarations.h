@@ -7,7 +7,7 @@
 #define RANK_SIZE 8
 #define FILE_SIZE 8
 #define MAX_USER_INPUT 10
-#define MAX_SUCCESSOR_STATES 1000
+#define MAX_SUCCESSOR_STATES 1000 //Setting this to 100 results in runtime error and I DONT KNOW WHY
 #define MAX_INPUT_STATES 100
 #define PLAYING_AS_INPUT 10
 #define MAX_POSITIONS 10
