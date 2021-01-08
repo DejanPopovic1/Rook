@@ -20,7 +20,7 @@
 
 1598393671 c:\c_c++ code\rook\chess_pieces.h
 
-1610114449 c:\c_c++ code\rook\applicableactions.h
+1610114869 c:\c_c++ code\rook\applicableactions.h
 	"GlobalDeclarations.h"
 
 1610111700 source:c:\c_c++ code\rook\applicableactions.c
@@ -36,9 +36,10 @@
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
-1609948142 source:c:\c_c++ code\rook\globaldeclarations.c
+1610114496 source:c:\c_c++ code\rook\globaldeclarations.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
+	<stdlib.h>
 
 1608734001 source:c:\c_c++ code\rook\memoryutilities.c
 	"GlobalDeclarations.h"

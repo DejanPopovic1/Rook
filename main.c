@@ -243,6 +243,7 @@ int pieceToBeMoved(char* input, int turn){
 
 T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
+    a->freeIndex = 0;
     for(int i = 0; i < ss->freeIndex; i++){
         printf("%d ", i);
         //toAlgebraicNotation(c, ss->states[i]);

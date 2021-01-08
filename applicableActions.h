@@ -3,8 +3,6 @@
 
 #include "GlobalDeclarations.h"
 
-//void copyState(int successorStates [RANK_SIZE][FILE_SIZE][MAX_SUCCESSOR_STATES], int chessBoard[RANK_SIZE][FILE_SIZE], int numOfStates);
-
 bool isWhitePiece(int pieceValue);
 bool isBlackPiece(int pieceValue);
 

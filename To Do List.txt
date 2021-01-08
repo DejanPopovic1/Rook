@@ -1,5 +1,6 @@
 Todo List:
 
+When mallocing a list and then setting its free index to zero, rather do this in a create function
 Expose the "system output" functions like valid list of moves, to the user
 Show ply number
 Show whos turn it is
