@@ -14,6 +14,7 @@
 char* specifyMove();
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
+T_moves* generateListOfMoves(T_chessboard, T_states *);
 
 T_chessboard* nextState(T_chessboard *, char*, int);
 T_chessboard* initialiseBoard();
@@ -89,9 +90,12 @@ void multiPlayerSession(char *firstMoveColour){
     while(true){
         //printf("%d", (*c)[0][0]);
         printBoard(firstMover, *c);
+        T_states* successorStates = generateSuccessorStates(asWhite, *c);
+        printMoves(generateListOfMoves(*c, successorStates));
+        //printMoves();
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        T_states* successorStates = generateSuccessorStates(asWhite, *c);
+
         c = nextState(c, multiPlayerInput, white);
        //printBoardsAndAlgNot(*c, asWhite, successorStates);
     }
@@ -250,7 +254,6 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
-
     //printMoves(a);
     //printBoards(white, ss);
     return a;
