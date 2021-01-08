@@ -250,6 +250,7 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
+    printMoves(a);
     return a;
 }
 
@@ -257,17 +258,13 @@ T_chessboard* nextState(T_chessboard *c, char* input, int turn){
     T_chessboard *result = malloc(sizeof(T_chessboard));
     T_states *successorStates = generateSuccessorStates(turn, *c);
     T_moves *a = generateListOfMoves(*c, successorStates);
-    //Iterate through moves list until it matches input. Save index and fetch it. Load successor state with that index
     for(int i = 0; i < a->freeIndex; i++){
-        //printf("%s\n", a->moves[0]);
         if(!strcmp(a->moves[i], input)){
             T_chessboard *p = malloc(sizeof(T_chessboard));
             p = &(successorStates->states[i]);
-            //printf("Hello\n");
             return p;
         }
     }
-    //printf("Hello_2\n");
     printf("Invalid move\n");
     return c;
 }
