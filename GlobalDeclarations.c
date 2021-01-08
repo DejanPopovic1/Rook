@@ -7,7 +7,7 @@ bool isNeighbouringPawnDoubleMoved(const int rank, const int file){
 }
 
 int whosTurn(const int halfPly){
-    if(halfPly % 2 == 1){
+    if((halfPly % 2) == 1){
         return whiteTurn;
     }
     return blackTurn;

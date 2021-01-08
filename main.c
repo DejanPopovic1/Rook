@@ -69,18 +69,20 @@ char* moveInput(){
 }
 
 //Minimise MOVE_INPUT to hold as few characters as possible
+//Need to NOT advance the turn colour when a wrong input is made
 void multiPlayerSession(char *playerColourInput){
     if(strcmp(playerColourInput, "w") && strcmp(playerColourInput, "b")){
         printf("Invalid multi_player argument. See \"help\" for more details\n");
         return;
     }
     int playerColour;
-    if(!strcmp(playerColour, "w")){
+    if(!strcmp(playerColourInput, "w")){
         playerColour = asWhite;
     }
-    else if(!strcmp(playerColour, "b")){
+    else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
+    printf("%d\n", playerColour);
     int halfPly = 1;
     int colourTurn;
     T_chessboard *c;
@@ -89,12 +91,14 @@ void multiPlayerSession(char *playerColourInput){
     bool isValidInput = true;
     while(true){
         colourTurn = whosTurn(halfPly);
-        printPlayerTurn(playerColour);
+        printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
+        T_states* successorStates = generateSuccessorStates(playerColour, *c);
+        printBoards(playerColour, successorStates);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
         c = nextState(c, multiPlayerInput, colourTurn);
-        //halfPly++;
+        halfPly++;
     }
     return;
 }

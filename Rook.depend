@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610121000 source:c:\c_c++ code\rook\main.c
+1610125215 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -36,7 +36,7 @@
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
-1610118872 source:c:\c_c++ code\rook\globaldeclarations.c
+1610123028 source:c:\c_c++ code\rook\globaldeclarations.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdlib.h>
@@ -46,7 +46,7 @@
 
 1608733204 c:\c_c++ code\rook\memoryutilities.h
 
-1610108257 c:\c_c++ code\rook\output.h
+1610122720 c:\c_c++ code\rook\output.h
 	"GlobalDeclarations.h"
 	<wchar.h>
 	<Windows.h>
