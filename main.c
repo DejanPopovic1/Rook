@@ -95,7 +95,10 @@ void multiPlayerSession(char *firstMoveColour){
         printMoves(generateListOfMoves(*c, successorStates));
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
+        nextState(c, multiPlayerInput, white);
+        printf("Test 1\n");
         c = nextState(c, multiPlayerInput, white);
+        printf("Test 2\n");
        //printBoardsAndAlgNot(*c, asWhite, successorStates);
         halfPly++;
     }
