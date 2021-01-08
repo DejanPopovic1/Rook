@@ -89,16 +89,13 @@ void multiPlayerSession(char *firstMoveColour){
     c = initialiseBoard();
     char *multiPlayerInput;
     while(true){
-        printf("Half Ply: %d\n", halfPly);
+        //printf("Half Ply: %d\n", halfPly);
         printBoard(firstMover, *c);
         T_states* successorStates = generateSuccessorStates(asWhite, *c);
         printMoves(generateListOfMoves(*c, successorStates));
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
-        nextState(c, multiPlayerInput, white);
-        printf("Test 1\n");
         c = nextState(c, multiPlayerInput, white);
-        printf("Test 2\n");
        //printBoardsAndAlgNot(*c, asWhite, successorStates);
         halfPly++;
     }
@@ -244,22 +241,16 @@ int pieceToBeMoved(char* input, int turn){
     return movedPiece;
 }
 
-//void toListOfMoves(T_states *consolidatedStates){
-//    char** a = malloc(MOVE_INPUT * MAX_SUCCESSOR_STATES * sizeof(char));
-//    for(int i = 0; i < consolidatedStates->freeIndex; i++){
-//        consolidatedStates[i];
-//    }
-//}
-
 T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
     for(int i = 0; i < ss->freeIndex; i++){
+        printf("%d ", i);
+        //toAlgebraicNotation(c, ss->states[i]);
+        //printf("toAlgNotation of %d complete.. ", i);
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
-
-    //printMoves(a);
-    //printBoards(white, ss);
+    printf("\n");
     return a;
 }
 

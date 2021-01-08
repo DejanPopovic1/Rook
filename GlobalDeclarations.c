@@ -1,5 +1,6 @@
 #include "GlobalDeclarations.h"
 #include <stdbool.h>
+#include <stdlib.h>
 
 bool isNeighbouringPawnDoubleMoved(const int rank, const int file){
     return false;
