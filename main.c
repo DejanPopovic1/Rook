@@ -92,7 +92,9 @@ void multiPlayerSession(char *playerColourInput){
         colourTurn = whosTurn(halfPly);
         printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
-        //T_states* successorStates = generateSuccessorStates(playerColour, *c);
+        T_states* successorStates = generateSuccessorStates(playerColour, *c);
+        T_moves *m = generateListOfMoves(c, successorStates);
+        printMoves(m);
         //printBoards(playerColour, successorStates);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
@@ -246,14 +248,9 @@ T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
     a->freeIndex = 0;
     for(int i = 0; i < ss->freeIndex; i++){
-
-        //toAlgebraicNotation(c, ss->states[i]);
-        //printf("toAlgNotation of %d complete.. ", i);
         a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
         (a->freeIndex)++;
     }
-    //printf("# of successor states: %d\n", ss->freeIndex);
-    //printf("# of valid moves: %d\n", a->freeIndex);
     return a;
 }
 

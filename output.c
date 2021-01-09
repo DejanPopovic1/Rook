@@ -7,7 +7,8 @@
 #include <stdbool.h>
 
 void landingMessage(){
-    printf("Rook Chess Engine\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
+    printf("Rook Chess Engine (Open source version)\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
+    printf("This open source version of Rook uses rudimentary chessboard position encoding\n\n");
     printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
 }
 

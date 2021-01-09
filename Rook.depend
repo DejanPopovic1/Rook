@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610139354 source:c:\c_c++ code\rook\main.c
+1610199762 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -32,11 +32,11 @@
 	"output.h"
 	<stdlib.h>
 
-1610194539 c:\c_c++ code\rook\globaldeclarations.h
+1610194891 c:\c_c++ code\rook\globaldeclarations.h
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
-1610123028 source:c:\c_c++ code\rook\globaldeclarations.c
+1610195176 source:c:\c_c++ code\rook\globaldeclarations.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdlib.h>
@@ -53,7 +53,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610121194 source:c:\c_c++ code\rook\output.c
+1610195316 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -72,7 +72,7 @@
 	<stdbool.h>
 	<stdio.h>
 
-1610112570 source:c:\c_c++ code\rook\toalgebraicnotation.c
+1610199266 source:c:\c_c++ code\rook\toalgebraicnotation.c
 	"toAlgebraicNotation.h"
 	"GlobalDeclarations.h"
 	"applicableActions.h"
@@ -81,7 +81,7 @@
 	<stdlib.h>
 	<string.h>
 
-1610052633 c:\c_c++ code\rook\toalgebraicnotation.h
+1610198610 c:\c_c++ code\rook\toalgebraicnotation.h
 	"GlobalDeclarations.h"
 
 1609870198 c:\c_c++ code\rook\testcases.h

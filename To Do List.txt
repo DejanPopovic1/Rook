@@ -41,3 +41,4 @@ Read on chess engine optimisations wiki
 Display Heuristic score
 Change the 2x2 int chessboard to a 2x2 char chessboard
 Encode the chessboard into a another format
+Change encoding format as the board density progresses

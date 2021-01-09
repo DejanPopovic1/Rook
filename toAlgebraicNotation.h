@@ -21,7 +21,7 @@ char* toFileRank(T_positions *departures, T_position departure);
 T_position whereArrival(T_chessboard c, T_chessboard ss);
 bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a);
 T_positions* trimOtherSamePieces(T_chessboard c, T_positions *ps, T_position arrival);
-char* disambiguator(T_chessboard c, T_position departure, T_position arrival);
+char* disambiguator(T_chessboard c, T_position departure, T_position arrival, bool);
 T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p);
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss);
 

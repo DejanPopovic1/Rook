@@ -80,19 +80,34 @@ char* formatRankDisplay(int r){
 
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-    char temp[MAX_DISAMBIGUATOR_STRING];
     if(departures->freeIndex == 0){
             return "";
     }
     else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
-        sprintf(temp, "%d%d", departure.f, departure.r);
-        strcpy(result, temp);
+        strcpy(result, formatFileDisplay(departure.f));
+        strcat(result, formatFileDisplay(departure.r));
     }
     else if(!arePiecesInSameFile(departures, departure)){
         strcpy(result, formatFileDisplay(departure.f));
     }
     else if(arePiecesInSameFile(departures, departure)){
-        sprintf(temp, "%d", departure.r);
+        strcpy(result, formatRankDisplay(departure.r));
+    }
+    else{
+        assert(false);
+    }
+    return result;
+}
+
+char* toFileRankPawn(T_positions *departures, T_position departure, bool isCaptured){
+    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+    char temp[MAX_DISAMBIGUATOR_STRING];
+    if(isCaptured){
+        sprintf(temp, "%d", departure.f);
+        strcpy(result, temp);
+    }
+    else if(!isCaptured){
+        sprintf(temp, "");
         strcpy(result, temp);
     }
     else{
@@ -145,17 +160,17 @@ T_positions* trimOtherSamePieces(T_chessboard c, T_positions *ps, T_position arr
     return result;
 }
 
-char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
-    //char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+char* disambiguator(T_chessboard c, T_position departure, T_position arrival, bool isCaptured){
     T_positions *ps = whereAreOtherSamePieces(c, departure);
     T_positions *rps;
     rps = trimOtherSamePieces(c, ps, arrival);
     free(ps);
-    //printBoard(white, c);
-    if(c[departure.r][departure.f] != )
-    return toFileRank(rps, departure);
-    //printPosition(rps->positions[0]);
-    //printPositions(*rps);
+    if(!isPawn(c[departure.r][departure.f])){
+        return toFileRank(rps, departure);
+    }
+    else if(isPawn(c[departure.r][departure.f])){
+        return toFileRankPawn(rps, departure, isCaptured);
+    }
 }
 
 T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
@@ -242,7 +257,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             break;
     }
     //strcat(result, "-");
-    strcat(result, disambiguator(c, departure, arrival));
+    strcat(result, disambiguator(c, departure, arrival, isPieceCaptured));
     //Part 3: Take?
     //strcat(result, "-");
     if(isPieceCaptured){
