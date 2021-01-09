@@ -28,11 +28,11 @@ int (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T
         case blackKnight:
             return &generateBlackKnightSuccessorStates;
         case blackRook:
-            return &generateBlackKnightSuccessorStates;
+            return &generateBlackRookSuccessorStates;
         case blackQueen:
-            return &generateBlackKnightSuccessorStates;
+            return &generateBlackQueenSuccessorStates;
         case blackKing:
-            return &generateBlackKnightSuccessorStates;
+            return &generateBlackKingSuccessorStates;
         default:
             assert(false);
     }

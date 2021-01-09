@@ -23,7 +23,7 @@
 1610114869 c:\c_c++ code\rook\applicableactions.h
 	"GlobalDeclarations.h"
 
-1610111700 source:c:\c_c++ code\rook\applicableactions.c
+1610201733 source:c:\c_c++ code\rook\applicableactions.c
 	<stdio.h>
 	<stdbool.h>
 	"applicableActions.h"
@@ -31,6 +31,7 @@
 	"memoryUtilities.h"
 	"output.h"
 	<stdlib.h>
+	<assert.h>
 
 1610194891 c:\c_c++ code\rook\globaldeclarations.h
 	<stdbool.h>

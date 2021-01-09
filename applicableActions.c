@@ -5,6 +5,7 @@
 #include "memoryUtilities.h"
 #include "output.h"
 #include <stdlib.h>
+#include <assert.h>
 
 //MOVEMENTS "UP", "DOWN", "LEFT" AND "RIGHT" ARE RELATIVE TO AN APPLICABLE COLOUR
 
@@ -51,8 +52,7 @@ void generateWhitePawnSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whitePawn)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE UP ONE
     if(currentState[rank + 1][file] == empty && rank != 6){
@@ -128,8 +128,7 @@ void generateBlackPawnSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackPawn)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE FORWARD ONE
     if(currentState[rank - 1][file] == empty && rank != 1){
@@ -205,8 +204,7 @@ void generateWhiteBishopSuccessorStates(T_chessboard currentState, T_position p,
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whiteBishop)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -280,8 +278,7 @@ void generateBlackBishopSuccessorStates(T_chessboard currentState, T_position p,
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackBishop)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -355,8 +352,7 @@ void generateWhiteKnightSuccessorStates(T_chessboard currentState, T_position p,
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whiteKnight)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE UP-UP-RIGHT
     if(!isWhite(currentState, rank + 2, file + 1) && rank < RANK_SIZE - 2 && file < FILE_SIZE - 1){
@@ -422,8 +418,7 @@ void generateBlackKnightSuccessorStates(T_chessboard currentState, T_position p,
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackKnight)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE UP-UP-RIGHT
     if(!isBlack(currentState, rank + 2, file + 1) && rank < RANK_SIZE - 2 && file < FILE_SIZE - 1){
@@ -487,8 +482,7 @@ void generateWhiteRookSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whiteRook)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -558,8 +552,7 @@ void generateBlackRookSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackRook)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -629,8 +622,7 @@ void generateWhiteQueenSuccessorStates(T_chessboard currentState, T_position p, 
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whiteQueen)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -765,8 +757,7 @@ void generateBlackQueenSuccessorStates(T_chessboard currentState, T_position p, 
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackQueen)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     T_chessboard i;
     int r, f;
@@ -901,8 +892,7 @@ void generateWhiteKingSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, whiteKing)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE UP
     if(!isWhite(currentState, rank + 1, file) && rank < RANK_SIZE - 1){
@@ -967,8 +957,7 @@ void generateBlackKingSuccessorStates(T_chessboard currentState, T_position p, T
     int rank = p.r;
     int file = p.f;
     if(!isPiece(currentState, rank, file, blackKing)){
-        fprintf(stderr, "%s", "Error: A movement rule is applied to a non-applicable piece");
-        exit(-1);
+        assert(false);
     }
     //MOVE UP
     if(!isBlack(currentState, rank + 1, file) && rank < RANK_SIZE - 1){
