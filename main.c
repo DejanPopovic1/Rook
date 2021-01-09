@@ -92,9 +92,12 @@ void multiPlayerSession(char *playerColourInput){
         colourTurn = whosTurn(halfPly);
         printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
-        T_states* successorStates = generateSuccessorStates(playerColour, *c);
-        T_moves *m = generateListOfMoves(c, successorStates);
-        printMoves(m);
+        T_states* wS = generateSuccessorStates(asWhite, *c);
+        T_states* bS = generateSuccessorStates(asBlack, *c);
+        T_moves *mW = generateListOfMoves(c, wS);
+        T_moves *mB = generateListOfMoves(c, bS);
+        printMoves(mW);
+        printMoves(mB);
         //printBoards(playerColour, successorStates);
         multiPlayerPrompt();
         multiPlayerInput = moveInput();
