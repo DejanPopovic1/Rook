@@ -101,14 +101,11 @@ char* toFileRank(T_positions *departures, T_position departure){
 
 char* toFileRankPawn(T_positions *departures, T_position departure, bool isCaptured){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-    char temp[MAX_DISAMBIGUATOR_STRING];
     if(isCaptured){
-        sprintf(temp, "%d", departure.f);
-        strcpy(result, temp);
+        strcpy(result, formatFileDisplay(departure.f));
     }
     else if(!isCaptured){
-        sprintf(temp, "");
-        strcpy(result, temp);
+        strcpy(result, "");
     }
     else{
         assert(false);
