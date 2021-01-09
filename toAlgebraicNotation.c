@@ -152,6 +152,7 @@ char* disambiguator(T_chessboard c, T_position departure, T_position arrival){
     rps = trimOtherSamePieces(c, ps, arrival);
     free(ps);
     //printBoard(white, c);
+    if(c[departure.r][departure.f] != )
     return toFileRank(rps, departure);
     //printPosition(rps->positions[0]);
     //printPositions(*rps);

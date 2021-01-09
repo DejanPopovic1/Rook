@@ -6,6 +6,30 @@ bool isNeighbouringPawnDoubleMoved(const int rank, const int file){
     return false;
 }
 
+bool isPawn(int p){
+    return (p == whitePawn || p == blackPawn) ? true : false;
+}
+
+bool isBishop(int p){
+    return (p == whiteBishop || p == blackBishop) ? true : false;
+}
+
+bool isKnight(int p){
+    return (p == whiteKnight || p == blackKnight) ? true : false;
+}
+
+bool isRook(int p){
+    return (p == whiteRook || p == blackRook) ? true : false;
+}
+
+bool isQueen(int p){
+    return (p == whiteQueen || p == blackQueen) ? true : false;
+}
+
+bool isKing(int p){
+    return (p == whiteKing || p == blackKing) ? true : false;
+}
+
 int whosTurn(const int halfPly){
     if((halfPly % 2) == 1){
         return whiteTurn;

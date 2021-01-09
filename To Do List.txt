@@ -1,5 +1,6 @@
 Todo List:
 
+Use more asserts instead of exit(-1)
 When mallocing a list and then setting its free index to zero, rather do this in a create function
 Expose the "system output" functions like valid list of moves, to the user
 Show ply number
@@ -38,3 +39,5 @@ Neaten up file structure
 Opening libraries
 Read on chess engine optimisations wiki
 Display Heuristic score
+Change the 2x2 int chessboard to a 2x2 char chessboard
+Encode the chessboard into a another format
