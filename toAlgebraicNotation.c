@@ -192,6 +192,26 @@ T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
     return result;
 }
 
+T_position whereTo(){
+
+
+
+}
+
+T_position whereFrom(T_chessboard c, T_chessboard s){
+    T_position result;
+    for(int i = 0; i < RANK_SIZE; i++){
+        for(int j = 0; j < FILE_SIZE; j++){
+            if(c[i][j] != empty && s[i][j] == empty){
+                result.r = i;
+                result.f = j;
+                return result;
+            }
+        }
+    }
+    assert(false);
+}
+
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
 //Use the position creation functions over here!
@@ -200,18 +220,13 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     strcpy(result, "");
     bool isPieceCaptured = false;
     bool breakOut = false;
-    T_position departure;
+
     T_position arrival;
     //Determine departure location
-    for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
-            if(c[i][j] != empty && ss[i][j] == empty){
-                departure.r = i;
-                departure.f = j;
-                breakOut = true;
-            }
-        }
-    }
+    T_position from = whereFrom(c, ss);
+    //
+    //
+    //
     breakOut = false;
     //Determine arrival location and whether piece is captured
     for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
@@ -227,7 +242,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
         }
     }
     //strcpy(result, "|");
-    int movedPiece = c[departure.r][departure.f];
+    int movedPiece = c[from.r][from.f];
     //Part 1: Piece to be moved
     switch(movedPiece){
         case whitePawn:
@@ -256,7 +271,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             break;
     }
     //strcat(result, "-");
-    strcat(result, disambiguator(c, departure, arrival, isPieceCaptured));
+    strcat(result, disambiguator(c, from, arrival, isPieceCaptured));
     //Part 3: Take?
     //strcat(result, "-");
     if(isPieceCaptured){
