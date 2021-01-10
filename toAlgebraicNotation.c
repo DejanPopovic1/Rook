@@ -192,10 +192,23 @@ T_positions* whereAreOtherSamePieces(T_chessboard c, T_position p){
     return result;
 }
 
-T_position whereTo(){
+T_position whereTo(T_chessboard c, T_chessboard s, bool *isPieceCaptured){
+    T_position result;
+    *isPieceCaptured = false;
+    for(int i = 0; i < RANK_SIZE; i++){
+        for(int j = 0; j < FILE_SIZE; j++){
+            if((c[i][j] != s[i][j]) && (s[i][j] != empty)){
+                result.r = i;
+                result.f = j;
+                if(c[i][j] != empty){
+                    *isPieceCaptured = true;
+                }
 
-
-
+                return result;
+            }
+        }
+    }
+    assert(false);
 }
 
 T_position whereFrom(T_chessboard c, T_chessboard s){
@@ -218,29 +231,10 @@ T_position whereFrom(T_chessboard c, T_chessboard s){
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
     strcpy(result, "");
-    bool isPieceCaptured = false;
-    bool breakOut = false;
-
-    T_position arrival;
-    //Determine departure location
+    bool isPieceCaptured;
+    bool *isPieceCapturedPtr = &isPieceCaptured;
     T_position from = whereFrom(c, ss);
-    //
-    //
-    //
-    breakOut = false;
-    //Determine arrival location and whether piece is captured
-    for(int i = 0; i < RANK_SIZE && breakOut == false; i++){
-        for(int j = 0; j < FILE_SIZE && breakOut == false; j++){
-            if((c[i][j] != ss[i][j]) && (ss[i][j] != empty)){
-                arrival.r = i;
-                arrival.f = j;
-                breakOut = true;
-                if(c[i][j] != empty){
-                    isPieceCaptured = true;
-                }
-            }
-        }
-    }
+    T_position to = whereTo(c, ss, isPieceCapturedPtr);
     //strcpy(result, "|");
     int movedPiece = c[from.r][from.f];
     //Part 1: Piece to be moved
@@ -271,7 +265,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             break;
     }
     //strcat(result, "-");
-    strcat(result, disambiguator(c, from, arrival, isPieceCaptured));
+    strcat(result, disambiguator(c, from, to, isPieceCaptured));
     //Part 3: Take?
     //strcat(result, "-");
     if(isPieceCaptured){
@@ -279,8 +273,8 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     }
     //Part 4: Arrival
     //strcat(result, "-");
-    char *ff = formatFileDisplay(arrival.f);
-    char *fr = formatRankDisplay(arrival.r);
+    char *ff = formatFileDisplay(to.f);
+    char *fr = formatRankDisplay(to.r);
     strcat(result, ff);
     strcat(result, fr);
     //Part 5: Check(mate)?

@@ -10,6 +10,9 @@
 #define FILE_STRING 2
 #define RANK_STRING 2
 
+T_position whereTo(T_chessboard c, T_chessboard s, bool *isPieceCaptured);
+T_position whereFrom(T_chessboard c, T_chessboard s);
+
 void (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *);
 bool arePiecesInSameRank(T_positions *ps, T_position p);
 bool arePiecesInSameFile(T_positions *ps, T_position p);
