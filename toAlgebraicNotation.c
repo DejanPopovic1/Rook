@@ -283,38 +283,23 @@ char* toSpecifier(T_position to){
 //Use the position creation functions over here!
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
-
     bool isPieceCaptured;
     bool *isPieceCapturedPtr = &isPieceCaptured;
     T_position from = whereFrom(c, ss);
     T_position to = whereTo(c, ss, isPieceCapturedPtr);
-    //strcpy(result, "|");
     int piece = c[from.r][from.f];
-    //Part 1: Piece to be moved
-    char* part1 = specifier(piece);
-
-    //strcat(result, "-");
+    char *part1 = specifier(piece);
     char *part2 = disambiguate(c, from, to, isPieceCaptured);
     char *part3 = take(isPieceCaptured);
     char *part4 = toSpecifier(to);
-
-
     strcpy(result, "");
     strcat(result, part1);
     strcat(result, part2);
     strcat(result, part3);
     strcat(result, part4);
-    //Part 3: Take?
-    //strcat(result, "-");
-    //Part 4: Arrival
-    //strcat(result, "-");
-//    char *ff = formatFileDisplay(to.f);
-//    char *fr = formatRankDisplay(to.r);
-//    strcat(result, ff);
-//    strcat(result, fr);
-    //Part 5: Check(mate)?
-    //strcat(result, "-");
-    //strcat(result, "|");
-    //printf("%s\n", result);
+    free(part1);
+    free(part2);
+    free(part3);
+    free(part4);
     return result;
 }
