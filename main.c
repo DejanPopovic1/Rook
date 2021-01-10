@@ -109,8 +109,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    //TESTformatFileDisplay();
-    //TESTdisambiguator();
+    TESTcopyState();
     return;
 }
 

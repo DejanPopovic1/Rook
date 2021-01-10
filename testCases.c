@@ -8,14 +8,12 @@ void TESTformatFileDisplay(){
 }
 
 void TESTcopyState(){
-    T_chessboard *des = initialiseRandomTest1();
-    T_chessboard *src;
-    initialiseRandomTest1(des);
-    T_chessboard src;
-    initia
-
-
-
+    T_chessboard *des = initialiseBoard1();
+    T_chessboard *src = initialiseBoard2();
+    printBoard(asWhite, *des);
+    printBoard(asWhite, *src);
+    copyState(des, *src);
+    printBoard(asWhite, *des);
     return;
 }
 
