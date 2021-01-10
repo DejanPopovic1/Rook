@@ -266,6 +266,18 @@ char* take(bool isTake){
     return result;
 }
 
+char* toSpecifier(T_position to){
+    char *result = malloc(3 * sizeof(char));
+    strcpy(result, "");
+    char *ff = formatFileDisplay(to.f);
+    char *fr = formatRankDisplay(to.r);
+    strcat(result, ff);
+    strcat(result, fr);
+    free(ff);
+    free(fr);
+    return result;
+}
+
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
 //Use the position creation functions over here!
@@ -284,20 +296,22 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     //strcat(result, "-");
     char *part2 = disambiguate(c, from, to, isPieceCaptured);
     char *part3 = take(isPieceCaptured);
+    char *part4 = toSpecifier(to);
 
 
     strcpy(result, "");
     strcat(result, part1);
     strcat(result, part2);
     strcat(result, part3);
+    strcat(result, part4);
     //Part 3: Take?
     //strcat(result, "-");
     //Part 4: Arrival
     //strcat(result, "-");
-    char *ff = formatFileDisplay(to.f);
-    char *fr = formatRankDisplay(to.r);
-    strcat(result, ff);
-    strcat(result, fr);
+//    char *ff = formatFileDisplay(to.f);
+//    char *fr = formatRankDisplay(to.r);
+//    strcat(result, ff);
+//    strcat(result, fr);
     //Part 5: Check(mate)?
     //strcat(result, "-");
     //strcat(result, "|");
