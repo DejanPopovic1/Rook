@@ -12,20 +12,15 @@
 #include <stdlib.h>
 #include "toAlgebraicNotation.h"
 
-char* specifyMove();
-
-T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
-T_moves* generateListOfMoves(T_chessboard, T_states *);
-
-bool nextState(T_chessboard **, char*, int);
-T_chessboard* initialiseBoard();
-
+void mainPrompt();
+void multiPlayerPrompt();
+char* mainSelection();
 char* moveInput();
-
-struct ApplicableActions{
-    int chessboard [RANK_SIZE][FILE_SIZE];
-    char* algebraicNotation;
-};
+void multiPlayerSession(char *playerColourInput);
+T_chessboard* initialiseBoard();
+T_moves* generateListOfMoves(T_chessboard c, T_states *ss);
+bool nextState(T_chessboard **c, char* input, int turn);
+T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
 
 void mainPrompt(){
     printf("Rook>");
@@ -35,23 +30,6 @@ void mainPrompt(){
 void multiPlayerPrompt(){
     printf(" -> ");
     return;
-}
-
-int playingAsPrompt(){
-    char playingAs[PLAYING_AS_INPUT];
-    while(true){
-        printf("Rook > Multiplayer Session > Select colour (w for white / b for black): \n");
-        scanf("%s", playingAs);
-        if(!strcmp(playingAs, "w")){
-            return asWhite;
-        }
-        else if(!strcmp(playingAs, "b")){
-            return asBlack;
-        }
-        else{
-            printf("Invalid colour selection. \n");
-        }
-    }
 }
 
 char* mainSelection(){
@@ -186,66 +164,6 @@ T_chessboard* initialiseBoard(){
     return result;
 }
 
-char* specifyMove(){
-    printf("White Move: ");
-    //printf("\n\n");
-    char *input = malloc(MAX_USER_INPUT + 1);
-    //scanf("%[^\n]%*c", input);
-    scanf("%s", input);
-    return input;
-}
-
-bool isFileDifferent(T_position pos1, T_position pos2){
-    if(pos1.f != pos2.f){
-        return true;
-    }
-    return false;
-}
-
-bool isRankDifferent(T_position pos1, T_position pos2){
-    if(pos1.r != pos2.r){
-        return true;
-    }
-    return false;
-}
-
-void consumeInput(char** input){
-
-    return;
-}
-
-int pieceToBeMoved(char* input, int turn){
-    int movedPiece;
-    switch(input[0]){
-        case 'B':
-            turn == whiteTurn ? (movedPiece = whiteBishop) : (movedPiece = blackBishop);
-            break;
-        case 'N':
-            turn == whiteTurn ? (movedPiece = whiteKnight) : (movedPiece = blackKnight);
-            break;
-        case 'R':
-            turn == whiteTurn ? (movedPiece = whiteRook) : (movedPiece = blackRook);
-            break;
-        case 'Q':
-            turn == whiteTurn ? (movedPiece = whiteQueen) : (movedPiece = blackQueen);
-            break;
-        case 'K':
-            turn == whiteTurn ? (movedPiece = whiteKing) : (movedPiece = blackKing);
-            break;
-        case 'a':
-        case 'b':
-        case 'c':
-        case 'd':
-        case 'e':
-        case 'f':
-        case 'g':
-        case 'h':
-            turn == whiteTurn ? (movedPiece = whitePawn) : (movedPiece = blackPawn);
-            break;
-    }
-    return movedPiece;
-}
-
 T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
     T_moves *a = malloc(sizeof(T_moves));
     a->freeIndex = 0;
@@ -349,18 +267,4 @@ T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
     }
     //printBoards(playingAs, *consolidatedStates);
     return consolidatedStates;
-}
-
-void iterateChessBoard(int chessboard [RANK_SIZE][FILE_SIZE], bool turn){
-    printf("%d", chessboard[0][0]);
-
-}
-
-void validBlackMoves(int chessboard [RANK_SIZE][FILE_SIZE]){
-
-}
-
-void generateAllWhite(){
-
-    return;
 }
