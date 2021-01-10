@@ -10,8 +10,6 @@
 #define FILE_STRING 2
 #define RANK_STRING 2
 
-void (*mvmntRulePtr)(T_chessboard currentState, T_position, T_states *consolidatedStates);
-
 void (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *);
 bool arePiecesInSameRank(T_positions *ps, T_position p);
 bool arePiecesInSameFile(T_positions *ps, T_position p);

@@ -132,6 +132,7 @@ T_position whereArrival(T_chessboard c, T_chessboard ss){
 bool doesDepartureGoToArrival(T_chessboard c, T_position d, T_position a){
     T_states *s = malloc(sizeof(T_states));
 //    T_position *p = createPosition(2, 3);
+    void (*mvmntRulePtr)(T_chessboard currentState, T_position, T_states *consolidatedStates);
     mvmntRulePtr = returnMvmntRule(c, d);
     (*mvmntRulePtr)(c, d, s);
     for(int i = 0; i < s->freeIndex; i++){
