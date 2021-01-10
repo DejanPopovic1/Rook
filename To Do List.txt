@@ -1,5 +1,11 @@
 Todo List:
 
+1. Add a function encodeChessBoard() which returns an encoded board of your choice.
+2. Redo applicable actions based on this recording
+3. Play the computer which randomises these legal moves
+4. Incorporate Minimax algorithm
+
+
 Use more asserts instead of exit(-1)
 When mallocing a list and then setting its free index to zero, rather do this in a create function
 Expose the "system output" functions like valid list of moves, to the user
@@ -44,3 +50,5 @@ Encode the chessboard into a another format
 Change encoding format as the board density progresses
 Add transposition table
 Add Zobrist hashing
+Ability to select encodings
+Ability to configure encodings along halfPlys 0+ for every half ply
