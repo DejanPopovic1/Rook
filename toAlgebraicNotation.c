@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *){
+void (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
         case whitePawn:
