@@ -225,23 +225,13 @@ T_position whereFrom(T_chessboard c, T_chessboard s){
     assert(false);
 }
 
-//THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
-//Refactor so that parts 1, 2 and 3 each return individual strings
-//Use the position creation functions over here!
-char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
-    char* result = malloc(MOVE_INPUT * sizeof(char));
+char* specifier(int piece){
+    char *result = malloc(2 * sizeof(char));
     strcpy(result, "");
-    bool isPieceCaptured;
-    bool *isPieceCapturedPtr = &isPieceCaptured;
-    T_position from = whereFrom(c, ss);
-    T_position to = whereTo(c, ss, isPieceCapturedPtr);
-    //strcpy(result, "|");
-    int movedPiece = c[from.r][from.f];
-    //Part 1: Piece to be moved
-    switch(movedPiece){
+    switch(piece){
         case whitePawn:
         case blackPawn:
-            ;//strcpy(result, "");
+            ;
             break;
         case whiteBishop:
         case blackBishop:
@@ -264,8 +254,27 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
             strcat(result, "K");
             break;
     }
+    return result;
+}
+
+//THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
+//Refactor so that parts 1, 2 and 3 each return individual strings
+//Use the position creation functions over here!
+char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
+    char* result = malloc(MOVE_INPUT * sizeof(char));
+    strcpy(result, "");
+    bool isPieceCaptured;
+    bool *isPieceCapturedPtr = &isPieceCaptured;
+    T_position from = whereFrom(c, ss);
+    T_position to = whereTo(c, ss, isPieceCapturedPtr);
+    //strcpy(result, "|");
+    int piece = c[from.r][from.f];
+    //Part 1: Piece to be moved
+    char* part1 = specifier(piece);
+    strcat(result, part1);
     //strcat(result, "-");
-    strcat(result, disambiguator(c, from, to, isPieceCaptured));
+    char *part2 = disambiguator(c, from, to, isPieceCaptured);
+    strcat(result, part2);
     //Part 3: Take?
     //strcat(result, "-");
     if(isPieceCaptured){
