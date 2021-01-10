@@ -159,7 +159,7 @@ T_positions* trimOtherSamePieces(T_chessboard c, T_positions *ps, T_position arr
     return result;
 }
 
-char* disambiguator(T_chessboard c, T_position departure, T_position arrival, bool isCaptured){
+char* disambiguate(T_chessboard c, T_position departure, T_position arrival, bool isCaptured){
     T_positions *ps = whereAreOtherSamePieces(c, departure);
     T_positions *rps;
     rps = trimOtherSamePieces(c, ps, arrival);
@@ -257,12 +257,21 @@ char* specifier(int piece){
     return result;
 }
 
+char* take(bool isTake){
+    char *result = malloc(2 * sizeof(char));
+    strcpy(result, "");
+    if(isTake){
+        strcat(result, "x");
+    }
+    return result;
+}
+
 //THESE CURRENTLY DONT FACTOR INTO ACCOUNT EN PASSANTS AND CASTLING and promotion and CHECK/CHECKMATE and having more than 3 pieces of non-pawn
 //Refactor so that parts 1, 2 and 3 each return individual strings
 //Use the position creation functions over here!
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
-    strcpy(result, "");
+
     bool isPieceCaptured;
     bool *isPieceCapturedPtr = &isPieceCaptured;
     T_position from = whereFrom(c, ss);
@@ -271,15 +280,18 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     int piece = c[from.r][from.f];
     //Part 1: Piece to be moved
     char* part1 = specifier(piece);
-    strcat(result, part1);
+
     //strcat(result, "-");
-    char *part2 = disambiguator(c, from, to, isPieceCaptured);
+    char *part2 = disambiguate(c, from, to, isPieceCaptured);
+    char *part3 = take(isPieceCaptured);
+
+
+    strcpy(result, "");
+    strcat(result, part1);
     strcat(result, part2);
+    strcat(result, part3);
     //Part 3: Take?
     //strcat(result, "-");
-    if(isPieceCaptured){
-        strcat(result, "x");
-    }
     //Part 4: Arrival
     //strcat(result, "-");
     char *ff = formatFileDisplay(to.f);

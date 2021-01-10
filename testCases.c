@@ -50,6 +50,6 @@ void TESTdisambiguator(){
     a1.f = 5;
     //a2.r = 4;
     //a2.f = 7;
-    printf("Test 1: %s\n", disambiguator(c, d, a1));
+    printf("Test 1: %s\n", disambiguate(c, d, a1));
     //printf("Test 2: %s\n", disambiguator(c, d, a2));
 }
