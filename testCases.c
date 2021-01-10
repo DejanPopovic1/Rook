@@ -7,6 +7,18 @@ void TESTformatFileDisplay(){
     return;
 }
 
+void TESTcopyState(){
+    T_chessboard *des = initialiseRandomTest1();
+    T_chessboard *src;
+    initialiseRandomTest1(des);
+    T_chessboard src;
+    initia
+
+
+
+    return;
+}
+
 void TESTdoesDepartureGoToArrival(){
     T_chessboard c;
     initialiseRandomTest1(c);

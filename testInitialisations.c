@@ -236,6 +236,47 @@ void initialiseRandomTest1(int chessboard [RANK_SIZE][FILE_SIZE]) {
     return;
 }
 
+T_chessboard* initialiseBoardTest(){
+    T_chessboard *result = malloc(sizeof(T_chessboard));
+    for(int i = 0; i < FILE_SIZE; i++){
+        (*result)[1][i] = whitePawn;
+    }
+    (*result)[0][0] = empty;
+    (*result)[0][1] = empty;
+    (*result)[0][2] = empty;
+    (*result)[0][3] = whiteQueen;
+    (*result)[0][4] = whiteKing;
+    (*result)[0][5] = empty;
+    (*result)[0][6] = empty;
+    (*result)[0][7] = empty;
+    for(int i = 0; i < FILE_SIZE; i++){
+        (*result)[6][i] = blackPawn;
+    }
+    (*result)[7][0] = blackRook;
+    (*result)[7][1] = blackKnight;
+    (*result)[7][2] = blackBishop;
+    (*result)[7][3] = blackQueen;
+    (*result)[7][4] = blackKing;
+    (*result)[7][5] = blackBishop;
+    (*result)[7][6] = blackKnight;
+    (*result)[7][7] = blackRook;
+    for(int i = 2; i < RANK_SIZE - 2; i++){
+        for(int j = 0; j < FILE_SIZE; j++){
+            (*result)[i][j] = empty;
+        }
+    }
+    return result;
+}
+
+void clearBoard2() {
+    for(int i = 0; i < RANK_SIZE; i++){
+        for(int j = 0; j < FILE_SIZE; j++){
+            chessboard[i][j] = empty;
+        }
+    }
+    return;
+}
+
 void initialiseDisambiguator(int chessboard [RANK_SIZE][FILE_SIZE]) {
     clearBoard(chessboard);
     chessboard[3][3] = whiteKnight;

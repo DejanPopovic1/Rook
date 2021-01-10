@@ -33,7 +33,7 @@
 	<stdlib.h>
 	<assert.h>
 
-1610194891 c:\c_c++ code\rook\globaldeclarations.h
+1610202703 c:\c_c++ code\rook\globaldeclarations.h
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
@@ -73,7 +73,7 @@
 	<stdbool.h>
 	<stdio.h>
 
-1610200455 source:c:\c_c++ code\rook\toalgebraicnotation.c
+1610201986 source:c:\c_c++ code\rook\toalgebraicnotation.c
 	"toAlgebraicNotation.h"
 	"GlobalDeclarations.h"
 	"applicableActions.h"
