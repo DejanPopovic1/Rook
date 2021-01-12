@@ -1,0 +1,3 @@
+Square centric
+Pseudo legal move generator
+Bit board representation

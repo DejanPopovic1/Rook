@@ -54,3 +54,4 @@ Ability to select encodings
 Ability to configure encodings along halfPlys 0+ for every half ply
 Benchmark table
 Pseudo legal move generation to legal move generation
+enumerate piece TYPES (for the purposes of move generation) as colour agnostic except for the pawns
