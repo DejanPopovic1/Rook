@@ -284,9 +284,8 @@ char* toSpecifier(T_position to){
 char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     char* result = malloc(MOVE_INPUT * sizeof(char));
     bool isPieceCaptured;
-    bool *isPieceCapturedPtr = &isPieceCaptured;
     T_position from = whereFrom(c, ss);
-    T_position to = whereTo(c, ss, isPieceCapturedPtr);
+    T_position to = whereTo(c, ss, &isPieceCaptured);
     int piece = c[from.r][from.f];
     char *part1 = specifier(piece);
     char *part2 = disambiguate(c, from, to, isPieceCaptured);

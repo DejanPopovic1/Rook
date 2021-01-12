@@ -49,6 +49,8 @@ Change the 2x2 int chessboard to a 2x2 char chessboard
 Encode the chessboard into a another format
 Change encoding format as the board density progresses
 Add transposition table
-Add Zobrist hashing
+Add Zobrist hashing/BCH hashing and therefore make a function 
 Ability to select encodings
 Ability to configure encodings along halfPlys 0+ for every half ply
+Benchmark table
+Pseudo legal move generation to legal move generation
