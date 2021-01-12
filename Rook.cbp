@@ -46,9 +46,13 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output.h" />
+		<Unit filename="slideRays.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="state.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="state.h" />
 		<Unit filename="testCases.c">
 			<Option compilerVar="CC" />
 		</Unit>

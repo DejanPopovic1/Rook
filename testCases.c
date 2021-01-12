@@ -1,6 +1,12 @@
 #include "GlobalDeclarations.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include "state.h"
+
+void TESTprintBitboard(){
+    printTBitboard();
+    return;
+}
 
 void TESTformatFileDisplay(){
     printf("%c\n", formatFileDisplay(0));

@@ -1,6 +1,4 @@
-#include <stdint.h>
-
-typedef uint64_t T_bitboard;
+#include "state.h"
 
 T_bitboard wPawn;
 T_bitboard wBishop;
@@ -14,3 +12,5 @@ T_bitboard bKnight;
 T_bitboard bRook;
 T_bitboard bQueen;
 T_bitboard bKing;
+
+

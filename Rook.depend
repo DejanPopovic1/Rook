@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610309200 source:c:\c_c++ code\rook\main.c
+1610485181 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -54,7 +54,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610282936 source:c:\c_c++ code\rook\output.c
+1610485320 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -62,16 +62,18 @@
 	<Windows.h>
 	<stdio.h>
 	<stdbool.h>
+	"state.h"
 
 1609268885 c:\c_c++ code\rook\testinitialisations.h
 
 1610283495 source:c:\c_c++ code\rook\testinitialisations.c
 	"GlobalDeclarations.h"
 
-1610307546 source:c:\c_c++ code\rook\testcases.c
+1610485255 source:c:\c_c++ code\rook\testcases.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdio.h>
+	"state.h"
 
 1610477365 source:c:\c_c++ code\rook\toalgebraicnotation.c
 	"toAlgebraicNotation.h"
@@ -86,4 +88,16 @@
 	"GlobalDeclarations.h"
 
 1609870198 c:\c_c++ code\rook\testcases.h
+
+1610482650 source:c:\c_c++ code\rook\state.c
+	<stdint.h>
+
+1610485149 source:c:\c_c++ code\rook\sliderays.c
+	"state.c"
+
+1610485391 c:\c_c++ code\rook\state.c
+	"state.h"
+
+1610485391 c:\c_c++ code\rook\state.h
+	<stdint.h>
 

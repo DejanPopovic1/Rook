@@ -1,3 +1,4 @@
 Square centric
 Pseudo legal move generator
 Bit board representation
+Classical slide piece attacks
