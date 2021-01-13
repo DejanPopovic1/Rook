@@ -4,7 +4,14 @@
 #include "state.h"
 
 void TESTprintBitboard(){
-    printTBitboard();
+    T_bitboard a = 5;
+    printTBitboard(a);
+    return;
+}
+
+void TESTprintBitboardNumber(){
+    T_bitboard a = 5;
+    printTBitboardNumber(a);
     return;
 }
 

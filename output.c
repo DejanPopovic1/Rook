@@ -6,10 +6,28 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "state.h"
+#include <stdint.h>
 
-void printTBitboard(){
-    T_bitboard a = 1ULL;
+void printTBitboardNumber(T_bitboard b){
+    T_bitboard bit;
+    for(int i = 0; i < 64; i++){
+        bit = (b >> i) & 1U;
+        printf("%d ", bit);
+    }
+}
 
+void printTBitboard(T_bitboard b){
+    T_bitboard bit;
+    int index;
+    for(int i = RANK_SIZE - 1; i >= 0; i--){
+        for(int j = 0; j <= FILE_SIZE - 1; j++){
+            index = (i * FILE_SIZE) + j;
+            bit = (b >> index) & 1U;
+            printf("%d ", bit);
+        }
+        printf("\n");
+    }
+    return;
 }
 
 

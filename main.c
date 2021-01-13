@@ -87,7 +87,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    //TESTcopyState();
+    TESTprintBitboard();
     getch();
     return;
 }
