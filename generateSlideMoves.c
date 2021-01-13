@@ -13,55 +13,55 @@ bool castN(int *index){
 
 bool castNE(int *index){
     *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    if(*index > 63 || !(*index % 8)){
         return false;
     }
     return true;
 }
 
 bool castE(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index += 1;
+    if(!(*index % 8)){
         return false;
     }
     return true;
 }
 
 bool castSE(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index -= 7;
+    if(*index < 0 || !(*index % 8)){
         return false;
     }
     return true;
 }
 
 bool castS(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index -= 8;
+    if(*index < 0){
         return false;
     }
     return true;
 }
 
 bool castSW(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index -= 9;
+    if(*index < 0 || !((*index + 1) % 8)){
         return false;
     }
     return true;
 }
 
 bool castW(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index -= 1;
+    if(!((*index + 1) % 8)){
         return false;
     }
     return true;
 }
 
 bool castNW(int *index){
-    *index += 9;
-    if(*index > 63 || !((*index) % 8)){
+    *index += 7;
+    if(*index > 63 || !((*index + 1) % 8)){
         return false;
     }
     return true;
