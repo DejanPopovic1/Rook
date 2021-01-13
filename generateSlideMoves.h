@@ -1,5 +1,11 @@
 #include "state.h"
 #define BITBOARD_SIZE 64
 
+int castSE(int index);
+int castE(int index);
+int castNE(int index);
+int castSW(int index);
+int castW(int index);
+int castNW(int index);
+T_bitboard* makeRays(int(*direction)(),int index);
 T_bitboard* makeRaysNE(int index);
-void setBit(T_bitboard *number, int n);
