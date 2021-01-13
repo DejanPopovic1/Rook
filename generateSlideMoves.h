@@ -1,7 +1,9 @@
 #include "state.h"
+#include "stdbool.h"
 #define BITBOARD_SIZE 64
 
-int castN(int index);
+bool castN(int *index);
+bool castNE(int *index);
 //int castNE(int index);
 //int castE(int index);
 //int castSE(int index);

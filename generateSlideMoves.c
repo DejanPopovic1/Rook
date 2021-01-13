@@ -1,10 +1,22 @@
 #include "generateSlideMoves.h"
 #include "state.h"
 #include <stdint.h>
+#include <stdbool.h>
 
-int castN(int index){
-    index += 8;
-    return index;
+bool castN(int *index){
+    *index += 8;
+    if(*index > 63){
+        return false;
+    }
+    return true;
+}
+
+bool castNE(int *index){
+    *index += 9;
+    if(*index > 63 || !((*index) % 8)){
+        return false;
+    }
+    return true;
 }
 
 //int castNE(int index){
@@ -45,12 +57,15 @@ int castN(int index){
 T_bitboard* makeRays(int(*castDir)(),int index){
     T_bitboard *result = malloc(sizeof(T_bitboard));
     *result = 0;
-    for(int i = (*castDir)(index); i < BITBOARD_SIZE; i = (*castDir)(i)){
-        if(i > 63 || i < 0 || !(i % 8)){
-            break;
-        }
-        setBit(result, i);
+    while((*castDir)(&index)){
+        setBit(result, index);
     }
+//    for(int i = (*castDir)(&index); i < BITBOARD_SIZE; i = (*castDir)(&i)){
+//        if(i > 63){
+//            break;
+//        }
+//        setBit(result, i);
+//    }
     printTBitboard(*result);
     printf("\n");
     return result;
