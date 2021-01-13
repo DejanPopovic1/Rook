@@ -4,6 +4,8 @@
 #include "state.h"
 #include "generateSlideMoves.h"
 
+
+
 void TESTprintBitboard(){
     T_bitboard a = 5;
     printTBitboard(a);
@@ -11,33 +13,15 @@ void TESTprintBitboard(){
 }
 
 void TESTmakeRaysNE(){
-//    T_bitboard *a1_ne = makeRays(&castNE, 0);
-//    T_bitboard *b1_ne = makeRays(&castNE, 1);
-//    T_bitboard *c1_ne = makeRays(&castNE, 2);
-//    T_bitboard *d1_ne = makeRays(&castNE, 3);
-//    T_bitboard *e1_ne = makeRays(&castNE, 4);
-//    T_bitboard *f1_ne = makeRays(&castNE, 5);
-//    T_bitboard *g1_ne = makeRays(&castNE, 6);
-//    T_bitboard *h1_ne = makeRays(&castNE, 7);
-//    T_bitboard *a2_ne = makeRays(&castNE, 8);
-//    T_bitboard *b2_ne = makeRays(&castNE, 9);
-//    T_bitboard *c2_ne = makeRays(&castNE, 10);
-//    T_bitboard *d2_ne = makeRays(&castNE, 11);
-//    T_bitboard *e2_ne = makeRays(&castNE, 12);
-//    T_bitboard *f2_ne = makeRays(&castNE, 13);
-//    T_bitboard *g2_ne = makeRays(&castNE, 14);
-//    T_bitboard *h2_ne = makeRays(&castNE, 15);
-
-
-    int i = 26;
-    T_bitboard *a = makeRays(&castN, i);
-    T_bitboard *b = makeRays(&castNE, i);
-    T_bitboard *c = makeRays(&castE, i);
-    T_bitboard *d = makeRays(&castSE, i);
-    T_bitboard *e = makeRays(&castS, i);
-    T_bitboard *f = makeRays(&castSW, i);
-    T_bitboard *g = makeRays(&castW, i);
-    T_bitboard *h = makeRays(&castNW, i);
+    int i = 0;
+    T_bitboard *a = castRays(&castN, i);
+    T_bitboard *b = castRays(&castNE, i);
+    T_bitboard *c = castRays(&castE, i);
+    T_bitboard *d = castRays(&castSE, i);
+    T_bitboard *e = castRays(&castS, i);
+    T_bitboard *f = castRays(&castSW, i);
+    T_bitboard *g = castRays(&castW, i);
+    T_bitboard *h = castRays(&castNW, i);
 //    T_bitboard *c = makeRays(&castE, 27);
 //    T_bitboard *d = makeRays(&castSE, 27);
 //    T_bitboard *e = makeRays(&castS, 27);
