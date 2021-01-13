@@ -29,9 +29,15 @@ void TESTmakeRaysNE(){
 //    T_bitboard *h2_ne = makeRays(&castNE, 15);
 
 
-
-    T_bitboard *a = makeRays(&castN, 26);
-    T_bitboard *b = makeRays(&castNE, 26);
+    int i = 26;
+    T_bitboard *a = makeRays(&castN, i);
+    T_bitboard *b = makeRays(&castNE, i);
+    T_bitboard *c = makeRays(&castE, i);
+    T_bitboard *d = makeRays(&castSE, i);
+    T_bitboard *e = makeRays(&castS, i);
+    T_bitboard *f = makeRays(&castSW, i);
+    T_bitboard *g = makeRays(&castW, i);
+    T_bitboard *h = makeRays(&castNW, i);
 //    T_bitboard *c = makeRays(&castE, 27);
 //    T_bitboard *d = makeRays(&castSE, 27);
 //    T_bitboard *e = makeRays(&castS, 27);

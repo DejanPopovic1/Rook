@@ -4,6 +4,12 @@
 
 bool castN(int *index);
 bool castNE(int *index);
+bool castE(int *index);
+bool castSE(int *index);
+bool castS(int *index);
+bool castSW(int *index);
+bool castW(int *index);
+bool castNW(int *index);
 //int castNE(int index);
 //int castE(int index);
 //int castSE(int index);
