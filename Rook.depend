@@ -70,7 +70,7 @@
 1610283495 source:c:\c_c++ code\rook\testinitialisations.c
 	"GlobalDeclarations.h"
 
-1610575719 source:c:\c_c++ code\rook\testcases.c
+1610576368 source:c:\c_c++ code\rook\testcases.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdio.h>
@@ -107,11 +107,11 @@
 1610485391 c:\c_c++ code\rook\state.h
 	<stdint.h>
 
-1610575697 source:c:\c_c++ code\rook\generateslidemoves.c
+1610578055 source:c:\c_c++ code\rook\generateslidemoves.c
 	"generateSlideMoves.h"
 	"state.h"
 	<stdint.h>
 
-1610575798 c:\c_c++ code\rook\generateslidemoves.h
+1610578069 c:\c_c++ code\rook\generateslidemoves.h
 	"state.h"
 

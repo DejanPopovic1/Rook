@@ -11,28 +11,35 @@ void TESTprintBitboard(){
 }
 
 void TESTmakeRaysNE(){
-    T_bitboard *a1_ne = makeRays(&castNE, 0);
-    T_bitboard *b1_ne = makeRays(&castNE, 1);
-    T_bitboard *c1_ne = makeRays(&castNE, 2);
-    T_bitboard *d1_ne = makeRays(&castNE, 3);
-    T_bitboard *e1_ne = makeRays(&castNE, 4);
-    T_bitboard *f1_ne = makeRays(&castNE, 5);
-    T_bitboard *g1_ne = makeRays(&castNE, 6);
-    T_bitboard *h1_ne = makeRays(&castNE, 7);
-    T_bitboard *a2_ne = makeRays(&castNE, 8);
-    T_bitboard *b2_ne = makeRays(&castNE, 9);
-    T_bitboard *c2_ne = makeRays(&castNE, 10);
-    T_bitboard *d2_ne = makeRays(&castNE, 11);
-    T_bitboard *e2_ne = makeRays(&castNE, 12);
-    T_bitboard *f2_ne = makeRays(&castNE, 13);
-    T_bitboard *g2_ne = makeRays(&castNE, 14);
-    T_bitboard *h2_ne = makeRays(&castNE, 15);
+//    T_bitboard *a1_ne = makeRays(&castNE, 0);
+//    T_bitboard *b1_ne = makeRays(&castNE, 1);
+//    T_bitboard *c1_ne = makeRays(&castNE, 2);
+//    T_bitboard *d1_ne = makeRays(&castNE, 3);
+//    T_bitboard *e1_ne = makeRays(&castNE, 4);
+//    T_bitboard *f1_ne = makeRays(&castNE, 5);
+//    T_bitboard *g1_ne = makeRays(&castNE, 6);
+//    T_bitboard *h1_ne = makeRays(&castNE, 7);
+//    T_bitboard *a2_ne = makeRays(&castNE, 8);
+//    T_bitboard *b2_ne = makeRays(&castNE, 9);
+//    T_bitboard *c2_ne = makeRays(&castNE, 10);
+//    T_bitboard *d2_ne = makeRays(&castNE, 11);
+//    T_bitboard *e2_ne = makeRays(&castNE, 12);
+//    T_bitboard *f2_ne = makeRays(&castNE, 13);
+//    T_bitboard *g2_ne = makeRays(&castNE, 14);
+//    T_bitboard *h2_ne = makeRays(&castNE, 15);
 
 
 
-    T_bitboard *d4_ne = makeRays(&castNE, 29);
-    T_bitboard *d4_e = makeRays(&castE, 29);
-    T_bitboard *d4_se = makeRays(&castSE, 29);
+    T_bitboard *a = makeRays(&castN, 27);
+//    T_bitboard *b = makeRays(&castNE, 27);
+//    T_bitboard *c = makeRays(&castE, 27);
+//    T_bitboard *d = makeRays(&castSE, 27);
+//    T_bitboard *e = makeRays(&castS, 27);
+//    T_bitboard *f = makeRays(&castSW, 27);
+//    T_bitboard *g = makeRays(&castW, 27);
+//    T_bitboard *h = makeRays(&castNW, 27);
+    //T_bitboard *e = makeRays(&castW, 27);
+    //T_bitboard *d4_se = makeRays(&castNW, 27);
 //    T_bitboard *a1_ne = makeRaysNE(0);
 //    T_bitboard *b1_ne = makeRaysNE(1);
 //    T_bitboard *c1_ne = makeRaysNE(2);
