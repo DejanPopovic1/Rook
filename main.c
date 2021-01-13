@@ -87,7 +87,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    TESTprintBitboard();
+    TESTmakeRaysNE();
     getch();
     return;
 }

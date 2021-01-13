@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610545563 source:c:\c_c++ code\rook\main.c
+1610551285 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -54,7 +54,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610548027 source:c:\c_c++ code\rook\output.c
+1610554423 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -70,11 +70,12 @@
 1610283495 source:c:\c_c++ code\rook\testinitialisations.c
 	"GlobalDeclarations.h"
 
-1610540301 source:c:\c_c++ code\rook\testcases.c
+1610567862 source:c:\c_c++ code\rook\testcases.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdio.h>
 	"state.h"
+	"generateSlideMoves.h"
 
 1610477365 source:c:\c_c++ code\rook\toalgebraicnotation.c
 	"toAlgebraicNotation.h"
@@ -90,15 +91,27 @@
 
 1609870198 c:\c_c++ code\rook\testcases.h
 
-1610485391 source:c:\c_c++ code\rook\state.c
+1610567862 source:c:\c_c++ code\rook\state.c
 	"state.h"
+	"generateSlideMoves.h"
+	"output.h"
 
 1610485149 source:c:\c_c++ code\rook\sliderays.c
 	"state.c"
 
-1610485391 c:\c_c++ code\rook\state.c
+1610567862 c:\c_c++ code\rook\state.c
 	"state.h"
+	"generateSlideMoves.h"
+	"output.h"
 
 1610485391 c:\c_c++ code\rook\state.h
 	<stdint.h>
+
+1610567932 source:c:\c_c++ code\rook\generateslidemoves.c
+	"generateSlideMoves.h"
+	"state.h"
+	<stdint.h>
+
+1610567467 c:\c_c++ code\rook\generateslidemoves.h
+	"state.h"
 

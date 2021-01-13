@@ -10,10 +10,11 @@
 
 void printTBitboardNumber(T_bitboard b){
     T_bitboard bit;
-    for(int i = 0; i < 64; i++){
-        bit = (b >> i) & 1U;
+    for(int i = 63; i >= 0; i--){
+        bit = (b >> i) & 1UL;
         printf("%d ", bit);
     }
+    printf("\n");
 }
 
 void printTBitboard(T_bitboard b){

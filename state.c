@@ -1,4 +1,6 @@
 #include "state.h"
+#include "generateSlideMoves.h"
+#include "output.h"
 
 T_bitboard wPawn;
 T_bitboard wBishop;
