@@ -3,4 +3,4 @@
 #include "output.h"
 
 
-struct BoardState b;
+

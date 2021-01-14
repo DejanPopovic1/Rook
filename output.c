@@ -8,11 +8,26 @@
 #include "state.h"
 #include <stdint.h>
 
+void printTBitboardNumbersBin(T_bitboard **b){
+    for(int i = 0; i < 64; i++){
+        printTBitboardNumber(*(b[i]));
+        printf("\n");
+    }
+}
+
+void printTBitboardNumbersDec(T_bitboard **b){
+    for(int i = 0; i < 64; i++){
+        printf("%llu\n", *(b[i]));
+    }
+    printf("\n\n\n");
+    return;
+}
+
 void printTBitboardNumber(T_bitboard b){
     T_bitboard bit;
     for(int i = 63; i >= 0; i--){
         bit = (b >> i) & 1UL;
-        printf("%d ", bit);
+        printf("%d", bit);
     }
     printf("\n");
 }

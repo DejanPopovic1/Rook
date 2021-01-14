@@ -2,6 +2,7 @@
 #define STATE_H
 
 #define MAX_PREV_STATES 8849
+#define BITBOARD_SIZE 64
 
 #include <stdint.h>
 
@@ -33,7 +34,5 @@ struct GameState{
     char noPawnMovesOrCaptures;
     int ply;
 };
-
-
 
 #endif // STATE_H

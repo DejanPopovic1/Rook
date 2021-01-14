@@ -1,7 +1,7 @@
 #include "state.h"
 #include "stdbool.h"
-#define BITBOARD_SIZE 64
 
+T_bitboard **castRays();
 bool castN(int *index);
 bool castNE(int *index);
 bool castE(int *index);
@@ -10,5 +10,6 @@ bool castS(int *index);
 bool castSW(int *index);
 bool castW(int *index);
 bool castNW(int *index);
-T_bitboard* castRays(int(*direction)(),int index);
+T_bitboard* castRay(int(*direction)(),int index);
 void setBit(T_bitboard *number, int n);
+void createRays();

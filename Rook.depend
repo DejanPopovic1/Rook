@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610551285 source:c:\c_c++ code\rook\main.c
+1610643747 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -47,14 +47,15 @@
 
 1608733204 c:\c_c++ code\rook\memoryutilities.h
 
-1610122720 c:\c_c++ code\rook\output.h
+1610644242 c:\c_c++ code\rook\output.h
+	"state.h"
 	"GlobalDeclarations.h"
 	<wchar.h>
 	<Windows.h>
 	<stdio.h>
 	<stdbool.h>
 
-1610554423 source:c:\c_c++ code\rook\output.c
+1610644553 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -70,7 +71,7 @@
 1610283495 source:c:\c_c++ code\rook\testinitialisations.c
 	"GlobalDeclarations.h"
 
-1610580880 source:c:\c_c++ code\rook\testcases.c
+1610643747 source:c:\c_c++ code\rook\testcases.c
 	"GlobalDeclarations.h"
 	<stdbool.h>
 	<stdio.h>
@@ -91,7 +92,7 @@
 
 1609870198 c:\c_c++ code\rook\testcases.h
 
-1610581519 source:c:\c_c++ code\rook\state.c
+1610634155 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -99,15 +100,15 @@
 1610581612 source:c:\c_c++ code\rook\sliderays.c
 	"state.c"
 
-1610581519 c:\c_c++ code\rook\state.c
+1610634155 c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
 
-1610633925 c:\c_c++ code\rook\state.h
+1610634568 c:\c_c++ code\rook\state.h
 	<stdint.h>
 
-1610581429 source:c:\c_c++ code\rook\generateslidemoves.c
+1610645119 source:c:\c_c++ code\rook\generateslidemoves.c
 	"generateSlideMoves.h"
 	"state.h"
 	<stdint.h>
@@ -115,7 +116,7 @@
 	<stdlib.h>
 	"output.h"
 
-1610581405 c:\c_c++ code\rook\generateslidemoves.h
+1610638607 c:\c_c++ code\rook\generateslidemoves.h
 	"state.h"
 	"stdbool.h"
 

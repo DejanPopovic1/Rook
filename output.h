@@ -1,13 +1,15 @@
 #ifndef OUTPUT_H
 #define OUTPUT_H
 
+#include "state.h"
 #include "GlobalDeclarations.h"
 #include <wchar.h>
 #include <Windows.h>
 #include <stdio.h>
 #include <stdbool.h>
 
-
+void printTBitboardNumbersBin(T_bitboard **b);
+void printTBitboardNumbersDec(T_bitboard **b);
 void printPlayerTurn(int halfPly);
 void printMove(char* c);
 void printMoves(T_moves *a);
