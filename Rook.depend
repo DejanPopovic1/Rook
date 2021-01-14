@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610643747 source:c:\c_c++ code\rook\main.c
+1610647961 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -13,6 +13,7 @@
 	"testCases.h"
 	<stdlib.h>
 	"toAlgebraicNotation.h"
+	"movementRules.h"
 
 1598392101 source:c:\c_c++ code\rook\chessboard.c
 
@@ -55,7 +56,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610644553 source:c:\c_c++ code\rook\output.c
+1610645190 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -92,7 +93,7 @@
 
 1609870198 c:\c_c++ code\rook\testcases.h
 
-1610634155 source:c:\c_c++ code\rook\state.c
+1610645557 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -119,4 +120,11 @@
 1610638607 c:\c_c++ code\rook\generateslidemoves.h
 	"state.h"
 	"stdbool.h"
+
+1610650573 c:\c_c++ code\rook\movementrules.h
+
+1610650728 source:c:\c_c++ code\rook\movementrules.c
+	"state.h"
+	"movementRules.h"
+	"generateSlideMoves.h"
 

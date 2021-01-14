@@ -46,13 +46,14 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="movementRules.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="movementRules.h" />
 		<Unit filename="output.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output.h" />
-		<Unit filename="slideRays.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="state.c">
 			<Option compilerVar="CC" />
 		</Unit>

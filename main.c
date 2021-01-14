@@ -11,6 +11,7 @@
 #include "testCases.h"
 #include <stdlib.h>
 #include "toAlgebraicNotation.h"
+#include "movementRules.h"
 
 void mainPrompt();
 void multiPlayerPrompt();
@@ -87,7 +88,9 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    TESTcreateAndPrintRays();
+//    makeMovementRules();
+    //TESTcreateAndPrintRays();
+    makeMovementRules();
     getch();
     return;
 }
