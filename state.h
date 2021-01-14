@@ -1,7 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#define MAX_PREV_STATES 10000
+#define MAX_PREV_STATES 8849
 
 #include <stdint.h>
 
@@ -22,14 +22,18 @@ struct BoardState{
     T_bitboard bKing;
 };
 
-struct GameState{
-    struct BoardState bs;
-    struct PrevStates ps;
-};
-
 struct PrevStates{
     struct BoardState bs[MAX_PREV_STATES];
     int fp;
 };
+
+struct GameState{
+    struct BoardState bs;
+    struct PrevStates ps;
+    char noPawnMovesOrCaptures;
+    int ply;
+};
+
+
 
 #endif // STATE_H
