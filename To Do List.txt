@@ -56,3 +56,4 @@ Benchmark table
 Pseudo legal move generation to legal move generation
 enumerate piece TYPES (for the purposes of move generation) as colour agnostic except for the pawns
 Late move reductions?
+current ASM instruction only compatible with GCC. Make compatible with other major compilers
