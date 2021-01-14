@@ -2,29 +2,21 @@
 #include "movementRules.h"
 #include "generateSlideMoves.h"
 
-int bitScanForward(T_bitboard b) {
+char bitScanForward(T_bitboard b) {
   __asm__( /* Assembly function body */
-"  mov $rdi,%eax\n"  /* moves 100 into eax! */
+"bsf %rbp,%rsi\n"
 "  leave\n"
 "  ret\n"
   );
 }
 
-int fooTest(int i) {
-  __asm__( /* Assembly function body */
-"  mov %rdi,%eax\n"  /* moves 100 into eax! */
-"  leave\n"
-"  ret\n"
-  );
-}
-
-int bitScanReverse(T_bitboard b) {
-  __asm__( /* Assembly function body */
-"  mov $190,%eax\n"  /* moves 100 into eax! */
-"  leave\n"
-"  ret\n"
-  );
-}
+//int foo() {
+//  __asm__( /* Assembly function body */
+//"  mov $190,%eax\n"  /* moves 100 into eax! */
+//"  leave\n"
+//"  ret\n"
+//  );
+//}
 
 struct movementRules* makeMovementRules(){
     struct movementRules *m = malloc(sizeof(struct movementRules));

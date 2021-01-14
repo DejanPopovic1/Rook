@@ -51,13 +51,18 @@ struct Moves{
     int freeIndex;
 };
 
-bool isNeighbouringPawnDoubleMoved(const int rank, const int file);
-int playerTurn(const int halfPly);
+bool isNeighbouringPawnDoubleMoved(const int, const int);
+bool isPawn(int p);
+bool isBishop(int p);
+bool isKnight(int p);
+bool isRook(int p);
+bool isQueen(int p);
+bool isKing(int p);
+int whosTurn(const int halfPly);
 int alternatePlayer(const int playingAs);
 bool isSamePosition(const T_position a, const T_position b);
 bool isSameRank(T_position a, T_position b);
 bool isSameFile(T_position a, T_position b);
-T_position* createPosition(const int rank, const int file);
-
+T_position* createPosition(const int, const int);
 
 #endif // GLOBALDECLARATIONS_H

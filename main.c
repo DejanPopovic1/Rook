@@ -92,7 +92,7 @@ void testCases(){
     //TESTcreateAndPrintRays();
     T_bitboard b;
     makeMovementRules();
-    printf("%d", fooTest(b));
+    //printf("%d", foo(b));
     getch();
     return;
 }

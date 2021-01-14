@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include "state.h"
 #include <stdint.h>
+#include "output.h"
 
 void printTBitboardNumbersBin(T_bitboard **b){
     for(int i = 0; i < 64; i++){

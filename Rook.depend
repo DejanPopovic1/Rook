@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610655648 source:c:\c_c++ code\rook\main.c
+1610657342 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -24,7 +24,7 @@
 1610114869 c:\c_c++ code\rook\applicableactions.h
 	"GlobalDeclarations.h"
 
-1610201733 source:c:\c_c++ code\rook\applicableactions.c
+1610665721 source:c:\c_c++ code\rook\applicableactions.c
 	<stdio.h>
 	<stdbool.h>
 	"applicableActions.h"
@@ -34,7 +34,7 @@
 	<stdlib.h>
 	<assert.h>
 
-1610286438 c:\c_c++ code\rook\globaldeclarations.h
+1610666087 c:\c_c++ code\rook\globaldeclarations.h
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
@@ -56,7 +56,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610645190 source:c:\c_c++ code\rook\output.c
+1610665778 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -66,8 +66,9 @@
 	<stdbool.h>
 	"state.h"
 	<stdint.h>
+	"output.h"
 
-1609268885 c:\c_c++ code\rook\testinitialisations.h
+1610665940 c:\c_c++ code\rook\testinitialisations.h
 
 1610283495 source:c:\c_c++ code\rook\testinitialisations.c
 	"GlobalDeclarations.h"
@@ -91,7 +92,7 @@
 1610304378 c:\c_c++ code\rook\toalgebraicnotation.h
 	"GlobalDeclarations.h"
 
-1609870198 c:\c_c++ code\rook\testcases.h
+1610665917 c:\c_c++ code\rook\testcases.h
 
 1610645557 source:c:\c_c++ code\rook\state.c
 	"state.h"
@@ -117,13 +118,13 @@
 	<stdlib.h>
 	"output.h"
 
-1610638607 c:\c_c++ code\rook\generateslidemoves.h
+1610665588 c:\c_c++ code\rook\generateslidemoves.h
 	"state.h"
 	"stdbool.h"
 
 1610650573 c:\c_c++ code\rook\movementrules.h
 
-1610655643 source:c:\c_c++ code\rook\movementrules.c
+1610665443 source:c:\c_c++ code\rook\movementrules.c
 	"state.h"
 	"movementRules.h"
 	"generateSlideMoves.h"
