@@ -8,6 +8,8 @@
 
 typedef uint64_t T_bitboard;
 
+typedef struct BoardState T_boardState;
+
 struct BoardState{
     T_bitboard wPawn;
     T_bitboard wBishop;
@@ -34,5 +36,7 @@ struct GameState{
     char noPawnMovesOrCaptures;
     int ply;
 };
+
+int whosTurnNEW(const int ply);
 
 #endif // STATE_H

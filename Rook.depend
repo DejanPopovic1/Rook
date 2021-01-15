@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610673746 source:c:\c_c++ code\rook\main.c
+1610673835 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -94,10 +94,12 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1610645557 source:c:\c_c++ code\rook\state.c
+1610719018 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
+	"GlobalDeclarations.h"
+	"bitUtilities.h"
 
 1610581612 source:c:\c_c++ code\rook\sliderays.c
 	"state.c"
@@ -107,10 +109,10 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1610634568 c:\c_c++ code\rook\state.h
+1610718225 c:\c_c++ code\rook\state.h
 	<stdint.h>
 
-1610645119 source:c:\c_c++ code\rook\generateslidemoves.c
+1610718181 source:c:\c_c++ code\rook\generateslidemoves.c
 	"generateSlideMoves.h"
 	"state.h"
 	<stdint.h>
@@ -118,15 +120,21 @@
 	<stdlib.h>
 	"output.h"
 
-1610665588 c:\c_c++ code\rook\generateslidemoves.h
+1610719076 c:\c_c++ code\rook\generateslidemoves.h
 	"state.h"
 	"stdbool.h"
 
 1610673467 c:\c_c++ code\rook\movementrules.h
 
-1610673437 source:c:\c_c++ code\rook\movementrules.c
+1610718181 source:c:\c_c++ code\rook\movementrules.c
 	"state.h"
 	"movementRules.h"
 	"generateSlideMoves.h"
 	<stdint.h>
+
+1610719282 source:c:\c_c++ code\rook\bitutilities.c
+	"bitUtilities.h"
+
+1610719296 c:\c_c++ code\rook\bitutilities.h
+	"state.h"
 

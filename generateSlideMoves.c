@@ -73,15 +73,11 @@ T_bitboard* castRay(int(*castDir)(),int index){
     T_bitboard *result = malloc(sizeof(T_bitboard));
     *result = 0;
     while((*castDir)(&index)){
-        setBit(result, index);
+        *result = setBit(*result, index);
     }
     return result;
 }
 
-void setBit(T_bitboard *number, int n){
-    *number ^= (-1ULL ^ *number) & (1ULL << n);
-    return;
-}
 
 T_bitboard **castRays(bool (*castDir)(int*)){
     T_bitboard **result = malloc(BITBOARD_SIZE * sizeof(T_bitboard*));

@@ -4,22 +4,6 @@
 
 #include <stdint.h>
 
-T_bitboard bitScanForward(T_bitboard b) {
-    __asm__(
-        "bsf %rcx,%rax\n"
-        "leave\n"
-        "ret\n"
-    );
-}
-
-T_bitboard bitScanReverse(T_bitboard b) {
-    __asm__(
-        "bsr %rcx,%rax\n"
-        "leave\n"
-        "ret\n"
-    );
-}
-
 struct movementRules* makeMovementRules(){
     struct movementRules *m = malloc(sizeof(struct movementRules));
     m->nR = castRays(&castN);

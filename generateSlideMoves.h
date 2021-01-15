@@ -14,7 +14,6 @@ bool castSW(int *index);
 bool castW(int *index);
 bool castNW(int *index);
 T_bitboard* castRay(int(*direction)(),int index);
-void setBit(T_bitboard *number, int n);
 void createRays();
 
 #endif // GENERATESLIDEMOVES_H

@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="applicableActions.h" />
+		<Unit filename="bitUtilities.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bitUtilities.h" />
 		<Unit filename="generateSlideMoves.c">
 			<Option compilerVar="CC" />
 		</Unit>
