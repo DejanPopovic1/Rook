@@ -6,22 +6,19 @@
 
 T_bitboard bitScanForward(T_bitboard b) {
     __asm__(
-        "bsr %rcx,%rax\n"//Linux
-        //"bsr %rdi,%rax\n"//Windows
-        //"mov %edx,%eax\n"
-        //"mov $2222,%rax\n"
+        "bsf %rcx,%rax\n"
         "leave\n"
         "ret\n"
     );
 }
 
-//int foo() {
-//  __asm__( /* Assembly function body */
-//"  mov $190,%eax\n"  /* moves 100 into eax! */
-//"  leave\n"
-//"  ret\n"
-//  );
-//}
+T_bitboard bitScanReverse(T_bitboard b) {
+    __asm__(
+        "bsr %rcx,%rax\n"
+        "leave\n"
+        "ret\n"
+    );
+}
 
 struct movementRules* makeMovementRules(){
     struct movementRules *m = malloc(sizeof(struct movementRules));
