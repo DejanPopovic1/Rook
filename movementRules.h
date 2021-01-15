@@ -12,7 +12,9 @@ struct movementRules{
     T_bitboard **nwR;
 };
 
+T_bitboard bitScanForward(T_bitboard b);
 struct movementRules* makeMovementRules();
+
 
 #endif // MOVEMENTRULES_H_INCLUDED
 

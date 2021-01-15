@@ -2,12 +2,17 @@
 #include "movementRules.h"
 #include "generateSlideMoves.h"
 
-char bitScanForward(T_bitboard b) {
-  __asm__( /* Assembly function body */
-"bsf %rbp,%rsi\n"
-"  leave\n"
-"  ret\n"
-  );
+#include <stdint.h>
+
+T_bitboard bitScanForward(T_bitboard b) {
+    __asm__(
+        "bsr %rcx,%rax\n"//Linux
+        //"bsr %rdi,%rax\n"//Windows
+        //"mov %edx,%eax\n"
+        //"mov $2222,%rax\n"
+        "leave\n"
+        "ret\n"
+    );
 }
 
 //int foo() {

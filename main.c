@@ -88,10 +88,12 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
+    T_bitboard b = 310;
+    printf("%llu", bitScanForward(b));
 //    makeMovementRules();
     //TESTcreateAndPrintRays();
-    T_bitboard b;
-    makeMovementRules();
+    //T_bitboard b;
+    //makeMovementRules();
     //printf("%d", foo(b));
     getch();
     return;
