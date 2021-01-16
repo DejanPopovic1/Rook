@@ -16,14 +16,12 @@ T_bitboard bitScanReverse(T_bitboard b) {
     );
 }
 
-T_bitboard setBit(T_bitboard number, int n){
-    T_bitboard result;
-    result ^= (-1ULL ^ number) & (1ULL << n);
-    return result;
+void setBit(T_bitboard *number, int n){
+    *number ^= (-1ULL ^ *number) & (1ULL << n);
+    return;
 }
 
-T_bitboard clearBits(T_bitboard number){
-    T_bitboard result;
-    result = 0;
-    return result;
+void clearBits(T_bitboard *number){
+    *number = 0;
+    return;
 }

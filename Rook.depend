@@ -126,15 +126,15 @@
 
 1610835059 c:\c_c++ code\rook\movementrules.h
 
-1610718181 source:c:\c_c++ code\rook\movementrules.c
+1610835188 source:c:\c_c++ code\rook\movementrules.c
 	"state.h"
 	"movementRules.h"
 	"generateSlideMoves.h"
 	<stdint.h>
 
-1610719557 source:c:\c_c++ code\rook\bitutilities.c
+1610835627 source:c:\c_c++ code\rook\bitutilities.c
 	"bitUtilities.h"
 
-1610719588 c:\c_c++ code\rook\bitutilities.h
+1610835621 c:\c_c++ code\rook\bitutilities.h
 	"state.h"
 

@@ -13,7 +13,7 @@ int whosTurnNEW(const int ply){
 
 T_bitboard initialiseBoardState(){
     T_bitboard i;
-    i = clearBits(i);
+    clearBits(&i);
 //    s.wPawn =
     return i;
 }

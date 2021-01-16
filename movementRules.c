@@ -5,17 +5,14 @@
 #include <stdint.h>
 
 struct movementRules makeMovementRules(){
-    //struct movementRules *m = malloc(sizeof(struct movementRules));
-    struct movementRules m;
-    m.nR = castRays(&castN);
-    m.neR = castRays(&castNE);
-    m.eR = castRays(&castE);
-    m.seR = castRays(&castSE);
-    m.sR = castRays(&castS);
-    m.swR = castRays(&castSW);
-    m.wR = castRays(&castW);
-    m.nwR = castRays(&castNW);
-//    _BitScanForward();
-
-    return m;
+    struct movementRules result;
+    result.nR = castRays(&castN);
+    result.neR = castRays(&castNE);
+    result.eR = castRays(&castE);
+    result.seR = castRays(&castSE);
+    result.sR = castRays(&castS);
+    result.swR = castRays(&castSW);
+    result.wR = castRays(&castW);
+    result.nwR = castRays(&castNW);
+    return result;
 }
