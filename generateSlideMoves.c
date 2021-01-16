@@ -69,18 +69,20 @@ bool castNW(int *index){
     return true;
 }
 
-T_bitboard* castRay(int(*castDir)(),int index){
-    T_bitboard *result = malloc(sizeof(T_bitboard));
-    *result = 0;
+T_bitboard castRay(int(*castDir)(),int index){
+    //T_bitboard *result = malloc(sizeof(T_bitboard));
+    //*result = 0;
+    T_bitboard result = 0;
     while((*castDir)(&index)){
-        *result = setBit(*result, index);
+        result = setBit(result, index);
     }
     return result;
 }
 
 
-T_bitboard **castRays(bool (*castDir)(int*)){
-    T_bitboard **result = malloc(BITBOARD_SIZE * sizeof(T_bitboard*));
+T_bitboard *castRays(bool (*castDir)(int*)){
+    T_bitboard result [BITBOARD_SIZE];
+    //T_bitboard **result = malloc(BITBOARD_SIZE * sizeof(T_bitboard*));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         result[i] = castRay(castDir, i);
     }

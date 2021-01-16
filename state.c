@@ -11,13 +11,14 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
-T_boardState initialiseBoardState(){
-    T_boardState i;
+T_bitboard initialiseBoardState(){
+    T_bitboard i;
+    i = clearBits(i);
 //    s.wPawn =
     return i;
 }
 
-T_boardState initialiseWPawns(T_bitboard i){
+T_bitboard initialiseWPawns(T_bitboard i){
     clearBits(i);
 //    setBit()
 }

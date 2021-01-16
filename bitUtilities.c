@@ -22,7 +22,8 @@ T_bitboard setBit(T_bitboard number, int n){
     return result;
 }
 
-void clearBits(T_bitboard *number){
-    *number = 0;
-    return;
+T_bitboard clearBits(T_bitboard number){
+    T_bitboard result;
+    result = 0;
+    return result;
 }

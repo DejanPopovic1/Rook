@@ -4,8 +4,6 @@
 #include "state.h"
 #include "generateSlideMoves.h"
 
-
-
 void TESTprintBitboard(){
     T_bitboard a = 5;
     printTBitboard(a);

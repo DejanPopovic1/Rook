@@ -4,7 +4,8 @@
 #include "state.h"
 #include "stdbool.h"
 
-T_bitboard **castRays();
+T_bitboard castRay(int(*castDir)(),int index);
+T_bitboard *castRays(bool (*castDir)(int*));
 bool castN(int *index);
 bool castNE(int *index);
 bool castE(int *index);
@@ -13,7 +14,6 @@ bool castS(int *index);
 bool castSW(int *index);
 bool castW(int *index);
 bool castNW(int *index);
-T_bitboard* castRay(int(*direction)(),int index);
 void createRays();
 
 #endif // GENERATESLIDEMOVES_H
