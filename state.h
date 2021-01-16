@@ -38,5 +38,17 @@ struct GameState{
 };
 
 int whosTurnNEW(const int ply);
-
+T_boardState initialiseBoardState();
+void initialiseWPawns(T_bitboard *result);
+void initialiseWBishops(T_bitboard *result);
+void initialiseWKnights();
+T_boardState initialiseWRooks();
+T_boardState initialiseWQueen();
+T_boardState initialiseWKing();
+void initialiseBPawns(T_bitboard *result);
+void initialiseBBishops(T_bitboard *result);
+void initialiseBKnights();
+T_boardState initialiseBRooks();
+T_boardState initialiseBQueen();
+T_boardState initialiseBKing();
 #endif // STATE_H
