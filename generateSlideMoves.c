@@ -90,14 +90,14 @@ T_bitboard *castRays(bool (*castDir)(int*)){
 }
 
 void createAndPrintRays(){
-    T_bitboard **nR = castRays(&castN);
-    T_bitboard **neR = castRays(&castNE);
-    T_bitboard **eR = castRays(&castE);
-    T_bitboard **seR = castRays(&castSE);
-    T_bitboard **sR = castRays(&castS);
-    T_bitboard **swR = castRays(&castSW);
-    T_bitboard **wR = castRays(&castW);
-    T_bitboard **nwR = castRays(&castNW);
+    T_bitboard *nR = castRays(&castN);
+    T_bitboard *neR = castRays(&castNE);
+    T_bitboard *eR = castRays(&castE);
+    T_bitboard *seR = castRays(&castSE);
+    T_bitboard *sR = castRays(&castS);
+    T_bitboard *swR = castRays(&castSW);
+    T_bitboard *wR = castRays(&castW);
+    T_bitboard *nwR = castRays(&castNW);
     printTBitboardNumbersDec(nR);
     printTBitboardNumbersDec(neR);
     printTBitboardNumbersDec(eR);
