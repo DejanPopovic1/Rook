@@ -81,11 +81,11 @@ char* formatRankDisplay(int r){
 char* toFileRank(T_positions *departures, T_position departure){
     char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     if(departures->freeIndex == 0){
-            return "";
+        strcpy(result, "");
     }
     else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
         strcpy(result, formatFileDisplay(departure.f));
-        strcat(result, formatFileDisplay(departure.r));
+        strcat(result, formatRankDisplay(departure.r));
     }
     else if(!arePiecesInSameFile(departures, departure)){
         strcpy(result, formatFileDisplay(departure.f));
@@ -297,7 +297,7 @@ char* toAlgebraicNotation(T_chessboard c, T_chessboard ss){
     strcat(result, part3);
     strcat(result, part4);
     free(part1);
-    free(part2);
+    //free(part2);
     free(part3);
     free(part4);
     return result;
