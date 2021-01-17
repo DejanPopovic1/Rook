@@ -26,7 +26,7 @@ void clearBits(T_bitboard *number){
     return;
 }
 
-bool isBitSet(T_bitboard number){
+bool isBitSet(T_bitboard number, int n){
     if ((number >> n) & 1ULL){
         return true;
     }
