@@ -41,14 +41,14 @@ int whatIsPiece(T_boardState b, int i){
     if(isBitSet(b.bKing, i)){
         return blackKing;
     }
-    assert (false);
+    return empty;
 }
 
-T_chessboard **toIntArray(T_boardState b){
-    T_chessboard result;
+T_chessboard *toIntArray(T_boardState b){
+    T_chessboard *result = malloc(sizeof(T_chessboard));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         int piece = whatIsPiece(b, i);
-        result[i/FILE_SIZE][i % RANK_SIZE] = piece;
+        (*result)[i/FILE_SIZE][i % RANK_SIZE] = piece;
     }
     return result;
 }

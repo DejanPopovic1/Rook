@@ -67,13 +67,13 @@ void multiPlayerSession(char *playerColourInput){
     T_chessboard *c;
     c = initialiseBoard();
     char *multiPlayerInput;
-    T_boardState b = initialiseBoardState();
+
     while(true){
         colourTurn = whosTurn(halfPly);
         printPlayerTurn(halfPly);
         printBoard(asWhite, *c);
-        T_states* wS = generateSuccessorStates(asWhite, *c);
-        T_states* bS = generateSuccessorStates(asBlack, *c);
+        T_states *wS = generateSuccessorStates(asWhite, *c);
+        T_states *bS = generateSuccessorStates(asBlack, *c);
         T_moves *mW = generateListOfMoves(c, wS);
         T_moves *mB = generateListOfMoves(c, bS);
         printMoves(mW);
@@ -89,9 +89,13 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    T_bitboard b = 17;
-    printf("%llu\n", bitScanForward(b));
-    printf("%llu\n", bitScanReverse(b));
+        T_boardState b = initialiseBoardState();
+        T_chessboard *c = toIntArray(b);
+        printf("%d\n", (*c)[0][0]);
+    printBoard(asWhite, *c);
+    //T_bitboard b = 17;
+    //printf("%llu\n", bitScanForward(b));
+    //printf("%llu\n", bitScanReverse(b));
 //    makeMovementRules();
     //TESTcreateAndPrintRays();
     //T_bitboard b;
