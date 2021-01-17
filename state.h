@@ -10,6 +10,8 @@ typedef uint64_t T_bitboard;
 
 typedef struct BoardState T_boardState;
 
+struct PrevStates;
+
 struct BoardState{
     T_bitboard wPawn;
     T_bitboard wBishop;
@@ -23,6 +25,9 @@ struct BoardState{
     T_bitboard bRook;
     T_bitboard bQueen;
     T_bitboard bKing;
+    char pawnEnPassants;
+    char noCapturesOrPawnMoves;
+    struct PrevStates *ps;
 };
 
 struct PrevStates{
