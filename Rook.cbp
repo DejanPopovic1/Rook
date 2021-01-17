@@ -43,6 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bitUtilities.h" />
+		<Unit filename="encodingTranslation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="encodingTranslation.h" />
 		<Unit filename="generateSlideMoves.c">
 			<Option compilerVar="CC" />
 		</Unit>

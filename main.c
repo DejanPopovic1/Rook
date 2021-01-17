@@ -67,6 +67,7 @@ void multiPlayerSession(char *playerColourInput){
     T_chessboard *c;
     c = initialiseBoard();
     char *multiPlayerInput;
+    T_boardState b = initialiseBoardState();
     while(true){
         colourTurn = whosTurn(halfPly);
         printPlayerTurn(halfPly);

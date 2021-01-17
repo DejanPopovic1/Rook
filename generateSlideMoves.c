@@ -79,7 +79,6 @@ T_bitboard castRay(int(*castDir)(),int index){
     return result;
 }
 
-
 T_bitboard *castRays(bool (*castDir)(int*)){
     //T_bitboard result [BITBOARD_SIZE];
     T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
