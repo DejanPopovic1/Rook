@@ -74,7 +74,7 @@ T_bitboard castRay(int(*castDir)(),int index){
     //*result = 0;
     T_bitboard result = 0;
     while((*castDir)(&index)){
-        result = setBit(result, index);
+        result = setBit(&result, index);
     }
     return result;
 }

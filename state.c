@@ -29,69 +29,69 @@ T_boardState initialiseBoardState(){
 }
 
 void initialiseWPawns(T_bitboard *result){
-    clearBits(*result);
+    clearBits(result);
     for(int i = 8; i <= 15; i++){
-        setBit(*result, i);
+        setBit(result, i);
     }
 }
 void initialiseWBishops(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 2);
-    setBit(*result, 5);
+    clearBits(result);
+    setBit(result, 2);
+    setBit(result, 5);
 }
 
 void initialiseWKnights(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 1);
-    setBit(*result, 6);
+    clearBits(result);
+    setBit(result, 1);
+    setBit(result, 6);
 }
 
 void initialiseWRooks(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 0);
-    setBit(*result, 7);
+    clearBits(result);
+    setBit(result, 0);
+    setBit(result, 7);
 }
 
 void initialiseWQueen(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 3);
+    clearBits(result);
+    setBit(result, 3);
 }
 
 void initialiseWKing(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 4);
+    clearBits(result);
+    setBit(result, 4);
 }
 
 void initialiseBPawns(T_bitboard *result){
-    clearBits(*result);
+    clearBits(result);
     for(int i = 48; i <= 55; i++){
-        setBit(*result, i);
+        setBit(result, i);
     }
 }
 void initialiseBBishops(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 58);
-    setBit(*result, 61);
+    clearBits(result);
+    setBit(result, 58);
+    setBit(result, 61);
 }
 
 void initialiseBKnights(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 57);
-    setBit(*result, 62);
+    clearBits(result);
+    setBit(result, 57);
+    setBit(result, 62);
 }
 
 void initialiseBRooks(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 56);
-    setBit(*result, 63);
+    clearBits(result);
+    setBit(result, 56);
+    setBit(result, 63);
 }
 
 void initialiseBQueen(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 59);
+    clearBits(result);
+    setBit(result, 59);
 }
 
 void initialiseBKing(T_bitboard *result){
-    clearBits(*result);
-    setBit(*result, 60);
+    clearBits(result);
+    setBit(result, 60);
 }

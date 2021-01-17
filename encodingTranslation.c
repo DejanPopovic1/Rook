@@ -1,7 +1,7 @@
 #include "GlobalDeclarations.h"
 #include "state.h"
 #include "encodingTranslation.h"
-
+#include <assert.h>
 
 int whatIsPiece(T_boardState b, int i){
     int result = 1;
