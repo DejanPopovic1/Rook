@@ -25,9 +25,12 @@ struct BoardState{
     T_bitboard bRook;
     T_bitboard bQueen;
     T_bitboard bKing;
-    char pawnEnPassants;
+    char wPawnEnPassants;
+    char bPawnEnPassants;
+    char rookKingMoved;//First 3 bits white, next 3 bits black
     char noCapturesOrPawnMoves;
     struct PrevStates *ps;
+    unsigned int moves;
 };
 
 struct PrevStates{
