@@ -19,6 +19,8 @@ void printTBitboardNumbersBin(T_bitboard **b){
 
 //To-do: Omit leading zero in printing castling state
 void printState(T_boardState b){
+    T_chessboard *c = toIntArray(b);
+    printBoard(whosTurn(b.ply), *c);
     printf("Ply: %d\n", b.ply);
     if(whosTurn(b.ply) == whiteTurn){
         printf("Whites Turn\n");
@@ -41,10 +43,6 @@ void printState(T_boardState b){
     printBits(sizeof(i), &i);
     printf("No captures or pawn moves: %d", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n\n");
-    //printBits(sizeof(b.castlesWhite), &(b.castlesWhite));
-    //printf("%d\n", b.bEnPassants);
-    //printf("%d\n", b.wEnPassants);
-
 }
 
 void printBits(size_t const size, void const * const ptr)
