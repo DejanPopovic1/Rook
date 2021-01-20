@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void printBits(size_t const size, void const * const ptr);
 void printTBitboardNumbersBin(T_bitboard **b);
 void printTBitboardNumbersDec(T_bitboard **b);
 void printPlayerTurn(int halfPly);

@@ -4,7 +4,7 @@
 #include <assert.h>
 
 int whatIsPiece(T_boardState b, int i){
-    int result = 1;
+    //int result = 1;
     if(isBitSet(b.wPawn, i)){
         return whitePawn;
     }

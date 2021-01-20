@@ -25,6 +25,12 @@ T_boardState initialiseBoardState(){
     initialiseBRooks(&(result.bRook));
     initialiseBQueen(&(result.bQueen));
     initialiseBKing(&(result.bKing));
+    initialiseWEnPassants(&(result.wEnPassants));
+    initialiseBEnPassants(&(result.bEnPassants));
+    initialiseCastles(&result);
+    initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
+    initialisePreviousStates(&(result.ps));
+    initialisePly(&(result.ply));
     return result;
 }
 
@@ -94,4 +100,33 @@ void initialiseBQueen(T_bitboard *result){
 void initialiseBKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 60);
+}
+
+void initialiseWEnPassants(char *c){
+    clearCharBits(c);
+}
+
+void initialiseBEnPassants(char *c){
+    clearCharBits(c);
+}
+
+void initialiseCastles(T_boardState *b){
+    b->castlesBlack = 8;
+    b->castlesWhite = 8;
+    //setCharBits(b->castlesWhite);
+}
+
+void initialiseNoCapturesOrPawnMoves(char *c){
+    *c = 0;
+}
+
+//Need to add in this functionality later
+void initialisePreviousStates(struct PrevStates **ps){
+    *ps = malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+    (*ps)->fp = 0;
+    return;
+}
+
+void initialisePly(int *i){
+    *i = 1;
 }

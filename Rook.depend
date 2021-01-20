@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610884430 source:c:\c_c++ code\rook\main.c
+1611171288 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -48,7 +48,7 @@
 
 1608733204 c:\c_c++ code\rook\memoryutilities.h
 
-1610644242 c:\c_c++ code\rook\output.h
+1611172141 c:\c_c++ code\rook\output.h
 	"state.h"
 	"GlobalDeclarations.h"
 	<wchar.h>
@@ -56,7 +56,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1610665778 source:c:\c_c++ code\rook\output.c
+1611173987 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -94,7 +94,7 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1610876799 source:c:\c_c++ code\rook\state.c
+1611173905 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -109,7 +109,7 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1610892281 c:\c_c++ code\rook\state.h
+1611161805 c:\c_c++ code\rook\state.h
 	<stdint.h>
 
 1610876677 source:c:\c_c++ code\rook\generateslidemoves.c
@@ -132,14 +132,15 @@
 	"generateSlideMoves.h"
 	<stdint.h>
 
-1610875488 source:c:\c_c++ code\rook\bitutilities.c
+1611162109 source:c:\c_c++ code\rook\bitutilities.c
 	"bitUtilities.h"
+	<limits.h>
 
-1610875504 c:\c_c++ code\rook\bitutilities.h
+1611162109 c:\c_c++ code\rook\bitutilities.h
 	"state.h"
 	<stdbool.h>
 
-1610883462 source:c:\c_c++ code\rook\encodingtranslation.c
+1610893874 source:c:\c_c++ code\rook\encodingtranslation.c
 	"GlobalDeclarations.h"
 	"state.h"
 	"encodingTranslation.h"

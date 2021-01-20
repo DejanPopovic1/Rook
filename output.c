@@ -16,6 +16,34 @@ void printTBitboardNumbersBin(T_bitboard **b){
     }
 }
 
+void printState(T_boardState b){
+    printf("State of white en Passants: ");
+    printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
+    printf("State of white castling: ");
+    printf("%d\n", b.castlesWhite);
+    printf("State of black en Passants: ");
+    printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
+    printf("State of black castling: ");
+    printf("%d\n", b.castlesBlack);
+    //printBits(sizeof(b.castlesWhite), &(b.castlesWhite));
+    //printf("%d\n", b.bEnPassants);
+    //printf("%d\n", b.wEnPassants);
+
+}
+
+void printBits(size_t const size, void const * const ptr)
+{
+    unsigned char *b = (unsigned char*) ptr;
+    unsigned char byte;
+    for (int i = size-1; i >= 0; i--) {
+        for (int j = 7; j >= 0; j--) {
+            byte = (b[i] >> j) & 1;
+            printf("%u", byte);
+        }
+    }
+    puts("");
+}
+
 void printTBitboardNumbersDec(T_bitboard **b){
     for(int i = 0; i < 64; i++){
         printf("%llu\n", *(b[i]));
