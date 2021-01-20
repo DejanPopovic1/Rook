@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "toAlgebraicNotation.h"
 #include "movementRules.h"
+#include "moveGenerator.h"
 
 void mainPrompt();
 void multiPlayerPrompt();
@@ -90,9 +91,6 @@ void multiPlayerSession(char *playerColourInput){
 
 void testCases(){
     T_boardState b = initialiseBoardState();
-
-    //printf("%d\n", (*c)[0][0]);
-    //printBoard(asWhite, *c);
     printState(b);
     //T_bitboard b = 17;
     //printf("%llu\n", bitScanForward(b));
@@ -204,6 +202,29 @@ bool nextState(T_chessboard **c, char* input, int turn){
     printf("Invalid move\n");
     return false;
 }
+
+T_boardStates generateSuccStates(T_boardState b){
+    T_boardStates result;
+    if(whosTurn(b.ply) == whiteTurn){
+        genWPawnSuccStates(b, &result);
+        genWBishopSuccStates(b, &result);
+        genWKnightSuccStates(b, &result);
+        genWRookSuccStates(b, &result);
+        genWQueenSuccStates(b, &result);
+        genWKingSuccStates(b, &result);
+        return result;
+    }
+    else if(whosTurn(b.ply) == blackTurn){
+        genBPawnSuccStates(b, &result);
+        genBBishopSuccStates(b, &result);
+        genBKnightSuccStates(b, &result);
+        genBRookSuccStates(b, &result);
+        genBQueenSuccStates(b, &result);
+        genBKingSuccStates(b, &result);
+        return result;
+    }
+}
+
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
     int numOfStates = 0;

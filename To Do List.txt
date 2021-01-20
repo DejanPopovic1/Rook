@@ -5,6 +5,7 @@ Todo List:
 3. Play the computer which randomises these legal moves
 4. Incorporate Minimax algorithm
 
+move inline .asm to .asm file(s)
 
 Use more asserts instead of exit(-1)
 When mallocing a list and then setting its free index to zero, rather do this in a create function

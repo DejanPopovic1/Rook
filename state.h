@@ -2,6 +2,8 @@
 #define STATE_H
 
 #define MAX_PREV_STATES 8849
+//Find a theoretical maximum of the following value:
+#define MAX_SUCC_STATES 100
 #define BITBOARD_SIZE 64
 
 #include <stdint.h>
@@ -9,6 +11,8 @@
 typedef uint64_t T_bitboard;
 
 typedef struct BoardState T_boardState;
+
+typedef struct BoardStates T_boardStates;
 
 struct PrevStates;
 
@@ -32,6 +36,11 @@ struct BoardState{
     unsigned char noCapturesOrPawnMoves;
     struct PrevStates *ps;
     unsigned int ply;
+};
+
+struct BoardStates{
+    struct BoardState bs[MAX_SUCC_STATES];
+    int fi;
 };
 
 struct PrevStates{

@@ -54,6 +54,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="moveGenerator.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="moveGenerator.h" />
 		<Unit filename="movementRules.c">
 			<Option compilerVar="CC" />
 		</Unit>
