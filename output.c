@@ -16,16 +16,18 @@ void printTBitboardNumbersBin(T_bitboard **b){
     }
 }
 
+//To-do: Omit leading zero in printing castling state
 void printState(T_boardState b){
     printf("State of white en Passants: ");
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
     printf("State of white castling: ");
-    printf("%d\n", b.castlesWhite);
-    printf("State of black en Passants: ");
+    char i = b.castlesWhite;
+    printBits(sizeof(i), &i);
+    printf("State of black en Passants: ");;
     printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
     printf("State of black castling: ");
-    printf("%d\n", b.castlesBlack);
-
+    i = b.castlesBlack;
+    printBits(sizeof(i), &i);
     //printBits(sizeof(b.castlesWhite), &(b.castlesWhite));
     //printf("%d\n", b.bEnPassants);
     //printf("%d\n", b.wEnPassants);

@@ -111,8 +111,8 @@ void initialiseBEnPassants(char *c){
 }
 
 void initialiseCastles(T_boardState *b){
-    b->castlesBlack = 8;
-    b->castlesWhite = 8;
+    b->castlesBlack = 7;
+    b->castlesWhite = 7;
     //setCharBits(b->castlesWhite);
 }
 
