@@ -25,6 +25,7 @@ void printState(T_boardState b){
     printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
     printf("State of black castling: ");
     printf("%d\n", b.castlesBlack);
+
     //printBits(sizeof(b.castlesWhite), &(b.castlesWhite));
     //printf("%d\n", b.bEnPassants);
     //printf("%d\n", b.wEnPassants);
@@ -42,7 +43,9 @@ void printBits(size_t const size, void const * const ptr)
         }
     }
     puts("");
+    printf("");
 }
+
 
 void printTBitboardNumbersDec(T_bitboard **b){
     for(int i = 0; i < 64; i++){
