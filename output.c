@@ -8,6 +8,7 @@
 #include "state.h"
 #include <stdint.h>
 #include "output.h"
+#include <assert.h>
 
 void printTBitboardNumbersBin(T_bitboard **b){
     for(int i = 0; i < 64; i++){
@@ -18,6 +19,16 @@ void printTBitboardNumbersBin(T_bitboard **b){
 
 //To-do: Omit leading zero in printing castling state
 void printState(T_boardState b){
+    printf("Ply: %d\n", b.ply);
+    if(whosTurn(b.ply) == whiteTurn){
+        printf("Whites Turn\n");
+    }
+    else if(whosTurn(b.ply) == blackTurn){
+        printf("Blacks Turn\n");
+    }
+    else{
+        assert(false);
+    }
     printf("State of white en Passants: ");
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
     printf("State of white castling: ");
@@ -28,6 +39,8 @@ void printState(T_boardState b){
     printf("State of black castling: ");
     i = b.castlesBlack;
     printBits(sizeof(i), &i);
+    printf("No captures or pawn moves: %d", b.noCapturesOrPawnMoves);
+    printf("Hash table of previous chess states:\n - TO BE COMPLETED\n\n");
     //printBits(sizeof(b.castlesWhite), &(b.castlesWhite));
     //printf("%d\n", b.bEnPassants);
     //printf("%d\n", b.wEnPassants);
