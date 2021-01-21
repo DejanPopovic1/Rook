@@ -9,7 +9,7 @@ genWBishopSuccStates(T_boardState c, T_boardStates *ss){
 }
 
 genWKnightSuccStates(T_boardState c, T_boardStates *ss){
-
+    //Generate Pawn Moves
 }
 
 genWRookSuccStates(T_boardState c, T_boardStates *ss){
