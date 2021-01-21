@@ -1,7 +1,7 @@
 #include "state.h"
 
 genWPawnSuccStates(T_boardState c, T_boardStates *ss){
-
+    //Generate Pawn Moves
 
 }
 genWBishopSuccStates(T_boardState c, T_boardStates *ss){
