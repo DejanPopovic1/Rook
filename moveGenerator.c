@@ -5,7 +5,7 @@ genWPawnSuccStates(T_boardState c, T_boardStates *ss){
 
 }
 genWBishopSuccStates(T_boardState c, T_boardStates *ss){
-
+    //Generate Pawn Moves
 }
 
 genWKnightSuccStates(T_boardState c, T_boardStates *ss){
