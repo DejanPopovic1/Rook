@@ -25,6 +25,24 @@ T_bitboard numOfSetBits(T_bitboard b) {
     );
 }
 
+T_bitboard createSecondLastColumnMask(){
+    T_bitboard b;
+    clearBits(&b);
+    setBit(&n, 48);
+    setBit(&n, 49);
+    setBit(&n, 50);
+    setBit(&n, 51);
+    setBit(&n, 52);
+    setBit(&n, 53);
+    setBit(&n, 54);
+    setBit(&n, 55);
+}
+
+bool isBitInSecondLastColumn(T_bitboard number){
+
+    return true;
+}
+
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
     return;
