@@ -55,6 +55,7 @@ struct GameState{
     int ply;
 };
 
+void addState(T_boardStates *bss, const T_boardState *b);
 int whosTurnNEW(const int ply);
 T_boardState initialiseBoardState();
 void initialiseWPawns(T_bitboard *result);
