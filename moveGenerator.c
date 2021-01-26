@@ -1,7 +1,8 @@
 #include "state.h"
 
-genWPawnSuccStates(T_boardState c, T_boardStates *ss){
+genWPawnSuccStates(const T_boardState *c, T_boardStates *ss){
     //MOVE UP ONE
+
     //MOVE UP TWO
     //CAPTURE LEFT
     //CAPTURE RIGHT
