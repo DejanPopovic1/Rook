@@ -17,6 +17,14 @@ T_bitboard bitScanReverse(T_bitboard b) {
     );
 }
 
+T_bitboard numOfSetBits(T_bitboard b) {
+    __asm__(
+        "popcnt %rcx,%rax\n"
+        "leave\n"
+        "ret\n"
+    );
+}
+
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
     return;
