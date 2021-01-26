@@ -11,6 +11,11 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
+void addState(T_boardStates *bss, T_boardState b){
+    bss->bs[bss->fi] = b;
+    (bss->fi)++;
+}
+
 T_boardState initialiseBoardState(){
     T_boardState result;
     initialiseWPawns(&(result.wPawn));
