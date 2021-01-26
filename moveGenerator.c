@@ -1,9 +1,9 @@
 #include "state.h"
 
-genWPawnSuccStates(const T_boardState *c, T_boardStates *ss){
-    T_boardState b;
+genWPawnSuccStates(T_boardStates *dst, const T_boardState *b){
+    T_boardState src;
     //MOVE UP ONE
-
+    addState(dst, &src);
 //    c->wPawn = 0;
     //MOVE UP TWO
     //CAPTURE LEFT

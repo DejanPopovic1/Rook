@@ -11,9 +11,9 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
-void addState(T_boardStates *bss, const T_boardState *b){
-    bss->bs[bss->fi] = *b;
-    (bss->fi)++;
+void addState(T_boardStates *dst, const T_boardState *src){
+    dst->bs[dst->fi] = *src;
+    (dst->fi)++;
 }
 
 T_boardState initialiseBoardState(){
