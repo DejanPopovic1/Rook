@@ -40,8 +40,8 @@ void addState(T_boardStates *dst, const T_boardState *src){
 }
 
 bool isPosEmpty(T_boardState *b, int n){
-    T_bitboard and = b->wPawn & b->wBishop & b->wKnight & b->wRook & b->wQueen & b->wKing & b->bPawn & b->bBishop & b->bKnight & b->bRook & b->bQueen & b->bKing;
-    if(isBitSet(and, n)){
+    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing | b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    if(!isBitSet(or, n)){
        return true;
     }
     return false;
