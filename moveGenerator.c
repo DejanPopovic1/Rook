@@ -1,14 +1,13 @@
 #include "state.h"
 #include "moveGenerator.h"
 
-
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     T_bitboard i = b->wPawn;
     int n;
     for(int j = 0; j < numOfSetBits(*b); j++){
         n = bitScanForward(i);
         genWPawnSuccStates(dst, b, n);
-        clearBit(i, n);
+
     }
 }
 
@@ -20,12 +19,12 @@ bool isAheadEmpty(const T_boardState *b, int n){
 }
 
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
-    //T_boardState src;
     //MOVE UP ONE
-    bool cond1 = isAheadEmpty(b, n);
-    bool cond2 = isPosInSecondLastColumn(n);
-//    isSecond
-
+    if(isAheadEmpty(b, n) && !isPosInSecondLastColumn(n)){
+        setBit(b->wPawn, n + 8);
+        clearBit(b->wPawn, n);
+    }
+    //MOVE UP TWO
 
 
 
