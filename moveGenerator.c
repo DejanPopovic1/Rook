@@ -48,7 +48,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     }
     //EN PASSANT LEFT
     char frFile = whatFile(n);
-    if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1 && isWPawnOnRankFive(b->wPawn)){
+    if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
         setBit(b->wPawn, n + 7);
         clearBit(b->wPawn, n);
         clearBit(b->bPawn, n - 1);
