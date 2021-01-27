@@ -13,16 +13,18 @@ int whosTurnNEW(const int ply){
 
 bool isPosWhite(T_boardState *b, int n){
     T_bitboard and = b->wPawn & b->wBishop & b->wKnight & b->wRook & b->wQueen & b->wKing;
-    if(isBitSet(and, n){
+    if(isBitSet(and, n)){
         return true;
     }
     return false;
 }
 
-bool isPosBlack(){
-
-
-
+bool isPosBlack(T_boardState *b, int n){
+    T_bitboard and = b->bPawn & b->bBishop & b->bKnight & b->bRook & b->bQueen & b->bKing;
+    if(isBitSet(and, n)){
+        return true;
+    }
+    return false;
 }
 
 bool isPosInSecondLastColumn(int n){

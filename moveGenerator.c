@@ -37,10 +37,10 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->wPawn, n);
     }
     //CAPTURE LEFT
-    if(){
+//    if(){
 
 
-    }
+ //   }
 
 
 
