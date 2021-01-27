@@ -7,7 +7,6 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     for(int j = 0; j < numOfSetBits(*b); j++){
         n = bitScanForward(i);
         genWPawnSuccStates(dst, b, n);
-
     }
 }
 
@@ -54,13 +53,12 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->bPawn, n - 1);
     }
     //EN PASSANT RIGHT
-    char frFile = whatFile(n);
     if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
         setBit(b->wPawn, n + 9);
         clearBit(b->wPawn, n);
         clearBit(b->bPawn, n + 1);
     }
-
+    //PROMOTIONS
 
 
     //If(isUpEmpty && !isSecondLastRow)
