@@ -96,7 +96,7 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1611687370 source:c:\c_c++ code\rook\state.c
+1611747876 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -154,7 +154,7 @@
 1611746022 c:\c_c++ code\rook\movegenerator.h
 	<stdbool.h>
 
-1611746039 source:c:\c_c++ code\rook\movegenerator.c
+1611747718 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 

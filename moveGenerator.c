@@ -12,13 +12,20 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     }
 }
 
-
+bool isAheadEmpty(const T_boardState *b, int n){
+//    b->w
+//    if(){
+//
+//        return true;
+//    }
+//    return false;
+}
 
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     //T_boardState src;
     //MOVE UP ONE
-    bool cond1 = false;
-    bool cond2 = false;
+    bool cond1 = isAheadEmpty(b, n);
+    bool cond2 = isBitInSecondLastColumn(n);
 //    isSecond
 
 
