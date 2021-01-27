@@ -134,11 +134,11 @@
 	"generateSlideMoves.h"
 	<stdint.h>
 
-1611745703 source:c:\c_c++ code\rook\bitutilities.c
+1611746427 source:c:\c_c++ code\rook\bitutilities.c
 	"bitUtilities.h"
 	<limits.h>
 
-1611744559 c:\c_c++ code\rook\bitutilities.h
+1611746442 c:\c_c++ code\rook\bitutilities.h
 	"state.h"
 	<stdbool.h>
 
@@ -151,8 +151,10 @@
 1610883481 c:\c_c++ code\rook\encodingtranslation.h
 	"GlobalDeclarations.h"
 
-1611177306 c:\c_c++ code\rook\movegenerator.h
+1611746022 c:\c_c++ code\rook\movegenerator.h
+	<stdbool.h>
 
-1611744359 source:c:\c_c++ code\rook\movegenerator.c
+1611746039 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
+	"moveGenerator.h"
 

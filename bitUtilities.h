@@ -3,7 +3,7 @@
 #define incl 1
 
 T_bitboard numOfSetBits(T_bitboard b);
-bool isBitInSecondLastColumn(T_bitboard number);
+bool isBitInSecondLastColumn(int n);
 T_bitboard bitScanForward(T_bitboard b);
 T_bitboard bitScanReverse(T_bitboard b);
 void setBit(T_bitboard *number, int n);

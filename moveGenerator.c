@@ -1,26 +1,36 @@
 #include "state.h"
+#include "moveGenerator.h"
 
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     T_bitboard i = b->wPawn;
     int n;
     for(int j = 0; j < numOfSetBits(*b); j++){
-        n = bitScanForward(*b);
+        n = bitScanForward(i);
         genWPawnSuccStates(dst, b, n);
+        clearBit(i, n);
     }
 }
 
+
+
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
-    T_boardState src;
+    //T_boardState src;
     //MOVE UP ONE
+    bool cond1 = false;
+    bool cond2 = false;
+//    isSecond
+
+
+
+
+
+
+
+
     //If(isUpEmpty && !isSecondLastRow)
-
-
-
-
-
-    src.wPawn = 0;
-    addState(dst, &src);
+    //src.wPawn = 0;
+   // addState(dst, &src);
 //    c->wPawn = 0;
     //MOVE UP TWO
     //CAPTURE LEFT

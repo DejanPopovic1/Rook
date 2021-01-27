@@ -25,6 +25,7 @@ T_bitboard numOfSetBits(T_bitboard b) {
     );
 }
 
+//rather make this a number for efficiency
 T_bitboard createSecondLastColumnMask(){
     T_bitboard result;
     clearBits(&result);
@@ -39,9 +40,11 @@ T_bitboard createSecondLastColumnMask(){
     return result;
 }
 
-bool isBitInSecondLastColumn(T_bitboard number){
-
-    return true;
+bool isBitInSecondLastColumn(int n){
+    if(n <= 55 && n >= 48){
+        return true;
+    }
+    return false;
 }
 
 void setBit(T_bitboard *number, int n){
