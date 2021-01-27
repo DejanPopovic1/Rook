@@ -11,8 +11,15 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     }
 }
 
-bool isAheadEmpty(const T_boardState *b, int n){
+bool isUpEmpty(const T_boardState *b, int n){
     if(isPosEmpty(b, n + 8)){
+        return true;
+    }
+    return false;
+}
+
+bool isUpUpEmpty(const T_boardState *b, int n){
+    if(isPosEmpty(b, n + 8) && isPosEmpty(b, n + 16)){
         return true;
     }
     return false;
@@ -20,12 +27,15 @@ bool isAheadEmpty(const T_boardState *b, int n){
 
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     //MOVE UP ONE
-    if(isAheadEmpty(b, n) && !isPosInSecondLastColumn(n)){
+    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         setBit(b->wPawn, n + 8);
         clearBit(b->wPawn, n);
     }
     //MOVE UP TWO
-
+    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+        setBit(b->wPawn, n + 16);
+        clearBit(b->wPawn, n);
+    }
 
 
 
