@@ -46,7 +46,11 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         setBit(b->wPawn, n + 9);
         clearBit(b->wPawn, n);
     }
-
+    //EN PASSANT LEFT
+    if(b->wEnPassants){
+        setBit(b->wPawn, n + 9);
+        clearBit(b->wPawn, n);
+    }
 
 
 

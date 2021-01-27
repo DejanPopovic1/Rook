@@ -62,6 +62,13 @@ void clearCharBits(unsigned char *c){
     *c = 0;
 }
 
+bool isCharBitSet(char number, int n){
+    if ((number >> n) & 1){
+        return true;
+    }
+    return false;
+}
+
 bool isBitSet(T_bitboard number, int n){
     if ((number >> n) & 1ULL){
         return true;
