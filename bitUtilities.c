@@ -26,16 +26,17 @@ T_bitboard numOfSetBits(T_bitboard b) {
 }
 
 T_bitboard createSecondLastColumnMask(){
-    T_bitboard b;
-    clearBits(&b);
-    setBit(&n, 48);
-    setBit(&n, 49);
-    setBit(&n, 50);
-    setBit(&n, 51);
-    setBit(&n, 52);
-    setBit(&n, 53);
-    setBit(&n, 54);
-    setBit(&n, 55);
+    T_bitboard result;
+    clearBits(&result);
+    setBit(&result, 48);
+    setBit(&result, 49);
+    setBit(&result, 50);
+    setBit(&result, 51);
+    setBit(&result, 52);
+    setBit(&result, 53);
+    setBit(&result, 54);
+    setBit(&result, 55);
+    return result;
 }
 
 bool isBitInSecondLastColumn(T_bitboard number){
