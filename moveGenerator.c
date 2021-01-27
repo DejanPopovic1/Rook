@@ -61,14 +61,25 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     }
     //PROMOTIONS
         //BISHOP
-    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
-        setBit(b->wPawn, n + 9);
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        setBit(b->wBishop, n + 8);
         clearBit(b->wPawn, n);
-        clearBit(b->bPawn, n + 1);
     }
         //KNIGHT
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        setBit(b->wKnight, n + 8);
+        clearBit(b->wPawn, n);
+    }
         //ROOK
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        setBit(b->wRook, n + 8);
+        clearBit(b->wPawn, n);
+    }
         //QUEEN
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        setBit(b->wQueen, n + 8);
+        clearBit(b->wPawn, n);
+    }
 }
 
 void genWBishopSuccStates(T_boardState c, T_boardStates *ss){

@@ -25,8 +25,8 @@ bool isRankFour(char n){
     return false;
 }
 
-bool isRankEight(char n){
-    if(n <= 63 && n >= 56){
+bool isRankSeven(char n){
+    if(n <= 55 && n >= 48){
         return true;
     }
     return false;
