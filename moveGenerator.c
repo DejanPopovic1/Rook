@@ -26,18 +26,21 @@ bool isUpUpEmpty(const T_boardState *b, int n){
 }
 
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
-    //MOVE UP ONE
+    //MOVE UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         setBit(b->wPawn, n + 8);
         clearBit(b->wPawn, n);
     }
-    //MOVE UP TWO
+    //MOVE UP UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         setBit(b->wPawn, n + 16);
         clearBit(b->wPawn, n);
     }
+    //CAPTURE LEFT
+    if(){
 
 
+    }
 
 
 
@@ -47,7 +50,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
    // addState(dst, &src);
 //    c->wPawn = 0;
     //MOVE UP TWO
-    //CAPTURE LEFT
+
     //CAPTURE RIGHT
     //EN PASSANT LEFT
     //EN PASSANT RIGHT
