@@ -11,6 +11,14 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
+char whatRank(char n){
+    return (n / 8);
+}
+
+char whatFile(char n){
+    return (n % 8);
+}
+
 bool isPosWhite(T_boardState *b, int n){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
     if(isBitSet(or, n)){
@@ -40,7 +48,8 @@ void addState(T_boardStates *dst, const T_boardState *src){
 }
 
 bool isPosEmpty(T_boardState *b, int n){
-    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing | b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
+                    b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
     if(!isBitSet(or, n)){
        return true;
     }
