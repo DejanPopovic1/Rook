@@ -7,6 +7,7 @@
 #define BITBOARD_SIZE 64
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef uint64_t T_bitboard;
 
@@ -55,6 +56,8 @@ struct GameState{
     int ply;
 };
 
+
+bool isPosEmpty(T_boardState *b, int n);
 void addState(T_boardStates *bss, const T_boardState *b);
 int whosTurnNEW(const int ply);
 T_boardState initialiseBoardState();

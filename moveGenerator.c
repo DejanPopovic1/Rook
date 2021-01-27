@@ -13,12 +13,10 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
 }
 
 bool isAheadEmpty(const T_boardState *b, int n){
-//    b->w
-//    if(){
-//
-//        return true;
-//    }
-//    return false;
+    if(isPosEmpty(b, n + 8)){
+        return true;
+    }
+    return false;
 }
 
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
