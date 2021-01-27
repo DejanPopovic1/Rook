@@ -37,12 +37,12 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->wPawn, n);
     }
     //CAPTURE LEFT
-    if(isPosBlack(b, n + 7)){
+    if(isPosBlack(b, n + 7) && (n % 8)){
         setBit(b->wPawn, n + 7);
         clearBit(b->wPawn, n);
     }
     //CAPTURE RIGHT
-    if(isPosBlack(b, n + 9)){
+    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
         setBit(b->wPawn, n + 9);
         clearBit(b->wPawn, n);
     }
