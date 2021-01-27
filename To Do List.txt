@@ -60,3 +60,4 @@ enumerate piece TYPES (for the purposes of move generation) as colour agnostic e
 Late move reductions?
 current ASM instruction only compatible with GCC. Make compatible with other major compilers
 Move ALL command line outputs into a seperate file where you can reword the outputs
+Depending on Windows or Linux, optionally compile using #if and #endif

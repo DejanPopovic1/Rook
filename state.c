@@ -11,6 +11,20 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
+bool isRankFive(char n){
+    if(n <= 39 && n >= 32){
+        return true;
+    }
+    return false;
+}
+
+bool isRankFour(char n){
+    if(n <= 31 && n >= 24){
+        return true;
+    }
+    return false;
+}
+
 char whatRank(char n){
     return (n / 8);
 }
