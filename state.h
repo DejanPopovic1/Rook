@@ -56,7 +56,7 @@ struct GameState{
     int ply;
 };
 
-
+bool isPosInSecondLastColumn(int n);
 bool isPosEmpty(T_boardState *b, int n);
 void addState(T_boardStates *bss, const T_boardState *b);
 int whosTurnNEW(const int ply);

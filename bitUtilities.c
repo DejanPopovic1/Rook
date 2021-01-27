@@ -40,12 +40,7 @@ T_bitboard createSecondLastColumnMask(){
     return result;
 }
 
-bool isBitInSecondLastColumn(int n){
-    if(n <= 55 && n >= 48){
-        return true;
-    }
-    return false;
-}
+
 
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);

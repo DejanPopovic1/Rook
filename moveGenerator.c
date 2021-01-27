@@ -23,7 +23,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     //T_boardState src;
     //MOVE UP ONE
     bool cond1 = isAheadEmpty(b, n);
-    bool cond2 = isBitInSecondLastColumn(n);
+    bool cond2 = isPosInSecondLastColumn(n);
 //    isSecond
 
 

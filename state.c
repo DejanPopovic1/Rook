@@ -11,6 +11,13 @@ int whosTurnNEW(const int ply){
     return blackTurn;
 }
 
+bool isPosInSecondLastColumn(int n){
+    if(n <= 55 && n >= 48){
+        return true;
+    }
+    return false;
+}
+
 void addState(T_boardStates *dst, const T_boardState *src){
     dst->bs[dst->fi] = *src;
     (dst->fi)++;
