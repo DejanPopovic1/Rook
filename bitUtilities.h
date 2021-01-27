@@ -1,5 +1,6 @@
 #include "state.h"
 #include <stdbool.h>
+#define incl 1
 
 T_bitboard numOfSetBits(T_bitboard b);
 bool isBitInSecondLastColumn(T_bitboard number);

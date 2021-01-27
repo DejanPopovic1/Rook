@@ -46,7 +46,10 @@ bool isBitInSecondLastColumn(T_bitboard number){
 
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
-    return;
+}
+
+void clearBit(T_bitboard *number, int n){
+    *number &= ~(1ULL << n);
 }
 
 unsigned char setCharBits(unsigned char c){
@@ -68,3 +71,12 @@ bool isBitSet(T_bitboard number, int n){
     return false;
 }
 
+#if true
+void toggleBit(T_bitboard *number, int n){
+    *number ^= 1UL << n;
+}
+
+T_bitboard checkBit(T_bitboard number, int n){
+    return (number >> n) & 1ULL;
+}
+#endif

@@ -2,27 +2,9 @@
 
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
-    T_boardState src;
-    //MOVE UP ONE
-    //If(isUpEmpty && !isSecondLastRow)
+    T_bitboard i =  b->wPawn;
 
 
-
-
-
-    src.wPawn = 0;
-    addState(dst, &src);
-//    c->wPawn = 0;
-    //MOVE UP TWO
-    //CAPTURE LEFT
-    //CAPTURE RIGHT
-    //EN PASSANT LEFT
-    //EN PASSANT RIGHT
-    //PROMOTIONS
-        //BISHOP
-        //KNIGHT
-        //ROOK
-        //QUEEN
 
 }
 
