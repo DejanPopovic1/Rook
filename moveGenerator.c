@@ -2,13 +2,15 @@
 
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
-    T_bitboard i =  b->wPawn;
-
-
-
+    T_bitboard i = b->wPawn;
+    int n;
+    for(int j = 0; j < numOfSetBits(*b); j++){
+        n = bitScanForward(*b);
+        genWPawnSuccStates(dst, b, n);
+    }
 }
 
-void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b){
+void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     T_boardState src;
     //MOVE UP ONE
     //If(isUpEmpty && !isSecondLastRow)

@@ -71,7 +71,7 @@ bool isBitSet(T_bitboard number, int n){
     return false;
 }
 
-#if true
+#if incl
 void toggleBit(T_bitboard *number, int n){
     *number ^= 1UL << n;
 }
