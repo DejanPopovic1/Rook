@@ -24,6 +24,7 @@ bool isUpUpEmpty(const T_boardState *b, int n){
     return false;
 }
 
+//factor out specific moves once all moveGenerations complete
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     //MOVE UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
@@ -59,23 +60,15 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->bPawn, n + 1);
     }
     //PROMOTIONS
-
-
-    //If(isUpEmpty && !isSecondLastRow)
-    //src.wPawn = 0;
-   // addState(dst, &src);
-//    c->wPawn = 0;
-    //MOVE UP TWO
-
-    //CAPTURE RIGHT
-    //EN PASSANT LEFT
-    //EN PASSANT RIGHT
-    //PROMOTIONS
         //BISHOP
+    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
+        setBit(b->wPawn, n + 9);
+        clearBit(b->wPawn, n);
+        clearBit(b->bPawn, n + 1);
+    }
         //KNIGHT
         //ROOK
         //QUEEN
-
 }
 
 void genWBishopSuccStates(T_boardState c, T_boardStates *ss){

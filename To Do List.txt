@@ -7,6 +7,7 @@ Todo List:
 
 move inline .asm to .asm file(s)
 
+Inline the important move generation functions
 use pointers in as many areas as possible
 Use more asserts instead of exit(-1)
 When mallocing a list and then setting its free index to zero, rather do this in a create function
