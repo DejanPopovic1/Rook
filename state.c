@@ -6,7 +6,7 @@
 
 void printStates(T_boardStates *b){
     for(int i = 0; i < length(b); i++){
-        printState(b[i]);
+        printState((b->bs)[i]);
     }
 }
 
@@ -72,6 +72,7 @@ bool isPosInSecondLastColumn(int n){
 void addState(T_boardStates *dst, const T_boardState *src){
     dst->bs[dst->fi] = *src;
     (dst->fi)++;
+    //printState(*src);
 }
 
 int length(T_boardStates *bss){
