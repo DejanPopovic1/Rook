@@ -70,14 +70,14 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->wPawn, n);
         addState(dst, &cpy);
     }
-//    //EN PASSANT RIGHT
-//    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
-//        T_boardState *cpy = b;
-//        setBit(b->wPawn, n + 9);
-//        clearBit(b->wPawn, n);
-//        clearBit(b->bPawn, n + 1);
-//        addState(dst, cpy);
-//    }
+    //EN PASSANT RIGHT
+    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
+        T_boardState cpy = *b;
+        clearBit(b->bPawn, n + 1);
+        setBit(b->wPawn, n + 9);
+        clearBit(b->wPawn, n);
+        addState(dst, &cpy);
+    }
 //    //PROMOTIONS
 //        //BISHOP
 //    if(isRankSeven(n) && isUpEmpty(b, n)){
