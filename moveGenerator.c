@@ -100,13 +100,13 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->wPawn, n);
         addState(dst, &cpy);
     }
-//        //QUEEN
-//    if(isRankSeven(n) && isUpEmpty(b, n)){
-//        T_boardState *cpy = b;
-//        setBit(b->wQueen, n + 8);
-//        clearBit(b->wPawn, n);
-//        addState(dst, cpy);
-//    }
+        //QUEEN
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        T_boardState cpy = *b;
+        setBit(b->wQueen, n + 8);
+        clearBit(b->wPawn, n);
+        addState(dst, &cpy);
+    }
 }
 
 void genWBishopSuccStates(T_boardState c, T_boardStates *ss){
