@@ -6,7 +6,7 @@ Todo List:
 4. Incorporate Minimax algorithm
 
 move inline .asm to .asm file(s)
-
+Move functions to their correct files. E.g. most functions move to state.c
 Inline the important move generation functions
 use pointers in as many areas as possible
 Use more asserts instead of exit(-1)
