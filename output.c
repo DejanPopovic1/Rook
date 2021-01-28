@@ -41,7 +41,7 @@ void printState(T_boardState b){
     printf("State of black castling: ");
     i = b.castlesBlack;
     printBits(sizeof(i), &i);
-    printf("No captures or pawn moves: %d", b.noCapturesOrPawnMoves);
+    printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n\n");
 }
 
@@ -89,10 +89,6 @@ void printTBitboard(T_bitboard b){
     }
     return;
 }
-
-
-
-
 
 
 

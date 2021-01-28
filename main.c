@@ -90,21 +90,11 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    T_bitboard test = 2165803;
-    printTBitboardNumber(test);
-    printf("%d", numOfSetBits(test));
-    //printTBitboardNumber(test);
-    //printf("%d", bitScanReverse(test));
-    //T_boardState b = initialiseBoardState();
-    //printState(b);
-    //T_bitboard b = 17;
-    //printf("%llu\n", bitScanForward(b));
-    //printf("%llu\n", bitScanReverse(b));
-//    makeMovementRules();
-    //TESTcreateAndPrintRays();
-    //T_bitboard b;
-    //makeMovementRules();
-    //printf("%d", foo(b));
+    T_boardState c = initialiseBoardState();
+    T_boardStates *bss;
+    genWPawnsSuccStates(bss, &c);
+    //printTBitboard(c.bKing);
+    printState(c);
     getch();
     return;
 }
