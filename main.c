@@ -92,6 +92,7 @@ void multiPlayerSession(char *playerColourInput){
 void testCases(){
     T_boardState c = initialiseBoardState();
     T_boardStates *bss;
+    printState(c);
     genWPawnsSuccStates(bss, &c);
 
     printStates(bss);
@@ -200,27 +201,27 @@ bool nextState(T_chessboard **c, char* input, int turn){
     return false;
 }
 
-T_boardStates generateSuccStates(T_boardState b){
-    T_boardStates result;
-    if(whosTurn(b.ply) == whiteTurn){
-        genWPawnSuccStates(b, &result);
-        genWBishopSuccStates(b, &result);
-        genWKnightSuccStates(b, &result);
-        genWRookSuccStates(b, &result);
-        genWQueenSuccStates(b, &result);
-        genWKingSuccStates(b, &result);
-        return result;
-    }
-    else if(whosTurn(b.ply) == blackTurn){
-        genBPawnSuccStates(b, &result);
-        genBBishopSuccStates(b, &result);
-        genBKnightSuccStates(b, &result);
-        genBRookSuccStates(b, &result);
-        genBQueenSuccStates(b, &result);
-        genBKingSuccStates(b, &result);
-        return result;
-    }
-}
+//T_boardStates generateSuccStates(T_boardState b){
+//    T_boardStates result;
+//    if(whosTurn(b.ply) == whiteTurn){
+//        genWPawnSuccStates(b, &result);
+//        genWBishopSuccStates(b, &result);
+//        genWKnightSuccStates(b, &result);
+//        genWRookSuccStates(b, &result);
+//        genWQueenSuccStates(b, &result);
+//        genWKingSuccStates(b, &result);
+//        return result;
+//    }
+//    else if(whosTurn(b.ply) == blackTurn){
+//        genBPawnSuccStates(b, &result);
+//        genBBishopSuccStates(b, &result);
+//        genBKnightSuccStates(b, &result);
+//        genBRookSuccStates(b, &result);
+//        genBQueenSuccStates(b, &result);
+//        genBKingSuccStates(b, &result);
+//        return result;
+//    }
+//}
 
 
 T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){

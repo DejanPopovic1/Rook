@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1611837908 source:c:\c_c++ code\rook\main.c
+1611840036 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -111,7 +111,7 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1611748270 c:\c_c++ code\rook\state.h
+1611840812 c:\c_c++ code\rook\state.h
 	<stdint.h>
 	<stdbool.h>
 
@@ -135,13 +135,15 @@
 	"generateSlideMoves.h"
 	<stdint.h>
 
-1611760517 source:c:\c_c++ code\rook\bitutilities.c
+1611840875 source:c:\c_c++ code\rook\bitutilities.c
 	"bitUtilities.h"
 	<limits.h>
 
-1611748270 c:\c_c++ code\rook\bitutilities.h
+1611840533 c:\c_c++ code\rook\bitutilities.h
 	"state.h"
 	<stdbool.h>
+	"bitUtilities.h"
+	<limits.h>
 
 1610893874 source:c:\c_c++ code\rook\encodingtranslation.c
 	"GlobalDeclarations.h"
@@ -152,10 +154,11 @@
 1610883481 c:\c_c++ code\rook\encodingtranslation.h
 	"GlobalDeclarations.h"
 
-1611746022 c:\c_c++ code\rook\movegenerator.h
+1611840449 c:\c_c++ code\rook\movegenerator.h
+	"state.h"
 	<stdbool.h>
 
-1611836372 source:c:\c_c++ code\rook\movegenerator.c
+1611840246 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 

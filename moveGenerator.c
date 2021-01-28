@@ -41,6 +41,9 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 16);
         clearBit(&(cpy.wPawn), n);
+        setBit(&(cpy.wEnPassants), n);
+        //printf(cpy.wEnPassants);
+        printBits(sizeof(cpy.bEnPassants), &(cpy.bEnPassants));
         addState(dst, &cpy);
     }
 //    //CAPTURE LEFT
