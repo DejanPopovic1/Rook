@@ -4,17 +4,11 @@
 #include "GlobalDeclarations.h"
 #include "bitUtilities.h"
 
-//void printStates(T_boardStates *b){
-//
-//    for(int i = 0; i < ){
-//        printState(*b)
-//
-//
-//    }
-//
-//
-//
-//}
+void printStates(T_boardStates *b){
+    for(int i = 0; i < length(b); i++){
+        printState(*b);
+    }
+}
 
 int whosTurnNEW(const int ply){
     if((ply % 2) == 1){
