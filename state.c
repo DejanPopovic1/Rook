@@ -4,6 +4,25 @@
 #include "GlobalDeclarations.h"
 #include "bitUtilities.h"
 
+void removeOpponent(T_boardState *b, int pos){
+    if(whosTurnNEW(b->ply) == whiteTurn){
+        clearBit(&(b->bPawn), pos);
+        clearBit(&(b->bBishop), pos);
+        clearBit(&(b->bKnight), pos);
+        clearBit(&(b->bRook), pos);
+        clearBit(&(b->bQueen), pos);
+        clearBit(&(b->bKing), pos);
+    }
+    if(whosTurnNEW(b->ply) == blackTurn){
+        clearBit(&(b->wPawn), pos);
+        clearBit(&(b->wBishop), pos);
+        clearBit(&(b->wKnight), pos);
+        clearBit(&(b->wRook), pos);
+        clearBit(&(b->wQueen), pos);
+        clearBit(&(b->wKing), pos);
+    }
+}
+
 void printStates(T_boardStates *b){
     for(int i = 0; i < length(b); i++){
         printState((b->bs)[i]);

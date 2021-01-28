@@ -43,17 +43,17 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         setBit(&(cpy.wPawn), n + 16);
         clearBit(&(cpy.wPawn), n);
         setBit(&(cpy.wEnPassants), n - 8);
-        //printf(cpy.wEnPassants);
-        //printBits(sizeof(cpy.wEnPassants), &(cpy.wEnPassants));
         addState(dst, &cpy);
     }
 //    //CAPTURE LEFT
-//    if(isPosBlack(b, n + 7) && (n % 8)){
-//        T_boardState *cpy = b;
-//        setBit(b->wPawn, n + 7);
-//        clearBit(b->wPawn, n);
-//        addState(dst, cpy);
-//    }
+    if(isPosBlack(b, n + 7) && (n % 8) /*opponent bit*/){
+        T_boardState cpy = *b;
+        removeOpponent(&cpy, n + 7);
+        setBit(&(cpy.wPawn), n + 7);
+        clearBit(&(cpy.wPawn), n);
+
+        addState(dst, &cpy);
+    }
 //    //CAPTURE RIGHT
 //    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
 //        T_boardState *cpy = b;
