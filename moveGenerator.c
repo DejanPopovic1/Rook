@@ -36,73 +36,73 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(cpy->wPawn, n);
         addState(dst, cpy);
     }
-    //MOVE UP UP
-    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
-        T_boardState *cpy = b;
-        setBit(b->wPawn, n + 16);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-    //CAPTURE LEFT
-    if(isPosBlack(b, n + 7) && (n % 8)){
-        T_boardState *cpy = b;
-        setBit(b->wPawn, n + 7);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-    //CAPTURE RIGHT
-    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
-        T_boardState *cpy = b;
-        setBit(b->wPawn, n + 9);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-    //EN PASSANT LEFT
-    char frFile = whatFile(n);
-    if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
-        T_boardState *cpy = b;
-        setBit(b->wPawn, n + 7);
-        clearBit(b->wPawn, n);
-        clearBit(b->bPawn, n - 1);
-        addState(dst, cpy);
-    }
-    //EN PASSANT RIGHT
-    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
-        T_boardState *cpy = b;
-        setBit(b->wPawn, n + 9);
-        clearBit(b->wPawn, n);
-        clearBit(b->bPawn, n + 1);
-        addState(dst, cpy);
-    }
-    //PROMOTIONS
-        //BISHOP
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState *cpy = b;
-        setBit(b->wBishop, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-        //KNIGHT
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState *cpy = b;
-        setBit(b->wKnight, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-        //ROOK
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState *cpy = b;
-        setBit(b->wRook, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
-        //QUEEN
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState *cpy = b;
-        setBit(b->wQueen, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, cpy);
-    }
+//    //MOVE UP UP
+//    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wPawn, n + 16);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//    //CAPTURE LEFT
+//    if(isPosBlack(b, n + 7) && (n % 8)){
+//        T_boardState *cpy = b;
+//        setBit(b->wPawn, n + 7);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//    //CAPTURE RIGHT
+//    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
+//        T_boardState *cpy = b;
+//        setBit(b->wPawn, n + 9);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//    //EN PASSANT LEFT
+//    char frFile = whatFile(n);
+//    if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wPawn, n + 7);
+//        clearBit(b->wPawn, n);
+//        clearBit(b->bPawn, n - 1);
+//        addState(dst, cpy);
+//    }
+//    //EN PASSANT RIGHT
+//    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wPawn, n + 9);
+//        clearBit(b->wPawn, n);
+//        clearBit(b->bPawn, n + 1);
+//        addState(dst, cpy);
+//    }
+//    //PROMOTIONS
+//        //BISHOP
+//    if(isRankSeven(n) && isUpEmpty(b, n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wBishop, n + 8);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//        //KNIGHT
+//    if(isRankSeven(n) && isUpEmpty(b, n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wKnight, n + 8);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//        //ROOK
+//    if(isRankSeven(n) && isUpEmpty(b, n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wRook, n + 8);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
+//        //QUEEN
+//    if(isRankSeven(n) && isUpEmpty(b, n)){
+//        T_boardState *cpy = b;
+//        setBit(b->wQueen, n + 8);
+//        clearBit(b->wPawn, n);
+//        addState(dst, cpy);
+//    }
 }
 
 void genWBishopSuccStates(T_boardState c, T_boardStates *ss){

@@ -4,6 +4,18 @@
 #include "GlobalDeclarations.h"
 #include "bitUtilities.h"
 
+//void printStates(T_boardStates *b){
+//
+//    for(int i = 0; i < ){
+//        printState(*b)
+//
+//
+//    }
+//
+//
+//
+//}
+
 int whosTurnNEW(const int ply){
     if((ply % 2) == 1){
         return whiteTurn;
@@ -66,6 +78,10 @@ bool isPosInSecondLastColumn(int n){
 void addState(T_boardStates *dst, const T_boardState *src){
     dst->bs[dst->fi] = *src;
     (dst->fi)++;
+}
+
+int length(T_boardStates *bss){
+    return bss->fi;
 }
 
 bool isPosEmpty(T_boardState *b, int n){
