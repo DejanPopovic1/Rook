@@ -34,17 +34,15 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 8);
         clearBit(&(cpy.wPawn), n);
-        //printState(cpy);
         addState(dst, &cpy);
-        //printState(dst[n]);
     }
 //    //MOVE UP UP
-//    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
-//        T_boardState *cpy = b;
-//        setBit(b->wPawn, n + 16);
-//        clearBit(b->wPawn, n);
-//        addState(dst, cpy);
-//    }
+    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+        T_boardState cpy = *b;
+        setBit(&(cpy.wPawn), n + 16);
+        clearBit(&(cpy.wPawn), n);
+        addState(dst, &cpy);
+    }
 //    //CAPTURE LEFT
 //    if(isPosBlack(b, n + 7) && (n % 8)){
 //        T_boardState *cpy = b;
