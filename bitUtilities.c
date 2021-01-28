@@ -59,7 +59,7 @@ void clearBits(T_bitboard *number){
 void clearCharBits(unsigned char *c){
     *c = 0;
 }
-
+//Can potentially use isBitSet through implicit type conversion. Try this.
 bool isCharBitSet(char number, int n){
     if ((number >> n) & 1){
         return true;
