@@ -51,16 +51,16 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         removeOpponent(&cpy, n + 7);
         setBit(&(cpy.wPawn), n + 7);
         clearBit(&(cpy.wPawn), n);
-
         addState(dst, &cpy);
     }
-//    //CAPTURE RIGHT
-//    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
-//        T_boardState *cpy = b;
-//        setBit(b->wPawn, n + 9);
-//        clearBit(b->wPawn, n);
-//        addState(dst, cpy);
-//    }
+    //CAPTURE RIGHT
+    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
+        T_boardState cpy = *b;
+        removeOpponent(&cpy, n + 9);
+        setBit(&(cpy.wPawn), n + 9);
+        clearBit(&(cpy.wPawn), n);
+        addState(dst, &cpy);
+    }
 //    //EN PASSANT LEFT
 //    char frFile = whatFile(n);
 //    if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
