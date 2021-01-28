@@ -2,6 +2,8 @@
 #include "state.h"
 #include "encodingTranslation.h"
 #include <assert.h>
+#include <stdlib.h>
+#include "bitUtilities.h"
 
 int whatIsPiece(T_boardState b, int i){
     //int result = 1;

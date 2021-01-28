@@ -79,7 +79,7 @@ int length(T_boardStates *bss){
     return bss->fi;
 }
 
-bool isPosEmpty(T_boardState *b, int n){
+bool isPosEmpty(const T_boardState *b, int n){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
                     b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
     if(!isBitSet(or, n)){

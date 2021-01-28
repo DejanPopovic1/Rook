@@ -1,5 +1,6 @@
 #include "state.h"
 #include "moveGenerator.h"
+#include "bitUtilities.h"
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     T_bitboard i = b->wPawn;
@@ -43,7 +44,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(&(cpy.wPawn), n);
         setBit(&(cpy.wEnPassants), n);
         //printf(cpy.wEnPassants);
-        printBits(sizeof(cpy.bEnPassants), &(cpy.bEnPassants));
+        printBits(sizeof(cpy.wEnPassants), &(cpy.wEnPassants));
         addState(dst, &cpy);
     }
 //    //CAPTURE LEFT

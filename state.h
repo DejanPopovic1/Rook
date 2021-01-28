@@ -68,7 +68,7 @@ bool isPosBlack(T_boardState *b, int n);
 bool isPosInSecondLastColumn(int n);
 void addState(T_boardStates *dst, const T_boardState *src);
 int length(T_boardStates *bss);
-bool isPosEmpty(T_boardState *b, int n);
+bool isPosEmpty(const T_boardState *b, int n);
 T_boardState initialiseBoardState();
 void initialiseWPawns(T_bitboard *result);
 void initialiseWBishops(T_bitboard *result);

@@ -96,7 +96,7 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1611837898 source:c:\c_c++ code\rook\state.c
+1611841688 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -111,7 +111,7 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1611840812 c:\c_c++ code\rook\state.h
+1611841720 c:\c_c++ code\rook\state.h
 	<stdint.h>
 	<stdbool.h>
 
@@ -145,11 +145,13 @@
 	"bitUtilities.h"
 	<limits.h>
 
-1610893874 source:c:\c_c++ code\rook\encodingtranslation.c
+1611841789 source:c:\c_c++ code\rook\encodingtranslation.c
 	"GlobalDeclarations.h"
 	"state.h"
 	"encodingTranslation.h"
 	<assert.h>
+	<stdlib.h>
+	"bitUtilities.h"
 
 1610883481 c:\c_c++ code\rook\encodingtranslation.h
 	"GlobalDeclarations.h"
@@ -158,7 +160,8 @@
 	"state.h"
 	<stdbool.h>
 
-1611840246 source:c:\c_c++ code\rook\movegenerator.c
+1611841099 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
+	"bitUtilities.h"
 
