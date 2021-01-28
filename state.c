@@ -6,7 +6,7 @@
 
 void printStates(T_boardStates *b){
     for(int i = 0; i < length(b); i++){
-        printState(*b);
+        printState(b[i]);
     }
 }
 
