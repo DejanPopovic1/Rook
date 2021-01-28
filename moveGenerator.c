@@ -86,13 +86,13 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(b->wPawn, n);
         addState(dst, &cpy);
     }
-//        //KNIGHT
-//    if(isRankSeven(n) && isUpEmpty(b, n)){
-//        T_boardState *cpy = b;
-//        setBit(b->wKnight, n + 8);
-//        clearBit(b->wPawn, n);
-//        addState(dst, cpy);
-//    }
+        //KNIGHT
+    if(isRankSeven(n) && isUpEmpty(b, n)){
+        T_boardState cpy = *b;
+        setBit(b->wKnight, n + 8);
+        clearBit(b->wPawn, n);
+        addState(dst, &cpy);
+    }
 //        //ROOK
 //    if(isRankSeven(n) && isUpEmpty(b, n)){
 //        T_boardState *cpy = b;
