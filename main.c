@@ -93,8 +93,10 @@ void testCases(){
     T_boardState c = initialiseBoardState();
     T_boardStates *bss;
     genWPawnsSuccStates(bss, &c);
+
+    printStates(bss);
     //printTBitboard(c.bKing);
-    printState(c);
+    //printState(c);
     getch();
     return;
 }

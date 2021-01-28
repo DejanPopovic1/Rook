@@ -7,8 +7,7 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
     int maxIt = numOfSetBits(i);
     for(int j = 0; j < maxIt; j++){
         n = bitScanForward(i);
-        //genWPawnSuccStates(dst, b, n);
-        printf("Iterated\n");
+        genWPawnSuccStates(dst, b, n);
         clearBit(&i, n);
     }
 }
@@ -32,8 +31,8 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     //MOVE UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         T_boardState *cpy = b;
-        setBit(cpy->wPawn, n + 8);
-        clearBit(cpy->wPawn, n);
+        setBit(&(cpy->wPawn), n + 8);
+        clearBit(&(cpy->wPawn), n);
         addState(dst, cpy);
     }
 //    //MOVE UP UP
