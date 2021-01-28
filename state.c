@@ -179,7 +179,7 @@ void initialiseBKing(T_bitboard *result){
     setBit(result, 60);
 }
 
-void initialiseWEnPassants(char *c){
+void initialiseWEnPassants(unsigned char *c){
     clearCharBits(c);
 }
 

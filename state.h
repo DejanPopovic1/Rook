@@ -36,7 +36,7 @@ struct BoardState{
     unsigned char castlesBlack : 3;//First bit set if L castle moved. Second R castle moved. Third King moved
     unsigned char noCapturesOrPawnMoves;
     struct PrevStates *ps;
-    unsigned int ply;
+    unsigned short ply;
 };
 
 struct BoardStates{
@@ -82,7 +82,7 @@ void initialiseBKnights(T_bitboard *result);
 void initialiseBRooks(T_bitboard *result);
 void initialiseBQueen(T_bitboard *result);
 void initialiseBKing(T_bitboard *result);
-void initialiseWEnPassants(char *c);
+void initialiseWEnPassants(unsigned char *c);
 void initialiseBEnPassants(char *c);
 void initialiseCastles(T_boardState *b);
 void initialiseNoCapturesOrPawnMoves(char *c);

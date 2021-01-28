@@ -40,8 +40,6 @@ T_bitboard createSecondLastColumnMask(){
     return result;
 }
 
-
-
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
 }
