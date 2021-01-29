@@ -9,6 +9,10 @@ T_bitboard wAll(T_boardState *b){
     return or;
 }
 
+T_bitboard bAll(T_boardState *b){
+    T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    return or;
+}
 
 void removeOpponent(T_boardState *b, int pos){
     if(whosTurnNEW(b->ply) == whiteTurn){
