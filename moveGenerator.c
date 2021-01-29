@@ -2,24 +2,24 @@
 #include "moveGenerator.h"
 #include "bitUtilities.h"
 
-void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
+void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
     int n;
     int maxIt = numOfSetBits(i);
     for(int j = 0; j < maxIt; j++){
         n = bitScanForward(i);
-        genWPawnSuccStates(dst, b, n);
+        genWPawnSuccStates(dst, b, n, rays);
         clearBit(&i, n);
     }
 }
 
-void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b){
+void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wBishop;
     int n;
     int maxIt = numOfSetBits(i);
     for(int j = 0; j < maxIt; j++){
         n = bitScanForward(i);
-        genWBishopSuccStates(dst, b, n);
+        genWBishopSuccStates(dst, b, n, rays);
         clearBit(&i, n);
     }
 }
@@ -39,7 +39,7 @@ bool isUpUpEmpty(const T_boardState *b, int n){
 }
 
 //factor out specific moves once all moveGenerations complete
-void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
+void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //MOVE UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         T_boardState cpy = *b;
@@ -119,9 +119,9 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     }
 }
 
-void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n){
+void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
-
+    //castRay()
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){

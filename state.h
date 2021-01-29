@@ -56,6 +56,8 @@ struct GameState{
     int ply;
 };
 
+void addState(T_boardStates *dst, const T_boardState *src);
+void initialiseStates(T_boardStates *bss);
 void printStates(T_boardStates *b);
 int whosTurnNEW(const int ply);
 bool isRankFive(char n);

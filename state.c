@@ -104,6 +104,10 @@ void addState(T_boardStates *dst, const T_boardState *src){
     //printState(*src);
 }
 
+void initialiseStates(T_boardStates *bss){
+    bss->fi = 0;
+}
+
 int length(T_boardStates *bss){
     return bss->fi;
 }
