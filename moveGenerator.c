@@ -127,6 +127,9 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     T_bitboard w = bAll(b);
     T_bitboard and = r & w;
     int maxIndex = bitScanForward(and);
+    bitScanForward(0);
+    isZFSet();
+
     for(int i = n + 9; i < maxIndex; i = i + 9){
         T_boardState cpy = *b;
         //removeOpponent(&cpy, n + 7);
