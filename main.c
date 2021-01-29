@@ -96,9 +96,10 @@ void testCases(){
     T_boardStates *bss;
     printState(c);
     genWPawnsSuccStates(bss, &c);
-    createRays();
+    T_bitboard** bbptr = createRays();
+    printTBitboard(bbptr[7][36]);
 
-    printStates(bss);
+    //printStates(bss);
     //printTBitboard(c.bKing);
     //printState(c);
     getch();
