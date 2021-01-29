@@ -96,6 +96,7 @@ void testCases(){
     T_boardStates *bss;
     printState(c);
     genWPawnsSuccStates(bss, &c);
+    createRays();
 
     printStates(bss);
     //printTBitboard(c.bKing);

@@ -99,12 +99,12 @@ void createRays(){
     T_bitboard *swR = castRays(&castSW);
     T_bitboard *wR = castRays(&castW);
     T_bitboard *nwR = castRays(&castNW);
-    (*rays)[0] = nR;
-    (*rays)[1] = neR;
-    (*rays)[2] = eR;
-    (*rays)[3] = seR;
-    (*rays)[4] = sR;
-    (*rays)[5] = swR;
-    (*rays)[6] = wR;
-    (*rays)[7] = nwR;
+    rays[0] = nR;
+    rays[1] = neR;
+    rays[2] = eR;
+    rays[3] = seR;
+    rays[4] = sR;
+    rays[5] = swR;
+    rays[6] = wR;
+    rays[7] = nwR;
 }
