@@ -4,6 +4,12 @@
 #include "GlobalDeclarations.h"
 #include "bitUtilities.h"
 
+T_bitboard wAll(T_boardState *b){
+    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+    return or;
+}
+
+
 void removeOpponent(T_boardState *b, int pos){
     if(whosTurnNEW(b->ply) == whiteTurn){
         clearBit(&(b->bPawn), pos);

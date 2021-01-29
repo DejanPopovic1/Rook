@@ -10,7 +10,17 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b){
         n = bitScanForward(i);
         genWPawnSuccStates(dst, b, n);
         clearBit(&i, n);
-        //printf("%d ", n);
+    }
+}
+
+void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b){
+    T_bitboard i = b->wBishop;
+    int n;
+    int maxIt = numOfSetBits(i);
+    for(int j = 0; j < maxIt; j++){
+        n = bitScanForward(i);
+        genWBishopSuccStates(dst, b, n);
+        clearBit(&i, n);
     }
 }
 
@@ -46,7 +56,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         addState(dst, &cpy);
     }
 //    //CAPTURE LEFT
-    if(isPosBlack(b, n + 7) && (n % 8) /*opponent bit*/){
+    if(isPosBlack(b, n + 7) && (n % 8)){
         T_boardState cpy = *b;
         removeOpponent(&cpy, n + 7);
         setBit(&(cpy.wPawn), n + 7);
@@ -109,8 +119,8 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
     }
 }
 
-void genWBishopSuccStates(T_boardState c, T_boardStates *ss){
-    //Generate Pawn Moves
+void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n){
+    //
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
