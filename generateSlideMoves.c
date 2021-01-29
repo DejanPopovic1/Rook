@@ -89,7 +89,7 @@ T_bitboard *castRays(bool (*castDir)(int*)){
 }
 
 //simplify by removing nR, neR, etc...
-void createRays(){
+T_bitboard** createRays(){
     T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
     T_bitboard *nR = castRays(&castN);
     T_bitboard *neR = castRays(&castNE);
@@ -107,4 +107,5 @@ void createRays(){
     rays[5] = swR;
     rays[6] = wR;
     rays[7] = nwR;
+    return rays;
 }
