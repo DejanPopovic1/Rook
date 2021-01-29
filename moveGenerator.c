@@ -47,7 +47,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         clearBit(&(cpy.wPawn), n);
         addState(dst, &cpy);
     }
-//    //MOVE UP UP
+    //MOVE UP UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 16);
@@ -55,7 +55,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
         setBit(&(cpy.wEnPassants), n - 8);
         addState(dst, &cpy);
     }
-//    //CAPTURE LEFT
+    //CAPTURE LEFT
     if(isPosBlack(b, n + 7) && (n % 8)){
         T_boardState cpy = *b;
         removeOpponent(&cpy, n + 7);
@@ -120,7 +120,8 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n){
 }
 
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n){
-    //
+    //UP RIGHT
+
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){

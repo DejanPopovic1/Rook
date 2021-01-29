@@ -90,7 +90,9 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
+    createAndPrintRays();
     T_boardState c = initialiseBoardState();
+    //printTBitboard(c.bBishop);
     T_boardStates *bss;
     printState(c);
     genWPawnsSuccStates(bss, &c);
