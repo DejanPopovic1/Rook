@@ -11,7 +11,7 @@ void TESTprintBitboard(){
 }
 
 void TESTcreateAndPrintRays(){
-    createAndPrintRays();
+    createRays();
     return;
 }
 

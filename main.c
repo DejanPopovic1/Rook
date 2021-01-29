@@ -90,7 +90,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void testCases(){
-    createAndPrintRays();
+    createRays();
     T_boardState c = initialiseBoardState();
     //printTBitboard(c.bBishop);
     T_boardStates *bss;

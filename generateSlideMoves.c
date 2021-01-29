@@ -74,7 +74,7 @@ T_bitboard castRay(int(*castDir)(),int index){
     //*result = 0;
     T_bitboard result = 0;
     while((*castDir)(&index)){
-        /*result = */setBit(&result, index);
+        setBit(&result, index);
     }
     return result;
 }
@@ -88,28 +88,23 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
-void createAndPrintRays(){
-//    T_bitboard *nR = castRays(&castN);
-//    T_bitboard *neR = castRays(&castNE);
-//    T_bitboard *eR = castRays(&castE);
-//    T_bitboard *seR = castRays(&castSE);
-//    T_bitboard *sR = castRays(&castS);
-//    T_bitboard *swR = castRays(&castSW);
-//    T_bitboard *wR = castRays(&castW);
-//    T_bitboard *nwR = castRays(&castNW);
-
-
-    //printTBitboardNumbersBin(&nR);
-    //printTBitboard(neR[1]);
-    T_bitboard test = castRay(&castN, 0);
-    printTBitboard(test);
-    printf("%d", checkBit(test, 19));
-    //printTBitboardNumbersDec(&nR);
-    //printTBitboardNumbersDec(neR);
-    //printTBitboardNumbersDec(eR);
-    //printTBitboardNumbersDec(seR);
-    //printTBitboardNumbersDec(sR);
-    //printTBitboardNumbersDec(swR);
-    //printTBitboardNumbersDec(wR);
-    //printTBitboardNumbersDec(nwR);
+//simplify by removing nR, neR, etc...
+void createRays(){
+    T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
+    T_bitboard *nR = castRays(&castN);
+    T_bitboard *neR = castRays(&castNE);
+    T_bitboard *eR = castRays(&castE);
+    T_bitboard *seR = castRays(&castSE);
+    T_bitboard *sR = castRays(&castS);
+    T_bitboard *swR = castRays(&castSW);
+    T_bitboard *wR = castRays(&castW);
+    T_bitboard *nwR = castRays(&castNW);
+    (*rays)[0] = nR;
+    (*rays)[1] = neR;
+    (*rays)[2] = eR;
+    (*rays)[3] = seR;
+    (*rays)[4] = sR;
+    (*rays)[5] = swR;
+    (*rays)[6] = wR;
+    (*rays)[7] = nwR;
 }
