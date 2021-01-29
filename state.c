@@ -104,7 +104,8 @@ void addState(T_boardStates *dst, const T_boardState *src){
     //printState(*src);
 }
 
-void initialiseStates(T_boardStates *bss){
+T_boardStates *initialiseStates(){
+    T_boardStates *bss = malloc(sizeof(T_boardStates));
     bss->fi = 0;
 }
 

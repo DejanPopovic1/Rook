@@ -123,13 +123,25 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
+    //printf("Test\n");
     T_bitboard r = rays[northEast][n];
     T_bitboard w = bAll(b);
     T_bitboard and = r & w;
     int maxIndex = bitScanForward(and);
-    bitScanForward(0);
-    isZFSet();
+    bitScanForward(0ULL);
+    //test();
+    //printf(" ");
+    //printf("%d\n", isZFSet());
+    //printf("Testing!");
+    //int test = asmSimpleTest();
+    //printf("%d\n", test);
 
+    if(isZFSet()){
+       printf("ZF flag is set\n");
+    }
+    else if (!isZFSet()){
+        printf("ZF flag is cleared\n");
+    }
     for(int i = n + 9; i < maxIndex; i = i + 9){
         T_boardState cpy = *b;
         //removeOpponent(&cpy, n + 7);

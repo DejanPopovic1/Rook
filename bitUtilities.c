@@ -25,14 +25,31 @@ T_bitboard numOfSetBits(T_bitboard b) {
     );
 }
 
+uint64_t asmTest() {
+    __asm__(
+        "movq $5,%rax\n"
+        "leave\n"
+        "ret\n"
+    );
+}
+
+int32_t asmSimpleTest() {
+    __asm__(
+        "movl $5,%eax\n"
+        //"leave\n"
+        "ret\n"
+    );
+}
+
 T_bitboard isZFSet() {
+    printf("\n");
     __asm__(
         "jz true\n"
         "mov $0,%rax\n"
-        "leave\n"
-        "ret\n"
+        "jmp end\n"
         "true:\n"
         "mov $1,%rax\n"
+        "end:\n"
         "leave\n"
         "ret\n"
     );
