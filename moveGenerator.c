@@ -121,7 +121,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
-    //castRay()
+//    rays[1][]
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
