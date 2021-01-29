@@ -99,8 +99,8 @@ void testCases(){
     printState(c);
     T_bitboard** bbptr = createRays();
     genWPawnsSuccStates(bss, &c, bbptr);
-
-    printTBitboard(bbptr[7][36]);
+    genWBishopsSuccStates(bss, &c, bbptr);
+    //printTBitboard(bbptr[7][36]);
 
     //printStates(bss);
     //printTBitboard(c.bKing);

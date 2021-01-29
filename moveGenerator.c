@@ -119,9 +119,23 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     }
 }
 
+//set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
+//Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
-//    rays[1][]
+    T_bitboard r = rays[northEast][n];
+    T_bitboard w = bAll(b);
+    T_bitboard and = r & w;
+    int maxIndex = bitScanForward(and);
+    for(int i = n + 9; i < maxIndex; i = i + 9){
+        T_boardState cpy = *b;
+        //removeOpponent(&cpy, n + 7);
+        setBit(&(cpy.wBishop), i);
+        clearBit(&(cpy.wBishop), i - 9);
+        addState(dst, &cpy);
+    }
+
+
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
