@@ -25,6 +25,19 @@ T_bitboard numOfSetBits(T_bitboard b) {
     );
 }
 
+bool isZFSet() {
+    __asm__(
+        "jz true\n"
+        "mov 0,%rax\n"
+        "leave\n"
+        "ret\n"
+        "true:\n"
+        "mov 1,%rax\n"
+        "leave\n"
+        "ret\n"
+    );
+}
+
 //rather make this a number for efficiency
 T_bitboard createSecondLastColumnMask(){
     T_bitboard result;
