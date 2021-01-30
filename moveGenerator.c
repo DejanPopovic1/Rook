@@ -50,7 +50,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
         addState(dst, &cpy);
     }
     //MOVE UP UP
-    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 16);
         clearBit(&(cpy.wPawn), n);
