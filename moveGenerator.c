@@ -138,15 +138,20 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
         intersectRay = rays[northEast][locOfFirstNonZero];
     }
     T_bitboard pseudoValidMoves = ray ^ intersectRay;
-    printTBitboard(pseudoValidMoves);
+    //printTBitboard(pseudoValidMoves);
     int i;
-    printf("Number of pseudo valid moves: %d\n", __builtin_popcountll(pseudoValidMoves));
     for(i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
     }
-    if(!isPosWhite(b, i)){
+    int z = __builtin_ctzll(pseudoValidMoves);
+    printf("%d\n", z);
+    if(!isPosWhite(b, z)){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
+        if(isPosBlack(b, z)){
+            removeOpponent(b, z);
+        }
     }
+
 
 
 //    if(isPosBlack(b, i)){
