@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1611956838 source:c:\c_c++ code\rook\main.c
+1611958613 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -97,7 +97,7 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1611958268 source:c:\c_c++ code\rook\state.c
+1612008314 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
@@ -136,11 +136,11 @@
 	"generateSlideMoves.h"
 	<stdint.h>
 
-1611957101 source:c:\c_c++ code\rook\bitutilities.c
+1612007361 source:c:\c_c++ code\rook\bitutilities.c
 	"bitUtilities.h"
 	<limits.h>
 
-1611957037 c:\c_c++ code\rook\bitutilities.h
+1611959330 c:\c_c++ code\rook\bitutilities.h
 	"state.h"
 	<stdbool.h>
 	"bitUtilities.h"
@@ -161,8 +161,9 @@
 	"state.h"
 	<stdbool.h>
 
-1611956211 source:c:\c_c++ code\rook\movegenerator.c
+1612011427 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 	"bitUtilities.h"
+	<assert.h>
 

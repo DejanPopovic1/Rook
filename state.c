@@ -9,6 +9,11 @@ T_bitboard wAll(T_boardState *b){
     return or;
 }
 
+void movePiece(T_boardState *b, int dst, int src){
+
+
+}
+
 T_bitboard bAll(T_boardState *b){
     T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
     return or;
@@ -155,6 +160,7 @@ void initialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
     setBit(result, 5);
+    setBit(result, 26);
 }
 
 void initialiseWKnights(T_bitboard *result){

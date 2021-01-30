@@ -92,8 +92,7 @@ void multiPlayerSession(char *playerColourInput){
 
 //BoardStates must be malloced so that they may be initialised when they are created. Initialisation is not the job of the caller
 void testCases(){
-    int test = asmSimpleTest();
-    printf("%d\n", test);
+
     createRays();
     T_boardState c = initialiseBoardState();
     //printTBitboard(c.bBishop);

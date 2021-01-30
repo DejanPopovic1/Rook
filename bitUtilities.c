@@ -1,6 +1,8 @@
 #include "bitUtilities.h"
 #include <limits.h>
 
+//The GCC instruction is used instead of these. Try circumvent GCC
+//Call these using __asm__ directly
 T_bitboard bitScanForward(T_bitboard b) {
     __asm__(
         "bsf %rcx,%rax\n"
@@ -36,19 +38,19 @@ uint64_t asmTest() {
 int32_t asmSimpleTest() {
     __asm__(
         "movl $5,%eax\n"
-        //"leave\n"
+        "leave\n"
         "ret\n"
     );
 }
 
-T_bitboard isZFSet() {
+uint64_t isZFSet() {
     printf("\n");
     __asm__(
         "jz true\n"
-        "mov $0,%rax\n"
+        "movq $0,%rax\n"
         "jmp end\n"
         "true:\n"
-        "mov $1,%rax\n"
+        "movq $1,%rax\n"
         "end:\n"
         "leave\n"
         "ret\n"
