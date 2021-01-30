@@ -130,30 +130,19 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
     T_bitboard intersectRay;
-    int locOfFirstNonZero = __builtin_ctzll(intersect);
-    intersectRay = (!intersect) ? 0 : rays[northEast][locOfFirstNonZero];
+    int firstPos = __builtin_ctzll(intersect);
+    intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
     T_bitboard pseudoValidMoves = ray ^ intersectRay;
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
     }
-    int z = __builtin_ctzll(pseudoValidMoves);
-    printf("%d\n", z);
-    if(!isPosWhite(b, z)){
+    int lastPos = __builtin_ctzll(pseudoValidMoves);
+    if(!isPosWhite(b, lastPos)){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
-        if(isPosBlack(b, z)){
-            removeOpponent(b, z);
+        if(isPosBlack(b, lastPos)){
+            removeOpponent(b, lastPos);
         }
     }
-
-
-
-//    if(isPosBlack(b, i)){
-//        genWBishopSuccState(dst, b, n, &pseudoValidMoves);
-//    }
-
-
-
-    //ADD CAPTURE OPTIONS ASWELL OVER HERE
 }
 
 void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
