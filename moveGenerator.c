@@ -138,10 +138,11 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
         intersectRay = rays[northEast][locOfFirstNonZero];
     }
     T_bitboard validMoves = ray ^ intersectRay;
-    printTBitboard(validMoves);
+    //printTBitboard(validMoves);
         //printf("Testing 1: %u\n", numOfSetBits(validMoves));
     //printf("Testing 1: %u\n", __builtin_popcountll(validMoves));
-    for(int i = 0; i < (__builtin_popcount(validMoves) - 1); i++){
+    //printf("%d", __builtin_popcount);
+    for(int i = 0; i < (__builtin_popcountll(validMoves) - 1); i++){
         printf("Testing 2\n");
         genWBishopSuccState(dst, b, n, &validMoves);
     }
