@@ -3,15 +3,59 @@
 #include "output.h"
 #include "GlobalDeclarations.h"
 #include "bitUtilities.h"
+#include "assert.h"
 
 T_bitboard wAll(T_boardState *b){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
     return or;
 }
 
-void movePiece(T_boardState *b, int dst, int src){
+T_bitboard *stateMember(T_boardState *b, int piece){
+    switch(piece){
+    case whitePawn:
+        return &(b->wPawn);
+        break;
+    case whiteBishop:
+        return &(b->wBishop);
+        break;
+    case whiteKnight:
+        return &(b->wKnight);
+        break;
+    case whiteRook:
+        return &(b->wRook);
+        break;
+    case whiteQueen:
+        return &(b->wQueen);
+        break;
+    case whiteKing:
+        return &(b->wKing);
+        break;
+    case blackPawn:
+        return &(b->bPawn);
+        break;
+    case blackBishop:
+        return &(b->bBishop);
+        break;
+    case blackKnight:
+        return &(b->bKnight);
+        break;
+    case blackRook:
+        return &(b->bRook);
+        break;
+    case blackQueen:
+        return &(b->bQueen);
+        break;
+    case blackKing:
+        return &(b->bKing);
+        break;
+    default:
+        assert(false);
+    }
+}
 
-
+void movePiece(T_boardState *b, int dst, int src, T_bitboard (*stateMember)(T_boardState, int)){
+    setBit(&(b->wPawn), dst);
+    clearBit(&(b->wPawn), src);
 }
 
 T_bitboard bAll(T_boardState *b){
