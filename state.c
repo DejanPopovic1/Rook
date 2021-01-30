@@ -144,6 +144,15 @@ bool isPosBlack(T_boardState *b, int n){
     return false;
 }
 
+bool isPosEmpty(const T_boardState *b, int n){
+    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
+                    b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    if(!isBitSet(or, n)){
+       return true;
+    }
+    return false;
+}
+
 bool isPosInSecondLastColumn(int n){
     if(n <= 55 && n >= 48){
         return true;
@@ -164,15 +173,6 @@ T_boardStates *initialiseStates(){
 
 int length(T_boardStates *bss){
     return bss->fi;
-}
-
-bool isPosEmpty(const T_boardState *b, int n){
-    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
-                    b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-    if(!isBitSet(or, n)){
-       return true;
-    }
-    return false;
 }
 
 T_boardState initialiseBoardState(){

@@ -144,7 +144,9 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     for(i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
     }
-
+    if(!isPosWhite(b, i)){
+        genWBishopSuccState(dst, b, n, &pseudoValidMoves);
+    }
 
 
 //    if(isPosBlack(b, i)){
