@@ -19,6 +19,7 @@ typedef struct BoardStates T_boardStates;
 
 struct PrevStates;
 
+//When copyong states, you can use = for now but moving forward you will have to define this due to the pointer PrevStates
 struct BoardState{
     T_bitboard wPawn;
     T_bitboard wBishop;

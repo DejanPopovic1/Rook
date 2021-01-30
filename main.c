@@ -92,12 +92,11 @@ void multiPlayerSession(char *playerColourInput){
 
 //BoardStates must be malloced so that they may be initialised when they are created. Initialisation is not the job of the caller
 void testCases(){
-
     createRays();
     T_boardState c = initialiseBoardState();
     //printTBitboard(c.bBishop);
     T_boardStates *bss = initialiseStates();
-    //printState(c);
+    printState(c);
     T_bitboard** bbptr = createRays();
     //genWPawnsSuccStates(bss, &c, bbptr);
     genWBishopsSuccStates(bss, &c, bbptr);

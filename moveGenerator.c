@@ -137,14 +137,10 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     else{
         intersectRay = rays[northEast][locOfFirstNonZero];
     }
-    T_bitboard validMoves = ray ^ intersectRay;
-    //printTBitboard(validMoves);
-        //printf("Testing 1: %u\n", numOfSetBits(validMoves));
-    //printf("Testing 1: %u\n", __builtin_popcountll(validMoves));
-    //printf("%d", __builtin_popcount);
-    for(int i = 0; i < (__builtin_popcountll(validMoves) - 1); i++){
-        printf("Testing 2\n");
-        genWBishopSuccState(dst, b, n, &validMoves);
+    T_bitboard pseudoValidMoves = ray ^ intersectRay;
+    for(int i = 0; i <= __builtin_popcountll(pseudoValidMoves); i++){
+        //printf("Testing 2\n");
+        genWBishopSuccState(dst, b, n, &pseudoValidMoves);
     }
     //ADD CAPTURE OPTIONS ASWELL OVER HERE
 }
@@ -152,7 +148,7 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wBishop;
     int n;
-    int maxIt = numOfSetBits(i);
+    int maxIt = __builtin_popcountll(i);
     for(int j = 0; j < maxIt; j++){
         n = __builtin_ctzll(i);
         genWBishopSuccStates(dst, b, n, rays);

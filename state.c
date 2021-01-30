@@ -208,7 +208,7 @@ void initialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
     setBit(result, 5);
-    setBit(result, 26);
+    setBit(result, 18);
     setBit(result, 21);
 }
 
