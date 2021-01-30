@@ -131,14 +131,15 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     T_bitboard intersect = ray & blocker;
     T_bitboard intersectRay;
     int locOfFirstNonZero = __builtin_ctzll(intersect);
-    if(!intersect){
-        intersectRay = 0;
-    }
-    else{
-        intersectRay = rays[northEast][locOfFirstNonZero];
-    }
+    intersectRay = (!intersect) ? 0 : rays[northEast][locOfFirstNonZero];
+
+//    if(!intersect){
+//        intersectRay = 0;
+//    }
+//    else{
+//        intersectRay = rays[northEast][locOfFirstNonZero];
+//    }
     T_bitboard pseudoValidMoves = ray ^ intersectRay;
-    //printTBitboard(pseudoValidMoves);
     int i;
     for(i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genWBishopSuccState(dst, b, n, &pseudoValidMoves);
