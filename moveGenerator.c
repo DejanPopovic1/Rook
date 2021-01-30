@@ -2,6 +2,7 @@
 #include "moveGenerator.h"
 #include "bitUtilities.h"
 #include <assert.h>
+#include "GlobalDeclarations.h"
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
@@ -120,70 +121,35 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     }
 }
 
+void genWBishopSuccState(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    T_boardState cpy = *b;
+//    movePiece(&cpy, )
+}
+
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
-    T_bitboard r = rays[northEast][n];
-    T_bitboard w = bAll(b);
-    T_bitboard intersections = r & w;
-    int locOfFirstNonZero = __builtin_clzll(intersections);
-    for(int i = n + 9; i < locOfFirstNonZero; i += 9){
-        T_boardState cpy = *b;
-
-        //setBit(&(cpy.wBishop), i);
-        //clearBit(&(cpy.wBishop), i - 9);
-        addState(dst, &cpy);
-    }
-    if(!intersections){
-        ;
-    }
-    else if(isPosWhite(b, locOfFirstNonZero)){
-        ;
-    }
-    else if(isPosBlack(b, locOfFirstNonZero)){
-        T_boardState cpy = *b;
-        setBit(&(cpy.wBishop), locOfFirstNonZero);
-        clearBit(&(cpy.wBishop), n);
-        addState(dst, &cpy);
+    T_bitboard ray = rays[northEast][n];
+    T_bitboard blocker = bAll(b) | wAll(b);
+    T_bitboard intersect = ray & blocker;
+    T_bitboard intersectRay;
+    int locOfFirstNonZero = __builtin_ctzll(intersect);
+        printf("%d\n", locOfFirstNonZero);
+    if(!intersect){
+        intersectRay = 0;
     }
     else{
-        assert(false);
+        intersectRay = rays[northEast][locOfFirstNonZero];
     }
+    T_bitboard validMoves = ray ^ intersectRay;
+    printTBitboard(validMoves);
 
-        //removeOpponent(&cpy, n + 7);
-
-
-
-
-    //printf("%d\n", __builtin_clzll(4ULL));
-
-
-
-
-    //    int test = asmSimpleTest();
-    //printf("%d\n", test);
-
-
-    //test();
-    //printf(" ");
-    //T_bitboard test = isZFSet();
-    //printf("%d\n", test);
-    //printf("Testing!");
-    //int test = asmSimpleTest();
-    //printf("%d\n", test);
-
-//    if(isZFSet()){
-//       printf("ZF flag is set\n");
-//    }
-//    else if (!isZFSet()){
-//        printf("ZF flag is cleared\n");
-//    }
-
-
-
-
-
+    //genWBishopSuccState(dst, b, n, rays);
+    //T_boardState cpy = *b;
+    //isPosBlack(__builtin_ctzll(ray ^ intersectRay));
+    //printTBitboard(ray ^ intersectRay);
+    printf("\n\n\n");
 
 }
 

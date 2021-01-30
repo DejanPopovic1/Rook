@@ -58,6 +58,9 @@ struct GameState{
     int ply;
 };
 
+T_bitboard wAll(const T_boardState *b);
+T_bitboard bAll(const T_boardState *b);
+void movePiece(T_boardState *b, int dst, int src, int piece);
 void addState(T_boardStates *dst, const T_boardState *src);
 T_boardStates *initialiseStates();
 void printStates(T_boardStates *b);

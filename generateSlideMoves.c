@@ -79,6 +79,17 @@ T_bitboard castRay(int(*castDir)(),int index){
     return result;
 }
 
+T_bitboard castIntersectionRay(int(*castDir)(),int index){
+    //T_bitboard *result = malloc(sizeof(T_bitboard));
+    //*result = 0;
+    T_bitboard result = 0;
+    setBit(&result, index);
+    while((*castDir)(&index)){
+        setBit(&result, index);
+    }
+    return result;
+}
+
 T_bitboard *castRays(bool (*castDir)(int*)){
     //T_bitboard result [BITBOARD_SIZE];
     T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));

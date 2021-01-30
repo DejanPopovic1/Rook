@@ -58,7 +58,7 @@
 	<stdio.h>
 	<stdbool.h>
 
-1611773372 source:c:\c_c++ code\rook\output.c
+1612018272 source:c:\c_c++ code\rook\output.c
 	"GlobalDeclarations.h"
 	"toAlgebraicNotation.h"
 	"output.h"
@@ -97,12 +97,13 @@
 
 1610665917 c:\c_c++ code\rook\testcases.h
 
-1612008314 source:c:\c_c++ code\rook\state.c
+1612019103 source:c:\c_c++ code\rook\state.c
 	"state.h"
 	"generateSlideMoves.h"
 	"output.h"
 	"GlobalDeclarations.h"
 	"bitUtilities.h"
+	"assert.h"
 
 1610581612 source:c:\c_c++ code\rook\sliderays.c
 	"state.c"
@@ -112,11 +113,11 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1612012646 c:\c_c++ code\rook\state.h
+1612019103 c:\c_c++ code\rook\state.h
 	<stdint.h>
 	<stdbool.h>
 
-1611934629 source:c:\c_c++ code\rook\generateslidemoves.c
+1612021400 source:c:\c_c++ code\rook\generateslidemoves.c
 	"generateSlideMoves.h"
 	"state.h"
 	<stdint.h>
@@ -161,9 +162,10 @@
 	"state.h"
 	<stdbool.h>
 
-1612013896 source:c:\c_c++ code\rook\movegenerator.c
+1612021400 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 	"bitUtilities.h"
 	<assert.h>
+	"GlobalDeclarations.h"
 

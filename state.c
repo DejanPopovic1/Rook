@@ -5,7 +5,7 @@
 #include "bitUtilities.h"
 #include "assert.h"
 
-T_bitboard wAll(T_boardState *b){
+T_bitboard wAll(const T_boardState *b){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
     return or;
 }
@@ -53,14 +53,17 @@ T_bitboard *stateMember(T_boardState *b, int piece){
     }
 }
 
+//Not attacking
 void movePiece(T_boardState *b, int dst, int src, int piece){
     T_bitboard *structMember = (*stateMember)(b, piece);
     setBit(structMember, dst);
     clearBit(structMember, src);
 }
 
-T_bitboard bAll(T_boardState *b){
+T_bitboard bAll(const T_boardState *b){
     T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    //printf("Testing: \n");
+    //printTBitboard(or);
     return or;
 }
 
@@ -206,6 +209,7 @@ void initialiseWBishops(T_bitboard *result){
     setBit(result, 2);
     setBit(result, 5);
     setBit(result, 26);
+    setBit(result, 21);
 }
 
 void initialiseWKnights(T_bitboard *result){

@@ -87,6 +87,7 @@ void printTBitboard(T_bitboard b){
         }
         printf("\n");
     }
+    printf("\n");
     return;
 }
 
