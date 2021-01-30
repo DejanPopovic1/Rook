@@ -122,17 +122,29 @@ void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboa
     clearBit(validMoves, validMove);
 }
 
-//set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
-//Check the ZF flag to see if there is a bit set in the forward and reverse scans
-void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    //UP RIGHT
-    T_bitboard ray = rays[northEast][n];
+T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays){
+    T_bitboard ray = rays[direction][n];
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
     T_bitboard intersectRay;
     int firstPos = __builtin_ctzll(intersect);
     intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
-    T_bitboard pseudoValidMoves = ray ^ intersectRay;
+    return (ray ^ intersectRay);
+}
+
+//set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
+//Check the ZF flag to see if there is a bit set in the forward and reverse scans
+void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    //UP RIGHT
+
+//    T_bitboard ray = rays[northEast][n];
+//    T_bitboard blocker = bAll(b) | wAll(b);
+//    T_bitboard intersect = ray & blocker;
+//    T_bitboard intersectRay;
+//    int firstPos = __builtin_ctzll(intersect);
+//    intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
+//    T_bitboard pseudoValidMoves = ray ^ intersectRay;
+    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
     }
