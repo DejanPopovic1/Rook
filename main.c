@@ -103,7 +103,7 @@ void testCases(){
     genWBishopsSuccStates(bss, &c, bbptr);
     //printTBitboard(bbptr[7][36]);
 
-    //printStates(bss);
+    printStates(bss);
     //printTBitboard(c.bKing);
     //printState(c);
     getch();

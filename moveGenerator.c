@@ -121,9 +121,14 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     }
 }
 
-void genWBishopSuccState(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+//Copy and paste these for other pieces
+void genWBishopSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves){
+    int validMove = __builtin_ctzll(*validMoves);
     T_boardState cpy = *b;
-//    movePiece(&cpy, )
+    setBit(&(cpy.wBishop), validMove);
+    clearBit(&(cpy.wBishop), n);
+    addState(dst, &cpy);
+    clearBit(validMoves, validMove);
 }
 
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
@@ -144,13 +149,10 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     }
     T_bitboard validMoves = ray ^ intersectRay;
     printTBitboard(validMoves);
-
-    //genWBishopSuccState(dst, b, n, rays);
-    //T_boardState cpy = *b;
-    //isPosBlack(__builtin_ctzll(ray ^ intersectRay));
-    //printTBitboard(ray ^ intersectRay);
+    for(int i = 0; i < __builtin_popcount(validMoves) - 1; i++){
+        genWBishopSuccState(dst, b, n, &validMoves);
+    }
     printf("\n\n\n");
-
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
