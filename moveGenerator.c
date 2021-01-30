@@ -127,20 +127,15 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
     int firstPos;
-    if(direction == northEast || direction == north || direction == northWest){
-        firstPos = __builtin_ctzll(intersect);
-    }
-    else{
-        firstPos = __builtin_clzll(intersect);
-    }
+    firstPos = (direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(intersect) : __builtin_clzll(intersect);
     T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
     return (ray ^ intersectRay);
 }
 
-void changeNEState(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction){
     T_bitboard pseudoValidMoves;
     int lastPos;
-    pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
+    pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
     }
@@ -156,9 +151,12 @@ void changeNEState(T_boardStates *dst, const T_boardState *b, int n, const T_bit
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-
     //UP RIGHT
-    changeNEState(dst, b, n, rays);
+    genDirStates(dst, b, n, rays, northEast);
+    //genDirStates(dst, b, n, rays, southEast);
+    genDirStates(dst, b, n, rays, northWest);
+    //genDirStates(dst, b, n, rays, northWest);
+
     //UP LEFT
 //    pseudoValidMoves = genPseudoValidMoves(b, n, northWest, rays);
 //    printTBitboard(pseudoValidMoves);
