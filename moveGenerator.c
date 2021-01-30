@@ -133,7 +133,7 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
     else{
         firstPos = __builtin_clzll(intersect);
     }
-    T_bitboard intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
+    T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
     return (ray ^ intersectRay);
 }
 
@@ -141,24 +141,42 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     T_bitboard pseudoValidMoves;
+    int lastPos;
     //UP RIGHT
     pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
     }
-    int lastPos = __builtin_ctzll(pseudoValidMoves);
+    lastPos = __builtin_ctzll(pseudoValidMoves);
     if(!isPosWhite(b, lastPos)){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
         if(isPosBlack(b, lastPos)){
             removeOpponent(b, lastPos);
         }
     }
-    //DOWN RIGHT
-//    pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
+    //UP
+    pseudoValidMoves = genPseudoValidMoves(b, n, northWest, rays);
+    printTBitboard(pseudoValidMoves);
 //    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
 //        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
 //    }
-//    int lastPos = __builtin_ctzll(pseudoValidMoves);
+//    lastPos = __builtin_ctzll(pseudoValidMoves);
+//    if(!isPosWhite(b, lastPos)){
+//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+//        if(isPosBlack(b, lastPos)){
+//            removeOpponent(b, lastPos);
+//        }
+//    }
+
+
+
+    //DOWN RIGHT
+//    pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
+//    printf("%d\n", pseudoValidMoves);
+//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
+//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+//    }
+//    lastPos = __builtin_clzll(pseudoValidMoves);
 //    if(!isPosWhite(b, lastPos)){
 //        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
 //        if(isPosBlack(b, lastPos)){
