@@ -15,16 +15,7 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     }
 }
 
-void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
-    T_bitboard i = b->wBishop;
-    int n;
-    int maxIt = numOfSetBits(i);
-    for(int j = 0; j < maxIt; j++){
-        n = bitScanForward(i);
-        genWBishopSuccStates(dst, b, n, rays);
-        clearBit(&i, n);
-    }
-}
+
 
 bool isUpEmpty(const T_boardState *b, int n){
     if(isPosEmpty(b, n + 8)){
@@ -140,7 +131,6 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     T_bitboard intersect = ray & blocker;
     T_bitboard intersectRay;
     int locOfFirstNonZero = __builtin_ctzll(intersect);
-        printf("%d\n", locOfFirstNonZero);
     if(!intersect){
         intersectRay = 0;
     }
@@ -149,10 +139,24 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     }
     T_bitboard validMoves = ray ^ intersectRay;
     printTBitboard(validMoves);
-    for(int i = 0; i < __builtin_popcount(validMoves) - 1; i++){
+        //printf("Testing 1: %u\n", numOfSetBits(validMoves));
+    //printf("Testing 1: %u\n", __builtin_popcountll(validMoves));
+    for(int i = 0; i < (__builtin_popcount(validMoves) - 1); i++){
+        printf("Testing 2\n");
         genWBishopSuccState(dst, b, n, &validMoves);
     }
-    printf("\n\n\n");
+    //ADD CAPTURE OPTIONS ASWELL OVER HERE
+}
+
+void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
+    T_bitboard i = b->wBishop;
+    int n;
+    int maxIt = numOfSetBits(i);
+    for(int j = 0; j < maxIt; j++){
+        n = __builtin_ctzll(i);
+        genWBishopSuccStates(dst, b, n, rays);
+        clearBit(&i, n);
+    }
 }
 
 void genWKnightSuccStates(T_boardState c, T_boardStates *ss){

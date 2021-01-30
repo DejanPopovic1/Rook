@@ -97,9 +97,9 @@ void testCases(){
     T_boardState c = initialiseBoardState();
     //printTBitboard(c.bBishop);
     T_boardStates *bss = initialiseStates();
-    printState(c);
+    //printState(c);
     T_bitboard** bbptr = createRays();
-    genWPawnsSuccStates(bss, &c, bbptr);
+    //genWPawnsSuccStates(bss, &c, bbptr);
     genWBishopsSuccStates(bss, &c, bbptr);
     //printTBitboard(bbptr[7][36]);
 
