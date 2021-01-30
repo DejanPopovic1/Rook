@@ -126,7 +126,13 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
     T_bitboard ray = rays[direction][n];
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
-    int firstPos = __builtin_ctzll(intersect);
+    int firstPos;
+    if(direction == northEast || direction == north || direction == northWest){
+        firstPos = __builtin_ctzll(intersect);
+    }
+    else{
+        firstPos = __builtin_clzll(intersect);
+    }
     T_bitboard intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
     return (ray ^ intersectRay);
 }
@@ -134,8 +140,9 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    T_bitboard pseudoValidMoves;
     //UP RIGHT
-    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
+    pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
     }
@@ -146,6 +153,20 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
             removeOpponent(b, lastPos);
         }
     }
+    //DOWN RIGHT
+//    pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
+//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
+//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+//    }
+//    int lastPos = __builtin_ctzll(pseudoValidMoves);
+//    if(!isPosWhite(b, lastPos)){
+//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+//        if(isPosBlack(b, lastPos)){
+//            removeOpponent(b, lastPos);
+//        }
+//    }
+
+
 }
 
 void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
