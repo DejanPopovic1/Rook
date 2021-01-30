@@ -113,11 +113,11 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 }
 
 //Copy and paste these for other pieces
-void genWBishopSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves){
+void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece){
     int validMove = __builtin_ctzll(*validMoves);
     T_boardState cpy = *b;
-    setBit(&(cpy.wBishop), validMove);
-    clearBit(&(cpy.wBishop), n);
+    setBit(stateMember(&cpy, piece), validMove);
+    clearBit(stateMember(&cpy, piece), n);
     addState(dst, &cpy);
     clearBit(validMoves, validMove);
 }
@@ -134,11 +134,11 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     intersectRay = (!intersect) ? 0 : rays[northEast][firstPos];
     T_bitboard pseudoValidMoves = ray ^ intersectRay;
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
-        genWBishopSuccState(dst, b, n, &pseudoValidMoves);
+        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
     }
     int lastPos = __builtin_ctzll(pseudoValidMoves);
     if(!isPosWhite(b, lastPos)){
-        genWBishopSuccState(dst, b, n, &pseudoValidMoves);
+        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
         if(isPosBlack(b, lastPos)){
             removeOpponent(b, lastPos);
         }
