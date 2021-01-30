@@ -53,9 +53,10 @@ T_bitboard *stateMember(T_boardState *b, int piece){
     }
 }
 
-void movePiece(T_boardState *b, int dst, int src, T_bitboard (*stateMember)(T_boardState, int)){
-    setBit(&(b->wPawn), dst);
-    clearBit(&(b->wPawn), src);
+void movePiece(T_boardState *b, int dst, int src, int piece){
+    T_bitboard *structMember = (*stateMember)(b, piece);
+    setBit(structMember, dst);
+    clearBit(structMember, src);
 }
 
 T_bitboard bAll(T_boardState *b){

@@ -130,8 +130,9 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     int locOfFirstNonZero = __builtin_clzll(intersections);
     for(int i = n + 9; i < locOfFirstNonZero; i += 9){
         T_boardState cpy = *b;
-        setBit(&(cpy.wBishop), i);
-        clearBit(&(cpy.wBishop), i - 9);
+
+        //setBit(&(cpy.wBishop), i);
+        //clearBit(&(cpy.wBishop), i - 9);
         addState(dst, &cpy);
     }
     if(!intersections){
