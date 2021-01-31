@@ -6,44 +6,64 @@
 #include "bitUtilities.h"
 
 int whatIsPiece(T_boardState b, int i){
-    //int result = 1;
+    int result = empty;
+    int resultCount = 0;
     if(isBitSet(b.wPawn, i)){
-        return whitePawn;
+        result = whitePawn;
+        resultCount++;
     }
     if(isBitSet(b.wBishop, i)){
-        return whiteBishop;
+        result = whiteBishop;
+        resultCount++;
     }
     if(isBitSet(b.wKnight, i)){
-        return whiteKnight;
+        result = whiteKnight;
+        resultCount++;
     }
     if(isBitSet(b.wRook, i)){
-        return whiteRook;
+        result = whiteRook;
+        resultCount++;
     }
     if(isBitSet(b.wQueen, i)){
-        return whiteQueen;
+        result = whiteQueen;
+        resultCount++;
     }
     if(isBitSet(b.wKing, i)){
-        return whiteKing;
+        result = whiteKing;
+        resultCount++;
     }
     if(isBitSet(b.bPawn, i)){
-        return blackPawn;
+        result = blackPawn;
+        resultCount++;
     }
     if(isBitSet(b.bBishop, i)){
-        return blackBishop;
+        result = blackBishop;
+        resultCount++;
     }
     if(isBitSet(b.bKnight, i)){
-        return blackKnight;
+        result = blackKnight;
+        resultCount++;
     }
     if(isBitSet(b.bRook, i)){
-        return blackRook;
+        result = blackRook;
+        resultCount++;
     }
     if(isBitSet(b.bQueen, i)){
-        return blackQueen;
+        result = blackQueen;
+        resultCount++;
     }
     if(isBitSet(b.bKing, i)){
-        return blackKing;
+        result = blackKing;
+        resultCount++;
     }
-    return empty;
+    if(i == 54){
+            printf("%d\n", resultCount);
+    }
+    //assert(resultCount == 1);
+
+    //resultCount++;
+
+    return result;
 }
 
 T_chessboard *toIntArray(T_boardState b){

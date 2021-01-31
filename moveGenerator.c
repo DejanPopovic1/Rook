@@ -156,7 +156,8 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     if(!isPosWhite(b, lastPos)){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
         if(isPosBlack(b, lastPos)){
-            removeOpponent(dst->bs[(dst->fi) - 1], lastPos);
+                printf("Last Pos: %d\n", lastPos);
+            removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
         }
     }
 }
