@@ -127,9 +127,6 @@ void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboa
     clearBit(stateMember(&cpy, piece), n);
     addState(dst, &cpy);
     clearBit(validMoves, validMove);
-//    if(n == 34){
-//    printTBitboard(cpy.wBishop);
-//    }
 }
 
 //Define northERLY vs southERLY - this will greatly enhance readability!!
@@ -140,13 +137,6 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
     int firstPos;
     firstPos = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(intersect) : BITBOARD_SIZE - 1 - __builtin_clzll(intersect));
     T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
-//    if(n == 34){
-//        printf("FirstPos = %d\n", firstPos);
-//        printTBitboard(ray);
-//        printTBitboard(intersect);
-//        printTBitboard(intersectRay);
-//        printTBitboard(ray ^ intersectRay);
-//    }
     return (ray ^ intersectRay);
 }
 
@@ -156,9 +146,6 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     int lastPos;
     pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
     int i;
-//    if(n == 34){
-//        printTBitboard(pseudoValidMoves);
-//    }
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
     }
@@ -166,11 +153,10 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
         return;
     }
     lastPos = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(pseudoValidMoves));
-    //lastPos = __builtin_ctzll(pseudoValidMoves);
     if(!isPosWhite(b, lastPos)){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
         if(isPosBlack(b, lastPos)){
-            removeOpponent(b, lastPos);
+            removeOpponent(dst->bs[(dst->fi) - 1], lastPos);
         }
     }
 }
@@ -179,10 +165,10 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
-    genDirStates(dst, b, n, rays, southEast);
     genDirStates(dst, b, n, rays, northEast);
-    genDirStates(dst, b, n, rays, northWest);
+    genDirStates(dst, b, n, rays, southEast);
     genDirStates(dst, b, n, rays, southWest);
+    genDirStates(dst, b, n, rays, northWest);
 
 }
 
