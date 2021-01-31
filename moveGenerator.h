@@ -4,7 +4,7 @@
 enum Directions{north, northEast, east, southEast, south, southWest, west, northWest};
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays);
-void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays);
+void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays);
 bool isUpEmpty(const T_boardState *b, int n);
 bool isUpUpEmpty(const T_boardState *b, int n);
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
