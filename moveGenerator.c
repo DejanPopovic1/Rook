@@ -4,6 +4,7 @@
 #include <assert.h>
 #include "GlobalDeclarations.h"
 
+//Use MovePiece function to simplify statements
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
     int n;
@@ -20,7 +21,6 @@ bool isNortherlyOrEast(int direction){
         return true;
     }
     return false;
-
 }
 
 bool isUpEmpty(const T_boardState *b, int n){
@@ -140,22 +140,21 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
 }
 
 //Refactor out quiete vs attacking moves
-void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction){
+void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
     T_bitboard pseudoValidMoves;
     int lastPos;
     pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
     int i;
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
+        genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
     }
     if(!pseudoValidMoves){
         return;
     }
     lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(pseudoValidMoves));
     if(!isPosWhite(b, lastPos)){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
+        genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
         if(isPosBlack(b, lastPos)){
-                printf("Last Pos: %d\n", lastPos);
             removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
         }
     }
@@ -164,10 +163,10 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    genDirStates(dst, b, n, rays, northEast);
-    genDirStates(dst, b, n, rays, southEast);
-    genDirStates(dst, b, n, rays, southWest);
-    genDirStates(dst, b, n, rays, northWest);
+    genDirStates(dst, b, n, rays, northEast, whiteBishop);
+    genDirStates(dst, b, n, rays, southEast, whiteBishop);
+    genDirStates(dst, b, n, rays, southWest, whiteBishop);
+    genDirStates(dst, b, n, rays, northWest, whiteBishop);
 }
 
 void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
