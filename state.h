@@ -5,6 +5,7 @@
 //Find a theoretical maximum of the following value:
 #define MAX_SUCC_STATES 100
 #define BITBOARD_SIZE 64
+#define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
 
 #include <stdint.h>
 #include <stdbool.h>
