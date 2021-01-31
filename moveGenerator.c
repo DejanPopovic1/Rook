@@ -194,7 +194,7 @@ void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, in
         case whiteRook:
             return &genWRookSuccStates;
         case whiteQueen:
-            return &genWBishopSuccStates;
+            return &genWQueenSuccStates;
         case whiteKing:
             return &genWBishopSuccStates;
         case blackPawn:
@@ -225,8 +225,15 @@ void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     genDirStates(dst, b, n, rays, west, whiteRook);
 }
 
-void genWQueenSuccStates(T_boardState c, T_boardStates *ss){
-
+void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    genDirStates(dst, b, n, rays, north, whiteQueen);
+    genDirStates(dst, b, n, rays, northEast, whiteQueen);
+    genDirStates(dst, b, n, rays, east, whiteQueen);
+    genDirStates(dst, b, n, rays, southEast, whiteQueen);
+    genDirStates(dst, b, n, rays, south, whiteQueen);
+    genDirStates(dst, b, n, rays, southWest, whiteQueen);
+    genDirStates(dst, b, n, rays, west, whiteQueen);
+    genDirStates(dst, b, n, rays, northWest, whiteQueen);
 }
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
