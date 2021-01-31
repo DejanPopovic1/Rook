@@ -5,6 +5,7 @@
 #include "GlobalDeclarations.h"
 
 //Use MovePiece function to simplify statements
+//see if more state functions can come in here so they may be inlined
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
     int n;
@@ -169,8 +170,9 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     genDirStates(dst, b, n, rays, northWest, whiteBishop);
 }
 
-void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
-    T_bitboard i = b->wBishop;
+void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
+    T_bitboard i = *(stateMember(b, piece));
+    //T_bitboard i = b->wBishop;
     int n;
     int maxIt = __builtin_popcountll(i);
     for(int j = 0; j < maxIt; j++){
