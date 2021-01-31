@@ -15,13 +15,13 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     }
 }
 
-//bool isNortherly(int direction){
-//    if(){
-//
-//    }
-//    return false;
-//
-//}
+bool isNortherlyOrEast(int direction){
+    if(direction == northEast || direction == north || direction == northWest || direction == east){
+        return true;
+    }
+    return false;
+
+}
 
 bool isUpEmpty(const T_boardState *b, int n){
     if(isPosEmpty(b, n + 8)){
@@ -120,7 +120,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 
 //Copy and paste these for other pieces
 void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
-    int validMove = ((direction == northEast || direction == north || direction == northWest || direction == east) ? __builtin_ctzll(*validMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(*validMoves));
+    int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
     setBit(stateMember(&cpy, piece), validMove);
     clearBit(stateMember(&cpy, piece), n);
@@ -134,7 +134,7 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
     int firstPos;
-    firstPos = ((direction == northEast || direction == north || direction == northWest || direction == east) ? __builtin_ctzll(intersect) : BITBOARD_SIZE - 1 - __builtin_clzll(intersect));
+    firstPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(intersect) : BITBOARD_SIZE - 1 - __builtin_clzll(intersect));
     T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
     return (ray ^ intersectRay);
 }
@@ -151,7 +151,7 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     if(!pseudoValidMoves){
         return;
     }
-    lastPos = ((direction == northEast || direction == north || direction == northWest || direction == east) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(pseudoValidMoves));
+    lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(pseudoValidMoves));
     if(!isPosWhite(b, lastPos)){
         genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
         if(isPosBlack(b, lastPos)){
