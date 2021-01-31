@@ -1,10 +1,16 @@
-Todo List:
+Todo List once V.basic programm works
 
-1. Add a function encodeChessBoard() which returns an encoded board of your choice.
-2. Redo applicable actions based on this recording
-3. Play the computer which randomises these legal moves
-4. Incorporate Minimax algorithm
 
+Redo applicable actions based on this recording
+Play the computer which randomises these legal moves
+Incorporate Minimax algorithm
+
+make UCI compatible
+make front end compatible
+Makefile and build instructions for MS aswell
+address all comments above various functions
+Refactor codebase
+Use C++ in select areas
 move inline .asm to .asm file(s)
 Move functions to their correct files. E.g. most functions move to state.c
 Inline the important move generation functions

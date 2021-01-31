@@ -14,8 +14,14 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
         clearBit(&i, n);
     }
 }
-
-
+//
+//bool isNortherly(int direction){
+//    if(){
+//
+//    }
+//    return false;
+//
+//}
 
 bool isUpEmpty(const T_boardState *b, int n){
     if(isPosEmpty(b, n + 8)){
@@ -113,35 +119,56 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 }
 
 //Copy and paste these for other pieces
-void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece){
-    int validMove = __builtin_ctzll(*validMoves);
+void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
+    int validMove = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(*validMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(*validMoves));
+    //int validMove = __builtin_ctzll(*validMoves);
     T_boardState cpy = *b;
     setBit(stateMember(&cpy, piece), validMove);
     clearBit(stateMember(&cpy, piece), n);
     addState(dst, &cpy);
     clearBit(validMoves, validMove);
+//    if(n == 34){
+//    printTBitboard(cpy.wBishop);
+//    }
 }
 
+//Define northERLY vs southERLY - this will greatly enhance readability!!
 T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
     T_bitboard blocker = bAll(b) | wAll(b);
     T_bitboard intersect = ray & blocker;
     int firstPos;
-    firstPos = (direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(intersect) : __builtin_clzll(intersect);
+    firstPos = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(intersect) : BITBOARD_SIZE - 1 - __builtin_clzll(intersect));
     T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
+//    if(n == 34){
+//        printf("FirstPos = %d\n", firstPos);
+//        printTBitboard(ray);
+//        printTBitboard(intersect);
+//        printTBitboard(intersectRay);
+//        printTBitboard(ray ^ intersectRay);
+//    }
     return (ray ^ intersectRay);
 }
 
+//Refactor out quiete vs attacking moves
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction){
     T_bitboard pseudoValidMoves;
     int lastPos;
     pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
-    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+    int i;
+//    if(n == 34){
+//        printTBitboard(pseudoValidMoves);
+//    }
+    for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
+        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
     }
-    lastPos = __builtin_ctzll(pseudoValidMoves);
+    if(!pseudoValidMoves){
+        return;
+    }
+    lastPos = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(pseudoValidMoves));
+    //lastPos = __builtin_ctzll(pseudoValidMoves);
     if(!isPosWhite(b, lastPos)){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
+        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop, direction);
         if(isPosBlack(b, lastPos)){
             removeOpponent(b, lastPos);
         }
@@ -152,41 +179,10 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //UP RIGHT
+    genDirStates(dst, b, n, rays, southEast);
     genDirStates(dst, b, n, rays, northEast);
-    //genDirStates(dst, b, n, rays, southEast);
     genDirStates(dst, b, n, rays, northWest);
-    //genDirStates(dst, b, n, rays, northWest);
-
-    //UP LEFT
-//    pseudoValidMoves = genPseudoValidMoves(b, n, northWest, rays);
-//    printTBitboard(pseudoValidMoves);
-//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
-//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
-//    }
-//    lastPos = __builtin_ctzll(pseudoValidMoves);
-//    if(!isPosWhite(b, lastPos)){
-//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
-//        if(isPosBlack(b, lastPos)){
-//            removeOpponent(b, lastPos);
-//        }
-//    }
-
-
-
-    //DOWN RIGHT
-//    pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
-//    printf("%d\n", pseudoValidMoves);
-//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) != 1; i++){
-//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
-//    }
-//    lastPos = __builtin_clzll(pseudoValidMoves);
-//    if(!isPosWhite(b, lastPos)){
-//        genIterSuccState(dst, b, n, &pseudoValidMoves, whiteBishop);
-//        if(isPosBlack(b, lastPos)){
-//            removeOpponent(b, lastPos);
-//        }
-//    }
-
+    genDirStates(dst, b, n, rays, southWest);
 
 }
 

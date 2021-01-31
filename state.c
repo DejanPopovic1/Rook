@@ -210,6 +210,8 @@ void initialiseWBishops(T_bitboard *result){
     setBit(result, 5);
     setBit(result, 18);
     setBit(result, 21);
+    setBit(result, 31);
+    setBit(result, 34);
 }
 
 void initialiseWKnights(T_bitboard *result){
