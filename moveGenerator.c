@@ -175,10 +175,43 @@ void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     //T_bitboard i = b->wBishop;
     int n;
     int maxIt = __builtin_popcountll(i);
+    void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
     for(int j = 0; j < maxIt; j++){
         n = __builtin_ctzll(i);
-        genWBishopSuccStates(dst, b, n, rays);
+        genPtr = returnGenerator(piece);
+        (*genPtr)(dst, b, n, rays);
         clearBit(&i, n);
+    }
+}
+
+void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    switch(piece){
+        case whitePawn:
+            return &genWBishopSuccStates;
+        case whiteBishop:
+            return &genWBishopSuccStates;
+        case whiteKnight:
+            return &genWBishopSuccStates;
+        case whiteRook:
+            return &genWBishopSuccStates;
+        case whiteQueen:
+            return &genWBishopSuccStates;
+        case whiteKing:
+            return &genWBishopSuccStates;
+        case blackPawn:
+            return &genWBishopSuccStates;
+        case blackBishop:
+            return &genWBishopSuccStates;
+        case blackKnight:
+            return &genWBishopSuccStates;
+        case blackRook:
+            return &genWBishopSuccStates;
+        case blackQueen:
+            return &genWBishopSuccStates;
+        case blackKing:
+            return &genWBishopSuccStates;
+        default:
+            assert(false);
     }
 }
 

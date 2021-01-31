@@ -3,6 +3,8 @@
 
 enum Directions{north, northEast, east, southEast, south, southWest, west, northWest};
 
+
+void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays);
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece);
 bool isUpEmpty(const T_boardState *b, int n);
