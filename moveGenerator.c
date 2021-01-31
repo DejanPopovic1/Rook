@@ -192,7 +192,7 @@ void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, in
         case whiteKnight:
             return &genWBishopSuccStates;
         case whiteRook:
-            return &genWBishopSuccStates;
+            return &genWRookSuccStates;
         case whiteQueen:
             return &genWBishopSuccStates;
         case whiteKing:
@@ -218,8 +218,11 @@ void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
     //Generate Pawn Moves
 }
 
-void genWRookSuccStates(T_boardState c, T_boardStates *ss){
-
+void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    genDirStates(dst, b, n, rays, north, whiteRook);
+    genDirStates(dst, b, n, rays, east, whiteRook);
+    genDirStates(dst, b, n, rays, south, whiteRook);
+    genDirStates(dst, b, n, rays, west, whiteRook);
 }
 
 void genWQueenSuccStates(T_boardState c, T_boardStates *ss){
