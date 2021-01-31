@@ -121,7 +121,6 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 //Copy and paste these for other pieces
 void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
     int validMove = ((direction == northEast || direction == north || direction == northWest) ? __builtin_ctzll(*validMoves) : BITBOARD_SIZE - 1 - __builtin_clzll(*validMoves));
-    //int validMove = __builtin_ctzll(*validMoves);
     T_boardState cpy = *b;
     setBit(stateMember(&cpy, piece), validMove);
     clearBit(stateMember(&cpy, piece), n);
@@ -165,12 +164,10 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    //UP RIGHT
     genDirStates(dst, b, n, rays, northEast);
     genDirStates(dst, b, n, rays, southEast);
     genDirStates(dst, b, n, rays, southWest);
     genDirStates(dst, b, n, rays, northWest);
-
 }
 
 void genWBishopsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){

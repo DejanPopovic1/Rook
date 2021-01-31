@@ -70,8 +70,6 @@ bool castNW(int *index){
 }
 
 T_bitboard castRay(int(*castDir)(),int index){
-    //T_bitboard *result = malloc(sizeof(T_bitboard));
-    //*result = 0;
     T_bitboard result = 0;
     while((*castDir)(&index)){
         setBit(&result, index);
@@ -80,8 +78,6 @@ T_bitboard castRay(int(*castDir)(),int index){
 }
 
 T_bitboard castIntersectionRay(int(*castDir)(),int index){
-    //T_bitboard *result = malloc(sizeof(T_bitboard));
-    //*result = 0;
     T_bitboard result = 0;
     setBit(&result, index);
     while((*castDir)(&index)){
@@ -91,7 +87,6 @@ T_bitboard castIntersectionRay(int(*castDir)(),int index){
 }
 
 T_bitboard *castRays(bool (*castDir)(int*)){
-    //T_bitboard result [BITBOARD_SIZE];
     T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         result[i] = castRay(castDir, i);
@@ -99,24 +94,15 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
-//simplify by removing nR, neR, etc...
 T_bitboard** createRays(){
     T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
-    T_bitboard *nR = castRays(&castN);
-    T_bitboard *neR = castRays(&castNE);
-    T_bitboard *eR = castRays(&castE);
-    T_bitboard *seR = castRays(&castSE);
-    T_bitboard *sR = castRays(&castS);
-    T_bitboard *swR = castRays(&castSW);
-    T_bitboard *wR = castRays(&castW);
-    T_bitboard *nwR = castRays(&castNW);
-    rays[0] = nR;
-    rays[1] = neR;
-    rays[2] = eR;
-    rays[3] = seR;
-    rays[4] = sR;
-    rays[5] = swR;
-    rays[6] = wR;
-    rays[7] = nwR;
+    rays[0] = castRays(&castN);
+    rays[1] = castRays(&castNE);
+    rays[2] = castRays(&castE);
+    rays[3] = castRays(&castSE);
+    rays[4] = castRays(&castS);
+    rays[5] = castRays(&castSW);
+    rays[6] = castRays(&castW);
+    rays[7] = castRays(&castNW);
     return rays;
 }
