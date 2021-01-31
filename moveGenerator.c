@@ -172,7 +172,6 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
     T_bitboard i = *(stateMember(b, piece));
-    //T_bitboard i = b->wBishop;
     int n;
     int maxIt = __builtin_popcountll(i);
     void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);

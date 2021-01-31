@@ -224,11 +224,13 @@ void initialiseWRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 0);
     setBit(result, 7);
+    setBit(result, 41);
 }
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 3);
+    setBit(result, 40);
 }
 
 void initialiseWKing(T_bitboard *result){
