@@ -117,7 +117,7 @@
 	<stdint.h>
 	<stdbool.h>
 
-1612021400 source:c:\c_c++ code\rook\generateslidemoves.c
+1612062555 source:c:\c_c++ code\rook\generateslidemoves.c
 	"generateSlideMoves.h"
 	"state.h"
 	<stdint.h>
@@ -162,7 +162,7 @@
 	"state.h"
 	<stdbool.h>
 
-1612061357 source:c:\c_c++ code\rook\movegenerator.c
+1612063243 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 	"bitUtilities.h"
