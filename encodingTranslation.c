@@ -56,13 +56,7 @@ int whatIsPiece(T_boardState b, int i){
         result = blackKing;
         resultCount++;
     }
-    if(i == 54){
-            printf("%d\n", resultCount);
-    }
-    //assert(resultCount == 1);
-
-    //resultCount++;
-
+    assert(resultCount < 2);
     return result;
 }
 
