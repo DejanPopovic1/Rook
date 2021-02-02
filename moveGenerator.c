@@ -190,12 +190,23 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 //rather create the **rays here instead of passing it into functions
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
         T_bitboard** rays = createRays();
-        genPiecesSuccStates(dst, b, rays, whitePawn);
-        genPiecesSuccStates(dst, b, rays, whiteBishop);
-        //genPiecesSuccStates(dst, b, rays, whiteKnight);
-        genPiecesSuccStates(dst, b, rays, whiteRook);
-        genPiecesSuccStates(dst, b, rays, whiteQueen);
-        //genPiecesSuccStates(dst, b, rays, whiteKing);
+        if(!b->whosTurn){
+            genPiecesSuccStates(dst, b, rays, whitePawn);
+            genPiecesSuccStates(dst, b, rays, whiteBishop);
+            //genPiecesSuccStates(dst, b, rays, whiteKnight);
+            genPiecesSuccStates(dst, b, rays, whiteRook);
+            genPiecesSuccStates(dst, b, rays, whiteQueen);
+            //genPiecesSuccStates(dst, b, rays, whiteKing);
+        }
+        else{
+                ;
+            //genPiecesSuccStates(dst, b, rays, blackPawn);
+            //genPiecesSuccStates(dst, b, rays, blackBishop);
+            //genPiecesSuccStates(dst, b, rays, blackKnight);
+            //genPiecesSuccStates(dst, b, rays, blackRook);
+            //genPiecesSuccStates(dst, b, rays, blackQueen);
+            //genPiecesSuccStates(dst, b, rays, blackKing);
+        }
 }
 
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
