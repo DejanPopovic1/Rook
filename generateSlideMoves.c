@@ -77,7 +77,7 @@ T_bitboard castRay(int(*castDir)(),int index){
     return result;
 }
 
-T_bitboard castIntersectionRay(int(*castDir)(),int index){
+T_bitboard castIntersectionRay(int(*castDir)(), int index){
     T_bitboard result = 0;
     setBit(&result, index);
     while((*castDir)(&index)){
@@ -94,6 +94,7 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
+//Enumerate directions 0 - 7
 T_bitboard** createRays(){
     T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
     rays[0] = castRays(&castN);
@@ -105,4 +106,17 @@ T_bitboard** createRays(){
     rays[6] = castRays(&castW);
     rays[7] = castRays(&castNW);
     return rays;
+}
+
+//Enumerate directions 0 - 7
+T_bitboard** createJumps(){
+    T_bitboard **jumps = malloc(8 * sizeof(T_bitboard*));
+//    jumps[0] = castJumps(&castN);
+//    jumps[1] = castJumps(&castNE);
+//    jumps[2] = castJumps(&castE);
+//    jumps[3] = castJumps(&castSE);
+//    jumps[4] = castJumps(&castS);
+//    jumps[5] = castJumps(&castSW);
+//    jumps[6] = castJumps(&castW);
+//    jumps[7] = castJumps(&castNW);
 }

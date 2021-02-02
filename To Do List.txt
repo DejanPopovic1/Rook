@@ -5,6 +5,10 @@ Redo applicable actions based on this recording
 Play the computer which randomises these legal moves
 Incorporate Minimax algorithm
 
+
+genQuieteMoves and genAttackMoves
+Use one function to generate all piece moves and general genSuccStates optimisation
+
 make UCI compatible
 make front end compatible
 Makefile and build instructions for MS aswell
