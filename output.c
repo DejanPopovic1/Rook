@@ -22,15 +22,16 @@ void printState(T_boardState b){
     T_chessboard *c = toIntArray(b);
     printBoard(whosTurn(b.ply), *c);
     printf("Ply: %d\n", b.ply);
-    if(whosTurn(b.ply) == whiteTurn){
-        printf("Whites Turn\n");
-    }
-    else if(whosTurn(b.ply) == blackTurn){
-        printf("Blacks Turn\n");
-    }
-    else{
-        assert(false);
-    }
+    (!b.whosTurn) ? printf("Whites TurnTest\n") : printf("Blacks TurnTest\n");
+//    if(whosTurn(b.ply) == whiteTurn){
+//        printf("Whites Turn\n");
+//    }
+//    else if(whosTurn(b.ply) == blackTurn){
+//        printf("Blacks Turn\n");
+//    }
+//    else{
+//        assert(false);
+//    }
     printf("State of white en Passants: ");
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
     printf("State of white castling: ");
