@@ -61,6 +61,14 @@ bool cast7(int *index){
     return true;
 }
 
+bool cast8(int *index){
+    *index += 15;
+    if(*index > 63 || !((*index + 1) % 8)){
+        return false;
+    }
+    return true;
+}
+
 bool castN(int *index){
     *index += 8;
     if(*index > 63){
