@@ -158,13 +158,13 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
-//T_bitboard *castJumps(bool (*castDir)(int*)){
-//    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
-//    for(int i = 0; i < BITBOARD_SIZE; i++){
-//        result[i] = castRay(castDir, i);
-//    }
-//    return result;
-//}
+T_bitboard *castJumps(bool (*castDir)(int*)){
+    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    for(int i = 0; i < BITBOARD_SIZE; i++){
+        result[i] = castJump(castDir, i);
+    }
+    return result;
+}
 
 //Enumerate directions 0 - 7
 T_bitboard** createRays(){
