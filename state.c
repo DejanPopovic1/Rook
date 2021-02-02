@@ -191,7 +191,8 @@ T_boardState initialiseBoardState(){
     initialiseBKing(&(result.bKing));
     initialiseWEnPassants(&(result.wEnPassants));
     initialiseBEnPassants(&(result.bEnPassants));
-    initialiseCastles(&result);
+    initialiseCastlesAndTurn(&result);
+    //initialiseWhosTurn(&(result.whosTurn));
     initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
     initialisePreviousStates(&(result.ps));
     initialisePly(&(result.ply));
@@ -280,15 +281,21 @@ void initialiseBEnPassants(char *c){
     clearCharBits(c);
 }
 
-void initialiseCastles(T_boardState *b){
+void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesBlack = 7;
     b->castlesWhite = 7;
+    b->whosTurn = 0;
     //setCharBits(b->castlesWhite);
 }
 
 void initialiseNoCapturesOrPawnMoves(char *c){
     *c = 0;
 }
+
+//void initialiseWhosTurn(&(result.whosTurn)){
+//
+//
+//}
 
 //Need to add in this functionality later
 void initialisePreviousStates(struct PrevStates **ps){

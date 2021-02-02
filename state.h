@@ -38,6 +38,7 @@ struct BoardState{
     unsigned char bEnPassants;
     unsigned char castlesWhite : 3;//First bit set if L castle moved. Second R castle moved. Third King moved
     unsigned char castlesBlack : 3;//First bit set if L castle moved. Second R castle moved. Third King moved
+    unsigned char whosTurn : 1; //0 Indicates white and 1 indicates black move
     unsigned char noCapturesOrPawnMoves;
     struct PrevStates *ps;
     unsigned short ply;
