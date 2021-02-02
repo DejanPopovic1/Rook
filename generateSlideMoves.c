@@ -183,12 +183,12 @@ T_bitboard** createRays(){
 //Enumerate directions 0 - 7
 T_bitboard** createJumps(){
     T_bitboard **jumps = malloc(8 * sizeof(T_bitboard*));
-//    jumps[0] = castJumps(&cast1);
-//    jumps[1] = castJumps(&cast2);
-//    jumps[2] = castJumps(&cast3);
-//    jumps[3] = castJumps(&castS4);
-//    jumps[4] = castJumps(&cast5);
-//    jumps[5] = castJumps(&cast6);
-//    jumps[6] = castJumps(&cast7);
-//    jumps[7] = castJumps(&cast8);
+    jumps[0] = castJumps(&cast1);
+    jumps[1] = castJumps(&cast2);
+    jumps[2] = castJumps(&cast3);
+    jumps[3] = castJumps(&cast4);
+    jumps[4] = castJumps(&cast5);
+    jumps[5] = castJumps(&cast6);
+    jumps[6] = castJumps(&cast7);
+    jumps[7] = castJumps(&cast8);
 }
