@@ -188,7 +188,8 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 }
 
 //rather create the **rays here instead of passing it into functions
-void genSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
+void genSuccStates(T_boardStates *dst, const T_boardState *b){
+        T_bitboard** rays = createRays();
         genPiecesSuccStates(dst, b, rays, whitePawn);
         genPiecesSuccStates(dst, b, rays, whiteBishop);
         //genPiecesSuccStates(dst, b, rays, whiteKnight);
