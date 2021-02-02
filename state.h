@@ -6,6 +6,7 @@
 #define MAX_SUCC_STATES 100
 #define BITBOARD_SIZE 64
 #define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
+#define NUM_PIECE_TYPES 12
 
 #include <stdint.h>
 #include <stdbool.h>

@@ -161,7 +161,7 @@ bool isPosInSecondLastColumn(int n){
 }
 
 void addState(T_boardStates *dst, const T_boardState *src){
-    dst->bs[dst->fi] = *src;
+    (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
     //printState(*src);
 }

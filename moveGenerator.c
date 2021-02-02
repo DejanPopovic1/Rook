@@ -129,7 +129,6 @@ void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboa
     clearBit(validMoves, validMove);
 }
 
-//Define northERLY vs southERLY - this will greatly enhance readability!!
 T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
     T_bitboard blocker = bAll(b) | wAll(b);
@@ -170,54 +169,6 @@ void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     genDirStates(dst, b, n, rays, northWest, whiteBishop);
 }
 
-void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
-    T_bitboard i = *(stateMember(b, piece));
-    int n;
-    int maxIt = __builtin_popcountll(i);
-    void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
-    for(int j = 0; j < maxIt; j++){
-        n = __builtin_ctzll(i);
-        genPtr = returnGenerator(piece);
-        (*genPtr)(dst, b, n, rays);
-        clearBit(&i, n);
-    }
-}
-
-void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    switch(piece){
-        case whitePawn:
-            return &genWBishopSuccStates;
-        case whiteBishop:
-            return &genWBishopSuccStates;
-        case whiteKnight:
-            return &genWBishopSuccStates;
-        case whiteRook:
-            return &genWRookSuccStates;
-        case whiteQueen:
-            return &genWQueenSuccStates;
-        case whiteKing:
-            return &genWBishopSuccStates;
-        case blackPawn:
-            return &genWBishopSuccStates;
-        case blackBishop:
-            return &genWBishopSuccStates;
-        case blackKnight:
-            return &genWBishopSuccStates;
-        case blackRook:
-            return &genWBishopSuccStates;
-        case blackQueen:
-            return &genWBishopSuccStates;
-        case blackKing:
-            return &genWBishopSuccStates;
-        default:
-            assert(false);
-    }
-}
-
-void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
-    //Generate Pawn Moves
-}
-
 void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     genDirStates(dst, b, n, rays, north, whiteRook);
     genDirStates(dst, b, n, rays, east, whiteRook);
@@ -235,6 +186,67 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
     genDirStates(dst, b, n, rays, west, whiteQueen);
     genDirStates(dst, b, n, rays, northWest, whiteQueen);
 }
+
+//rather create the **rays here instead of passing it into functions
+void genSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
+        genPiecesSuccStates(dst, b, rays, whitePawn);
+        genPiecesSuccStates(dst, b, rays, whiteBishop);
+        //genPiecesSuccStates(dst, b, rays, whiteKnight);
+        genPiecesSuccStates(dst, b, rays, whiteRook);
+        genPiecesSuccStates(dst, b, rays, whiteQueen);
+        //genPiecesSuccStates(dst, b, rays, whiteKing);
+}
+
+void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
+    T_bitboard i = *(stateMember(b, piece));
+    int n;
+    int maxIt = __builtin_popcountll(i);
+    void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
+
+        for(int j = 0; j < maxIt; j++){
+            n = __builtin_ctzll(i);
+            genPtr = returnGenerator(piece);
+            (*genPtr)(dst, b, n, rays);
+            clearBit(&i, n);
+        }
+}
+
+void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    switch(piece){
+        case whitePawn:
+            return &genWPawnSuccStates;
+        case whiteBishop:
+            return &genWBishopSuccStates;
+        case whiteKnight:
+            return &genWKnightSuccStates;
+        case whiteRook:
+            return &genWRookSuccStates;
+        case whiteQueen:
+            return &genWQueenSuccStates;
+        case whiteKing:
+            return &genWKingSuccStates;
+//        case blackPawn:
+//            return &genWBishopSuccStates;
+//        case blackBishop:
+//            return &genWBishopSuccStates;
+//        case blackKnight:
+//            return &genWBishopSuccStates;
+//        case blackRook:
+//            return &genWBishopSuccStates;
+//        case blackQueen:
+//            return &genWBishopSuccStates;
+//        case blackKing:
+//            return &genWBishopSuccStates;
+        default:
+            assert(false);
+    }
+}
+
+void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
+    //Generate Pawn Moves
+}
+
+
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
 
