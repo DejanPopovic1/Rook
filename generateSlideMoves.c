@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "output.h"
 
+//Remove returning bools from the jump casts
 bool cast1(int *index){
     *index += 17;
     if(*index > 63 || !(*index % 8)){
@@ -133,11 +134,19 @@ bool castNW(int *index){
     return true;
 }
 
+//CHANGE ARGUMENT TO bool (*castDir)(int*)
 T_bitboard castRay(int(*castDir)(),int index){
     T_bitboard result = 0;
     while((*castDir)(&index)){
         setBit(&result, index);
     }
+    return result;
+}
+
+T_bitboard castJump(bool(*castDir)(int*),int index){
+    T_bitboard result = 0;
+    (*castDir)(&index);
+    setBit(&result, index);
     return result;
 }
 
@@ -149,13 +158,13 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
-T_bitboard *castJumps(bool (*castDir)(int*)){
-    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
-    for(int i = 0; i < BITBOARD_SIZE; i++){
-        result[i] = castRay(castDir, i);
-    }
-    return result;
-}
+//T_bitboard *castJumps(bool (*castDir)(int*)){
+//    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+//    for(int i = 0; i < BITBOARD_SIZE; i++){
+//        result[i] = castRay(castDir, i);
+//    }
+//    return result;
+//}
 
 //Enumerate directions 0 - 7
 T_bitboard** createRays(){
