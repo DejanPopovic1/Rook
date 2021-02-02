@@ -5,6 +5,14 @@
 #include <stdlib.h>
 #include "output.h"
 
+bool cast1(int *index){
+    *index += 17;
+    if(*index > 63 || !(*index % 8)){
+        return false;
+    }
+    return true;
+}
+
 bool castN(int *index){
     *index += 8;
     if(*index > 63){
@@ -94,6 +102,14 @@ T_bitboard *castRays(bool (*castDir)(int*)){
     return result;
 }
 
+T_bitboard *castJumps(bool (*castDir)(int*)){
+    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    for(int i = 0; i < BITBOARD_SIZE; i++){
+        result[i] = castRay(castDir, i);
+    }
+    return result;
+}
+
 //Enumerate directions 0 - 7
 T_bitboard** createRays(){
     T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
@@ -111,12 +127,12 @@ T_bitboard** createRays(){
 //Enumerate directions 0 - 7
 T_bitboard** createJumps(){
     T_bitboard **jumps = malloc(8 * sizeof(T_bitboard*));
-//    jumps[0] = castJumps(&castN);
-//    jumps[1] = castJumps(&castNE);
-//    jumps[2] = castJumps(&castE);
-//    jumps[3] = castJumps(&castSE);
-//    jumps[4] = castJumps(&castS);
-//    jumps[5] = castJumps(&castSW);
-//    jumps[6] = castJumps(&castW);
-//    jumps[7] = castJumps(&castNW);
+//    jumps[0] = castJumps(&cast1);
+//    jumps[1] = castJumps(&cast2);
+//    jumps[2] = castJumps(&cast3);
+//    jumps[3] = castJumps(&castS4);
+//    jumps[4] = castJumps(&cast5);
+//    jumps[5] = castJumps(&cast6);
+//    jumps[6] = castJumps(&cast7);
+//    jumps[7] = castJumps(&cast8);
 }
