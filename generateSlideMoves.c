@@ -134,6 +134,13 @@ bool castNW(int *index){
     return true;
 }
 
+T_bitboard castStep(int(*castDir)(),int index){
+    T_bitboard result = 0;
+    (*castDir)(&index);
+    setBit(&result, index);
+    return result;
+}
+
 //CHANGE ARGUMENT TO bool (*castDir)(int*)
 T_bitboard castRay(int(*castDir)(),int index){
     T_bitboard result = 0;
@@ -147,6 +154,14 @@ T_bitboard castJump(bool(*castDir)(int*),int index){
     T_bitboard result = 0;
     if((*castDir)(&index)){
         setBit(&result, index);
+    }
+    return result;
+}
+
+T_bitboard *castSteps(bool (*castDir)(int*)){
+    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    for(int i = 0; i < BITBOARD_SIZE; i++){
+        result[i] = castStep(castDir, i);
     }
     return result;
 }
@@ -178,6 +193,19 @@ T_bitboard** createRays(){
     rays[5] = castRays(&castSW);
     rays[6] = castRays(&castW);
     rays[7] = castRays(&castNW);
+    return rays;
+}
+
+T_bitboard** createSteps(){
+    T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
+    rays[0] = castSteps(&castN);
+    rays[1] = castSteps(&castNE);
+    rays[2] = castSteps(&castE);
+    rays[3] = castSteps(&castSE);
+    rays[4] = castSteps(&castS);
+    rays[5] = castSteps(&castSW);
+    rays[6] = castSteps(&castW);
+    rays[7] = castSteps(&castNW);
     return rays;
 }
 
