@@ -316,21 +316,18 @@ void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, in
 }
 
 void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **jumps){
-    //Generate Pawn Moves
     T_boardState cpy = *b;
-//    for(int i = 0; i < __builtin_popcountll(jumps[][]); i++){
-//        moveAndAttack(&cpy, )
-//    }
+    int j;
+    for(int i = 0; i < 8; i++){
+        j =  __builtin_ctzll(jumps[i][n]);
+        T_boardState cpy = *b;
+        printf("\n\n%d\n\n", j);
+        //moveAndAttack(&cpy, j, n, whiteKnight);
+        //moveAndAttack()
+        addState(dst, &cpy);
+    }
     printTBitboard(jumps[5][1]);
-
-//    rays[direction][n];
-//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
-//
-//    }
-    addState(dst, &cpy);
 }
-
-
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
 

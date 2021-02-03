@@ -16,7 +16,7 @@ bool cast1(int *index){
 
 bool cast2(int *index){
     *index += 10;
-    if(*index > 63 || !((*index - 1) % 8)){
+    if(*index > 63 || !((*index) % 8) || !((*index - 1) % 8)){
         return false;
     }
     return true;
@@ -24,7 +24,7 @@ bool cast2(int *index){
 
 bool cast3(int *index){
     *index -= 6;
-    if(*index < 0 || !((*index - 1) % 8)){
+    if(*index < 0 || !((*index) % 8) || !((*index - 1) % 8)){
         return false;
     }
     return true;
@@ -48,7 +48,7 @@ bool cast5(int *index){
 
 bool cast6(int *index){
     *index -= 10;
-    if(*index < 0 || !((*index + 2) % 8)){
+    if(*index < 0 || !((*index + 1) % 8) || !((*index + 2) % 8)){
         return false;
     }
     return true;
@@ -56,7 +56,7 @@ bool cast6(int *index){
 
 bool cast7(int *index){
     *index += 6;
-    if(*index > 63 || !((*index + 2) % 8)){
+    if(*index > 63 || !((*index + 1) % 8) || !((*index + 2) % 8)){
         return false;
     }
     return true;
