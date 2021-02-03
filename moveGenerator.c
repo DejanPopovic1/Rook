@@ -50,28 +50,19 @@ T_bitboard *stateMember(T_boardState *b, int piece){
     }
 }
 
-//Not attacking. Piece is a redundant piece of info that is supplied for efficiency purposes
+//Piece is a redundant piece of info that is supplied for efficiency purposes
 //Cannot inline isWhitePiece so maybe replicate function here
 void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     T_bitboard oppPieces = (isWhitePiece(piece)) ? bAll(b) : wAll(b);
     T_bitboard movingPiece = 0;
     setBit(&movingPiece, dst);
+    T_bitboard *sm = (*stateMember)(b, piece);
+    clearBit(sm, src);
+    setBit(sm, dst);
     if(movingPiece & oppPieces){
-        T_bitboard *sm = (*stateMember)(b, piece);
-        clearBit(sm, src);
-        setBit(sm, dst);
         clearPosition(b, src);
     }
-    else{
-        T_bitboard *sm = (*stateMember)(b, piece);
-        clearBit(sm, src);
-        setBit(sm, dst);
-    }
 }
-
-//attacking
-
-
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
