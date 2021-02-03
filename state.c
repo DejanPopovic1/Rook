@@ -187,6 +187,7 @@ void initialiseWKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 1);
     setBit(result, 6);
+        setBit(result, 46);
 }
 
 void initialiseWRooks(T_bitboard *result){
