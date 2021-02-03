@@ -7,6 +7,20 @@
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
 
+bool isWhitePiece(int pieceValue){
+    if(pieceValue > 0 && pieceValue < 7){
+        return true;
+    }
+    return false;
+}
+
+bool isBlackPiece(int pieceValue){
+    if(pieceValue > 6 && pieceValue < 13){
+        return true;
+    }
+    return false;
+}
+
 T_bitboard *stateMember(T_boardState *b, int piece){
     switch(piece){
     case whitePawn:
@@ -337,9 +351,22 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     }
 }
 
-void genWKingSuccStates(T_boardState c, T_boardStates *ss){
-    T_bitboard **a = createSteps();
-
+//This is an almost replica to the function above. Merge into one possibly through using function pointer
+void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **steps){
+    T_boardState cpy = *b;
+    int j;
+    T_bitboard test;
+    for(int i = 0; i < 8; i++){
+        j =  __builtin_ctzll(steps[i][n]);
+        test = 0;
+        setBit(&test, j);
+        if(test & wAll(b)){
+            continue;
+        }
+        T_boardState cpy = *b;
+        moveAndAttack(&cpy, j, n, whiteKing);
+        addState(dst, &cpy);
+    }
 }
 
 void genBPawnSuccStates(T_boardState c, T_boardStates *ss){

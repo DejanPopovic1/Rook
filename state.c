@@ -206,6 +206,7 @@ void initialiseWQueen(T_bitboard *result){
 void initialiseWKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 4);
+        setBit(result, 26);
 }
 
 //Initialise white in this same way

@@ -9,19 +9,19 @@
 
 //MOVEMENTS "UP", "DOWN", "LEFT" AND "RIGHT" ARE RELATIVE TO AN APPLICABLE COLOUR
 
-bool isWhitePiece(int pieceValue){
-    if(pieceValue > 0 && pieceValue < 7){
-        return true;
-    }
-    return false;
-}
-
-bool isBlackPiece(int pieceValue){
-    if(pieceValue > 6 && pieceValue < 13){
-        return true;
-    }
-    return false;
-}
+//bool isWhitePiece(int pieceValue){
+//    if(pieceValue > 0 && pieceValue < 7){
+//        return true;
+//    }
+//    return false;
+//}
+//
+//bool isBlackPiece(int pieceValue){
+//    if(pieceValue > 6 && pieceValue < 13){
+//        return true;
+//    }
+//    return false;
+//}
 
 bool isWhite(T_chessboard chessboard, int rank, int file){
     return isWhitePiece(chessboard[rank][file]);
