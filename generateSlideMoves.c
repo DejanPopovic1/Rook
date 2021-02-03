@@ -145,8 +145,9 @@ T_bitboard castRay(int(*castDir)(),int index){
 
 T_bitboard castJump(bool(*castDir)(int*),int index){
     T_bitboard result = 0;
-    (*castDir)(&index);
-    setBit(&result, index);
+    if((*castDir)(&index)){
+        setBit(&result, index);
+    }
     return result;
 }
 
@@ -191,4 +192,5 @@ T_bitboard** createJumps(){
     jumps[5] = castJumps(&cast6);
     jumps[6] = castJumps(&cast7);
     jumps[7] = castJumps(&cast8);
+    return jumps;
 }
