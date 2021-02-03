@@ -99,6 +99,7 @@ bool isUpUpEmpty(const T_boardState *b, int n){
 }
 
 //factor out specific moves once all moveGenerations complete
+//Use generateSlideMoves() to codify these moves
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //MOVE UP
     if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
@@ -259,7 +260,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, jumps, whiteKnight);
             genPiecesSuccStates(dst, b, rays, whiteRook);
             genPiecesSuccStates(dst, b, rays, whiteQueen);
-            //genPiecesSuccStates(dst, b, rays, whiteKing);
+            genPiecesSuccStates(dst, b, rays, whiteKing);
         }
         else{
                 ;
@@ -335,6 +336,7 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 }
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
+    T_bitboard **a =  createSteps();
 
 }
 
