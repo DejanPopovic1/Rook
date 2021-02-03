@@ -252,6 +252,8 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
+        T_bitboard **steps = createSteps();
+
         if(!b->whosTurn){
 
 
@@ -260,7 +262,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, jumps, whiteKnight);
             genPiecesSuccStates(dst, b, rays, whiteRook);
             genPiecesSuccStates(dst, b, rays, whiteQueen);
-            genPiecesSuccStates(dst, b, rays, whiteKing);
+            genPiecesSuccStates(dst, b, steps, whiteKing);
         }
         else{
                 ;
@@ -336,7 +338,7 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 }
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
-    T_bitboard **a =  createSteps();
+    T_bitboard **a = createSteps();
 
 }
 
