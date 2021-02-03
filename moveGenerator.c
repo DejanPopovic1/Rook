@@ -6,6 +6,59 @@
 
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
+
+T_bitboard *stateMember(T_boardState *b, int piece){
+    switch(piece){
+    case whitePawn:
+        return &(b->wPawn);
+        break;
+    case whiteBishop:
+        return &(b->wBishop);
+        break;
+    case whiteKnight:
+        return &(b->wKnight);
+        break;
+    case whiteRook:
+        return &(b->wRook);
+        break;
+    case whiteQueen:
+        return &(b->wQueen);
+        break;
+    case whiteKing:
+        return &(b->wKing);
+        break;
+    case blackPawn:
+        return &(b->bPawn);
+        break;
+    case blackBishop:
+        return &(b->bBishop);
+        break;
+    case blackKnight:
+        return &(b->bKnight);
+        break;
+    case blackRook:
+        return &(b->bRook);
+        break;
+    case blackQueen:
+        return &(b->bQueen);
+        break;
+    case blackKing:
+        return &(b->bKing);
+        break;
+    default:
+        assert(false);
+    }
+}
+
+//Not attacking
+void movePiece(T_boardState *b, int dst, int src, int piece){
+    T_bitboard *structMember = (*stateMember)(b, piece);
+    setBit(structMember, dst);
+    clearBit(structMember, src);
+}
+
+
+
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
     T_bitboard i = b->wPawn;
     int n;
@@ -191,9 +244,11 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
         T_bitboard** rays = createRays();
         if(!b->whosTurn){
+
+
             genPiecesSuccStates(dst, b, rays, whitePawn);
             genPiecesSuccStates(dst, b, rays, whiteBishop);
-            //genPiecesSuccStates(dst, b, rays, whiteKnight);
+            genPiecesSuccStates(dst, b, rays, whiteKnight);
             genPiecesSuccStates(dst, b, rays, whiteRook);
             genPiecesSuccStates(dst, b, rays, whiteQueen);
             //genPiecesSuccStates(dst, b, rays, whiteKing);
@@ -254,8 +309,15 @@ void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, in
     }
 }
 
-void genWKnightSuccStates(T_boardState c, T_boardStates *ss){
+void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //Generate Pawn Moves
+    T_boardState cpy = *b;
+
+//    rays[direction][n];
+//    for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
+//
+//    }
+    addState(dst, &cpy);
 }
 
 
