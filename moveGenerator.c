@@ -7,6 +7,7 @@
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
 
+//for efficiency, just test less than 7
 bool isWhitePiece(int pieceValue){
     if(pieceValue > 0 && pieceValue < 7){
         return true;
@@ -14,8 +15,32 @@ bool isWhitePiece(int pieceValue){
     return false;
 }
 
+//for efficiency just test greater than 6
 bool isBlackPiece(int pieceValue){
     if(pieceValue > 6 && pieceValue < 13){
+        return true;
+    }
+    return false;
+}
+
+//Enumerate the direction
+//Do a logical test of less than a certain number to establish truth rather than 4 OR statements. To enable this the enumerations must be designed cleverly
+bool isNortherlyOrEast(int direction){
+    if(direction == northEast || direction == north || direction == northWest || direction == east){
+        return true;
+    }
+    return false;
+}
+
+bool isUpEmpty(const T_boardState *b, int n){
+    if(isPosEmpty(b, n + 8)){
+        return true;
+    }
+    return false;
+}
+
+bool isUpUpEmpty(const T_boardState *b, int n){
+    if(isPosEmpty(b, n + 8) && isPosEmpty(b, n + 16)){
         return true;
     }
     return false;
@@ -65,8 +90,7 @@ T_bitboard *stateMember(T_boardState *b, int piece){
 }
 
 //Piece is a redundant piece of info that is supplied for efficiency purposes
-//Cannot inline isWhitePiece so maybe replicate function here
-//First make sure destination does not contain same colour
+//First make sure destination does not contain same colour before calling this function
 void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     T_bitboard movingPiece = 0;
     setBit(&movingPiece, dst);
@@ -89,27 +113,6 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
         genWPawnSuccStates(dst, b, n, rays);
         clearBit(&i, n);
     }
-}
-
-bool isNortherlyOrEast(int direction){
-    if(direction == northEast || direction == north || direction == northWest || direction == east){
-        return true;
-    }
-    return false;
-}
-
-bool isUpEmpty(const T_boardState *b, int n){
-    if(isPosEmpty(b, n + 8)){
-        return true;
-    }
-    return false;
-}
-
-bool isUpUpEmpty(const T_boardState *b, int n){
-    if(isPosEmpty(b, n + 8) && isPosEmpty(b, n + 16)){
-        return true;
-    }
-    return false;
 }
 
 //factor out specific moves once all moveGenerations complete
@@ -262,15 +265,12 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
     genDirStates(dst, b, n, rays, northWest, whiteQueen);
 }
 
-//rather create the **rays here instead of passing it into functions
+//I change my mind. Rather pass in rays, jumps and steps but this time pass it as a single data structure called movementRules. The file that generates this should be renamed movementRules
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
         T_bitboard **steps = createSteps();
-
         if(!b->whosTurn){
-
-
             genPiecesSuccStates(dst, b, rays, whitePawn);
             genPiecesSuccStates(dst, b, rays, whiteBishop);
             genPiecesSuccStates(dst, b, jumps, whiteKnight);
@@ -279,7 +279,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, steps, whiteKing);
         }
         else{
-                ;
+            ;
             //genPiecesSuccStates(dst, b, rays, blackPawn);
             //genPiecesSuccStates(dst, b, rays, blackBishop);
             //genPiecesSuccStates(dst, b, rays, blackKnight);
@@ -294,13 +294,12 @@ void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     int n;
     int maxIt = __builtin_popcountll(i);
     void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
-
-        for(int j = 0; j < maxIt; j++){
-            n = __builtin_ctzll(i);
-            genPtr = returnGenerator(piece);
-            (*genPtr)(dst, b, n, rays);
-            clearBit(&i, n);
-        }
+    for(int j = 0; j < maxIt; j++){
+        n = __builtin_ctzll(i);
+        genPtr = returnGenerator(piece);
+        (*genPtr)(dst, b, n, rays);
+        clearBit(&i, n);
+    }
 }
 
 void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
