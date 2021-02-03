@@ -60,10 +60,10 @@ void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     T_bitboard oppPieces = (x) ? bAll(b) : wAll(b);
     T_bitboard *sm = (*stateMember)(b, piece);
     clearBit(sm, src);
-    setBit(sm, dst);
     if(movingPiece & oppPieces){
-        clearPosition(b, src);
+        clearPosition(b, dst);
     }
+    setBit(sm, dst);
 }
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){

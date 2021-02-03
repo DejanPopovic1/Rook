@@ -208,11 +208,18 @@ void initialiseWKing(T_bitboard *result){
     setBit(result, 4);
 }
 
+//Initialise white in this same way
 void initialiseBPawns(T_bitboard *result){
     clearBits(result);
-    for(int i = 48; i <= 55; i++){
-        setBit(result, i);
-    }
+    setBit(result, 48);
+    setBit(result, 49);
+    setBit(result, 50);
+    setBit(result, 51);
+    setBit(result, 52);
+    setBit(result, 53);
+    setBit(result, 54);
+    setBit(result, 55);
+
 }
 void initialiseBBishops(T_bitboard *result){
     clearBits(result);
