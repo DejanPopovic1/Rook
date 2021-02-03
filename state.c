@@ -5,6 +5,8 @@
 #include "bitUtilities.h"
 #include "assert.h"
 
+
+//bAll and wAll might need to be done immediately after a state generatioin and saved as a state
 T_bitboard wAll(const T_boardState *b){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
     return or;
@@ -15,6 +17,22 @@ T_bitboard bAll(const T_boardState *b){
     //printf("Testing: \n");
     //printTBitboard(or);
     return or;
+}
+
+//King will never be cleared so can remove it
+void clearPosition(T_boardState *b, char pos){
+    clearBit(b->wPawn, pos);
+    clearBit(b->wBishop, pos);
+    clearBit(b->wKnight, pos);
+    clearBit(b->wRook, pos);
+    clearBit(b->wQueen, pos);
+    clearBit(b->wKing, pos);
+    clearBit(b->bPawn, pos);
+    clearBit(b->bBishop, pos);
+    clearBit(b->bKnight, pos);
+    clearBit(b->bRook, pos);
+    clearBit(b->bQueen, pos);
+    clearBit(b->bKing, pos);
 }
 
 void removeOpponent(T_boardState *b, int pos){
