@@ -323,27 +323,15 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
     T_bitboard test;
     for(int i = 0; i < 8; i++){
         j =  __builtin_ctzll(jumps[i][n]);
-        //printf("\n\n%d\n\n", j);
-        //printTBitboard(wAll(b));
         test = 0;
         setBit(&test, j);
         if(test & wAll(b)){
-//            printTBitboard(wAll(b));
-//            T_bitboard test = 0;
-//            setBit(&test, n);
-//            printTBitboard(test);
-//            printTBitboard(test & wAll(b));
-//            printf("\n\n");
             continue;
         }
         T_boardState cpy = *b;
-        //printf("\n\n%d\n\n", j);
-        //FIX BUG!
-        //printTBitboard(*b);
         moveAndAttack(&cpy, j, n, whiteKnight);
         addState(dst, &cpy);
     }
-    //printTBitboard(jumps[5][1]);
 }
 
 void genWKingSuccStates(T_boardState c, T_boardStates *ss){
