@@ -247,13 +247,14 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 
 //rather create the **rays here instead of passing it into functions
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
-        T_bitboard** rays = createRays();
+        T_bitboard **rays = createRays();
+        T_bitboard **jumps = createJumps();
         if(!b->whosTurn){
 
 
             genPiecesSuccStates(dst, b, rays, whitePawn);
             genPiecesSuccStates(dst, b, rays, whiteBishop);
-            genPiecesSuccStates(dst, b, rays, whiteKnight);
+            genPiecesSuccStates(dst, b, jumps, whiteKnight);
             genPiecesSuccStates(dst, b, rays, whiteRook);
             genPiecesSuccStates(dst, b, rays, whiteQueen);
             //genPiecesSuccStates(dst, b, rays, whiteKing);
@@ -317,6 +318,7 @@ void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, in
 void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //Generate Pawn Moves
     T_boardState cpy = *b;
+
 
 //    rays[direction][n];
 //    for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
