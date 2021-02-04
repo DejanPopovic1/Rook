@@ -1,8 +1,7 @@
-#include "generateSlideMoves.h"
-#include "state.h"
-#include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "moveRules.h"
+#include "state.h"
 #include "output.h"
 
 //Remove returning bools from the jump casts
