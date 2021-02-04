@@ -169,11 +169,14 @@
 	<assert.h>
 	"GlobalDeclarations.h"
 
-1612466327 source:c:\c_c++ code\rook\moverules.c
-	"generateSlideMoves.h"
-	"state.h"
-	<stdint.h>
+1612467697 source:c:\c_c++ code\rook\moverules.c
 	<stdbool.h>
 	<stdlib.h>
+	"moveRules.h"
+	"state.h"
 	"output.h"
+
+1612467697 c:\c_c++ code\rook\moverules.h
+	<stdbool.h>
+	"state.h"
 

@@ -1,5 +1,8 @@
-#include "state.h"
+#ifndef MOVEGENERATION_H
+#define MOVEGENERATION_H
+
 #include <stdbool.h>
+#include "state.h"
 
 enum Directions{north, northEast, east, southEast, south, southWest, west, northWest};
 
@@ -29,3 +32,5 @@ void genBKnightSuccStates(T_boardState c, T_boardStates *ss);
 void genBRookSuccStates(T_boardState c, T_boardStates *ss);
 void genBQueenSuccStates(T_boardState c, T_boardStates *ss);
 void genBKingSuccStates(T_boardState c, T_boardStates *ss);
+
+#endif // MOVEGENERATION_H

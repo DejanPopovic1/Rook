@@ -1,7 +1,7 @@
-#include "state.h"
-#include "moveGenerator.h"
-#include "bitUtilities.h"
 #include <assert.h>
+#include "moveGeneration.h"
+#include "state.h"
+#include "bitUtilities.h"
 #include "GlobalDeclarations.h"
 
 //Use MovePiece function to simplify statements
