@@ -136,8 +136,10 @@ bool castNW(int *index){
 
 T_bitboard castStep(int(*castDir)(),int index){
     T_bitboard result = 0;
-    (*castDir)(&index);
-    setBit(&result, index);
+    //(*castDir)(&index);
+    if((*castDir)(&index)){
+        setBit(&result, index);
+    }
     return result;
 }
 
@@ -197,16 +199,16 @@ T_bitboard** createRays(){
 }
 
 T_bitboard** createSteps(){
-    T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
-    rays[0] = castSteps(&castN);
-    rays[1] = castSteps(&castNE);
-    rays[2] = castSteps(&castE);
-    rays[3] = castSteps(&castSE);
-    rays[4] = castSteps(&castS);
-    rays[5] = castSteps(&castSW);
-    rays[6] = castSteps(&castW);
-    rays[7] = castSteps(&castNW);
-    return rays;
+    T_bitboard **steps = malloc(8 * sizeof(T_bitboard*));
+    steps[0] = castSteps(&castN);
+    steps[1] = castSteps(&castNE);
+    steps[2] = castSteps(&castE);
+    steps[3] = castSteps(&castSE);
+    steps[4] = castSteps(&castS);
+    steps[5] = castSteps(&castSW);
+    steps[6] = castSteps(&castW);
+    steps[7] = castSteps(&castNW);
+    return steps;
 }
 
 //Enumerate directions 0 - 7

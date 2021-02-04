@@ -351,7 +351,17 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 }
 
 //This is an almost replica to the function above. Merge into one possibly through using function pointer
+//wAll and bAll is calculated numerous times - perhaps it should be stored in state or passed throughout
 void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **steps){
+    //printTBitboard(steps[0][26]);
+    //printTBitboard(steps[1][26]);
+//    printTBitboard(steps[2][26]);
+//    printTBitboard(steps[3][26]);
+//    printTBitboard(steps[4][26]);
+//    printTBitboard(steps[5][26]);
+//    printTBitboard(steps[6][26]);
+//    printTBitboard(steps[7][26]);
+
     T_boardState cpy = *b;
     int j;
     T_bitboard test;
@@ -359,6 +369,7 @@ void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
         j =  __builtin_ctzll(steps[i][n]);
         test = 0;
         setBit(&test, j);
+        //printTBitboard(test);
         if(test & wAll(b)){
             continue;
         }
