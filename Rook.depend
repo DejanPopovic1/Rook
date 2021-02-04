@@ -162,10 +162,18 @@
 	"state.h"
 	<stdbool.h>
 
-1612465929 source:c:\c_c++ code\rook\movegenerator.c
+1612466718 source:c:\c_c++ code\rook\movegenerator.c
 	"state.h"
 	"moveGenerator.h"
 	"bitUtilities.h"
 	<assert.h>
 	"GlobalDeclarations.h"
+
+1612466327 source:c:\c_c++ code\rook\moverules.c
+	"generateSlideMoves.h"
+	"state.h"
+	<stdint.h>
+	<stdbool.h>
+	<stdlib.h>
+	"output.h"
 

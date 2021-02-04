@@ -47,10 +47,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="encodingTranslation.h" />
-		<Unit filename="generateSlideMoves.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="generateSlideMoves.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -58,10 +54,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="moveGenerator.h" />
-		<Unit filename="movementRules.c">
+		<Unit filename="moveRules.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="movementRules.h" />
+		<Unit filename="moveRules.h" />
 		<Unit filename="output.c">
 			<Option compilerVar="CC" />
 		</Unit>

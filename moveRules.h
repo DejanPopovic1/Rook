@@ -1,5 +1,5 @@
-#ifndef GENERATESLIDEMOVES_H
-#define GENERATESLIDEMOVES_H
+#ifndef MOVERULES_H
+#define MOVERULES_H
 
 #include "state.h"
 #include "stdbool.h"
@@ -17,4 +17,4 @@ T_bitboard *castRays(bool (*castDir)(int*));
 T_bitboard** createRays();
 
 
-#endif // GENERATESLIDEMOVES_H
+#endif // MOVERULES_H

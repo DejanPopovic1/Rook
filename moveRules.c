@@ -136,7 +136,6 @@ bool castNW(int *index){
 
 T_bitboard castStep(int(*castDir)(),int index){
     T_bitboard result = 0;
-    //(*castDir)(&index);
     if((*castDir)(&index)){
         setBit(&result, index);
     }
