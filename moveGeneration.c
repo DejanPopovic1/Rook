@@ -326,11 +326,9 @@ void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     T_bitboard i = *(stateMember(b, piece));
     int n;
     int maxIt = __builtin_popcountll(i);
-    void (*genPtr)(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
     for(int j = 0; j < maxIt; j++){
         n = __builtin_ctzll(i);
-        genPtr = returnGenerator(piece);
-        (*genPtr)(dst, b, n, rays);
+        (*returnGenerator(piece))(dst, b, n, rays);
         clearBit(&i, n);
     }
 }
