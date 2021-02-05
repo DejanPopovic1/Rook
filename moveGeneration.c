@@ -243,27 +243,23 @@ void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboa
 
 T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
-    T_bitboard blocker = bAll(b) | wAll(b);
-    T_bitboard intersect = ray & blocker;
-    int firstPos;
-    firstPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(intersect) : BITBOARD_INDEX_SIZE - __builtin_clzll(intersect));
-    T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstPos];
+    T_bitboard occupancyBoard = bAll(b) | wAll(b);
+    T_bitboard intersect = ray & occupancyBoard;
+    int firstBlocker = (isNortherlyOrEast(direction) ? __builtin_ctzll(intersect) : BITBOARD_INDEX_SIZE - __builtin_clzll(intersect));
+    T_bitboard intersectRay = (!intersect) ? 0 : rays[direction][firstBlocker];
     return (ray ^ intersectRay);
 }
 
 //Refactor out quiete vs attacking moves
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
-    T_bitboard pseudoValidMoves;
-    int lastPos;
-    pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
-    int i;
+    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
     for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
         genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
     }
     if(!pseudoValidMoves){
         return;
     }
-    lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(pseudoValidMoves));
+    int lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(pseudoValidMoves));
     if(!isPosWhite(b, lastPos)){
         genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
         if(isPosBlack(b, lastPos)){
@@ -275,6 +271,13 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
+//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
+//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, southWest, rays);
+//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northWest, rays);
+
+
+
     genDirStates(dst, b, n, rays, northEast, whiteBishop);
     genDirStates(dst, b, n, rays, southEast, whiteBishop);
     genDirStates(dst, b, n, rays, southWest, whiteBishop);
@@ -324,51 +327,9 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
 
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
     T_bitboard allPieces = *(stateMember(b, piece));
-    //int n;
-    //int maxIt = __builtin_popcountll(i);
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), rays);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
-    }
-
-
-
-
-//    for(int j = 0; j < maxIt; j++){
-//        n = __builtin_ctzll(i);
-//        (*genPieceSuccStates(piece))(dst, b, n, rays);
-//        clearBit(&i, n);
-//    }
-}
-
-void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    switch(piece){
-        case whitePawn:
-            return &genWPawnSuccStates;
-        case whiteBishop:
-            return &genWBishopSuccStates;
-        case whiteKnight:
-            return &genWKnightSuccStates;
-        case whiteRook:
-            return &genWRookSuccStates;
-        case whiteQueen:
-            return &genWQueenSuccStates;
-        case whiteKing:
-            return &genWKingSuccStates;
-//        case blackPawn:
-//            return &genWBishopSuccStates;
-//        case blackBishop:
-//            return &genWBishopSuccStates;
-//        case blackKnight:
-//            return &genWBishopSuccStates;
-//        case blackRook:
-//            return &genWBishopSuccStates;
-//        case blackQueen:
-//            return &genWBishopSuccStates;
-//        case blackKing:
-//            return &genWBishopSuccStates;
-        default:
-            assert(false);
     }
 }
 
@@ -432,4 +393,35 @@ void genBQueenSuccStates(T_boardState c, T_boardStates *ss){
 void genBKingSuccStates(T_boardState c, T_boardStates *ss){
 
 
+}
+
+void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    switch(piece){
+        case whitePawn:
+            return &genWPawnSuccStates;
+        case whiteBishop:
+            return &genWBishopSuccStates;
+        case whiteKnight:
+            return &genWKnightSuccStates;
+        case whiteRook:
+            return &genWRookSuccStates;
+        case whiteQueen:
+            return &genWQueenSuccStates;
+        case whiteKing:
+            return &genWKingSuccStates;
+//        case blackPawn:
+//            return &genWBishopSuccStates;
+//        case blackBishop:
+//            return &genWBishopSuccStates;
+//        case blackKnight:
+//            return &genWBishopSuccStates;
+//        case blackRook:
+//            return &genWBishopSuccStates;
+//        case blackQueen:
+//            return &genWBishopSuccStates;
+//        case blackKing:
+//            return &genWBishopSuccStates;
+        default:
+            assert(false);
+    }
 }
