@@ -72,11 +72,11 @@ T_bitboard createSecondLastColumnMask(){
     return result;
 }
 
-void setBit(T_bitboard *number, int n){
+void setBit1(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
 }
 
-void clearBit(T_bitboard *number, int n){
+void clearBit1(T_bitboard *number, int n){
     *number &= ~(1ULL << n);
 }
 
@@ -111,7 +111,7 @@ void toggleBit(T_bitboard *number, int n){
     *number ^= 1UL << n;
 }
 
-T_bitboard checkBit(T_bitboard number, int n){
-    return (number >> n) & 1ULL;
-}
+//T_bitboard checkBit(T_bitboard number, int n){
+//    return (number >> n) & 1ULL;
+//}
 //#endif

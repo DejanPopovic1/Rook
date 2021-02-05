@@ -1,11 +1,22 @@
 #include <assert.h>
 #include "moveGeneration.h"
 #include "state.h"
-#include "bitUtilities.h"
 #include "GlobalDeclarations.h"
 
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
+
+void setBit(T_bitboard *number, int n){
+    *number ^= (-1ULL ^ *number) & (1ULL << n);
+}
+
+void clearBit(T_bitboard *number, int n){
+    *number &= ~(1ULL << n);
+}
+
+T_bitboard checkBit(T_bitboard number, int n){
+    return (number >> n) & 1ULL;
+}
 
 //for efficiency, just test less than 7
 bool isWhitePiece(int pieceValue){
@@ -44,6 +55,23 @@ bool isUpUpEmpty(const T_boardState *b, int n){
         return true;
     }
     return false;
+}
+
+//King will never be cleared so can remove it
+//Is there benefit to testing whether there was a bit and then clearing it and then avoiding the rest of the clearing of bits?
+void clearPosition(T_boardState *b, char pos){
+    clearBit(&(b->wPawn), pos);
+    clearBit(&(b->wBishop), pos);
+    clearBit(&(b->wKnight), pos);
+    clearBit(&(b->wRook), pos);
+    clearBit(&(b->wQueen), pos);
+    clearBit(&(b->wKing), pos);
+    clearBit(&(b->bPawn), pos);
+    clearBit(&(b->bBishop), pos);
+    clearBit(&(b->bKnight), pos);
+    clearBit(&(b->bRook), pos);
+    clearBit(&(b->bQueen), pos);
+    clearBit(&(b->bKing), pos);
 }
 
 T_bitboard *stateMember(T_boardState *b, int piece){
@@ -92,16 +120,13 @@ T_bitboard *stateMember(T_boardState *b, int piece){
 //Piece is a redundant piece of info that is supplied for efficiency purposes
 //First make sure destination does not contain same colour before calling this function
 void moveAndAttack(T_boardState *b, char dst, char src, char piece){
-    T_bitboard movingPiece = 0;
-    setBit(&movingPiece, dst);
-    bool x = isWhitePiece(piece);
-    T_bitboard oppPieces = (x) ? bAll(b) : wAll(b);
+    T_bitboard oppPieces = isWhitePiece(piece) ? bAll(b) : wAll(b);
     T_bitboard *sm = (*stateMember)(b, piece);
     clearBit(sm, src);
-    if(movingPiece & oppPieces){
+    setBit(sm, dst);
+    if(checkBit(oppPieces, dst)){
         clearPosition(b, dst);
     }
-    setBit(sm, dst);
 }
 
 void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
@@ -265,7 +290,6 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
     genDirStates(dst, b, n, rays, northWest, whiteQueen);
 }
 
-//I change my mind. Rather pass in rays, jumps and steps but this time pass it as a single data structure called movementRules. The file that generates this should be renamed movementRules
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
