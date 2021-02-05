@@ -235,8 +235,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
     int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
-    setBit(stateMember(&cpy, piece), validMove);
-    clearBit(stateMember(&cpy, piece), n);
+    move(&cpy, validMove, n, piece);
     addState(dst, &cpy);
     clearBit(validMoves, validMove);
 }
