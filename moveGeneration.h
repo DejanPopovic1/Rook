@@ -23,7 +23,7 @@ void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genSuccStates(T_boardStates *dst, const T_boardState *b);
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece);
-void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
+void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **jumps);
 void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **steps);
 void genBPawnSuccStates(T_boardState c, T_boardStates *ss);

@@ -328,12 +328,12 @@ void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     int maxIt = __builtin_popcountll(i);
     for(int j = 0; j < maxIt; j++){
         n = __builtin_ctzll(i);
-        (*returnGenerator(piece))(dst, b, n, rays);
+        (*genPieceSuccStates(piece))(dst, b, n, rays);
         clearBit(&i, n);
     }
 }
 
-void (*returnGenerator(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     switch(piece){
         case whitePawn:
             return &genWPawnSuccStates;
