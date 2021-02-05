@@ -127,6 +127,7 @@ T_bitboard *stateMember(T_boardState *b, int piece){
 
 //Piece is a redundant piece of info that is supplied for efficiency purposes
 //First make sure destination does not contain same colour before calling this function
+//When calling this function, we dont know if the move also constitutes an attack
 void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     T_bitboard oppPieces = isWhitePiece(piece) ? bAll(b) : wAll(b);
     T_bitboard *sm = (*stateMember)(b, piece);
@@ -137,14 +138,12 @@ void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     }
 }
 
+//Piece is a redundant piece of info that is supplied for efficiency purposes
+//When calling this function, we know the move does not constitute an attack
 void move(T_boardState *b, char dst, char src, char piece){
-    T_bitboard oppPieces = isWhitePiece(piece) ? bAll(b) : wAll(b);
     T_bitboard *sm = (*stateMember)(b, piece);
     clearBit(sm, src);
     setBit(sm, dst);
-    if(checkBit(oppPieces, dst)){
-        clearPosition(b, dst);
-    }
 }
 
 //factor out specific moves once all moveGenerations complete
@@ -153,15 +152,17 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     //MOVE UP
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
-        setBit(&(cpy.wPawn), n + 8);
-        clearBit(&(cpy.wPawn), n);
+        move(&cpy, n + 8, n, whitePawn);
+        //setBit(&(cpy.wPawn), n + 8);
+        //clearBit(&(cpy.wPawn), n);
         addState(dst, &cpy);
     }
     //MOVE UP UP
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
-        setBit(&(cpy.wPawn), n + 16);
-        clearBit(&(cpy.wPawn), n);
+        move(&cpy, n + 16, n, whitePawn);
+        //setBit(&(cpy.wPawn), n + 16);
+        //clearBit(&(cpy.wPawn), n);
         setBit(&(cpy.wEnPassants), n - 8);
         addState(dst, &cpy);
     }
