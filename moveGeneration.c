@@ -34,6 +34,40 @@ bool isBlackPiece(int pieceValue){
     return false;
 }
 
+bool isPosSameSide(T_boardState *b, int n){
+    if(!b->whosTurn){
+        T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+        if(isBitSet(or, n)){
+            return true;
+        }
+        return false;
+    }
+    else{
+        T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+        if(isBitSet(or, n)){
+            return true;
+        }
+        return false;
+    }
+}
+
+bool isPosWhite(T_boardState *b, int n){
+    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+    if(isBitSet(or, n)){
+        return true;
+    }
+    return false;
+}
+
+bool isPosBlack(T_boardState *b, int n){
+    T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    if(isBitSet(or, n)){
+        return true;
+    }
+    return false;
+}
+
+
 //Test only one condition
 bool isSecondLastRank(int n){
     if(n <= 55 && n >= 48){
@@ -250,7 +284,7 @@ T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bit
 }
 
 //Refactor out quiete vs attacking moves
-//This function wont work for black unless you have a function called OPPOSING_COLOUR instead of isPosBlack. Or, pass function pointer
+//This function wont work for black unless you have a function called OPPOSING_COLOUR instead of isPosBlack. Or, pass function pointer. Better yet, use info in state.
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
     T_bitboard mb = moveBoardDir(b, n, direction, rays);
     if(!mb){
@@ -260,17 +294,18 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
         genMoves(dst, b, n, &mb, piece, direction);
     }
     int lastPos = BITBOARD_INDEX_SIZE - __builtin_clzll(mb);
-    if(isPosWhite(b, lastPos)){
+    if(isPosSameSide(b, lastPos)){
         return;
     }
-    if(!isPosWhite(b, lastPos)){
-
-
-
-        genMoves(dst, b, n, &mb, piece, direction);
-        if(isPosBlack(b, lastPos)){
-            removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
-        }
+    else if(isPosEmpty(b, lastPos)){
+        T_boardState cpy = *b;
+        move(&cpy, lastPos, n, piece);
+        addState(dst, &cpy);
+    }
+    else{
+        T_boardState cpy = *b;
+        moveAndAttack(&cpy, lastPos, n, piece);
+        addState(dst, &cpy);
     }
 }
 
