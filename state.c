@@ -105,12 +105,7 @@ bool isPosEmpty(const T_boardState *b, int n){
     return false;
 }
 
-bool isPosInSecondLastColumn(int n){
-    if(n <= 55 && n >= 48){
-        return true;
-    }
-    return false;
-}
+
 
 void addState(T_boardStates *dst, const T_boardState *src){
     (dst->bs)[dst->fi] = *src;

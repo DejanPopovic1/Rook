@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "toAlgebraicNotation.h"
 #include "movementRules.h"
-#include "moveGenerator.h"
+#include "moveGeneration.h"
 #include "bitUtilities.h"
 
 void mainPrompt();

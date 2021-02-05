@@ -34,6 +34,14 @@ bool isBlackPiece(int pieceValue){
     return false;
 }
 
+//Test only one condition
+bool isSecondLastRank(int n){
+    if(n <= 55 && n >= 48){
+        return true;
+    }
+    return false;
+}
+
 //Enumerate the direction
 //Do a logical test of less than a certain number to establish truth rather than 4 OR statements. To enable this the enumerations must be designed cleverly
 bool isNortherlyOrEast(int direction){
@@ -129,14 +137,13 @@ void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     }
 }
 
-void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays){
-    T_bitboard i = b->wPawn;
-    int n;
-    int maxIt = numOfSetBits(i);
-    for(int j = 0; j < maxIt; j++){
-        n = bitScanForward(i);
-        genWPawnSuccStates(dst, b, n, rays);
-        clearBit(&i, n);
+void move(T_boardState *b, char dst, char src, char piece){
+    T_bitboard oppPieces = isWhitePiece(piece) ? bAll(b) : wAll(b);
+    T_bitboard *sm = (*stateMember)(b, piece);
+    clearBit(sm, src);
+    setBit(sm, dst);
+    if(checkBit(oppPieces, dst)){
+        clearPosition(b, dst);
     }
 }
 
@@ -144,14 +151,14 @@ void genWPawnsSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
 //Use generateSlideMoves() to codify these moves
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
     //MOVE UP
-    if(isUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+    if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 8);
         clearBit(&(cpy.wPawn), n);
         addState(dst, &cpy);
     }
     //MOVE UP UP
-    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isPosInSecondLastColumn(n)){
+    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         setBit(&(cpy.wPawn), n + 16);
         clearBit(&(cpy.wPawn), n);

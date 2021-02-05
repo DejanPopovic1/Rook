@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "state.h"
-#include "generateSlideMoves.h"
+#include "moveRules.h"
 
 void TESTprintBitboard(){
     T_bitboard a = 5;
