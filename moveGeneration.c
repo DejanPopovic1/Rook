@@ -232,7 +232,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 }
 
 //Copy and paste these for other pieces
-void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
+void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
     int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
     setBit(stateMember(&cpy, piece), validMove);
@@ -257,12 +257,11 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
         return;
     }
     while(__builtin_popcountll(mb) > 1){
-        genIterSuccState(dst, b, n, &mb, piece, direction);
+        genMoves(dst, b, n, &mb, piece, direction);
     }
-
     int lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(mb) : BITBOARD_INDEX_SIZE - __builtin_clzll(mb));
-    if(!isPosWhite(b, lastPos)){
-        genIterSuccState(dst, b, n, &mb, piece, direction);
+    if(isPosBlack(b, lastPos)){
+        genMoves(dst, b, n, &mb, piece, direction);
         if(isPosBlack(b, lastPos)){
             removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
         }
