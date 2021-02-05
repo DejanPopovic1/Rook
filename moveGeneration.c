@@ -67,19 +67,23 @@ bool isUpUpEmpty(const T_boardState *b, int n){
 
 //King will never be cleared so can remove it
 //Is there benefit to testing whether there was a bit and then clearing it and then avoiding the rest of the clearing of bits?
-void clearPosition(T_boardState *b, char pos){
-    clearBit(&(b->wPawn), pos);
-    clearBit(&(b->wBishop), pos);
-    clearBit(&(b->wKnight), pos);
-    clearBit(&(b->wRook), pos);
-    clearBit(&(b->wQueen), pos);
-    clearBit(&(b->wKing), pos);
-    clearBit(&(b->bPawn), pos);
-    clearBit(&(b->bBishop), pos);
-    clearBit(&(b->bKnight), pos);
-    clearBit(&(b->bRook), pos);
-    clearBit(&(b->bQueen), pos);
-    clearBit(&(b->bKing), pos);
+void clearOppPosition(T_boardState *b, char pos){
+    if(!b->whosTurn){
+        clearBit(&(b->bPawn), pos);
+        clearBit(&(b->bBishop), pos);
+        clearBit(&(b->bKnight), pos);
+        clearBit(&(b->bRook), pos);
+        clearBit(&(b->bQueen), pos);
+        clearBit(&(b->bKing), pos);
+    }
+    else{
+        clearBit(&(b->wPawn), pos);
+        clearBit(&(b->wBishop), pos);
+        clearBit(&(b->wKnight), pos);
+        clearBit(&(b->wRook), pos);
+        clearBit(&(b->wQueen), pos);
+        clearBit(&(b->wKing), pos);
+    }
 }
 
 T_bitboard *stateMember(T_boardState *b, int piece){
@@ -134,11 +138,12 @@ void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     clearBit(sm, src);
     setBit(sm, dst);
     if(checkBit(oppPieces, dst)){
-        clearPosition(b, dst);
+        clearOppPosition(b, dst);
     }
 }
 
 //Piece is a redundant piece of info that is supplied for efficiency purposes
+//First make sure destination does not contain same colour before calling this function
 //When calling this function, we know the move does not constitute an attack
 void move(T_boardState *b, char dst, char src, char piece){
     T_bitboard *sm = (*stateMember)(b, piece);
@@ -153,16 +158,12 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 8, n, whitePawn);
-        //setBit(&(cpy.wPawn), n + 8);
-        //clearBit(&(cpy.wPawn), n);
         addState(dst, &cpy);
     }
     //MOVE UP UP
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
-        //setBit(&(cpy.wPawn), n + 16);
-        //clearBit(&(cpy.wPawn), n);
         setBit(&(cpy.wEnPassants), n - 8);
         addState(dst, &cpy);
     }
