@@ -259,7 +259,7 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     while(__builtin_popcountll(mb) > 1){
         genMoves(dst, b, n, &mb, piece, direction);
     }
-    int lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(mb) : BITBOARD_INDEX_SIZE - __builtin_clzll(mb));
+    int lastPos = BITBOARD_INDEX_SIZE - __builtin_clzll(mb);
     if(isPosBlack(b, lastPos)){
         genMoves(dst, b, n, &mb, piece, direction);
         if(isPosBlack(b, lastPos)){
