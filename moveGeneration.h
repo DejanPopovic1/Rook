@@ -16,7 +16,7 @@ bool isUpEmpty(const T_boardState *b, int n);
 bool isUpUpEmpty(const T_boardState *b, int n);
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction);
-T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays);
+T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bitboard **rays);
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece);
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);

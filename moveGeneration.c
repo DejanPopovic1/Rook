@@ -241,7 +241,7 @@ void genIterSuccState(T_boardStates *dst, const T_boardState *b, int n, T_bitboa
     clearBit(validMoves, validMove);
 }
 
-T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, const T_bitboard **rays){
+T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
     T_bitboard occupancyBoard = bAll(b) | wAll(b);
     T_bitboard intersect = ray & occupancyBoard;
@@ -252,16 +252,16 @@ T_bitboard genPseudoValidMoves(const T_boardState *b, int n, int direction, cons
 
 //Refactor out quiete vs attacking moves
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
-    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, direction, rays);
-    for(int i = 0; __builtin_popcountll(pseudoValidMoves) > 1; i++){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
+    T_bitboard mb = moveBoardDir(b, n, direction, rays);
+    while(__builtin_popcountll(mb) > 1){
+        genIterSuccState(dst, b, n, &mb, piece, direction);
     }
-    if(!pseudoValidMoves){
+    if(!mb){
         return;
     }
-    int lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(pseudoValidMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(pseudoValidMoves));
+    int lastPos = (isNortherlyOrEast(direction) ? __builtin_ctzll(mb) : BITBOARD_INDEX_SIZE - __builtin_clzll(mb));
     if(!isPosWhite(b, lastPos)){
-        genIterSuccState(dst, b, n, &pseudoValidMoves, piece, direction);
+        genIterSuccState(dst, b, n, &mb, piece, direction);
         if(isPosBlack(b, lastPos)){
             removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
         }
@@ -271,11 +271,6 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
 //set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
 //Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northEast, rays);
-//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, southEast, rays);
-//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, southWest, rays);
-//    T_bitboard pseudoValidMoves = genPseudoValidMoves(b, n, northWest, rays);
-
 
 
     genDirStates(dst, b, n, rays, northEast, whiteBishop);
