@@ -323,14 +323,22 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
 }
 
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
-    T_bitboard i = *(stateMember(b, piece));
-    int n;
-    int maxIt = __builtin_popcountll(i);
-    for(int j = 0; j < maxIt; j++){
-        n = __builtin_ctzll(i);
-        (*genPieceSuccStates(piece))(dst, b, n, rays);
-        clearBit(&i, n);
+    T_bitboard allPieces = *(stateMember(b, piece));
+    //int n;
+    //int maxIt = __builtin_popcountll(i);
+    while(allPieces){
+        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), rays);
+        clearBit(&allPieces, __builtin_ctzll(allPieces));
     }
+
+
+
+
+//    for(int j = 0; j < maxIt; j++){
+//        n = __builtin_ctzll(i);
+//        (*genPieceSuccStates(piece))(dst, b, n, rays);
+//        clearBit(&i, n);
+//    }
 }
 
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
