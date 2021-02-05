@@ -250,6 +250,7 @@ T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bit
 }
 
 //Refactor out quiete vs attacking moves
+//This function wont work for black unless you have a function called OPPOSING_COLOUR instead of isPosBlack. Or, pass function pointer
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
     T_bitboard mb = moveBoardDir(b, n, direction, rays);
     if(!mb){
@@ -259,7 +260,13 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
         genMoves(dst, b, n, &mb, piece, direction);
     }
     int lastPos = BITBOARD_INDEX_SIZE - __builtin_clzll(mb);
-    if(isPosBlack(b, lastPos)){
+    if(isPosWhite(b, lastPos)){
+        return;
+    }
+    if(!isPosWhite(b, lastPos)){
+
+
+
         genMoves(dst, b, n, &mb, piece, direction);
         if(isPosBlack(b, lastPos)){
             removeOpponent(&(dst->bs[(dst->fi) - 1]), lastPos);
