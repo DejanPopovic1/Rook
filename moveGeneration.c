@@ -18,7 +18,7 @@ T_bitboard checkBit(T_bitboard number, int n){
     return (number >> n) & 1ULL;
 }
 
-//for efficiency, just test less than 7
+//for efficiency, enumerate empty as 6. White 0 - 5 and black 7 - 12. Then just test <6
 bool isWhitePiece(int pieceValue){
     if(pieceValue > 0 && pieceValue < 7){
         return true;
@@ -26,7 +26,7 @@ bool isWhitePiece(int pieceValue){
     return false;
 }
 
-//for efficiency just test greater than 6
+//for efficiency, enumerate empty as 6. White 0 - 5 and black 7 - 12. Then just test >6
 bool isBlackPiece(int pieceValue){
     if(pieceValue > 6 && pieceValue < 13){
         return true;
@@ -423,11 +423,11 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, steps, whiteKing);
         }
         else{
-            //genPiecesSuccStates(dst, b, rays, blackPawn);
-            //genPiecesSuccStates(dst, b, rays, blackBishop);
-            //genPiecesSuccStates(dst, b, jumps, blackKnight);
-            //genPiecesSuccStates(dst, b, rays, blackRook);
-            //genPiecesSuccStates(dst, b, rays, blackQueen);
+            genPiecesSuccStates(dst, b, rays, blackPawn);
+            genPiecesSuccStates(dst, b, rays, blackBishop);
+            genPiecesSuccStates(dst, b, jumps, blackKnight);
+            genPiecesSuccStates(dst, b, rays, blackRook);
+            genPiecesSuccStates(dst, b, rays, blackQueen);
             genPiecesSuccStates(dst, b, steps, blackKing);
         }
 }
@@ -460,27 +460,6 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
         moveAndAttack(&cpy, j, n, piece);
         addState(dst, &cpy);
     }
-}
-
-void genBBishopSuccStates(T_boardState c, T_boardStates *ss){
-
-}
-
-void genBKnightSuccStates(T_boardState c, T_boardStates *ss){
-
-}
-
-void genBRookSuccStates(T_boardState c, T_boardStates *ss){
-
-}
-
-void genBQueenSuccStates(T_boardState c, T_boardStates *ss){
-
-}
-
-void genBKingSuccStates(T_boardState c, T_boardStates *ss){
-
-
 }
 
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
