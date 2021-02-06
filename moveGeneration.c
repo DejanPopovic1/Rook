@@ -385,6 +385,28 @@ void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_
             genDirStates(dst, b, n, rays, west, whiteQueen);
             genDirStates(dst, b, n, rays, northWest, whiteQueen);
             break;
+        case blackBishop:
+            genDirStates(dst, b, n, rays, northEast, blackBishop);
+            genDirStates(dst, b, n, rays, southEast, blackBishop);
+            genDirStates(dst, b, n, rays, southWest, blackBishop);
+            genDirStates(dst, b, n, rays, northWest, blackBishop);
+            break;
+        case blackRook:
+            genDirStates(dst, b, n, rays, north, blackRook);
+            genDirStates(dst, b, n, rays, east, blackRook);
+            genDirStates(dst, b, n, rays, south, blackRook);
+            genDirStates(dst, b, n, rays, west, blackRook);
+            break;
+        case blackQueen:
+            genDirStates(dst, b, n, rays, north, blackQueen);
+            genDirStates(dst, b, n, rays, northEast, blackQueen);
+            genDirStates(dst, b, n, rays, east, blackQueen);
+            genDirStates(dst, b, n, rays, southEast, blackQueen);
+            genDirStates(dst, b, n, rays, south, blackQueen);
+            genDirStates(dst, b, n, rays, southWest, blackQueen);
+            genDirStates(dst, b, n, rays, west, blackQueen);
+            genDirStates(dst, b, n, rays, northWest, blackQueen);
+            break;
     }
 }
 
@@ -401,7 +423,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, steps, whiteKing);
         }
         else{
-            genPiecesSuccStates(dst, b, rays, blackPawn);
+            //genPiecesSuccStates(dst, b, rays, blackPawn);
             //genPiecesSuccStates(dst, b, rays, blackBishop);
             //genPiecesSuccStates(dst, b, rays, blackKnight);
             //genPiecesSuccStates(dst, b, rays, blackRook);
@@ -472,8 +494,8 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
             return &genJumpOrStepSuccStates;
         case blackPawn:
             return &genBPawnSuccStates;
-//        case blackBishop:
-//            return &genWBishopSuccStates;
+        case blackBishop:
+            return &genRaySuccStates;
 //        case blackKnight:
 //            return &genWBishopSuccStates;
 //        case blackRook:

@@ -199,6 +199,7 @@ void initialiseBBishops(T_bitboard *result){
     setBit(result, 58);
     setBit(result, 61);
     setBit(result, 35);
+    setBit(result, 30);
 }
 
 void initialiseBKnights(T_bitboard *result){
