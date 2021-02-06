@@ -191,6 +191,7 @@ void initialiseBBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 58);
     setBit(result, 61);
+    setBit(result, 35);
 }
 
 void initialiseBKnights(T_bitboard *result){
@@ -203,16 +204,19 @@ void initialiseBRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 56);
     setBit(result, 63);
+    setBit(result, 27);
 }
 
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
+    setBit(result, 28);
 }
 
 void initialiseBKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 60);
+    setBit(result, 36);
 }
 
 void initialiseWEnPassants(unsigned char *c){
