@@ -445,7 +445,11 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
     int j;
     T_bitboard test;
     for(int i = 0; i < 8; i++){
-        j =  __builtin_ctzll(moveRules[i][n]);
+        j = __builtin_ctzll(moveRules[i][n]);
+        if(!j){
+            continue;
+        }
+        printf("%d\n", j);
         test = 0;
         setBit(&test, j);
         if(test & sameAll(b)){

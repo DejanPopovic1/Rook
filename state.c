@@ -14,8 +14,6 @@ T_bitboard wAll(const T_boardState *b){
 
 T_bitboard bAll(const T_boardState *b){
     T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-    //printf("Testing: \n");
-    //printTBitboard(or);
     return or;
 }
 
