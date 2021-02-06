@@ -185,6 +185,14 @@ void move(T_boardState *b, char dst, char src, char piece){
     setBit(sm, dst);
 }
 
+void promote(T_boardStates *dst, const T_boardState *b, int n, int piece){
+        T_boardState cpy = *b;
+        T_bitboard *sm = stateMember(&cpy, piece);
+        setBit(sm, n + 8);
+        clearBit(sm, n);
+        addState(dst, &cpy);
+}
+
 //factor out specific moves once all moveGenerations complete
 //Use generateSlideMoves() to codify these moves
 void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
@@ -229,33 +237,11 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
         addState(dst, &cpy);
     }
     //PROMOTIONS
-        //BISHOP
     if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState cpy = *b;
-        setBit(b->wBishop, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, &cpy);
-    }
-        //KNIGHT
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState cpy = *b;
-        setBit(b->wKnight, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, &cpy);
-    }
-        //ROOK
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState cpy = *b;
-        setBit(b->wRook, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, &cpy);
-    }
-        //QUEEN
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        T_boardState cpy = *b;
-        setBit(b->wQueen, n + 8);
-        clearBit(b->wPawn, n);
-        addState(dst, &cpy);
+        promote(dst, b, n, whiteBishop);
+        promote(dst, b, n, whiteKnight);
+        promote(dst, b, n, whiteRook);
+        promote(dst, b, n, whiteQueen);
     }
 }
 
