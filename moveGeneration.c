@@ -427,8 +427,8 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             //genPiecesSuccStates(dst, b, rays, blackBishop);
             //genPiecesSuccStates(dst, b, jumps, blackKnight);
             //genPiecesSuccStates(dst, b, rays, blackRook);
-            genPiecesSuccStates(dst, b, rays, blackQueen);
-            //genPiecesSuccStates(dst, b, rays, blackKing);
+            //genPiecesSuccStates(dst, b, rays, blackQueen);
+            genPiecesSuccStates(dst, b, steps, blackKing);
         }
 }
 
@@ -446,6 +446,8 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
     T_bitboard test;
     for(int i = 0; i < 8; i++){
         j = __builtin_ctzll(moveRules[i][n]);
+        printTBitboard(moveRules[i][n]);
+        printf("%d\n", j);
         if(!j){
             continue;
         }
@@ -505,8 +507,8 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
             return &genRaySuccStates;
         case blackQueen:
             return &genRaySuccStates;
-//        case blackKing:
-//            return &genWBishopSuccStates;
+        case blackKing:
+            return &genJumpOrStepSuccStates;
         default:
             assert(false);
     }
