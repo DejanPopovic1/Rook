@@ -63,51 +63,55 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-    //printf("%d\n", playerColour);
-    int halfPly = 1;
-    int colourTurn;
-    T_chessboard *c;
-    c = initialiseBoard();
-    char *multiPlayerInput;
-
+    T_boardState s = initialiseBoardState();
+    T_boardStates *bss = initialiseStates();
     while(true){
-        colourTurn = whosTurn(halfPly);
-        printPlayerTurn(halfPly);
-        printBoard(asWhite, *c);
-        T_states *wS = generateSuccessorStates(asWhite, *c);
-        T_states *bS = generateSuccessorStates(asBlack, *c);
-        T_moves *mW = generateListOfMoves(c, wS);
-        T_moves *mB = generateListOfMoves(c, bS);
-        printMoves(mW);
-        printMoves(mB);
-        //printBoards(playerColour, successorStates);
-        multiPlayerPrompt();
-        multiPlayerInput = moveInput();
-        if(nextState(&c, multiPlayerInput, colourTurn)){
-            halfPly++;
-        }
+        printState(s);
+        genSuccStates(bss, &s);
+        printValidMoves(s, bss);
+        //printState((bss->bs)[0]);
+        (s.whosTurn)++;
+        getch();
     }
+
+    //printStates(bss);
+
+
+
+//    int halfPly = 1;
+//    int colourTurn;
+//    T_chessboard *c;
+//    c = initialiseBoard();
+//    char *multiPlayerInput;
+//
+//    while(true){
+//        colourTurn = whosTurn(halfPly);
+//        printPlayerTurn(halfPly);
+//        printBoard(asWhite, *c);
+//        T_states *wS = generateSuccessorStates(asWhite, *c);
+//        T_states *bS = generateSuccessorStates(asBlack, *c);
+//        T_moves *mW = generateListOfMoves(c, wS);
+//        T_moves *mB = generateListOfMoves(c, bS);
+//        printMoves(mW);
+//        printMoves(mB);
+//        multiPlayerPrompt();
+//        multiPlayerInput = moveInput();
+//        if(nextState(&c, multiPlayerInput, colourTurn)){
+//            halfPly++;
+//        }
+//    }
     return;
 }
 
 //BoardStates must be malloced so that they may be initialised when they are created. Initialisation is not the job of the caller
 void testCases(){
-    //T_bitboard** bbptr = createRays();
-    T_bitboard **t = createSteps();
-//    printTBitboard(t[0][26]);
-//    printTBitboard(t[1][26]);
-//    printTBitboard(t[2][26]);
-//    printTBitboard(t[3][26]);
-//    printTBitboard(t[4][26]);
-//    printTBitboard(t[5][26]);
-//    printTBitboard(t[6][26]);
-//    printTBitboard(t[7][26]);
-    T_boardState c = initialiseBoardState();
-    T_boardStates *bss = initialiseStates();
-    printState(c);
-    genSuccStates(bss, &c);
-    printStates(bss);
-    getch();
+//    T_bitboard **t = createSteps();
+//    T_boardState c = initialiseBoardState();
+//    T_boardStates *bss = initialiseStates();
+//    printState(c);
+//    genSuccStates(bss, &c);
+//    printStates(bss);
+//    getch();
     return;
 }
 

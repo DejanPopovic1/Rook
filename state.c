@@ -51,6 +51,17 @@ void printStates(T_boardStates *b){
     }
 }
 
+void printValidMoves(T_boardState *c, T_boardStates *ss){
+    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
+    T_chessboard *ssArr, *cArr = toIntArray(*c);
+    for(int i = 0; i < length(ss); i++){
+        ssArr = toIntArray(ss->bs[i]);
+        list[i] = toAlgebraicNotation(cArr, ssArr);
+    }
+    //printf("%s", list[0]);
+    return list;
+}
+
 int whosTurnNEW(const int ply){
     if((ply % 2) == 1){
         return whiteTurn;
@@ -94,8 +105,6 @@ char whatFile(char n){
     return (n % 8);
 }
 
-
-
 bool isPosEmpty(const T_boardState *b, int n){
     T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
                     b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
@@ -105,12 +114,9 @@ bool isPosEmpty(const T_boardState *b, int n){
     return false;
 }
 
-
-
 void addState(T_boardStates *dst, const T_boardState *src){
     (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
-    //printState(*src);
 }
 
 T_boardStates *initialiseStates(){
@@ -139,7 +145,6 @@ T_boardState initialiseBoardState(){
     initialiseWEnPassants(&(result.wEnPassants));
     initialiseBEnPassants(&(result.bEnPassants));
     initialiseCastlesAndTurn(&result);
-    //initialiseWhosTurn(&(result.whosTurn));
     initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
     initialisePreviousStates(&(result.ps));
     initialisePly(&(result.ply));
@@ -185,7 +190,7 @@ void initialiseWQueen(T_bitboard *result){
 void initialiseWKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 4);
-        setBit(result, 26);
+    setBit(result, 26);
 }
 
 //Initialise white in this same way
@@ -245,18 +250,12 @@ void initialiseBEnPassants(char *c){
 void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesBlack = 7;
     b->castlesWhite = 7;
-    b->whosTurn = 1;
-    //setCharBits(b->castlesWhite);
+    b->whosTurn = 0;
 }
 
 void initialiseNoCapturesOrPawnMoves(char *c){
     *c = 0;
 }
-
-//void initialiseWhosTurn(&(result.whosTurn)){
-//
-//
-//}
 
 //Need to add in this functionality later
 void initialisePreviousStates(struct PrevStates **ps){

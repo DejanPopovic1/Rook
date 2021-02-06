@@ -282,7 +282,6 @@ void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     }
     //CAPTURE RIGHT
     if(isPosWhite(b, n - 7) && ((n + 1) % 8)){
-        printf("Test\n");
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n - 7, n, blackPawn);
         addState(dst, &cpy);
@@ -446,8 +445,6 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
     T_bitboard test;
     for(int i = 0; i < 8; i++){
         j = __builtin_ctzll(moveRules[i][n]);
-        printTBitboard(moveRules[i][n]);
-        printf("%d\n", j);
         if(!j){
             continue;
         }

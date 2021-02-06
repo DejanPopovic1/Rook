@@ -10,6 +10,10 @@
 #define FILE_STRING 2
 #define RANK_STRING 2
 
+struct Moves{
+    char *moves[MAX_SUCCESSOR_STATES];
+    int freeIndex;
+};
 
 void (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *);
 bool arePiecesInSameRank(T_positions *ps, T_position p);

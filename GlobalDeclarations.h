@@ -46,10 +46,10 @@ struct Positions{
 
 typedef struct Moves T_moves;
 
-struct Moves{
-    char *moves[MAX_SUCCESSOR_STATES];
-    int freeIndex;
-};
+//struct Moves{
+//    char *moves[MAX_SUCCESSOR_STATES];
+//    int freeIndex;
+//};
 
 bool isNeighbouringPawnDoubleMoved(const int, const int);
 bool isPawn(int p);

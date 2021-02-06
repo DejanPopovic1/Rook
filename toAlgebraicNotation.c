@@ -6,6 +6,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
+
+createMoves(){
+    struct Moves *result;
+    result = malloc(MAX_SUCCESSOR_STATES * sizeof(struct Moves));
+    result->freeIndex = 0;
+}
+
 void (*returnMvmntRule(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *){
     int movedPiece = whatPiece(c, p);
     switch(movedPiece){
