@@ -218,16 +218,14 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
         T_boardState cpy = *b;
         clearBit(b->bPawn, n - 1);
-        setBit(b->wPawn, n + 7);
-        clearBit(b->wPawn, n);
+        move(b, n + 7, n, whitePawn);
         addState(dst, &cpy);
     }
     //EN PASSANT RIGHT
     if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
         T_boardState cpy = *b;
         clearBit(b->bPawn, n + 1);
-        setBit(b->wPawn, n + 9);
-        clearBit(b->wPawn, n);
+        move(b, n + 9, n, whitePawn);
         addState(dst, &cpy);
     }
     //PROMOTIONS
