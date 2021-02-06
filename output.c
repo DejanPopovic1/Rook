@@ -22,7 +22,7 @@ void printState(T_boardState b){
     T_chessboard *c = toIntArray(b);
     printBoard(whosTurn(b.ply), *c);
     printf("Ply: %d\n", b.ply);
-    (!b.whosTurn) ? printf("Whites TurnTest\n") : printf("Blacks TurnTest\n");
+    (!b.whosTurn) ? printf("Whites Turn\n") : printf("Blacks Turn\n");
 //    if(whosTurn(b.ply) == whiteTurn){
 //        printf("Whites Turn\n");
 //    }
@@ -37,7 +37,7 @@ void printState(T_boardState b){
     printf("State of white castling: ");
     char i = b.castlesWhite;
     printBits(sizeof(i), &i);
-    printf("State of black en Passants: ");;
+    printf("State of black en Passants: ");
     printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
     printf("State of black castling: ");
     i = b.castlesBlack;

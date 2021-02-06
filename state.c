@@ -72,6 +72,13 @@ bool isRankSeven(char n){
     return false;
 }
 
+bool isRankTwo(char n){
+    if(n <= 15 && n >= 8){
+        return true;
+    }
+    return false;
+}
+
 char whatRank(char n){
     return (n / 8);
 }
@@ -145,7 +152,7 @@ void initialiseWBishops(T_bitboard *result){
     setBit(result, 18);
     setBit(result, 21);
     setBit(result, 31);
-    setBit(result, 34);
+    setBit(result, 25);
 }
 
 void initialiseWKnights(T_bitboard *result){
@@ -230,7 +237,7 @@ void initialiseBEnPassants(char *c){
 void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesBlack = 7;
     b->castlesWhite = 7;
-    b->whosTurn = 0;
+    b->whosTurn = 1;
     //setCharBits(b->castlesWhite);
 }
 

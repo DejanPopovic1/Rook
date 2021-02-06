@@ -33,7 +33,7 @@ void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const
 void genSuccStates(T_boardStates *dst, const T_boardState *b);
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece);
 void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules, int piece);
-void genBPawnSuccStates(T_boardState c, T_boardStates *ss);
+void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genBBishopSuccStates(T_boardState c, T_boardStates *ss);
 void genBKnightSuccStates(T_boardState c, T_boardStates *ss);
 void genBRookSuccStates(T_boardState c, T_boardStates *ss);

@@ -67,10 +67,17 @@ bool isPosBlack(T_boardState *b, int n){
     return false;
 }
 
-
 //Test only one condition
 bool isSecondLastRank(int n){
     if(n <= 55 && n >= 48){
+        return true;
+    }
+    return false;
+}
+
+//Test only one condition
+bool isSecondRank(int n){
+    if(n <= 15 && n >= 8){
         return true;
     }
     return false;
@@ -94,6 +101,20 @@ bool isUpEmpty(const T_boardState *b, int n){
 
 bool isUpUpEmpty(const T_boardState *b, int n){
     if(isPosEmpty(b, n + 8) && isPosEmpty(b, n + 16)){
+        return true;
+    }
+    return false;
+}
+
+bool isDownEmpty(const T_boardState *b, int n){
+    if(isPosEmpty(b, n - 8)){
+        return true;
+    }
+    return false;
+}
+
+bool isDownDownEmpty(const T_boardState *b, int n){
+    if(isPosEmpty(b, n - 8) && isPosEmpty(b, n - 16)){
         return true;
     }
     return false;
@@ -206,7 +227,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
-        setBit(&(cpy.wEnPassants), n - 8);
+        setBit(&(cpy.wEnPassants), n % 8);
         addState(dst, &cpy);
     }
     //CAPTURE LEFT
@@ -242,6 +263,57 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
         promote(dst, b, n, whiteKnight);
         promote(dst, b, n, whiteRook);
         promote(dst, b, n, whiteQueen);
+    }
+}
+
+void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+    //MOVE DOWN
+    if(isDownEmpty(b, n) && !isSecondRank(n)){
+        T_boardState cpy = *b;
+        move(&cpy, n - 8, n, blackPawn);
+        addState(dst, &cpy);
+    }
+    //MOVE DOWN DOWN
+    if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n)){
+        T_boardState cpy = *b;
+        move(&cpy, n - 16, n, blackPawn);
+        setBit(&(cpy.bEnPassants), n % 8);
+        addState(dst, &cpy);
+    }
+    //CAPTURE RIGHT
+    if(isPosWhite(b, n - 7) && ((n + 1) % 8)){
+        printf("Test\n");
+        T_boardState cpy = *b;
+        moveAndAttack(&cpy, n - 7, n, blackPawn);
+        addState(dst, &cpy);
+    }
+    //CAPTURE LEFT
+    if(isPosWhite(b, n - 9) && (n % 8)){
+        T_boardState cpy = *b;
+        moveAndAttack(&cpy, n - 9, n, blackPawn);
+        addState(dst, &cpy);
+    }
+    //EN PASSANT RIGHT
+    char frFile = whatFile(n);
+    if(((frFile + 1) % 8) && isCharBitSet(b->wEnPassants, frFile + 1) && isRankFour(n)){
+        T_boardState cpy = *b;
+        clearBit(b->bPawn, n + 1);
+        move(b, n - 7, n, blackPawn);
+        addState(dst, &cpy);
+    }
+    //EN PASSANT LEFT
+    if((frFile % 8) && isCharBitSet(b->wEnPassants, frFile - 1) && isRankFour(n)){
+        T_boardState cpy = *b;
+        clearBit(b->bPawn, n - 1);
+        move(b, n - 9, n, blackPawn);
+        addState(dst, &cpy);
+    }
+    //PROMOTIONS
+    if(isRankTwo(n) && isDownEmpty(b, n)){
+        promote(dst, b, n, blackBishop);
+        promote(dst, b, n, blackKnight);
+        promote(dst, b, n, blackRook);
+        promote(dst, b, n, blackQueen);
     }
 }
 
@@ -329,8 +401,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
             genPiecesSuccStates(dst, b, steps, whiteKing);
         }
         else{
-            ;
-            //genPiecesSuccStates(dst, b, rays, blackPawn);
+            genPiecesSuccStates(dst, b, rays, blackPawn);
             //genPiecesSuccStates(dst, b, rays, blackBishop);
             //genPiecesSuccStates(dst, b, rays, blackKnight);
             //genPiecesSuccStates(dst, b, rays, blackRook);
@@ -362,11 +433,6 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
         moveAndAttack(&cpy, j, n, piece);
         addState(dst, &cpy);
     }
-}
-
-void genBPawnSuccStates(T_boardState c, T_boardStates *ss){
-
-
 }
 
 void genBBishopSuccStates(T_boardState c, T_boardStates *ss){
@@ -404,8 +470,8 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
             return &genRaySuccStates;
         case whiteKing:
             return &genJumpOrStepSuccStates;
-//        case blackPawn:
-//            return &genWBishopSuccStates;
+        case blackPawn:
+            return &genBPawnSuccStates;
 //        case blackBishop:
 //            return &genWBishopSuccStates;
 //        case blackKnight:
