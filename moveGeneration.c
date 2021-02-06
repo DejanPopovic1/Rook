@@ -360,8 +360,25 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(stateMember(b, piece));
     while(allPieces){
-        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules);
+        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
+    }
+}
+
+void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules, int piece){
+    T_boardState cpy = *b;
+    int j;
+    T_bitboard test;
+    for(int i = 0; i < 8; i++){
+        j =  __builtin_ctzll(moveRules[i][n]);
+        test = 0;
+        setBit(&test, j);
+        if(test & wAll(b)){
+            continue;
+        }
+        T_boardState cpy = *b;
+        moveAndAttack(&cpy, j, n, piece);
+        addState(dst, &cpy);
     }
 }
 
@@ -427,20 +444,20 @@ void genBKingSuccStates(T_boardState c, T_boardStates *ss){
 
 }
 
-void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
     switch(piece){
         case whitePawn:
             return &genWPawnSuccStates;
         case whiteBishop:
             return &genWBishopSuccStates;
         case whiteKnight:
-            return &genWKnightSuccStates;
+            return &genJumpOrStepSuccStates;
         case whiteRook:
             return &genWRookSuccStates;
         case whiteQueen:
             return &genWQueenSuccStates;
         case whiteKing:
-            return &genWKingSuccStates;
+            return &genJumpOrStepSuccStates;
 //        case blackPawn:
 //            return &genWBishopSuccStates;
 //        case blackBishop:
