@@ -204,17 +204,13 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     //CAPTURE LEFT
     if(isPosBlack(b, n + 7) && (n % 8)){
         T_boardState cpy = *b;
-        removeOpponent(&cpy, n + 7);
-        setBit(&(cpy.wPawn), n + 7);
-        clearBit(&(cpy.wPawn), n);
+        moveAndAttack(&cpy, n + 7, n, whitePawn);
         addState(dst, &cpy);
     }
     //CAPTURE RIGHT
     if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
         T_boardState cpy = *b;
-        removeOpponent(&cpy, n + 9);
-        setBit(&(cpy.wPawn), n + 9);
-        clearBit(&(cpy.wPawn), n);
+        moveAndAttack(&cpy, n + 9, n, whitePawn);
         addState(dst, &cpy);
     }
     //EN PASSANT LEFT
