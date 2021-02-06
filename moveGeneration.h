@@ -26,14 +26,13 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction);
 T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bitboard **rays);
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece);
+void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays);
 void genSuccStates(T_boardStates *dst, const T_boardState *b);
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece);
 void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules, int piece);
-void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules);
-void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules);
 void genBPawnSuccStates(T_boardState c, T_boardStates *ss);
 void genBBishopSuccStates(T_boardState c, T_boardStates *ss);
 void genBKnightSuccStates(T_boardState c, T_boardStates *ss);
@@ -41,6 +40,5 @@ void genBRookSuccStates(T_boardState c, T_boardStates *ss);
 void genBQueenSuccStates(T_boardState c, T_boardStates *ss);
 void genBKingSuccStates(T_boardState c, T_boardStates *ss);
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
-
 
 #endif // MOVEGENERATION_H

@@ -309,29 +309,31 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     }
 }
 
-void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    genDirStates(dst, b, n, rays, northEast, whiteBishop);
-    genDirStates(dst, b, n, rays, southEast, whiteBishop);
-    genDirStates(dst, b, n, rays, southWest, whiteBishop);
-    genDirStates(dst, b, n, rays, northWest, whiteBishop);
-}
-
-void genWRookSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    genDirStates(dst, b, n, rays, north, whiteRook);
-    genDirStates(dst, b, n, rays, east, whiteRook);
-    genDirStates(dst, b, n, rays, south, whiteRook);
-    genDirStates(dst, b, n, rays, west, whiteRook);
-}
-
-void genWQueenSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-    genDirStates(dst, b, n, rays, north, whiteQueen);
-    genDirStates(dst, b, n, rays, northEast, whiteQueen);
-    genDirStates(dst, b, n, rays, east, whiteQueen);
-    genDirStates(dst, b, n, rays, southEast, whiteQueen);
-    genDirStates(dst, b, n, rays, south, whiteQueen);
-    genDirStates(dst, b, n, rays, southWest, whiteQueen);
-    genDirStates(dst, b, n, rays, west, whiteQueen);
-    genDirStates(dst, b, n, rays, northWest, whiteQueen);
+void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
+    switch(piece){
+        case whiteBishop:
+            genDirStates(dst, b, n, rays, northEast, whiteBishop);
+            genDirStates(dst, b, n, rays, southEast, whiteBishop);
+            genDirStates(dst, b, n, rays, southWest, whiteBishop);
+            genDirStates(dst, b, n, rays, northWest, whiteBishop);
+            break;
+        case whiteRook:
+            genDirStates(dst, b, n, rays, north, whiteRook);
+            genDirStates(dst, b, n, rays, east, whiteRook);
+            genDirStates(dst, b, n, rays, south, whiteRook);
+            genDirStates(dst, b, n, rays, west, whiteRook);
+            break;
+        case whiteQueen:
+            genDirStates(dst, b, n, rays, north, whiteQueen);
+            genDirStates(dst, b, n, rays, northEast, whiteQueen);
+            genDirStates(dst, b, n, rays, east, whiteQueen);
+            genDirStates(dst, b, n, rays, southEast, whiteQueen);
+            genDirStates(dst, b, n, rays, south, whiteQueen);
+            genDirStates(dst, b, n, rays, southWest, whiteQueen);
+            genDirStates(dst, b, n, rays, west, whiteQueen);
+            genDirStates(dst, b, n, rays, northWest, whiteQueen);
+            break;
+    }
 }
 
 void genSuccStates(T_boardStates *dst, const T_boardState *b){
@@ -382,42 +384,6 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
     }
 }
 
-void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules){
-    T_boardState cpy = *b;
-    int j;
-    T_bitboard test;
-    for(int i = 0; i < 8; i++){
-        j =  __builtin_ctzll(moveRules[i][n]);
-        test = 0;
-        setBit(&test, j);
-        if(test & wAll(b)){
-            continue;
-        }
-        T_boardState cpy = *b;
-        moveAndAttack(&cpy, j, n, whiteKnight);
-        addState(dst, &cpy);
-    }
-}
-
-//This is an almost replica to the function above. Merge into one possibly through using function pointer
-//wAll and bAll is calculated numerous times - perhaps it should be stored in state or passed throughout
-void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules){
-    T_boardState cpy = *b;
-    int j;
-    T_bitboard test;
-    for(int i = 0; i < 8; i++){
-        j = __builtin_ctzll(moveRules[i][n]);
-        test = 0;
-        setBit(&test, j);
-        if(test & wAll(b)){
-            continue;
-        }
-        T_boardState cpy = *b;
-        moveAndAttack(&cpy, j, n, whiteKing);
-        addState(dst, &cpy);
-    }
-}
-
 void genBPawnSuccStates(T_boardState c, T_boardStates *ss){
 
 
@@ -449,13 +415,13 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
         case whitePawn:
             return &genWPawnSuccStates;
         case whiteBishop:
-            return &genWBishopSuccStates;
+            return &genRaySuccStates;
         case whiteKnight:
             return &genJumpOrStepSuccStates;
         case whiteRook:
-            return &genWRookSuccStates;
+            return &genRaySuccStates;
         case whiteQueen:
-            return &genWQueenSuccStates;
+            return &genRaySuccStates;
         case whiteKing:
             return &genJumpOrStepSuccStates;
 //        case blackPawn:
