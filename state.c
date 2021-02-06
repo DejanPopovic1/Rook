@@ -19,6 +19,15 @@ T_bitboard bAll(const T_boardState *b){
     return or;
 }
 
+T_bitboard sameAll(const T_boardState *b){
+    if(!b->whosTurn){
+        return wAll(b);
+    }
+    else{
+        return bAll(b);
+    }
+}
+
 void removeOpponent(T_boardState *b, int pos){
     if(whosTurnNEW(b->ply) == whiteTurn){
         clearBit(&(b->bPawn), pos);
@@ -238,7 +247,7 @@ void initialiseBEnPassants(char *c){
 void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesBlack = 7;
     b->castlesWhite = 7;
-    b->whosTurn = 1;
+    b->whosTurn = 0;
     //setCharBits(b->castlesWhite);
 }
 

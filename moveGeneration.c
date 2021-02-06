@@ -425,7 +425,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
         else{
             //genPiecesSuccStates(dst, b, rays, blackPawn);
             //genPiecesSuccStates(dst, b, rays, blackBishop);
-            //genPiecesSuccStates(dst, b, rays, blackKnight);
+            genPiecesSuccStates(dst, b, jumps, blackKnight);
             //genPiecesSuccStates(dst, b, rays, blackRook);
             //genPiecesSuccStates(dst, b, rays, blackQueen);
             //genPiecesSuccStates(dst, b, rays, blackKing);
@@ -496,8 +496,8 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
             return &genBPawnSuccStates;
         case blackBishop:
             return &genRaySuccStates;
-//        case blackKnight:
-//            return &genWBishopSuccStates;
+        case blackKnight:
+            return &genJumpOrStepSuccStates;
 //        case blackRook:
 //            return &genWBishopSuccStates;
 //        case blackQueen:

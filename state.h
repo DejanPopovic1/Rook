@@ -62,6 +62,8 @@ struct GameState{
     char noPawnMovesOrCaptures;
     int ply;
 };
+
+T_bitboard sameAll(const T_boardState *b);
 T_bitboard *stateMember(T_boardState *b, int piece);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
