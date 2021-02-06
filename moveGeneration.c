@@ -448,7 +448,7 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
         j =  __builtin_ctzll(moveRules[i][n]);
         test = 0;
         setBit(&test, j);
-        if(test & wAll(b)){
+        if(test & sameAll(b)){
             continue;
         }
         T_boardState cpy = *b;
