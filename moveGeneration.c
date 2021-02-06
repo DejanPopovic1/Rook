@@ -449,7 +449,6 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
         if(!j){
             continue;
         }
-        printf("%d\n", j);
         test = 0;
         setBit(&test, j);
         if(test & sameAll(b)){
