@@ -392,6 +392,7 @@ void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_
             genDirStates(dst, b, n, rays, northWest, blackBishop);
             break;
         case blackRook:
+            printf("TESTING\n");
             genDirStates(dst, b, n, rays, north, blackRook);
             genDirStates(dst, b, n, rays, east, blackRook);
             genDirStates(dst, b, n, rays, south, blackRook);
@@ -425,8 +426,8 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
         else{
             //genPiecesSuccStates(dst, b, rays, blackPawn);
             //genPiecesSuccStates(dst, b, rays, blackBishop);
-            genPiecesSuccStates(dst, b, jumps, blackKnight);
-            //genPiecesSuccStates(dst, b, rays, blackRook);
+            //genPiecesSuccStates(dst, b, jumps, blackKnight);
+            genPiecesSuccStates(dst, b, rays, blackRook);
             //genPiecesSuccStates(dst, b, rays, blackQueen);
             //genPiecesSuccStates(dst, b, rays, blackKing);
         }
@@ -501,8 +502,8 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b,
             return &genRaySuccStates;
         case blackKnight:
             return &genJumpOrStepSuccStates;
-//        case blackRook:
-//            return &genWBishopSuccStates;
+        case blackRook:
+            return &genRaySuccStates;
 //        case blackQueen:
 //            return &genWBishopSuccStates;
 //        case blackKing:
