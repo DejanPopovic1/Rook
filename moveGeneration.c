@@ -309,11 +309,7 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     }
 }
 
-//set bit and clear bit should be in one function called move() and this should be applied to all moveGenerator functions
-//Check the ZF flag to see if there is a bit set in the forward and reverse scans
 void genWBishopSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
-
-
     genDirStates(dst, b, n, rays, northEast, whiteBishop);
     genDirStates(dst, b, n, rays, southEast, whiteBishop);
     genDirStates(dst, b, n, rays, southWest, whiteBishop);
@@ -361,20 +357,20 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
         }
 }
 
-void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **rays, int piece){
+void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(stateMember(b, piece));
     while(allPieces){
-        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), rays);
+        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
     }
 }
 
-void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **jumps){
+void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules){
     T_boardState cpy = *b;
     int j;
     T_bitboard test;
     for(int i = 0; i < 8; i++){
-        j =  __builtin_ctzll(jumps[i][n]);
+        j =  __builtin_ctzll(moveRules[i][n]);
         test = 0;
         setBit(&test, j);
         if(test & wAll(b)){
@@ -388,12 +384,12 @@ void genWKnightSuccStates(T_boardStates *dst, const T_boardState *b, int n, cons
 
 //This is an almost replica to the function above. Merge into one possibly through using function pointer
 //wAll and bAll is calculated numerous times - perhaps it should be stored in state or passed throughout
-void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **steps){
+void genWKingSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules){
     T_boardState cpy = *b;
     int j;
     T_bitboard test;
     for(int i = 0; i < 8; i++){
-        j = __builtin_ctzll(steps[i][n]);
+        j = __builtin_ctzll(moveRules[i][n]);
         test = 0;
         setBit(&test, j);
         if(test & wAll(b)){
