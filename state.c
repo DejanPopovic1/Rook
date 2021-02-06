@@ -51,16 +51,16 @@ void printStates(T_boardStates *b){
     }
 }
 
-void printValidMoves(T_boardState *c, T_boardStates *ss){
-    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
-    T_chessboard *ssArr, *cArr = toIntArray(*c);
-    for(int i = 0; i < length(ss); i++){
-        ssArr = toIntArray(ss->bs[i]);
-        list[i] = toAlgebraicNotation(cArr, ssArr);
-    }
-    //printf("%s", list[0]);
-    return list;
-}
+//void printValidMoves(T_boardState *c, T_boardStates *ss){
+//    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
+//    T_chessboard *ssArr, *cArr = toIntArray(*c);
+//    for(int i = 0; i < length(ss); i++){
+//        ssArr = toIntArray(ss->bs[i]);
+//        list[i] = toAlgebraicNotation(cArr, ssArr);
+//    }
+//    //printf("%s", list[0]);
+//    return list;
+//}
 
 int whosTurnNEW(const int ply){
     if((ply % 2) == 1){

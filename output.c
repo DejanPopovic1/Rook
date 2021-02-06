@@ -132,15 +132,15 @@ void printBoard(int playingAs, T_chessboard chessboard){
     return;
 }
 
-void printBoardsAndAlgNot(T_chessboard c, int playingAs, T_states* s){
-    for(int i = 0; i < s->freeIndex; i++){
-        printBoard(playingAs, s->states[i]);
-        printf("\n");
-        printf(toAlgebraicNotation(c,s->states[i]));
-        printf("\n");
-    }
-    return;
-}
+//void printBoardsAndAlgNot(T_chessboard c, int playingAs, T_states* s){
+//    for(int i = 0; i < s->freeIndex; i++){
+//        printBoard(playingAs, s->states[i]);
+//        printf("\n");
+//        printf(toAlgebraicNotation(c,s->states[i]));
+//        printf("\n");
+//    }
+//    return;
+//}
 
 void printBoards(int playingAs, T_states* s){
     for(int i = 0; i < s->freeIndex; i++){
@@ -155,13 +155,13 @@ void printMove(char* c){
     return;
 }
 
-void printMoves(T_moves *a){
-    printf("Number of valid moves: %d\n", a->freeIndex);
-    for(int i = 0; i < a->freeIndex; i++){
-        printf("%s ", a->moves[i]);
-    }
-    printf("\n");
-}
+//void printMoves(T_moves *a){
+//    printf("Number of valid moves: %d\n", a->freeIndex);
+//    for(int i = 0; i < a->freeIndex; i++){
+//        printf("%s ", a->moves[i]);
+//    }
+//    printf("\n");
+//}
 
 bool isWhiteTile(int rank, int file){
     bool isEvenTile = ((rank + file) % 2 == 0);

@@ -54,6 +54,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="moveGeneration.h" />
+		<Unit filename="moveList.cpp" />
+		<Unit filename="moveList.hpp" />
 		<Unit filename="moveRules.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -74,6 +76,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="testInitialisations.h" />
+		<Unit filename="toAlgNotation.cpp" />
+		<Unit filename="toAlgNotation.hpp" />
 		<Unit filename="toAlgebraicNotation.c">
 			<Option compilerVar="CC" />
 		</Unit>
