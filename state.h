@@ -64,7 +64,7 @@ struct GameState{
 };
 
 T_bitboard sameAll(const T_boardState *b);
-T_bitboard *pieceBitboard(T_boardState *b, int piece);
+//T_bitboard *pieceBitboard(T_boardState *b, int piece);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
 void movePiece(T_boardState *b, int dst, int src, int piece);
@@ -77,9 +77,9 @@ bool isRankFour(char n);
 bool isRankSeven(char n);
 char whatRank(char n);
 char whatFile(char n);
-bool isPosWhite(T_boardState *b, int n);
-bool isPosBlack(T_boardState *b, int n);
-bool isSecondLastRank(int n);
+//bool isPosWhite(T_boardState *b, int n);
+//bool isPosBlack(T_boardState *b, int n);
+//bool isSecondLastRank(int n);
 void addState(T_boardStates *dst, const T_boardState *src);
 int length(T_boardStates *bss);
 bool isPosEmpty(const T_boardState *b, int n);

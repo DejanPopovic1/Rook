@@ -10,6 +10,7 @@
 
 extern "C" {
     #include "bitUtilities.h"
+    #include "moveGeneration.h"
 }
 
 using std::string;
@@ -17,37 +18,7 @@ using std::vector;
 
 //Add consts in this file
 
-//void (*moveGenerator(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *){
-//    int movedPiece = whatPiece(c, p);
-//    switch(movedPiece){
-//        case whitePawn:
-//            return &generateWhitePawnSuccessorStates;
-//        case whiteBishop:
-//            return &generateWhiteBishopSuccessorStates;
-//        case whiteKnight:
-//            return &generateWhiteKnightSuccessorStates;
-//        case whiteRook:
-//            return &generateWhiteRookSuccessorStates;
-//        case whiteQueen:
-//            return &generateWhiteQueenSuccessorStates;
-//        case whiteKing:
-//            return &generateWhiteKingSuccessorStates;
-//        case blackPawn:
-//            return &generateBlackPawnSuccessorStates;
-//        case blackBishop:
-//            return &generateBlackBishopSuccessorStates;
-//        case blackKnight:
-//            return &generateBlackKnightSuccessorStates;
-//        case blackRook:
-//            return &generateBlackRookSuccessorStates;
-//        case blackQueen:
-//            return &generateBlackQueenSuccessorStates;
-//        case blackKing:
-//            return &generateBlackKingSuccessorStates;
-//        default:
-//            assert(false);
-//    }
-//}
+
 
 T_bitboard *pieceBitboard(T_boardState *b, char piece){
     switch(piece){
