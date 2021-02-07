@@ -54,7 +54,34 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
 }
 
 string specifier(char piece){
-
+    string result;
+    switch(piece){
+        case whitePawn:
+        case blackPawn:
+            ;
+            break;
+        case whiteBishop:
+        case blackBishop:
+            result += "B";
+            break;
+        case whiteKnight:
+        case blackKnight:
+            result += "K";
+            break;
+        case whiteRook:
+        case blackRook:
+            result += "R";
+            break;
+        case whiteQueen:
+        case blackQueen:
+            result += "Q";
+            break;
+        case whiteKing:
+        case blackKing:
+            result += "K";
+            break;
+    }
+    return result;
 }
 
 //Doesnt take into account en Passants
