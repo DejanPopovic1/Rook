@@ -18,7 +18,7 @@
 
 
 
-T_bitboard stateMemberCpy(T_boardState *b, char piece);
+T_bitboard *stateMember(T_boardState *b, char piece);
 char piece(T_boardState *c, char pos);
 std::vector<char> whereAreOtherSamePieces(T_boardState c, char pos);
 std::string disambiguate(T_boardState *c, char from, char to, bool isCaptured);

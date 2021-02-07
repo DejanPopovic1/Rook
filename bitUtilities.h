@@ -17,6 +17,8 @@ T_bitboard bitScanReverse(T_bitboard b);
 T_bitboard numOfSetBits(T_bitboard b);
 uint64_t isZFSet();
 
+
+void setBits(T_bitboard *number);
 T_bitboard createSecondLastColumnMask();
 void setBit(T_bitboard *number, int n);
 void clearBit(T_bitboard *number, int n);

@@ -15,43 +15,43 @@ extern "C" {
 using std::string;
 using std::vector;
 
-T_bitboard stateMemberCpy(T_boardState *b, char piece){
+T_bitboard *stateMember(T_boardState *b, char piece){
     switch(piece){
     case whitePawn:
-        return b->wPawn;
+        return &b->wPawn;
         break;
     case whiteBishop:
-        return b->wBishop;
+        return &b->wBishop;
         break;
     case whiteKnight:
-        return b->wKnight;
+        return &b->wKnight;
         break;
     case whiteRook:
-        return b->wRook;
+        return &b->wRook;
         break;
     case whiteQueen:
-        return b->wQueen;
+        return &b->wQueen;
         break;
     case whiteKing:
-        return b->wKing;
+        return &b->wKing;
         break;
     case blackPawn:
-        return b->bPawn;
+        return &b->bPawn;
         break;
     case blackBishop:
-        return b->bBishop;
+        return &b->bBishop;
         break;
     case blackKnight:
-        return b->bKnight;
+        return &b->bKnight;
         break;
     case blackRook:
-        return b->bRook;
+        return &b->bRook;
         break;
     case blackQueen:
-        return b->bQueen;
+        return &b->bQueen;
         break;
     case blackKing:
-        return b->bKing;
+        return &b->bKing;
         break;
     default:
         assert(false);
@@ -60,26 +60,17 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
 
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
-        if(isBitSet(stateMemberCpy(c, i), pos)){
+        if(isBitSet(*stateMember(c, i), pos)){
             return i;
         }
     }
 }
 
-T_bitboard whereAreOtherSamePieces(T_boardState *c, char pos){
-    T_bitboard result;
-    char p = piece(c, pos);
-
-//    clearBit1(5ull);
-//    for(char i = 0; i < 64; i++){
-//        if(i == pos){
-//            continue;
-//        }
-//        if(p == piece(c, i)){
-//            result.push_back(i);
-//        }
-//    }
-    return result;
+T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
+    T_bitboard mask;
+    setBits(&mask);
+    clearBit(&mask, pos);
+    return b & mask;
 }
 //trimOtherSamePieces
 //isPawn
@@ -93,6 +84,8 @@ T_bitboard whereAreOtherSamePieces(T_boardState *c, char pos){
 
 string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
+    char p = piece(c, from);
+    //whereAreOtherSamePieces(*stateMember(c, p),
 
 
 
@@ -155,8 +148,8 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
     bool cond1, cond2;
     T_bitboard cB, ssB;
     for(char i = 1; i < 13; i++){
-        cB = stateMemberCpy(c, i);
-        ssB = stateMemberCpy(ss, i);
+        cB = *stateMember(c, i);
+        ssB = *stateMember(ss, i);
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;
             T_bitboard fromTo = cB ^ ssB;
