@@ -83,7 +83,8 @@
 	"state.h"
 	"moveRules.h"
 
-1612648366 source:c:\c_c++ code\rook\toalgebraicnotation.c
+1612664773 source:c:\c_c++ code\rook\toalgebraicnotation.c
+	"bitUtilities.h"
 
 1612646638 c:\c_c++ code\rook\toalgebraicnotation.h
 	"GlobalDeclarations.h"
@@ -197,8 +198,9 @@
 	<stdlib.h>
 	<string.h>
 
-1612654905 source:c:\c_c++ code\rook\toalgnotation.cpp
+1612664782 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
+	<vector>
 	<stdbool.h>
 	<assert.h>
 	"GlobalDeclarations.h"

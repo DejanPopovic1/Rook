@@ -1,3 +1,10 @@
+#include "bitUtilities.h"
+
+void myFunc(){
+    isBitSet(5ULL, 3);
+}
+
+
 //#include "toAlgebraicNotation.h"
 //#include "GlobalDeclarations.h"
 //#include "applicableActions.h"

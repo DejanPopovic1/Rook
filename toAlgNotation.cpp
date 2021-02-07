@@ -1,14 +1,15 @@
-
-
 #include <string>
+#include <vector>
 #include <stdbool.h>
 #include <assert.h>
 
+#include "toAlgNotation.hpp"
 #include "GlobalDeclarations.h"
 #include "state.h"
 #include "bitUtilities.h"
 
 using std::string;
+using std::vector;
 
 T_bitboard stateMemberCpy(T_boardState *b, char piece){
     switch(piece){
@@ -53,8 +54,67 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
     }
 }
 
-string disambiguate(T_boardState *c, char from, char to, bool isPieceCaptured){
+char piece(T_boardState *c, char pos){
+    for(char i = 1; i < 13; i++){
+            isBitSet(0ULL, 3);
+//        if(isBitSet(stateMemberCpy(c, i), pos)){
+//            return i;
+//        }
+    }
+}
+
+vector<char> whereAreOtherSamePieces(T_boardState c, char pos){
+    vector<char> result;
+
+//    int pieceType = c[p.r][p.f];
+//    for(int i = 0; i < RANK_SIZE; i++){
+//        for(int j = 0; j < FILE_SIZE; j++){
+//            if(i == p.r && j == p.f){
+//                continue;
+//            }
+//            if(pieceType == c[i][j]){
+//                T_position *pos = createPosition(i, j);
+//                result->positions[result->freeIndex] = *pos;
+//                (result->freeIndex)++;
+//                free(pos);
+//            }
+//        }
+//    }
+
+
+
+
+
+    return result;
+}
+//trimOtherSamePieces
+//isPawn
+//toFileRank
+//toFileRankPawn
+
+
+
+
+
+
+string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
+
+
+
+//        T_positions *ps = whereAreOtherSamePieces(c, departure);
+//    T_positions *rps;
+//    rps = trimOtherSamePieces(c, ps, arrival);
+//    free(ps);
+//    if(!isPawn(c[departure.r][departure.f])){
+//        return toFileRank(rps, departure);
+//    }
+//    else if(isPawn(c[departure.r][departure.f])){
+//        return toFileRankPawn(rps, departure, isCaptured);
+//    }
+
+
+
 
 
 

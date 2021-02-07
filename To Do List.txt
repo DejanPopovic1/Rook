@@ -9,6 +9,7 @@ Incorporate Minimax algorithm
 genQuieteMoves and genAttackMoves
 Use one function to generate all piece moves and general genSuccStates optimisation
 
+Functions that are inlined for performance in one file but not inlined in another should be defined in the header file and not .c file! An example of this is functions in binUtils
 Establish BENCHMARKING before starting efficiency gains
 make UCI compatible
 make front end compatible
