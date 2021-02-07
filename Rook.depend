@@ -149,7 +149,7 @@
 	<stdlib.h>
 	"bitUtilities.h"
 
-1610883481 c:\c_c++ code\rook\encodingtranslation.h
+1612703762 c:\c_c++ code\rook\encodingtranslation.h
 	"GlobalDeclarations.h"
 
 1612387488 c:\c_c++ code\rook\movegenerator.h
@@ -174,7 +174,7 @@
 	<stdbool.h>
 	"state.h"
 
-1612699637 source:c:\c_c++ code\rook\movegeneration.c
+1612703219 source:c:\c_c++ code\rook\movegeneration.c
 	<assert.h>
 	"moveGeneration.h"
 	"state.h"
@@ -198,7 +198,7 @@
 	<stdlib.h>
 	<string.h>
 
-1612698259 source:c:\c_c++ code\rook\toalgnotation.cpp
+1612704047 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -207,8 +207,9 @@
 	"GlobalDeclarations.h"
 	"state.h"
 	"bitUtilities.h"
+	"moveGeneration.h"
 
-1612664932 c:\c_c++ code\rook\toalgnotation.hpp
+1612704139 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	"state.h"
 

@@ -2,8 +2,11 @@
 #define TOALGNOTATION_HPP
 
 #include <string>
-#include "state.h"
 
+//We need to investigate why this works. It should work without extern because the .c file repeates the step after this with extern
+extern "C"{
+    #include "state.h"
+}
 
 
 

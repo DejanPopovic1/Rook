@@ -459,6 +459,8 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
     }
 }
 
+//Look at potentially removing this. It would have worked if the moveGenerators took the same info
+//wPawnGenerate doesnt take the last argument piece so this needs to be corrected
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
     switch(piece){
         case whitePawn:

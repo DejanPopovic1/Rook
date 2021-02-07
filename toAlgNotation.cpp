@@ -6,19 +6,19 @@
 
 #include "toAlgNotation.hpp"
 #include "GlobalDeclarations.h"
-#include "state.h"
+
 
 extern "C" {
+        #include "state.h"
     #include "bitUtilities.h"
     #include "moveGeneration.h"
+
 }
 
 using std::string;
 using std::vector;
 
 //Add consts in this file
-
-
 
 T_bitboard *pieceBitboard(T_boardState *b, char piece){
     switch(piece){
@@ -82,10 +82,14 @@ T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
 //toFileRank
 //toFileRankPawn
 
-
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
 //    char dps = pieceBitboard(b, d);
 //    char aps = pieceBitboard(b, a);
+    char p = piece(b, d);
+    T_boardStates *bss = initialiseStates();
+
+
+    //(*genPieceSuccStates(p))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
 
 }
 
