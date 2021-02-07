@@ -53,6 +53,15 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
     }
 }
 
+string disambiguate(T_boardState *c, char from, char to, bool isPieceCaptured){
+    string result;
+
+
+
+
+    return result;
+}
+
 string specifier(char piece){
     string result;
     switch(piece){
@@ -112,7 +121,7 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     bool isPieceCaptured;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
     string part1 = specifier(piece);
-    string part2;
+    string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3;
     string part4;
 //    char *part1 = specifier(piece);
