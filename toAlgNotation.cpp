@@ -57,6 +57,7 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
+    isPieceCaptured = false;
     bool cond1, cond2;
     T_bitboard cB, ssB;
     for(char i = 1; i < 13; i++){
@@ -67,7 +68,9 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
             T_bitboard fromTo = cB ^ ssB;
             *from = __builtin_ctzll(cB & fromTo);
             *to = __builtin_ctzll(ssB & fromTo);
-            *isPieceCaptured = (__builtin_popcountll(cB) == __builtin_popcountll(ssB));
+        }
+        else if(cB != ssB && (__builtin_popcountll(cB) != __builtin_popcountll(ssB))){
+            *isPieceCaptured = true;
         }
     }
 }
