@@ -1,0 +1,4 @@
+Define trimOtherPieces
+Define isPawn
+Define toFileRank
+Define FileRankPawn

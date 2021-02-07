@@ -83,14 +83,19 @@ T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
 //toFileRankPawn
 
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
-//    char dps = pieceBitboard(b, d);
-//    char aps = pieceBitboard(b, a);
     char p = piece(b, d);
     T_boardStates *bss = initialiseStates();
-
-
-    //(*genPieceSuccStates(p))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
-
+    T_boardState *i1;
+    T_bitboard i2;
+    genSuccStates(bss, b);
+    for(int i = 0; i < bss->fi; i++){
+        i1 = &((bss->bs)[i]);
+        i2 = *pieceBitboard(i1, p);
+        if(isBitSet(i2, a)){
+            return true;
+        }
+    }
+    return false;
 }
 
 T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard p, char arrival){
