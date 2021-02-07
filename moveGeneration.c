@@ -141,7 +141,7 @@ void clearOppPosition(T_boardState *b, char pos){
     }
 }
 
-T_bitboard *stateMember(T_boardState *b, int piece){
+T_bitboard *pieceBitboard(T_boardState *b, int piece){
     switch(piece){
     case whitePawn:
         return &(b->wPawn);
@@ -189,7 +189,7 @@ T_bitboard *stateMember(T_boardState *b, int piece){
 //When calling this function, we dont know if the move also constitutes an attack
 void moveAndAttack(T_boardState *b, char dst, char src, char piece){
     T_bitboard oppPieces = isWhitePiece(piece) ? bAll(b) : wAll(b);
-    T_bitboard *sm = (*stateMember)(b, piece);
+    T_bitboard *sm = (*pieceBitboard)(b, piece);
     clearBit(sm, src);
     setBit(sm, dst);
     if(checkBit(oppPieces, dst)){
@@ -201,14 +201,14 @@ void moveAndAttack(T_boardState *b, char dst, char src, char piece){
 //First make sure destination does not contain same colour before calling this function
 //When calling this function, we know the move does not constitute an attack
 void move(T_boardState *b, char dst, char src, char piece){
-    T_bitboard *sm = (*stateMember)(b, piece);
+    T_bitboard *sm = (*pieceBitboard)(b, piece);
     clearBit(sm, src);
     setBit(sm, dst);
 }
 
 void promote(T_boardStates *dst, const T_boardState *b, int n, int piece){
         T_boardState cpy = *b;
-        T_bitboard *sm = stateMember(&cpy, piece);
+        T_bitboard *sm = pieceBitboard(&cpy, piece);
         setBit(sm, n + 8);
         clearBit(sm, n);
         addState(dst, &cpy);
@@ -432,7 +432,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
 }
 
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece){
-    T_bitboard allPieces = *(stateMember(b, piece));
+    T_bitboard allPieces = *(pieceBitboard(b, piece));
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));

@@ -64,7 +64,7 @@ struct GameState{
 };
 
 T_bitboard sameAll(const T_boardState *b);
-T_bitboard *stateMember(T_boardState *b, int piece);
+T_bitboard *pieceBitboard(T_boardState *b, int piece);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
 void movePiece(T_boardState *b, int dst, int src, int piece);

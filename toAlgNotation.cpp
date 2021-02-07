@@ -15,7 +15,41 @@ extern "C" {
 using std::string;
 using std::vector;
 
-T_bitboard *stateMember(T_boardState *b, char piece){
+//Add consts in this file
+
+//void (*moveGenerator(T_chessboard c, T_position p))(T_chessboard, T_position, T_states *){
+//    int movedPiece = whatPiece(c, p);
+//    switch(movedPiece){
+//        case whitePawn:
+//            return &generateWhitePawnSuccessorStates;
+//        case whiteBishop:
+//            return &generateWhiteBishopSuccessorStates;
+//        case whiteKnight:
+//            return &generateWhiteKnightSuccessorStates;
+//        case whiteRook:
+//            return &generateWhiteRookSuccessorStates;
+//        case whiteQueen:
+//            return &generateWhiteQueenSuccessorStates;
+//        case whiteKing:
+//            return &generateWhiteKingSuccessorStates;
+//        case blackPawn:
+//            return &generateBlackPawnSuccessorStates;
+//        case blackBishop:
+//            return &generateBlackBishopSuccessorStates;
+//        case blackKnight:
+//            return &generateBlackKnightSuccessorStates;
+//        case blackRook:
+//            return &generateBlackRookSuccessorStates;
+//        case blackQueen:
+//            return &generateBlackQueenSuccessorStates;
+//        case blackKing:
+//            return &generateBlackKingSuccessorStates;
+//        default:
+//            assert(false);
+//    }
+//}
+
+T_bitboard *pieceBitboard(T_boardState *b, char piece){
     switch(piece){
     case whitePawn:
         return &b->wPawn;
@@ -60,7 +94,7 @@ T_bitboard *stateMember(T_boardState *b, char piece){
 
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
-        if(isBitSet(*stateMember(c, i), pos)){
+        if(isBitSet(*pieceBitboard(c, i), pos)){
             return i;
         }
     }
@@ -78,14 +112,22 @@ T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
 //toFileRankPawn
 
 
+bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
+//    char dps = pieceBitboard(b, d);
+//    char aps = pieceBitboard(b, a);
+
+}
+
+T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard p, char arrival){
 
 
 
+}
 
 string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
     char p = piece(c, from);
-    //whereAreOtherSamePieces(*stateMember(c, p),
+    T_bitboard ps = whereAreOtherSamePieces(*pieceBitboard(c, p), from);
 
 
 
@@ -148,8 +190,8 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
     bool cond1, cond2;
     T_bitboard cB, ssB;
     for(char i = 1; i < 13; i++){
-        cB = *stateMember(c, i);
-        ssB = *stateMember(ss, i);
+        cB = *pieceBitboard(c, i);
+        ssB = *pieceBitboard(ss, i);
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;
             T_bitboard fromTo = cB ^ ssB;

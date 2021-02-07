@@ -22,7 +22,7 @@ bool isUpUpEmpty(const T_boardState *b, int n);
 bool isDownEmpty(const T_boardState *b, int n);
 bool isDownDownEmpty(const T_boardState *b, int n);
 void clearOppPosition(T_boardState *b, char pos);
-T_bitboard *stateMember(T_boardState *b, int piece);
+T_bitboard *pieceBitboard(T_boardState *b, int piece);
 void moveAndAttack(T_boardState *b, char dst, char src, char piece);
 void move(T_boardState *b, char dst, char src, char piece);
 void promote(T_boardStates *dst, const T_boardState *b, int n, int piece);
