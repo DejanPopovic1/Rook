@@ -3,21 +3,29 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#include "bitUtilities.h"
+
 #include "toAlgNotation.hpp"
 #include "GlobalDeclarations.h"
 #include "state.h"
 
+extern "C" {
+    #include "bitUtilities.h"
+}
+
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+//
+//extern "C" bool isBitSet(T_bitboard number, int n);
+//
+//#ifdef __cplusplus
+//}
+//#endif
+
+using namespace std;
 
 using std::string;
 using std::vector;
-
-bool isBitSet1(T_bitboard number, int n){
-    if ((number >> n) & 1ULL){
-        return true;
-    }
-    return false;
-}
 
 T_bitboard stateMemberCpy(T_boardState *b, char piece){
     switch(piece){
@@ -62,25 +70,28 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
     }
 }
 
+
+
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
-        if(isBitSet1(stateMemberCpy(c, i), pos)){
+        if(isBitSet(stateMemberCpy(c, i), pos)){
             return i;
         }
     }
 }
 
-vector<char> whereAreOtherSamePieces(T_boardState *c, char pos){
-    vector<char> result;
+T_bitboard whereAreOtherSamePieces(T_boardState *c, char pos){
+    T_bitboard result;
     char p = piece(c, pos);
-    for(char i = 0; i < 64; i++){
-        if(i == pos){
-            continue;
-        }
-        if(p == piece(c, i)){
-            result.push_back(i);
-        }
-    }
+//    clearBit1(5ull);
+//    for(char i = 0; i < 64; i++){
+//        if(i == pos){
+//            continue;
+//        }
+//        if(p == piece(c, i)){
+//            result.push_back(i);
+//        }
+//    }
     return result;
 }
 //trimOtherSamePieces
