@@ -198,15 +198,15 @@
 	<stdlib.h>
 	<string.h>
 
-1612697359 source:c:\c_c++ code\rook\toalgnotation.cpp
+1612698259 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
 	<assert.h>
-	"bitUtilities.h"
 	"toAlgNotation.hpp"
 	"GlobalDeclarations.h"
 	"state.h"
+	"bitUtilities.h"
 
 1612664932 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>

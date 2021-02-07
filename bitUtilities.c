@@ -88,6 +88,10 @@ void clearBits(T_bitboard *number){
     *number = 0;
 }
 
+void setBits(T_bitboard *number){
+    *number = ULONG_LONG_MAX;
+}
+
 void clearCharBits(unsigned char *c){
     *c = 0;
 }

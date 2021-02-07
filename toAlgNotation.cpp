@@ -12,18 +12,6 @@ extern "C" {
     #include "bitUtilities.h"
 }
 
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-//
-//extern "C" bool isBitSet(T_bitboard number, int n);
-//
-//#ifdef __cplusplus
-//}
-//#endif
-
-using namespace std;
-
 using std::string;
 using std::vector;
 
@@ -70,8 +58,6 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
     }
 }
 
-
-
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
         if(isBitSet(stateMemberCpy(c, i), pos)){
@@ -83,6 +69,7 @@ char piece(T_boardState *c, char pos){
 T_bitboard whereAreOtherSamePieces(T_boardState *c, char pos){
     T_bitboard result;
     char p = piece(c, pos);
+
 //    clearBit1(5ull);
 //    for(char i = 0; i < 64; i++){
 //        if(i == pos){
