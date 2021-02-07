@@ -53,11 +53,15 @@ T_bitboard stateMemberCpy(T_boardState *b, char piece){
     }
 }
 
+string specifier(char piece){
+
+}
+
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
-    isPieceCaptured = false;
+    *isPieceCaptured = false;
     bool cond1, cond2;
     T_bitboard cB, ssB;
     for(char i = 1; i < 13; i++){
@@ -80,7 +84,10 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     char piece, from, to;
     bool isPieceCaptured;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
-//    int piece = c[from.r][from.f];
+    string part1 = specifier(piece);
+    string part2;
+    string part3;
+    string part4;
 //    char *part1 = specifier(piece);
 //    char *part2 = disambiguate(c, from, to, isPieceCaptured);
 //    char *part3 = take(isPieceCaptured);
