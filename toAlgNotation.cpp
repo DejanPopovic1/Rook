@@ -106,15 +106,15 @@ bool arePiecesInSameRank(vector<char> ps, char p){
 }
 
 bool arePiecesInSameFile(vector<char> ps, char p){
-//    for(int i = 0; i < ps->freeIndex; i++){
-////        if(isSamePosition(ps->positions[i], p)){
-////            continue;
-////        }
-//        if(isSameFile(ps->positions[i], p)){
-//            return true;
-//        }
-//    }
-//    return false;
+    for(int i = 0; i < ps.size(); i++){
+        if(isSamePosition(ps[i], p)){
+            continue;
+        }
+        if(isSameFile(ps[i], p)){
+            return true;
+        }
+    }
+    return false;
 }
 
 T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
