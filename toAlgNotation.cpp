@@ -9,7 +9,7 @@
 
 
 extern "C" {
-        #include "state.h"
+    #include "state.h"
     #include "bitUtilities.h"
     #include "moveGeneration.h"
 
@@ -77,10 +77,43 @@ T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
     clearBit(&mask, pos);
     return b & mask;
 }
-//trimOtherSamePieces
-//isPawn
-//toFileRank
-//toFileRankPawn
+
+string toFileRank(vector<char> departures, char departure){
+    string result;
+//    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+//    if(departures->freeIndex == 0){
+//        strcpy(result, "");
+//    }
+//    else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
+//        strcpy(result, formatFileDisplay(departure.f));
+//        strcat(result, formatRankDisplay(departure.r));
+//    }
+//    else if(!arePiecesInSameFile(departures, departure)){
+//        strcpy(result, formatFileDisplay(departure.f));
+//    }
+//    else if(arePiecesInSameFile(departures, departure)){
+//        strcpy(result, formatRankDisplay(departure.r));
+//    }
+//    else{
+//        assert(false);
+//    }
+    return result;
+}
+
+string toFileRankPawn(vector<char> departures, char departure, bool isCaptured){
+    string result;
+//    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
+//    if(isCaptured){
+//        strcpy(result, formatFileDisplay(departure.f));
+//    }
+//    else if(!isCaptured){
+//        strcpy(result, "");
+//    }
+//    else{
+//        assert(false);
+//    }
+    return result;
+}
 
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     char p = piece(b, d);
