@@ -79,16 +79,30 @@ bool isSamePosition(const char a, const char b){
         return false;
 }
 
+bool isSameRank(char a, char b){
+    if(a/8 == b/8){
+        return true;
+    }
+    return false;
+}
+
+bool isSameFile(char a, char b){
+    if(a%8 == b%8){
+        return true;
+    }
+    return false;
+}
+
 bool arePiecesInSameRank(vector<char> ps, char p){
     for(int i = 0; i < ps.size(); i++){
-////        if(isSamePosition(ps->positions[i], p)){
-////            continue;
-////        }
-//        if(isSameRank(ps->positions[i], p)){
-//            return true;
-//        }
+        if(isSamePosition(ps[i], p)){
+            continue;
+        }
+        if(isSameRank(ps[i], p)){
+            return true;
+        }
     }
-//    return false;
+    return false;
 }
 
 bool arePiecesInSameFile(vector<char> ps, char p){

@@ -52,14 +52,14 @@ bool isSamePosition(const T_position a, const T_position b){
         return false;
 }
 
-bool isSameRank(T_position a, T_position b){
+bool isSameRankOld(T_position a, T_position b){
     if(a.r == b.r){
         return true;
     }
     return false;
 }
 
-bool isSameFile(T_position a, T_position b){
+bool isSameFileOld(T_position a, T_position b){
     if(a.f == b.f){
         return true;
     }
