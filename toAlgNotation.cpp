@@ -189,10 +189,14 @@ bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     return false;
 }
 
-T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard p, char arrival){
-
-
-
+T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival){
+    T_bitboard result = ps;
+    for(int i = 0; i < 64; i++){
+        if(isBitSet(ps, i) && !doesDepartureGoToArrival(s, i, arrival)){
+            clearBit(&result, i);
+        }
+    }
+    return result;
 }
 
 string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
