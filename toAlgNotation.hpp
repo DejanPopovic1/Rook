@@ -3,6 +3,9 @@
 
 #include <string>
 
+#define ASCII_CHARACTER_OFFSET 97
+#define ASCII_NUMBER_OFFSET 49
+
 //We need to investigate why this works. It should work without extern because the .c file repeates the step after this with extern
 extern "C"{
     #include "state.h"

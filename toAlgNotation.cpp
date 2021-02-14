@@ -124,25 +124,40 @@ T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos){
     return b & mask;
 }
 
+string formatFileDisplay(char f){
+    string result;
+    assert(f >= 0 && f < 8);
+    result.push_back(f + ASCII_CHARACTER_OFFSET);
+    return result;
+}
+
+string formatRankDisplay(char r){
+    string result;
+    assert(r >= 0 && r < 8);
+    result.push_back(r + ASCII_NUMBER_OFFSET);
+    return result;
+}
+
 string toFileRank(vector<char> departures, char departure){
     string result;
 //    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-//    if(departures->freeIndex == 0){
-//        strcpy(result, "");
-//    }
-//    else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
-//        strcpy(result, formatFileDisplay(departure.f));
+    if(!departures.size()){
+        ;//strcpy(result, "");
+    }
+    else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
+  //      result += formatFileDisplay(departure.f);
+// strcpy(result, formatFileDisplay(departure.f));
 //        strcat(result, formatRankDisplay(departure.r));
-//    }
+    }
 //    else if(!arePiecesInSameFile(departures, departure)){
 //        strcpy(result, formatFileDisplay(departure.f));
 //    }
 //    else if(arePiecesInSameFile(departures, departure)){
 //        strcpy(result, formatRankDisplay(departure.r));
 //    }
-//    else{
-//        assert(false);
-//    }
+    else{
+        assert(false);
+    }
     return result;
 }
 
