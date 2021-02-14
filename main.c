@@ -110,9 +110,11 @@ void testCases(){
     T_boardStates *bss = initialiseStates();
     printState(c);
     genSuccStates(bss, &c);
-    printStates(bss);
-    printf("test...");
-    printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &(bss[2])));
+    //printStates(bss);
+    T_boardState s = (bss->bs)[12];
+    printState(s);
+    //printf("test...");
+    printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &s));
     getch();
     return;
 }
