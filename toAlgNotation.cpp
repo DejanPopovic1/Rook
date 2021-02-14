@@ -3,10 +3,7 @@
 #include <stdbool.h>
 #include <assert.h>
 
-
 #include "toAlgNotation.hpp"
-
-
 
 extern "C" {
     #include "state.h"
@@ -275,7 +272,6 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
     }
 }
 
-
 string take(bool isTake){
     string result;
     if(isTake){
@@ -303,4 +299,8 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string part3 = take(isPieceCaptured);
     string part4 = toSpecifier(to);
     return result;
+}
+
+const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss){
+    return toAlgebraicNotation(c, ss).c_str();
 }

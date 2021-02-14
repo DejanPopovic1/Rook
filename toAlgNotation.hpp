@@ -11,26 +11,30 @@ extern "C"{
     #include "state.h"
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//Namespaces included in headers is bad practice. Is there therefore any way to include them wihtout resorting to excessive use of std::?
 
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 char piece(T_boardState *c, char pos);
-std::vector<char> whereAreOtherSamePieces(T_boardState c, char pos);
+bool isSamePosition(const char a, const char b);
+bool isSameRank(char a, char b);
+bool isSameFile(char a, char b);
+bool arePiecesInSameRank(std::vector<char> ps, char p);
+bool arePiecesInSameFile(std::vector<char> ps, char p);
+T_bitboard whereAreOtherSamePieces(T_bitboard b, char pos);
+std::string formatFileDisplay(char f);
+std::string formatRankDisplay(char r);
+std::string toFileRank(std::vector<char> departures, char departure);
+std::string toFileRankPawn(std::vector<char> departures, char departure, bool isCaptured);
+bool doesDepartureGoToArrival(T_boardState *b, char d, char a);
+T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival);
+std::vector<char> posOfPieces(T_bitboard input);
 std::string disambiguate(T_boardState *c, char from, char to, bool isCaptured);
 std::string specifier(char piece);
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured);
+std::string take(bool isTake);
+std::string toSpecifier(char to);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
+const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 
 #endif // TOALGNOTATION_HPP
 
