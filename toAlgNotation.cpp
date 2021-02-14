@@ -275,6 +275,15 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
     }
 }
 
+
+string take(bool isTake){
+    string result;
+    if(isTake){
+        result += "x";
+    }
+    return result;
+}
+
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to;
@@ -284,8 +293,6 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3;
     string part4;
-//    char *part1 = specifier(piece);
-//    char *part2 = disambiguate(c, from, to, isPieceCaptured);
 //    char *part3 = take(isPieceCaptured);
 //    char *part4 = toSpecifier(to);
 //    strcpy(result, "");
