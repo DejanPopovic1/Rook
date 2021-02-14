@@ -43,7 +43,12 @@ void printState(T_boardState b){
     i = b.castlesBlack;
     printBits(sizeof(i), &i);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
-    printf("Hash table of previous chess states:\n - TO BE COMPLETED\n\n");
+    printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
+}
+
+void printStateAndValidMoves(T_boardState c, T_boardState s){
+    printState(s);
+    printf("Valid Moves: %s\n\n", toAlgebraicNotation_C_WRAPPER(&c, &s));
 }
 
 void printBits(size_t const size, void const * const ptr)

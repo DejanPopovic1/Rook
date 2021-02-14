@@ -51,6 +51,12 @@ void printStates(T_boardStates *b){
     }
 }
 
+void printStatesAndValidMoves(T_boardState *c, T_boardStates *b){
+    for(int i = 0; i < length(b); i++){
+        printStateAndValidMoves(*c, (b->bs)[i]);
+    }
+}
+
 //void printValidMoves(T_boardState *c, T_boardStates *ss){
 //    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
 //    T_chessboard *ssArr, *cArr = toIntArray(*c);

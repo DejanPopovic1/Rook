@@ -67,7 +67,7 @@ void multiPlayerSession(char *playerColourInput){
     T_boardState s = initialiseBoardState();
     T_boardStates *bss = initialiseStates();
     while(true){
-        printState(s);
+//        printState(s);
         genSuccStates(bss, &s);
 //        printValidMoves(s, bss);
         //printState((bss->bs)[0]);
@@ -112,9 +112,10 @@ void testCases(){
     genSuccStates(bss, &c);
     //printStates(bss);
     T_boardState s = (bss->bs)[12];
-    printState(s);
+    printStatesAndValidMoves(&c, bss);
+    //printState(s);
     //printf("test...");
-    printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &s));
+    //printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &s));
     getch();
     return;
 }
