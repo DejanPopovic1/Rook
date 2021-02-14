@@ -298,9 +298,14 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);
     string part4 = toSpecifier(to);
+    result.append(part1);
+    result.append(part2);
+    result.append(part3);
+    result.append(part4);
     return result;
 }
 
 const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss){
-    return toAlgebraicNotation(c, ss).c_str();
+    return (toAlgebraicNotation(c, ss)).c_str();
+    //return "Hello it works";
 }
