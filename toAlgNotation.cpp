@@ -140,21 +140,19 @@ string formatRankDisplay(char r){
 
 string toFileRank(vector<char> departures, char departure){
     string result;
-//    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
     if(!departures.size()){
-        ;//strcpy(result, "");
+        ;
     }
     else if(arePiecesInSameFile(departures, departure) && arePiecesInSameRank(departures, departure)){
-  //      result += formatFileDisplay(departure.f);
-// strcpy(result, formatFileDisplay(departure.f));
-//        strcat(result, formatRankDisplay(departure.r));
+        result += formatFileDisplay(whatFile(departure));
+        result += formatRankDisplay(whatRank(departure));
     }
-//    else if(!arePiecesInSameFile(departures, departure)){
-//        strcpy(result, formatFileDisplay(departure.f));
-//    }
-//    else if(arePiecesInSameFile(departures, departure)){
-//        strcpy(result, formatRankDisplay(departure.r));
-//    }
+    else if(!arePiecesInSameFile(departures, departure)){
+        result += formatFileDisplay(whatFile(departure));
+    }
+    else if(arePiecesInSameFile(departures, departure)){
+        result += formatRankDisplay(whatRank(departure));
+    }
     else{
         assert(false);
     }
