@@ -301,17 +301,6 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);
-    string part4;
-//    char *part3 = take(isPieceCaptured);
-//    char *part4 = toSpecifier(to);
-//    strcpy(result, "");
-//    strcat(result, part1);
-//    strcat(result, part2);
-//    strcat(result, part3);
-//    strcat(result, part4);
-//    free(part1);
-//    //free(part2);
-//    free(part3);
-//    free(part4);
+    string part4 = toSpecifier(to);
     return result;
 }
