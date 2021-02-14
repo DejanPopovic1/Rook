@@ -284,6 +284,15 @@ string take(bool isTake){
     return result;
 }
 
+string toSpecifier(char to){
+    string result;
+    string ff = formatFileDisplay(whatFile(to));
+    string fr = formatRankDisplay(whatRank(to));
+    result += ff;
+    result += fr;
+    return result;
+}
+
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to;
@@ -291,7 +300,7 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
-    string part3;
+    string part3 = take(isPieceCaptured);
     string part4;
 //    char *part3 = take(isPieceCaptured);
 //    char *part4 = toSpecifier(to);
