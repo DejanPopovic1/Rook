@@ -161,16 +161,15 @@ string toFileRank(vector<char> departures, char departure){
 
 string toFileRankPawn(vector<char> departures, char departure, bool isCaptured){
     string result;
-//    char *result = malloc(MAX_DISAMBIGUATOR_STRING * sizeof(char));
-//    if(isCaptured){
-//        strcpy(result, formatFileDisplay(departure.f));
-//    }
-//    else if(!isCaptured){
-//        strcpy(result, "");
-//    }
-//    else{
-//        assert(false);
-//    }
+    if(isCaptured){
+        result += formatFileDisplay(whatFile(departure));
+    }
+    else if(!isCaptured){
+        ;
+    }
+    else{
+        assert(false);
+    }
     return result;
 }
 
