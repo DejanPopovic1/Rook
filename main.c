@@ -111,6 +111,8 @@ void testCases(){
     printState(c);
     genSuccStates(bss, &c);
     printStates(bss);
+    printf("test...");
+    printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &(bss[1])));
     getch();
     return;
 }

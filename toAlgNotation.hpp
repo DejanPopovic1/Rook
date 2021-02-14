@@ -34,7 +34,7 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
 std::string take(bool isTake);
 std::string toSpecifier(char to);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
-const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
+extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 
 #endif // TOALGNOTATION_HPP
 
