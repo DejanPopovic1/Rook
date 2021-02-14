@@ -71,18 +71,26 @@ char piece(T_boardState *c, char pos){
     }
 }
 
+bool isSamePosition(const char a, const char b){
+    if(a == b){
+        return true;
+    }
+    else
+        return false;
+}
+
 bool arePiecesInSameRank(vector<char> ps, char p){
-//    for(int i = 0; i < ps->freeIndex; i++){
+    for(int i = 0; i < ps.size(); i++){
 ////        if(isSamePosition(ps->positions[i], p)){
 ////            continue;
 ////        }
 //        if(isSameRank(ps->positions[i], p)){
 //            return true;
 //        }
-//    }
+    }
 //    return false;
 }
-//
+
 bool arePiecesInSameFile(vector<char> ps, char p){
 //    for(int i = 0; i < ps->freeIndex; i++){
 ////        if(isSamePosition(ps->positions[i], p)){
