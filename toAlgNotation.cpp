@@ -5,14 +5,14 @@
 
 
 #include "toAlgNotation.hpp"
-#include "GlobalDeclarations.h"
+
 
 
 extern "C" {
     #include "state.h"
     #include "bitUtilities.h"
     #include "moveGeneration.h"
-
+    #include "GlobalDeclarations.h"
 }
 
 using std::string;
@@ -199,31 +199,27 @@ T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival){
     return result;
 }
 
+vector<char> posOfPieces(T_bitboard input){
+    vector<char> result;
+    for(char i = 0; i < 64; i++){
+        if(isBitSet(input, i)){
+            result.push_back(i);
+        }
+    }
+    return result;
+}
+
 string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
     char p = piece(c, from);
     T_bitboard ps = whereAreOtherSamePieces(*pieceBitboard(c, p), from);
-
-
-
-//        T_positions *ps = whereAreOtherSamePieces(c, departure);
-//    T_positions *rps;
-//    rps = trimOtherSamePieces(c, ps, arrival);
-//    free(ps);
-//    if(!isPawn(c[departure.r][departure.f])){
-//        return toFileRank(rps, departure);
-//    }
-//    else if(isPawn(c[departure.r][departure.f])){
-//        return toFileRankPawn(rps, departure, isCaptured);
-//    }
-
-
-
-
-
-
-
-    return result;
+    T_bitboard rps = trimOtherSamePieces(c, ps, to);
+    if(!isPawn(p)){
+        return toFileRank(posOfPieces(rps), from);
+    }
+    else if(isPawn(p)){
+        return toFileRankPawn(posOfPieces(rps), from, isCaptured);
+    }
 }
 
 string specifier(char piece){
