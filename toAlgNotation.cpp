@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdbool.h>
 #include <assert.h>
+#include <iostream>
 
 #include "toAlgNotation.hpp"
 
@@ -194,6 +195,11 @@ T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival){
         }
     }
     return result;
+}
+
+void printVector(vector<char> v){
+for (vector<char>::const_iterator i = v.begin(); i != v.end(); ++i)
+    std::cout << *i << ' ';
 }
 
 vector<char> posOfPieces(T_bitboard input){
