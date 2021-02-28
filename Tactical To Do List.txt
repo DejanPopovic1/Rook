@@ -1,4 +1,5 @@
-Define trimOtherPieces
-Define isPawn
-Define toFileRank
-Define FileRankPawn
+*) Move manually, turn by turn
+	- For every state, print list of valid moves which has a one to one match with the list of valid successor states
+	- Input move
+	- The input move must match an item in the list and thus change state to the successor state
+	- If it doesnt match a given state, print invalid
