@@ -192,8 +192,8 @@ bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     genSuccStates(bss, b);
     for(int i = 0; i < bss->fi; i++){
         state = &((bss->bs)[i]);
-        if(doesStateChangeDepartFromPos(b, state, d)){
-            ;
+        if(!doesStateChangeDepartFromPos(b, state, d)){
+            continue;
         }
         stateDepPcs = *pieceBitboard(state, p);
         if(isBitSet(stateDepPcs, a)){
