@@ -11,10 +11,13 @@ extern "C" {
     #include "bitUtilities.h"
     #include "moveGeneration.h"
     #include "GlobalDeclarations.h"
+    #include "output.h"
 }
 
 using std::string;
 using std::vector;
+using std::cout;
+using std::endl;
 
 //Add consts in this file
 
@@ -64,6 +67,7 @@ T_bitboard *pieceBitboard(T_boardState *b, char piece){
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
         if(isBitSet(*pieceBitboard(c, i), pos)){
+            //cout << (int) i << endl;
             return i;
         }
     }
@@ -138,6 +142,7 @@ string formatRankDisplay(char r){
 
 string toFileRank(vector<char> departures, char departure){
     string result;
+    printVector(departures);
     if(!departures.size()){
         ;
     }
@@ -171,16 +176,27 @@ string toFileRankPawn(vector<char> departures, char departure, bool isCaptured){
     return result;
 }
 
+bool doesStateChangeDepartFromPos(T_boardState *f, T_boardState *t, char pos){
+    if(!isPosEmpty(f, pos) && isPosEmpty(t, pos)){
+        return true;
+    }
+    return false;
+}
+
+//The problem is here. In the calling function, the pieces are not trimmed despite its intention. In this specific function "d" is not used enough
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     char p = piece(b, d);
     T_boardStates *bss = initialiseStates();
-    T_boardState *i1;
-    T_bitboard i2;
+    T_boardState *state;
+    T_bitboard stateDepPcs;
     genSuccStates(bss, b);
     for(int i = 0; i < bss->fi; i++){
-        i1 = &((bss->bs)[i]);
-        i2 = *pieceBitboard(i1, p);
-        if(isBitSet(i2, a)){
+        state = &((bss->bs)[i]);
+        if(doesStateChangeDepartFromPos(b, state, d)){
+            ;
+        }
+        stateDepPcs = *pieceBitboard(state, p);
+        if(isBitSet(stateDepPcs, a)){
             return true;
         }
     }
@@ -198,17 +214,24 @@ T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival){
 }
 
 void printVector(vector<char> v){
-for (vector<char>::const_iterator i = v.begin(); i != v.end(); ++i)
-    std::cout << *i << ' ';
+    for(int i = 0; i < v.size(); i++)
+        std::cout << (int)v[i] << " ";
+//    for (vector<char>::const_iterator i = v.begin(); i != v.end(); ++i){
+//        std::cout << *i << " ";
+//    }
+    cout << endl;
 }
 
 vector<char> posOfPieces(T_bitboard input){
     vector<char> result;
-    for(char i = 0; i < 64; i++){
+    for(int i = 0; i < 64; i++){
         if(isBitSet(input, i)){
             result.push_back(i);
+            //cout << "pushed: " << i << "   " << (int)result.back() << endl;
         }
     }
+    //printTBitboardNumber(input);
+    //printVector(result);
     return result;
 }
 
@@ -216,7 +239,9 @@ string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
     char p = piece(c, from);
     T_bitboard ps = whereAreOtherSamePieces(*pieceBitboard(c, p), from);
+    printTBitboardNumber(ps);
     T_bitboard rps = trimOtherSamePieces(c, ps, to);
+    printTBitboardNumber(rps);
     if(!isPawn(p)){
         return toFileRank(posOfPieces(rps), from);
     }
@@ -238,7 +263,7 @@ string specifier(char piece){
             break;
         case whiteKnight:
         case blackKnight:
-            result += "K";
+            result += "N";
             break;
         case whiteRook:
         case blackRook:

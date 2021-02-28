@@ -8,6 +8,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void printTBitboardNumber(T_bitboard b);
+void printTBitboard(T_bitboard b);
 void printState(T_boardState b);
 void printStateAndValidMoves(T_boardState c, T_boardState s);
 void printBits(size_t const size, void const * const ptr);
@@ -29,5 +35,9 @@ void setColourForBlack(bool);
 void setColourForWhite(bool);
 void printGlyph(int, bool);
 void displayHelp();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // OUTPUT_H

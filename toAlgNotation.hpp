@@ -13,6 +13,8 @@ extern "C"{
 
 //Namespaces included in headers is bad practice. Is there therefore any way to include them wihtout resorting to excessive use of std::?
 
+
+void printVector(std::vector<char> v);
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 char piece(T_boardState *c, char pos);
 bool isSamePosition(const char a, const char b);
@@ -25,6 +27,7 @@ std::string formatFileDisplay(char f);
 std::string formatRankDisplay(char r);
 std::string toFileRank(std::vector<char> departures, char departure);
 std::string toFileRankPawn(std::vector<char> departures, char departure, bool isCaptured);
+bool doesStateChangeDepartFromPos(T_boardState *f, T_boardState *t, char pos);
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a);
 T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival);
 std::vector<char> posOfPieces(T_bitboard input);

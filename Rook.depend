@@ -50,7 +50,7 @@
 
 1608733204 c:\c_c++ code\rook\memoryutilities.h
 
-1613504832 c:\c_c++ code\rook\output.h
+1613506948 c:\c_c++ code\rook\output.h
 	"state.h"
 	"GlobalDeclarations.h"
 	<wchar.h>
@@ -198,18 +198,20 @@
 	<stdlib.h>
 	<string.h>
 
-1613504832 source:c:\c_c++ code\rook\toalgnotation.cpp
+1613513361 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
 	<assert.h>
+	<iostream>
 	"toAlgNotation.hpp"
 	"state.h"
 	"bitUtilities.h"
 	"moveGeneration.h"
 	"GlobalDeclarations.h"
+	"output.h"
 
-1613504832 c:\c_c++ code\rook\toalgnotation.hpp
+1613509782 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	"state.h"
 
