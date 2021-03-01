@@ -8,22 +8,22 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-ChangeState::ChangeState(){
+StateChanger::StateChanger(){
 
 }
 
-ChangeState::ChangeState(T_boardState boardState){
+StateChanger::StateChanger(T_boardState boardState){
     this->c = boardState;
 }
 
 
 
-T_boardState ChangeState::changeInputState(T_boardStates *bss, string usrInput){
+T_boardState StateChanger::changeInputState(T_boardStates *bss, string usrInput){
 
 }
 
 
-vector<string> ChangeState::printValidMoves(){
+vector<string> StateChanger::printValidMoves(){
     for(int i = 0; i < validMoves.size(); i++){
         cout << validMoves[i] << endl;
     }
@@ -37,7 +37,7 @@ vector<string> ChangeState::printValidMoves(){
 
 
 
-ChangeState::genListOfValidMoves(T_boardStates *bss){
+StateChanger::genListOfValidMoves(T_boardStates *bss){
     for(int i = 0; i < bss->fi; i++){
         validMoves[i] = toAlgebraicNotation(&(this->c), &(bss->bs[i]));
     }

@@ -2,11 +2,11 @@
 #define CHANGESTATE_H
 
 
-class ChangeState
+class StateChanger
 {
     public:
-        ChangeState();
-        virtual ~ChangeState();
+        StateChanger();
+        virtual ~StateChanger();
 
     protected:
 

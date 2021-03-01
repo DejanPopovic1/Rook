@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-class ChangeState{
+class StateChanger{
 public:
-    ChangeState();
-    ChangeState(T_boardState boardState);
+    StateChanger();
+    StateChanger(T_boardState boardState);
 
     T_boardState changeInputState(T_boardStates *bss, std::string usrInput);
     std::vector<std::string> printValidMoves();
