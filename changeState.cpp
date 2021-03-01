@@ -22,13 +22,16 @@ StateChanger::StateChanger(T_boardState boardState){
     genListOfValidMoves();
 }
 
-T_boardState StateChanger::changeInputState(string usrInput){
+void StateChanger::changeInputState(string usrInput){
     for(int i = 0; i < this->ss.fi; i++){
         if(validMoves[i] == usrInput){
             this->c = this->ss.bs[i];
+            return;
         }
     }
-    return this->c;
+    this->c;
+    cout << "Invalid move\n";
+    return ;
 }
 
 vector<string> StateChanger::printValidMoves(){
