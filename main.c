@@ -14,6 +14,13 @@
 #include "movementRules.h"
 #include "moveGeneration.h"
 #include "bitUtilities.h"
+
+extern "C"{
+    //#include "state.h"
+    T_boardState initialiseBoardState();
+    T_boardStates *initialiseStates();
+    void genSuccStates(T_boardStates *dst, const T_boardState *b);
+}
 //#include "moveList.hpp"
 
 void mainPrompt();
@@ -37,14 +44,14 @@ void multiPlayerPrompt(){
 }
 
 char* mainSelection(){
-    char *mainSelection = malloc(MAIN_SELECTION * sizeof(char));
+    char *mainSelection = (char*)malloc(MAIN_SELECTION * sizeof(char));
     fgets(mainSelection, MAIN_SELECTION, stdin);
     mainSelection[strlen(mainSelection) - 1] = '\0';
     return mainSelection;
 }
 
 char* moveInput(){
-    char *moveInput = malloc(MOVE_INPUT * sizeof(char));
+    char *moveInput = (char*)malloc(MOVE_INPUT * sizeof(char));
     fgets(moveInput, MOVE_INPUT, stdin);
     moveInput[strlen(moveInput) - 1] = '\0';
     return moveInput;
@@ -72,7 +79,7 @@ void multiPlayerSession(char *playerColourInput){
 //        printValidMoves(s, bss);
         //printState((bss->bs)[0]);
         (s.whosTurn)++;
-        getch();
+        getchar();
     }
 
     //printStates(bss);
@@ -163,7 +170,7 @@ int main() {
 }
 
 T_chessboard* initialiseBoard(){
-    T_chessboard *result = malloc(sizeof(T_chessboard));
+    T_chessboard *result = (T_chessboard *)malloc(sizeof(T_chessboard));
     for(int i = 0; i < FILE_SIZE; i++){
         (*result)[1][i] = whitePawn;
     }

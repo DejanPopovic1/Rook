@@ -2,7 +2,7 @@
 #include "ToAlgNotation.hpp"
 
 extern "C"{
-    #include "moveGeneration.h"
+    void genSuccStates(T_boardStates *dst, const T_boardState *b);
 }
 
 #include <iostream>

@@ -69,7 +69,9 @@ T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
 void movePiece(T_boardState *b, int dst, int src, int piece);
 void addState(T_boardStates *dst, const T_boardState *src);
+#ifndef __cplusplus
 T_boardStates *initialiseStates();
+#endif
 void printStates(T_boardStates *b);
 int whosTurnNEW(const int ply);
 bool isRankFive(char n);
@@ -83,7 +85,9 @@ char whatFile(char n);
 void addState(T_boardStates *dst, const T_boardState *src);
 int length(T_boardStates *bss);
 bool isPosEmpty(const T_boardState *b, int n);
+#ifndef __cplusplus
 T_boardState initialiseBoardState();
+#endif
 void initialiseWPawns(T_bitboard *result);
 void initialiseWBishops(T_bitboard *result);
 void initialiseWKnights(T_bitboard *result);

@@ -9,7 +9,8 @@
 #include "changeState.hpp"
 
 extern "C" {
-    #include "state.h"
+    T_boardStates *initialiseStates();
+    void genSuccStates(T_boardStates *dst, const T_boardState *b);
     #include "bitUtilities.h"
     #include "moveGeneration.h"
     #include "GlobalDeclarations.h"

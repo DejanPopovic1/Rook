@@ -53,7 +53,7 @@
 		<Unit filename="encodingTranslation.h" />
 		<Unit filename="include/ChangeState.h" />
 		<Unit filename="main.c">
-			<Option compilerVar="CC" />
+			<Option compilerVar="CPP" />
 		</Unit>
 		<Unit filename="moveGeneration.c">
 			<Option compilerVar="CC" />

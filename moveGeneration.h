@@ -32,7 +32,9 @@ void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *vali
 T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bitboard **rays);
 void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece);
 void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
+#ifndef __cplusplus
 void genSuccStates(T_boardStates *dst, const T_boardState *b);
+#endif
 void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece);
 void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules, int piece);
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece);
