@@ -107,7 +107,7 @@
 	"generateSlideMoves.h"
 	"output.h"
 
-1612701973 c:\c_c++ code\rook\state.h
+1614615744 c:\c_c++ code\rook\state.h
 	<stdint.h>
 	<stdbool.h>
 
@@ -198,13 +198,14 @@
 	<stdlib.h>
 	<string.h>
 
-1614542534 source:c:\c_c++ code\rook\toalgnotation.cpp
+1614615037 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
 	<assert.h>
 	<iostream>
 	"toAlgNotation.hpp"
+	"changeState.hpp"
 	"state.h"
 	"bitUtilities.h"
 	"moveGeneration.h"
@@ -219,4 +220,13 @@
 	"ChangeState.h"
 
 1614614545 c:\c_c++ code\rook\include\changestate.h
+
+1614616497 c:\c_c++ code\rook\changestate.hpp
+	"state.h"
+	<string>
+	<vector>
+
+1614616616 source:c:\c_c++ code\rook\changestate.cpp
+	"changeState.hpp"
+	"ToAlgNotation.hpp"
 

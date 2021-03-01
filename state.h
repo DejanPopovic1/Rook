@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-int (*structMember)(int, int);
+//int (*structMember)(int, int);
 
 typedef uint64_t T_bitboard;
 
