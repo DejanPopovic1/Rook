@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1614634231 source:c:\c_c++ code\rook\main.c
+1614635844 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -16,6 +16,7 @@
 	"movementRules.h"
 	"moveGeneration.h"
 	"bitUtilities.h"
+	"StateChanger.hpp"
 
 1598392101 source:c:\c_c++ code\rook\chessboard.c
 
@@ -198,14 +199,14 @@
 	<stdlib.h>
 	<string.h>
 
-1614633277 source:c:\c_c++ code\rook\toalgnotation.cpp
+1614636806 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
 	<assert.h>
 	<iostream>
 	"toAlgNotation.hpp"
-	"changeState.hpp"
+	"StateChanger.hpp"
 	"bitUtilities.h"
 	"moveGeneration.h"
 	"GlobalDeclarations.h"
@@ -230,9 +231,10 @@
 	"ToAlgNotation.hpp"
 	<iostream>
 
-1614635209 source:c:\c_c++ code\rook\statechanger.cpp
+1614636617 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
+	"output.h"
 	<iostream>
 
 1614635209 c:\c_c++ code\rook\statechanger.hpp

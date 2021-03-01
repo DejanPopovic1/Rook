@@ -6,7 +6,7 @@
 
 #include "toAlgNotation.hpp"
 
-#include "changeState.hpp"
+#include "StateChanger.hpp"
 
 extern "C" {
     T_boardStates *initialiseStates();
@@ -145,7 +145,7 @@ string formatRankDisplay(char r){
 
 string toFileRank(vector<char> departures, char departure){
     string result;
-    printVector(departures);
+    //printVector(departures);
     if(!departures.size()){
         ;
     }
@@ -242,9 +242,9 @@ string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
     char p = piece(c, from);
     T_bitboard ps = whereAreOtherSamePieces(*pieceBitboard(c, p), from);
-    printTBitboardNumber(ps);
+    //printTBitboardNumber(ps);
     T_bitboard rps = trimOtherSamePieces(c, ps, to);
-    printTBitboardNumber(rps);
+    //printTBitboardNumber(rps);
     if(!isPawn(p)){
         return toFileRank(posOfPieces(rps), from);
     }

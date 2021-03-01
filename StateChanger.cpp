@@ -1,5 +1,6 @@
 #include "StateChanger.hpp"
 #include "ToAlgNotation.hpp"
+#include "output.h"
 
 extern "C"{
     void genSuccStates(T_boardStates *dst, const T_boardState *b);
@@ -23,6 +24,7 @@ T_boardState StateChanger:: getState(){
 StateChanger::StateChanger(T_boardState boardState){
     this->c = boardState;
     genSuccStates(&(this->ss), &(this->c));
+    //printState(ss.bs[1]);
     genListOfValidMoves();
 }
 
@@ -46,6 +48,6 @@ vector<string> StateChanger::printValidMoves(){
 
 StateChanger::genListOfValidMoves(){
     for(int i = 0; i < this->ss.fi; i++){
-        this->validMoves[i] = toAlgebraicNotation(&(this->c), &(this->ss.bs[i]));
+        this->validMoves.push_back(toAlgebraicNotation(&(this->c), &(this->ss.bs[i])));
     }
 }

@@ -78,16 +78,20 @@ void multiPlayerSession(char *playerColourInput){
 
     T_boardState s = initialiseBoardState();
     StateChanger sc(s);
-    //T_boardStates *bss = initialiseStates();
-    while(true){
 
-        //printState(s);
-//        genSuccStates(bss, &s);
-//        printValidMoves(s, bss);
-        //printState((bss->bs)[0]);
-        (s.whosTurn)++;
-        getchar();
-    }
+    //T_boardStates *bss = initialiseStates();
+
+
+//    while(true){
+//        printState(sc.getState());
+//
+//        (s.whosTurn)++;
+//        getchar();
+//    }
+
+
+
+
 
     //printStates(bss);
 
