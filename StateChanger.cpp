@@ -1,4 +1,4 @@
-#include "changeState.hpp"
+#include "StateChanger.hpp"
 #include "ToAlgNotation.hpp"
 
 extern "C"{

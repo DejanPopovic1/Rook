@@ -37,6 +37,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="GlobalDeclarations.h" />
+		<Unit filename="StateChanger.cpp" />
+		<Unit filename="StateChanger.hpp" />
 		<Unit filename="applicableActions.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -45,8 +47,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bitUtilities.h" />
-		<Unit filename="changeState.cpp" />
-		<Unit filename="changeState.hpp" />
 		<Unit filename="encodingTranslation.c">
 			<Option compilerVar="CC" />
 		</Unit>
