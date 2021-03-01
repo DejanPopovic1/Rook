@@ -9,14 +9,13 @@ class StateChanger{
 public:
     StateChanger();
     StateChanger(T_boardState boardState);
-
-    T_boardState changeInputState(T_boardStates *bss, std::string usrInput);
+    T_boardState changeInputState(std::string usrInput);
     std::vector<std::string> printValidMoves();
+    genListOfValidMoves();
 private:
-    genListOfValidMoves(T_boardStates *bss);
     std::vector<std::string> validMoves;
     T_boardState c;
-    T_boardStates *bss;
+    T_boardStates ss;
 };
 
 #endif //CHANGE_STATE_H

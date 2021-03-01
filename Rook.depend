@@ -174,13 +174,13 @@
 	<stdbool.h>
 	"state.h"
 
-1612703219 source:c:\c_c++ code\rook\movegeneration.c
+1614625385 source:c:\c_c++ code\rook\movegeneration.c
 	<assert.h>
 	"moveGeneration.h"
 	"state.h"
 	"GlobalDeclarations.h"
 
-1612699637 c:\c_c++ code\rook\movegeneration.h
+1614625385 c:\c_c++ code\rook\movegeneration.h
 	<stdbool.h>
 	"state.h"
 
@@ -221,12 +221,14 @@
 
 1614614545 c:\c_c++ code\rook\include\changestate.h
 
-1614620780 c:\c_c++ code\rook\changestate.hpp
+1614625222 c:\c_c++ code\rook\changestate.hpp
 	"state.h"
 	<string>
 	<vector>
 
-1614616616 source:c:\c_c++ code\rook\changestate.cpp
+1614625518 source:c:\c_c++ code\rook\changestate.cpp
 	"changeState.hpp"
 	"ToAlgNotation.hpp"
+	"moveGeneration.h"
+	<iostream>
 
