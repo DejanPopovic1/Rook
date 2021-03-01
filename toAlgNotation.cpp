@@ -6,6 +6,8 @@
 
 #include "toAlgNotation.hpp"
 
+#include "changeState.hpp"
+
 extern "C" {
     #include "state.h"
     #include "bitUtilities.h"

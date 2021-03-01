@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -43,10 +45,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bitUtilities.h" />
+		<Unit filename="changeState.hpp" />
 		<Unit filename="encodingTranslation.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="encodingTranslation.h" />
+		<Unit filename="include/ChangeState.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -64,6 +68,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="output.h" />
+		<Unit filename="src/ChangeState.cpp" />
 		<Unit filename="state.c">
 			<Option compilerVar="CC" />
 		</Unit>

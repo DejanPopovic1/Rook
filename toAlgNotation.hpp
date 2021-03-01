@@ -13,7 +13,6 @@ extern "C"{
 
 //Namespaces included in headers is bad practice. Is there therefore any way to include them wihtout resorting to excessive use of std::?
 
-
 void printVector(std::vector<char> v);
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 char piece(T_boardState *c, char pos);

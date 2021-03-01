@@ -67,7 +67,7 @@ void multiPlayerSession(char *playerColourInput){
     T_boardState s = initialiseBoardState();
     T_boardStates *bss = initialiseStates();
     while(true){
-//        printState(s);
+        printState(s);
         genSuccStates(bss, &s);
 //        printValidMoves(s, bss);
         //printState((bss->bs)[0]);
@@ -104,19 +104,20 @@ void multiPlayerSession(char *playerColourInput){
     return;
 }
 
+genListOfValidMoves(){
+
+
+}
+
 //BoardStates must be malloced so that they may be initialised when they are created. Initialisation is not the job of the caller
 void testCases(){
-    T_boardState c = initialiseBoardState();
-    T_boardStates *bss = initialiseStates();
-    printState(c);
-    genSuccStates(bss, &c);
-    //printStates(bss);
-    T_boardState s = (bss->bs)[12];
-    printStatesAndValidMoves(&c, bss);
-    //printState(s);
-    //printf("test...");
-    //printf("%s", toAlgebraicNotation_C_WRAPPER(&c, &s));
-    getch();
+//    T_boardState c = initialiseBoardState();
+//    T_boardStates *bss = initialiseStates();
+//    printState(c);
+//    genSuccStates(bss, &c);
+//    T_boardState s = (bss->bs)[12];
+//    printStatesAndValidMoves(&c, bss);
+//    getch();
     return;
 }
 

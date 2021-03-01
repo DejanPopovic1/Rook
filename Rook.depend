@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1613323161 source:c:\c_c++ code\rook\main.c
+1614614644 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
 	"chess_pieces.h"
 	"applicableActions.h"
@@ -198,7 +198,7 @@
 	<stdlib.h>
 	<string.h>
 
-1613513361 source:c:\c_c++ code\rook\toalgnotation.cpp
+1614542534 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -211,7 +211,12 @@
 	"GlobalDeclarations.h"
 	"output.h"
 
-1613509782 c:\c_c++ code\rook\toalgnotation.hpp
+1614614644 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	"state.h"
+
+1614614545 source:c:\c_c++ code\rook\src\changestate.cpp
+	"ChangeState.h"
+
+1614614545 c:\c_c++ code\rook\include\changestate.h
 
