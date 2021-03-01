@@ -5,17 +5,18 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-
 class ChangeState{
 public:
     ChangeState();
-    ChangeState(T_boardState *c, T_boardStates *bss);
-    T_boardState changeInputState(T_boardStates *bss, string usrInput);
-    vector<string> listValidMoves(T_boardStates *bss);
+    ChangeState(T_boardState boardState);
+
+    T_boardState changeInputState(T_boardStates *bss, std::string usrInput);
+    std::vector<std::string> printValidMoves();
 private:
-    vector<string> validMoves;
+    genListOfValidMoves(T_boardStates *bss);
+    std::vector<std::string> validMoves;
+    T_boardState c;
+    T_boardStates *bss;
 };
 
 #endif //CHANGE_STATE_H
