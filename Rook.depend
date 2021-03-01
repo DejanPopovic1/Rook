@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1614635844 source:c:\c_c++ code\rook\main.c
+1614637652 source:c:\c_c++ code\rook\main.c
 	<stdio.h>
+	<iostream>
 	"chess_pieces.h"
 	"applicableActions.h"
 	"GlobalDeclarations.h"
@@ -37,7 +38,7 @@
 	<stdlib.h>
 	<assert.h>
 
-1612633771 c:\c_c++ code\rook\globaldeclarations.h
+1614638813 c:\c_c++ code\rook\globaldeclarations.h
 	<stdbool.h>
 	"GlobalDeclarations.h"
 
@@ -199,7 +200,7 @@
 	<stdlib.h>
 	<string.h>
 
-1614636806 source:c:\c_c++ code\rook\toalgnotation.cpp
+1614639620 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -231,7 +232,7 @@
 	"ToAlgNotation.hpp"
 	<iostream>
 
-1614636617 source:c:\c_c++ code\rook\statechanger.cpp
+1614639555 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.h"
@@ -241,4 +242,24 @@
 	"state.h"
 	<string>
 	<vector>
+
+1614638900 source:c:\c_c++ code\rook\main.cpp
+	<stdio.h>
+	<iostream>
+	"chess_pieces.h"
+	"applicableActions.h"
+	"GlobalDeclarations.h"
+	"memoryUtilities.h"
+	<stdbool.h>
+	"output.h"
+	"testInitialisations.h"
+	<assert.h>
+	<string.h>
+	"testCases.h"
+	<stdlib.h>
+	"toAlgebraicNotation.h"
+	"movementRules.h"
+	"moveGeneration.h"
+	"bitUtilities.h"
+	"StateChanger.hpp"
 

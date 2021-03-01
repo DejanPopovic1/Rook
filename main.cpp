@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include "chess_pieces.h"
 #include "applicableActions.h"
 #include "GlobalDeclarations.h"
@@ -15,6 +16,8 @@
 #include "moveGeneration.h"
 #include "bitUtilities.h"
 #include "StateChanger.hpp"
+
+using namespace std;
 
 extern "C"{
     //#include "state.h"
@@ -72,22 +75,22 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-
-
-
-
     T_boardState s = initialiseBoardState();
     StateChanger sc(s);
-
     //T_boardStates *bss = initialiseStates();
+    //fflush(stdin);
+//cin.ignore(INT_MAX);
+  //  string x;
+    //cin >> x;
 
-
-//    while(true){
-//        printState(sc.getState());
+  //  while(true){
+       sc.getState();
+        //printState(sc.getState());
 //
 //        (s.whosTurn)++;
-//        getchar();
-//    }
+
+        //std::cin.get();
+  //  }
 
 
 

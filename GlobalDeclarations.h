@@ -18,7 +18,7 @@ enum PlayingAs{asWhite, asBlack};
 enum Turn{whiteTurn, blackTurn};
 
 enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, whiteKing,
-            blackPawn, blackBishop, blackKnight, blackRook, blackQueen, blackKing,
+            blackPawn, blackBishop, blackKnight, blackRook, blackQueen, blackKing
             };
 
 typedef int T_chessboard[RANK_SIZE][FILE_SIZE];

@@ -48,6 +48,7 @@ vector<string> StateChanger::printValidMoves(){
 
 StateChanger::genListOfValidMoves(){
     for(int i = 0; i < this->ss.fi; i++){
-        this->validMoves.push_back(toAlgebraicNotation(&(this->c), &(this->ss.bs[i])));
+        string s = toAlgebraicNotation(&(this->c), &(this->ss.bs[i]));
+        this->validMoves.push_back(s);
     }
 }
