@@ -14,6 +14,7 @@
 #include "movementRules.h"
 #include "moveGeneration.h"
 #include "bitUtilities.h"
+#include "StateChanger.hpp"
 
 extern "C"{
     //#include "state.h"
@@ -71,11 +72,16 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
+
+
+
+
     T_boardState s = initialiseBoardState();
-    T_boardStates *bss = initialiseStates();
+    StateChanger sc(s);
+    //T_boardStates *bss = initialiseStates();
     while(true){
 
-        printState(s);
+        //printState(s);
         genSuccStates(bss, &s);
 //        printValidMoves(s, bss);
         //printState((bss->bs)[0]);
