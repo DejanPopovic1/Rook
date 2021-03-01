@@ -82,7 +82,7 @@ void multiPlayerSession(char *playerColourInput){
     while(true){
 
         //printState(s);
-        genSuccStates(bss, &s);
+//        genSuccStates(bss, &s);
 //        printValidMoves(s, bss);
         //printState((bss->bs)[0]);
         (s.whosTurn)++;

@@ -11,6 +11,7 @@ public:
     StateChanger(T_boardState boardState);
     void changeInputState(std::string usrInput);
     std::vector<std::string> printValidMoves();
+    T_boardState getState();
 private:
     genListOfValidMoves();
     std::vector<std::string> validMoves;

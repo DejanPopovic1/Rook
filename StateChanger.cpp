@@ -16,6 +16,10 @@ StateChanger::StateChanger(){
 
 }
 
+T_boardState StateChanger:: getState(){
+    return this->c;
+}
+
 StateChanger::StateChanger(T_boardState boardState){
     this->c = boardState;
     genSuccStates(&(this->ss), &(this->c));
