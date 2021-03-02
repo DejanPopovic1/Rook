@@ -1,7 +1,7 @@
 #ifndef CHANGE_STATE_H
 #define CHANGE_STATE_H
 
-#include "state.h"
+#include "state.hpp"
 #include <string>
 #include <vector>
 
@@ -16,7 +16,7 @@ private:
     genListOfValidMoves();
     std::vector<std::string> validMoves;
     T_boardState c;
-    T_boardStates ss;
+    T_boardStates *ss;
 };
 
 #endif //CHANGE_STATE_H

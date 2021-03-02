@@ -1,8 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
-#define MAX_PREV_STATES 8849
-//Find a theoretical maximum of the following value:
+#define MAX_PREV_STATES 10000
 #define MAX_SUCC_STATES 100
 #define BITBOARD_SIZE 64
 #define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
@@ -11,15 +10,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-//int (*structMember)(int, int);
-
 typedef uint64_t T_bitboard;
-
 typedef struct BoardState T_boardState;
-
 typedef struct BoardStates T_boardStates;
 
-struct PrevStates;
+enum PlayingAs{asWhite, asBlack};
+
+enum Turn{whiteTurn, blackTurn};
+
+enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, whiteKing,
+            blackPawn, blackBishop, blackKnight, blackRook, blackQueen, blackKing
+            };
 
 //When copyong states, you can use = for now but moving forward you will have to define this due to the pointer PrevStates
 //Use enums to define the bitfield turns white and black
@@ -56,38 +57,23 @@ struct PrevStates{
     int fp;
 };
 
-struct GameState{
-    struct BoardState bs;
-    struct PrevStates ps;
-    char noPawnMovesOrCaptures;
-    int ply;
-};
-
-T_bitboard sameAll(const T_boardState *b);
-//T_bitboard *pieceBitboard(T_boardState *b, int piece);
+bool isPawn(int p);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
-void movePiece(T_boardState *b, int dst, int src, int piece);
-void addState(T_boardStates *dst, const T_boardState *src);
-#ifndef __cplusplus
-T_boardStates *initialiseStates();
-#endif
-void printStates(T_boardStates *b);
+T_bitboard sameAll(const T_boardState *b);
+void removeOpponent(T_boardState *b, int pos);
 int whosTurnNEW(const int ply);
 bool isRankFive(char n);
 bool isRankFour(char n);
 bool isRankSeven(char n);
+bool isRankTwo(char n);
 char whatRank(char n);
 char whatFile(char n);
-//bool isPosWhite(T_boardState *b, int n);
-//bool isPosBlack(T_boardState *b, int n);
-//bool isSecondLastRank(int n);
-void addState(T_boardStates *dst, const T_boardState *src);
-int length(T_boardStates *bss);
 bool isPosEmpty(const T_boardState *b, int n);
-#ifndef __cplusplus
+void addState(T_boardStates *dst, T_boardState *src);
+T_boardStates *initialiseStates();
+int length(T_boardStates *bss);
 T_boardState initialiseBoardState();
-#endif
 void initialiseWPawns(T_bitboard *result);
 void initialiseWBishops(T_bitboard *result);
 void initialiseWKnights(T_bitboard *result);
@@ -101,10 +87,10 @@ void initialiseBRooks(T_bitboard *result);
 void initialiseBQueen(T_bitboard *result);
 void initialiseBKing(T_bitboard *result);
 void initialiseWEnPassants(unsigned char *c);
-void initialiseBEnPassants(char *c);
-void initialiseCastles(T_boardState *b);
-void initialiseNoCapturesOrPawnMoves(char *c);
+void initialiseBEnPassants(unsigned char *c);
+void initialiseCastlesAndTurn(T_boardState *b);
+void initialiseNoCapturesOrPawnMoves(unsigned char *c);
 void initialisePreviousStates(struct PrevStates **ps);
-void initialisePly(int *i);
+void initialisePly(unsigned short *i);
 
 #endif // STATE_H

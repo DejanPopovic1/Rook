@@ -1,22 +1,12 @@
 #include <assert.h>
-#include "moveGeneration.h"
-#include "state.h"
-#include "GlobalDeclarations.h"
+#include "moveGeneration.hpp"
+#include "state.hpp"
+//#include "GlobalDeclarations.h"
+#include "bitUtilities.hpp"
+#include "moveRules.hpp"
 
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
-
-void setBit(T_bitboard *number, int n){
-    *number ^= (-1ULL ^ *number) & (1ULL << n);
-}
-
-void clearBit(T_bitboard *number, int n){
-    *number &= ~(1ULL << n);
-}
-
-T_bitboard checkBit(T_bitboard number, int n){
-    return (number >> n) & 1ULL;
-}
 
 //for efficiency, enumerate empty as 6. White 0 - 5 and black 7 - 12. Then just test <6
 bool isWhitePiece(int pieceValue){
@@ -36,15 +26,15 @@ bool isBlackPiece(int pieceValue){
 
 bool isPosSameSide(T_boardState *b, int n){
     if(!b->whosTurn){
-        T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
-        if(isBitSet(or, n)){
+        T_bitboard o = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+        if(isBitSet(o, n)){
             return true;
         }
         return false;
     }
     else{
-        T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-        if(isBitSet(or, n)){
+        T_bitboard o = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+        if(isBitSet(o, n)){
             return true;
         }
         return false;
@@ -52,16 +42,16 @@ bool isPosSameSide(T_boardState *b, int n){
 }
 
 bool isPosWhite(T_boardState *b, int n){
-    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
-    if(isBitSet(or, n)){
+    T_bitboard o = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+    if(isBitSet(o, n)){
         return true;
     }
     return false;
 }
 
 bool isPosBlack(T_boardState *b, int n){
-    T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-    if(isBitSet(or, n)){
+    T_bitboard o = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    if(isBitSet(o, n)){
         return true;
     }
     return false;
@@ -92,28 +82,28 @@ bool isNortherlyOrEast(int direction){
     return false;
 }
 
-bool isUpEmpty(const T_boardState *b, int n){
+bool isUpEmpty(T_boardState *b, int n){
     if(isPosEmpty(b, n + 8)){
         return true;
     }
     return false;
 }
 
-bool isUpUpEmpty(const T_boardState *b, int n){
+bool isUpUpEmpty(T_boardState *b, int n){
     if(isPosEmpty(b, n + 8) && isPosEmpty(b, n + 16)){
         return true;
     }
     return false;
 }
 
-bool isDownEmpty(const T_boardState *b, int n){
+bool isDownEmpty(T_boardState *b, int n){
     if(isPosEmpty(b, n - 8)){
         return true;
     }
     return false;
 }
 
-bool isDownDownEmpty(const T_boardState *b, int n){
+bool isDownDownEmpty(T_boardState *b, int n){
     if(isPosEmpty(b, n - 8) && isPosEmpty(b, n - 16)){
         return true;
     }
@@ -206,7 +196,7 @@ void move(T_boardState *b, char dst, char src, char piece){
     setBit(sm, dst);
 }
 
-void promote(T_boardStates *dst, const T_boardState *b, int n, int piece){
+void promote(T_boardStates *dst, T_boardState *b, int n, int piece){
         T_boardState cpy = *b;
         T_bitboard *sm = pieceBitboard(&cpy, piece);
         setBit(sm, n + 8);
@@ -216,7 +206,7 @@ void promote(T_boardStates *dst, const T_boardState *b, int n, int piece){
 
 //factor out specific moves once all moveGenerations complete
 //Use generateSlideMoves() to codify these moves
-void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
     //MOVE UP
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
@@ -227,7 +217,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
-        setBit(&(cpy.wEnPassants), n % 8);
+        setCharBit(&(cpy.wEnPassants), n % 8);
         addState(dst, &cpy);
     }
     //CAPTURE LEFT
@@ -246,14 +236,14 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     char frFile = whatFile(n);
     if((frFile % 8) && isCharBitSet(b->bEnPassants, frFile - 1) && isRankFive(n)){
         T_boardState cpy = *b;
-        clearBit(b->bPawn, n - 1);
+        clearBit(&(b->bPawn), n - 1);
         move(b, n + 7, n, whitePawn);
         addState(dst, &cpy);
     }
     //EN PASSANT RIGHT
     if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
         T_boardState cpy = *b;
-        clearBit(b->bPawn, n + 1);
+        clearBit(&(b->bPawn), n + 1);
         move(b, n + 9, n, whitePawn);
         addState(dst, &cpy);
     }
@@ -266,7 +256,7 @@ void genWPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     }
 }
 
-void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays){
+void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
     //MOVE DOWN
     if(isDownEmpty(b, n) && !isSecondRank(n)){
         T_boardState cpy = *b;
@@ -277,7 +267,7 @@ void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n - 16, n, blackPawn);
-        setBit(&(cpy.bEnPassants), n % 8);
+        setCharBit(&(cpy.bEnPassants), n % 8);
         addState(dst, &cpy);
     }
     //CAPTURE RIGHT
@@ -296,15 +286,15 @@ void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
     char frFile = whatFile(n);
     if(((frFile + 1) % 8) && isCharBitSet(b->wEnPassants, frFile + 1) && isRankFour(n)){
         T_boardState cpy = *b;
-        clearBit(b->bPawn, n + 1);
-        move(b, n - 7, n, blackPawn);
+        clearBit(&(cpy.bPawn), n + 1);
+        move(&cpy, n - 7, n, blackPawn);
         addState(dst, &cpy);
     }
     //EN PASSANT LEFT
     if((frFile % 8) && isCharBitSet(b->wEnPassants, frFile - 1) && isRankFour(n)){
         T_boardState cpy = *b;
-        clearBit(b->bPawn, n - 1);
-        move(b, n - 9, n, blackPawn);
+        clearBit(&(cpy.bPawn), n - 1);
+        move(&cpy, n - 9, n, blackPawn);
         addState(dst, &cpy);
     }
     //PROMOTIONS
@@ -317,7 +307,7 @@ void genBPawnSuccStates(T_boardStates *dst, const T_boardState *b, int n, const 
 }
 
 //Copy and paste these for other pieces
-void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
+void genMoves(T_boardStates *dst, T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
     int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
     move(&cpy, validMove, n, piece);
@@ -325,7 +315,7 @@ void genMoves(T_boardStates *dst, const T_boardState *b, int n, T_bitboard *vali
     clearBit(validMoves, validMove);
 }
 
-T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bitboard **rays){
+T_bitboard moveBoardDir(T_boardState *b, int n, int direction, T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
     T_bitboard occupancyBoard = bAll(b) | wAll(b);
     T_bitboard intersect = ray & occupancyBoard;
@@ -336,7 +326,7 @@ T_bitboard moveBoardDir(const T_boardState *b, int n, int direction, const T_bit
 
 //Refactor out quiete vs attacking moves
 //This function wont work for black unless you have a function called OPPOSING_COLOUR instead of isPosBlack. Or, pass function pointer. Better yet, use info in state.
-void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int direction, int piece){
+void genDirStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int direction, int piece){
     T_bitboard mb = moveBoardDir(b, n, direction, rays);
     if(!mb){
         return;
@@ -360,7 +350,7 @@ void genDirStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitb
     }
 }
 
-void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
+void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
     switch(piece){
         case whiteBishop:
             genDirStates(dst, b, n, rays, northEast, whiteBishop);
@@ -409,7 +399,7 @@ void genRaySuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_
     }
 }
 
-void genSuccStates(T_boardStates *dst, const T_boardState *b){
+void genSuccStates(T_boardStates *dst, T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
         T_bitboard **steps = createSteps();
@@ -431,7 +421,7 @@ void genSuccStates(T_boardStates *dst, const T_boardState *b){
         }
 }
 
-void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitboard **moveRules, int piece){
+void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
@@ -439,7 +429,7 @@ void genPiecesSuccStates(T_boardStates *dst, const T_boardState *b, const T_bitb
     }
 }
 
-void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **moveRules, int piece){
+void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
     T_boardState cpy = *b;
     int j;
     T_bitboard test;
@@ -461,7 +451,7 @@ void genJumpOrStepSuccStates(T_boardStates *dst, const T_boardState *b, int n, c
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info
 //wPawnGenerate doesnt take the last argument piece so this needs to be corrected
-void (*genPieceSuccStates(int piece))(T_boardStates *dst, const T_boardState *b, int n, const T_bitboard **rays, int piece){
+void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
     switch(piece){
         case whitePawn:
             return &genWPawnSuccStates;

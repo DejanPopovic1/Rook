@@ -1,11 +1,7 @@
 #include "StateChanger.hpp"
 #include "ToAlgNotation.hpp"
-#include "output.h"
-
-extern "C"{
-    void genSuccStates(T_boardStates *dst, const T_boardState *b);
-}
-
+#include "output.hpp"
+#include "moveGeneration.hpp"
 #include <iostream>
 
 using std::string;
@@ -17,21 +13,21 @@ StateChanger::StateChanger(){
 
 }
 
-T_boardState StateChanger:: getState(){
-    return this->c;
+T_boardState StateChanger::getState(){
+    return (this->c);
 }
-
+//INCORPORATE FIRST COMMENT AS ITS ABSENCE LEADS TO A BUG
 StateChanger::StateChanger(T_boardState boardState){
     this->c = boardState;
-    genSuccStates(&(this->ss), &(this->c));
-    //printState(ss.bs[1]);
+    this->ss = initialiseStates();
+    genSuccStates(this->ss, &(this->c));
     genListOfValidMoves();
 }
 
 void StateChanger::changeInputState(string usrInput){
-    for(int i = 0; i < this->ss.fi; i++){
+    for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
-            this->c = this->ss.bs[i];
+            this->c = this->ss->bs[i];
             return;
         }
     }
@@ -48,8 +44,8 @@ vector<string> StateChanger::printValidMoves(){
 
 StateChanger::genListOfValidMoves(){
     string s;
-    for(int i = 0; i < this->ss.fi; i++){
-        s = toAlgebraicNotation(&(this->c), &(this->ss.bs[i]));
+    for(int i = 0; i < this->ss->fi; i++){
+        s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
         this->validMoves.push_back(s);
     }
     for(int i = 0; i < this->validMoves.size(); i++){

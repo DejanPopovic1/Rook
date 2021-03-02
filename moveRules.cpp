@@ -1,8 +1,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include "moveRules.h"
-#include "state.h"
-#include "output.h"
+#include "moveRules.hpp"
+#include "state.hpp"
+#include "bitUtilities.hpp"
+//#include "output.h"
 
 //Remove returning bools from the jump casts
 bool cast1(int *index){
@@ -133,7 +134,7 @@ bool castNW(int *index){
     return true;
 }
 
-T_bitboard castStep(int(*castDir)(),int index){
+T_bitboard castStep(bool(*castDir)(int*), int index){
     T_bitboard result = 0;
     if((*castDir)(&index)){
         setBit(&result, index);
@@ -142,7 +143,7 @@ T_bitboard castStep(int(*castDir)(),int index){
 }
 
 //CHANGE ARGUMENT TO bool (*castDir)(int*)
-T_bitboard castRay(int(*castDir)(),int index){
+T_bitboard castRay(bool(*castDir)(int*), int index){
     T_bitboard result = 0;
     while((*castDir)(&index)){
         setBit(&result, index);
@@ -150,7 +151,7 @@ T_bitboard castRay(int(*castDir)(),int index){
     return result;
 }
 
-T_bitboard castJump(bool(*castDir)(int*),int index){
+T_bitboard castJump(bool(*castDir)(int*), int index){
     T_bitboard result = 0;
     if((*castDir)(&index)){
         setBit(&result, index);
@@ -159,7 +160,7 @@ T_bitboard castJump(bool(*castDir)(int*),int index){
 }
 
 T_bitboard *castSteps(bool (*castDir)(int*)){
-    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         result[i] = castStep(castDir, i);
     }
@@ -167,7 +168,7 @@ T_bitboard *castSteps(bool (*castDir)(int*)){
 }
 
 T_bitboard *castRays(bool (*castDir)(int*)){
-    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         result[i] = castRay(castDir, i);
     }
@@ -175,7 +176,7 @@ T_bitboard *castRays(bool (*castDir)(int*)){
 }
 
 T_bitboard *castJumps(bool (*castDir)(int*)){
-    T_bitboard *result = malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
     for(int i = 0; i < BITBOARD_SIZE; i++){
         result[i] = castJump(castDir, i);
     }
@@ -184,7 +185,7 @@ T_bitboard *castJumps(bool (*castDir)(int*)){
 
 //Enumerate directions 0 - 7
 T_bitboard** createRays(){
-    T_bitboard **rays = malloc(8 * sizeof(T_bitboard*));
+    T_bitboard **rays = (T_bitboard **)malloc(8 * sizeof(T_bitboard*));
     rays[0] = castRays(&castN);
     rays[1] = castRays(&castNE);
     rays[2] = castRays(&castE);
@@ -197,7 +198,7 @@ T_bitboard** createRays(){
 }
 
 T_bitboard** createSteps(){
-    T_bitboard **steps = malloc(8 * sizeof(T_bitboard*));
+    T_bitboard **steps = (T_bitboard **)malloc(8 * sizeof(T_bitboard*));
     steps[0] = castSteps(&castN);
     steps[1] = castSteps(&castNE);
     steps[2] = castSteps(&castE);
@@ -211,7 +212,7 @@ T_bitboard** createSteps(){
 
 //Enumerate directions 0 - 7
 T_bitboard** createJumps(){
-    T_bitboard **jumps = malloc(8 * sizeof(T_bitboard*));
+    T_bitboard **jumps = (T_bitboard **)malloc(8 * sizeof(T_bitboard*));
     jumps[0] = castJumps(&cast1);
     jumps[1] = castJumps(&cast2);
     jumps[2] = castJumps(&cast3);

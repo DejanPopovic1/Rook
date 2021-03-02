@@ -1,14 +1,85 @@
-#include "GlobalDeclarations.h"
-#include "toAlgebraicNotation.h"
-#include "output.h"
+#include "toAlgNotation.hpp"
+#include "output.hpp"
 #include <wchar.h>
 #include <Windows.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "state.h"
+#include "state.hpp"
 #include <stdint.h>
-#include "output.h"
+#include "output.hpp"
 #include <assert.h>
+#include "bitUtilities.hpp"
+
+int whosTurn(const int halfPly){
+    if((halfPly % 2) == 1){
+        return whiteTurn;
+    }
+    return blackTurn;
+}
+
+int whatIsPiece(T_boardState b, int i){
+    int result = empty;
+    int resultCount = 0;
+    if(isBitSet(b.wPawn, i)){
+        result = whitePawn;
+        resultCount++;
+    }
+    if(isBitSet(b.wBishop, i)){
+        result = whiteBishop;
+        resultCount++;
+    }
+    if(isBitSet(b.wKnight, i)){
+        result = whiteKnight;
+        resultCount++;
+    }
+    if(isBitSet(b.wRook, i)){
+        result = whiteRook;
+        resultCount++;
+    }
+    if(isBitSet(b.wQueen, i)){
+        result = whiteQueen;
+        resultCount++;
+    }
+    if(isBitSet(b.wKing, i)){
+        result = whiteKing;
+        resultCount++;
+    }
+    if(isBitSet(b.bPawn, i)){
+        result = blackPawn;
+        resultCount++;
+    }
+    if(isBitSet(b.bBishop, i)){
+        result = blackBishop;
+        resultCount++;
+    }
+    if(isBitSet(b.bKnight, i)){
+        result = blackKnight;
+        resultCount++;
+    }
+    if(isBitSet(b.bRook, i)){
+        result = blackRook;
+        resultCount++;
+    }
+    if(isBitSet(b.bQueen, i)){
+        result = blackQueen;
+        resultCount++;
+    }
+    if(isBitSet(b.bKing, i)){
+        result = blackKing;
+        resultCount++;
+    }
+    assert(resultCount < 2);
+    return result;
+}
+
+T_chessboard *toIntArray(T_boardState b){
+    T_chessboard *result = (T_chessboard *)malloc(sizeof(T_chessboard));
+    for(int i = 0; i < BITBOARD_SIZE; i++){
+        int piece = whatIsPiece(b, i);
+        (*result)[i/FILE_SIZE][i % RANK_SIZE] = piece;
+    }
+    return result;
+}
 
 void printTBitboardNumbersBin(T_bitboard **b){
     for(int i = 0; i < 64; i++){
@@ -44,6 +115,12 @@ void printState(T_boardState b){
     printBits(sizeof(i), &i);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
+}
+
+void printStates(T_boardStates *b){
+    for(int i = 0; i < length(b); i++){
+        printState((b->bs)[i]);
+    }
 }
 
 void printStateAndValidMoves(T_boardState c, T_boardState s){
@@ -122,15 +199,15 @@ void printPlayerTurn(int halfPly){
     return;
 }
 
-void printPosition(T_position p){
-    printf("(%d, %d)\n", p.r, p.f);
-}
-
-void printPositions(T_positions ps){
-    for(int i = 0; i < ps.freeIndex; i++){
-        printPosition(ps.positions[i]);
-    }
-}
+//void printPosition(T_position p){
+//    printf("(%d, %d)\n", p.r, p.f);
+//}
+//
+//void printPositions(T_positions ps){
+//    for(int i = 0; i < ps.freeIndex; i++){
+//        printPosition(ps.positions[i]);
+//    }
+//}
 
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
@@ -147,13 +224,13 @@ void printBoard(int playingAs, T_chessboard chessboard){
 //    return;
 //}
 
-void printBoards(int playingAs, T_states* s){
-    for(int i = 0; i < s->freeIndex; i++){
-        printBoard(playingAs, s->states[i]);
-        printf("\n");
-    }
-    return;
-}
+//void printBoards(int playingAs, T_states* s){
+//    for(int i = 0; i < s->freeIndex; i++){
+//        printBoard(playingAs, s->states[i]);
+//        printf("\n");
+//    }
+//    return;
+//}
 
 void printMove(char* c){
     printf("%s", c);

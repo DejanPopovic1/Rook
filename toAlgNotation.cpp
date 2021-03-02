@@ -3,19 +3,12 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <iostream>
+#include "bitUtilities.hpp"
+#include "moveGeneration.hpp"
 
 #include "toAlgNotation.hpp"
 
-#include "StateChanger.hpp"
-
-extern "C" {
-    T_boardStates *initialiseStates();
-    void genSuccStates(T_boardStates *dst, const T_boardState *b);
-    #include "bitUtilities.h"
-    #include "moveGeneration.h"
-    #include "GlobalDeclarations.h"
-    #include "output.h"
-}
+//#include "StateChanger.hpp"
 
 using std::string;
 using std::vector;

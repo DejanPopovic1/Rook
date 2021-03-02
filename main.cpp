@@ -1,41 +1,10 @@
-#include <stdio.h>
-#include <iostream>
-#include "chess_pieces.h"
-#include "applicableActions.h"
-#include "GlobalDeclarations.h"
-#include "memoryUtilities.h"
-#include <stdbool.h>
-#include "output.h"
-#include "testInitialisations.h"
-#include <assert.h>
-#include <string.h>
-#include "testCases.h"
-#include <stdlib.h>
-#include "toAlgebraicNotation.h"
-#include "movementRules.h"
-#include "moveGeneration.h"
-#include "bitUtilities.h"
-#include "StateChanger.hpp"
+#include "state.hpp"
+#include "moveGeneration.hpp"
+#include "output.hpp"
+#include "stateChanger.hpp"
 
-using namespace std;
-
-extern "C"{
-    //#include "state.h"
-    T_boardState initialiseBoardState();
-    T_boardStates *initialiseStates();
-    void genSuccStates(T_boardStates *dst, const T_boardState *b);
-}
-//#include "moveList.hpp"
-
-void mainPrompt();
-void multiPlayerPrompt();
-char* mainSelection();
-char* moveInput();
-void multiPlayerSession(char *playerColourInput);
-T_chessboard* initialiseBoard();
-T_moves* generateListOfMoves(T_chessboard c, T_states *ss);
-bool nextState(T_chessboard **c, char* input, int turn);
-T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard);
+#define MAIN_SELECTION 100
+#define MOVE_INPUT 100
 
 void mainPrompt(){
     printf("Rook>");
@@ -76,7 +45,11 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     T_boardState s = initialiseBoardState();
+
     StateChanger sc(s);
+    sc.getState();
+
+
     //T_boardStates *bss = initialiseStates();
     //fflush(stdin);
 //cin.ignore(INT_MAX);
@@ -125,25 +98,14 @@ void multiPlayerSession(char *playerColourInput){
     return;
 }
 
-genListOfValidMoves(){
-
-
-}
-
-//BoardStates must be malloced so that they may be initialised when they are created. Initialisation is not the job of the caller
-void testCases(){
-//    T_boardState c = initialiseBoardState();
+//convert c into c++
+int main(){
+//    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
-//    printState(c);
-//    genSuccStates(bss, &c);
-//    T_boardState s = (bss->bs)[12];
-//    printStatesAndValidMoves(&c, bss);
-//    getch();
-    return;
-}
-
-int main() {
-    testCases();
+//    genSuccStates(bss, &s);
+//    printStates(bss);
+//    return 0;
+//    testCases();
     const char* selection1 = "mp";
     const char* selection2 = "sp";
     const char* selection3 = "exit";
@@ -182,163 +144,3 @@ int main() {
     }
     return 0;
 }
-
-T_chessboard* initialiseBoard(){
-    T_chessboard *result = (T_chessboard *)malloc(sizeof(T_chessboard));
-    for(int i = 0; i < FILE_SIZE; i++){
-        (*result)[1][i] = whitePawn;
-    }
-    (*result)[0][0] = whiteRook;
-    (*result)[0][1] = whiteKnight;
-    (*result)[0][2] = whiteBishop;
-    (*result)[0][3] = whiteQueen;
-    (*result)[0][4] = whiteKing;
-    (*result)[0][5] = whiteBishop;
-    (*result)[0][6] = whiteKnight;
-    (*result)[0][7] = whiteRook;
-    for(int i = 0; i < FILE_SIZE; i++){
-        (*result)[6][i] = blackPawn;
-    }
-    (*result)[7][0] = blackRook;
-    (*result)[7][1] = blackKnight;
-    (*result)[7][2] = blackBishop;
-    (*result)[7][3] = blackQueen;
-    (*result)[7][4] = blackKing;
-    (*result)[7][5] = blackBishop;
-    (*result)[7][6] = blackKnight;
-    (*result)[7][7] = blackRook;
-    for(int i = 2; i < RANK_SIZE - 2; i++){
-        for(int j = 0; j < FILE_SIZE; j++){
-            (*result)[i][j] = empty;
-        }
-    }
-    return result;
-}
-
-//T_moves* generateListOfMoves(T_chessboard c, T_states *ss){
-//    T_moves *a = malloc(sizeof(T_moves));
-//    a->freeIndex = 0;
-//    for(int i = 0; i < ss->freeIndex; i++){
-//        a->moves[i] = toAlgebraicNotation(c, ss->states[i]);
-//        (a->freeIndex)++;
-//    }
-//    return a;
-//}
-//
-//bool nextState(T_chessboard **c, char* input, int turn){
-//    T_states *successorStates = generateSuccessorStates(turn, **c);
-//    T_moves *a = generateListOfMoves(**c, successorStates);
-//    for(int i = 0; i < a->freeIndex; i++){
-//        if(!strcmp(a->moves[i], input)){
-//            T_chessboard *result = malloc(sizeof(T_chessboard));
-//            result = &(successorStates->states[i]);
-//            free(*c);
-//            *c = result;
-//            return true;
-//        }
-//    }
-//    printf("Invalid move\n");
-//    return false;
-//}
-
-//T_boardStates generateSuccStates(T_boardState b){
-//    T_boardStates result;
-//    if(whosTurn(b.ply) == whiteTurn){
-//        genWPawnSuccStates(b, &result);
-//        genWBishopSuccStates(b, &result);
-//        genWKnightSuccStates(b, &result);
-//        genWRookSuccStates(b, &result);
-//        genWQueenSuccStates(b, &result);
-//        genWKingSuccStates(b, &result);
-//        return result;
-//    }
-//    else if(whosTurn(b.ply) == blackTurn){
-//        genBPawnSuccStates(b, &result);
-//        genBBishopSuccStates(b, &result);
-//        genBKnightSuccStates(b, &result);
-//        genBRookSuccStates(b, &result);
-//        genBQueenSuccStates(b, &result);
-//        genBKingSuccStates(b, &result);
-//        return result;
-//    }
-//}
-
-
-//T_states *generateSuccessorStates(int playingAs, T_chessboard chessboard){
-//    int numOfStates = 0;
-//    //T_chessboard *pawnSuccessorStates, *bishopSuccessorStates, *knightSuccessorStates, *rookSuccessorStates, *queenSuccessorStates, *kingSuccessorStates;
-//    T_states *consolidatedStates = malloc(sizeof(T_states));
-//    consolidatedStates->freeIndex = 0;
-//    T_position p;
-//    for (int i = 0; i < RANK_SIZE; i++){
-//        for(int j = 0; j < FILE_SIZE; j++){
-//            p.r = i;
-//            p.f = j;
-//            assert(playingAs == asWhite || playingAs == asBlack);
-//            if(playingAs == asWhite){
-//                switch (chessboard[i][j]){
-//                    case empty:
-//                        break;
-//                    case whitePawn:
-//                        generateWhitePawnSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White Pawn at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case whiteBishop:
-//                        generateWhiteBishopSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White Bishop at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case whiteKnight:
-//                        generateWhiteKnightSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White Knight at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case whiteRook:
-//                        generateWhiteRookSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White Rook at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case whiteQueen:
-//                        generateWhiteQueenSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White Queen at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case whiteKing:
-//                        generateWhiteKingSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("White King at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//            else if(playingAs == asBlack){
-//                switch(chessboard[i][j]){
-//                    case blackPawn:
-//                        generateBlackPawnSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black Pawn at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case blackBishop:
-//                        generateBlackBishopSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black Bishop at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case blackKnight:
-//                        generateBlackKnightSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black Knight at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case blackRook:
-//                        generateBlackRookSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black Rook at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case blackQueen:
-//                        generateBlackQueenSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black Queen at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    case blackKing:
-//                        generateBlackKingSuccessorStates(chessboard, p, consolidatedStates);
-//                        //printf("Black King at %d %d: %d\n", i, j, consolidatedStates->freeIndex);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        }
-//    }
-//    //printBoards(playingAs, *consolidatedStates);
-//    return consolidatedStates;
-//}

@@ -1,15 +1,15 @@
+
 #ifndef TOALGNOTATION_HPP
 #define TOALGNOTATION_HPP
 
 #include <string>
+#include <vector>
 
 #define ASCII_CHARACTER_OFFSET 97
 #define ASCII_NUMBER_OFFSET 49
 
 //We need to investigate why this works. It should work without extern because the .c file repeates the step after this with extern
-extern "C"{
-    #include "state.h"
-}
+#include "state.hpp"
 
 //Namespaces included in headers is bad practice. Is there therefore any way to include them wihtout resorting to excessive use of std::?
 

@@ -1,20 +1,17 @@
-#include "state.h"
-#include "moveRules.h"
-#include "output.h"
-#include "GlobalDeclarations.h"
-#include "bitUtilities.h"
+#include "state.hpp"
+//#include "output.h"
+#include "bitUtilities.hpp"
 #include "assert.h"
-
 
 //bAll and wAll might need to be done immediately after a state generatioin and saved as a state
 T_bitboard wAll(const T_boardState *b){
-    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
-    return or;
+    T_bitboard o = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
+    return o;
 }
 
 T_bitboard bAll(const T_boardState *b){
-    T_bitboard or = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-    return or;
+    T_bitboard o = b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    return o;
 }
 
 T_bitboard sameAll(const T_boardState *b){
@@ -45,17 +42,13 @@ void removeOpponent(T_boardState *b, int pos){
     }
 }
 
-void printStates(T_boardStates *b){
-    for(int i = 0; i < length(b); i++){
-        printState((b->bs)[i]);
-    }
-}
 
-void printStatesAndValidMoves(T_boardState *c, T_boardStates *b){
-    for(int i = 0; i < length(b); i++){
-        printStateAndValidMoves(*c, (b->bs)[i]);
-    }
-}
+//
+//void printStatesAndValidMoves(T_boardState *c, T_boardStates *b){
+//    for(int i = 0; i < length(b); i++){
+//        printStateAndValidMoves(*c, (b->bs)[i]);
+//    }
+//}
 
 //void printValidMoves(T_boardState *c, T_boardStates *ss){
 //    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
@@ -67,6 +60,10 @@ void printStatesAndValidMoves(T_boardState *c, T_boardStates *b){
 //    //printf("%s", list[0]);
 //    return list;
 //}
+
+bool isPawn(int p){
+    return (p == whitePawn || p == blackPawn) ? true : false;
+}
 
 int whosTurnNEW(const int ply){
     if((ply % 2) == 1){
@@ -112,22 +109,23 @@ char whatFile(char n){
 }
 
 bool isPosEmpty(const T_boardState *b, int n){
-    T_bitboard or = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
+    T_bitboard o = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing |
                     b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
-    if(!isBitSet(or, n)){
+    if(!isBitSet(o, n)){
        return true;
     }
     return false;
 }
 
-void addState(T_boardStates *dst, const T_boardState *src){
+void addState(T_boardStates *dst, T_boardState *src){
     (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
 }
 
 T_boardStates *initialiseStates(){
-    T_boardStates *bss = malloc(sizeof(T_boardStates));
+    T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));
     bss->fi = 0;
+    return bss;
 }
 
 int length(T_boardStates *bss){
@@ -249,7 +247,7 @@ void initialiseWEnPassants(unsigned char *c){
     clearCharBits(c);
 }
 
-void initialiseBEnPassants(char *c){
+void initialiseBEnPassants(unsigned char *c){
     clearCharBits(c);
 }
 
@@ -259,17 +257,17 @@ void initialiseCastlesAndTurn(T_boardState *b){
     b->whosTurn = 0;
 }
 
-void initialiseNoCapturesOrPawnMoves(char *c){
+void initialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
 
 //Need to add in this functionality later
 void initialisePreviousStates(struct PrevStates **ps){
-    *ps = malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
     (*ps)->fp = 0;
     return;
 }
 
-void initialisePly(int *i){
+void initialisePly(unsigned short *i){
     *i = 1;
 }

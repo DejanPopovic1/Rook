@@ -1,0 +1,187 @@
+# depslib dependency file v1.0
+1614721134 source:c:\c_c++ code\rookv2\main.cpp
+	"state.hpp"
+	"moveGeneration.hpp"
+	"output.hpp"
+	"stateChanger.hpp"
+
+1614698966 source:c:\c_c++ code\rookv2\state.c
+
+1614718931 c:\c_c++ code\rookv2\state.hpp
+	<stdint.h>
+	<stdbool.h>
+
+1614719823 source:c:\c_c++ code\rookv2\state.cpp
+	"state.hpp"
+	"bitUtilities.hpp"
+	"assert.h"
+
+1614710764 source:c:\c_c++ code\rookv2\bitutilities.cpp
+	"bitUtilities.hpp"
+	<limits.h>
+	"stdio.h"
+
+1614710477 c:\c_c++ code\rookv2\bitutilities.hpp
+	"state.hpp"
+	<stdbool.h>
+	"bitUtilities.hpp"
+	<limits.h>
+
+1614705899 source:c:\c_c++ code\rookv2\moverules.cpp
+	<stdbool.h>
+	<stdlib.h>
+	"moveRules.hpp"
+	"state.hpp"
+	"bitUtilities.hpp"
+
+1614705899 c:\c_c++ code\rookv2\moverules.hpp
+	<stdbool.h>
+	"state.hpp"
+
+1614714258 source:c:\c_c++ code\rookv2\movegeneration.cpp
+	<assert.h>
+	"moveGeneration.hpp"
+	"state.hpp"
+	"bitUtilities.hpp"
+	"moveRules.hpp"
+
+1614714257 c:\c_c++ code\rookv2\movegeneration.hpp
+	<stdbool.h>
+	"state.hpp"
+
+1614714509 source:c:\c_c++ code\rookv2\toalgnotation.cpp
+	<string>
+	<vector>
+	<stdbool.h>
+	<assert.h>
+	<iostream>
+	"bitUtilities.hpp"
+	"moveGeneration.hpp"
+	"toAlgNotation.hpp"
+
+1614717453 c:\c_c++ code\rookv2\toalgnotation.hpp
+	<string>
+	<vector>
+	"state.hpp"
+
+1614719823 source:c:\c_c++ code\rookv2\output.cpp
+	"toAlgNotation.hpp"
+	"output.hpp"
+	<wchar.h>
+	<Windows.h>
+	<stdio.h>
+	<stdbool.h>
+	"state.hpp"
+	<stdint.h>
+	"output.hpp"
+	<assert.h>
+	"bitUtilities.hpp"
+
+1614719822 c:\c_c++ code\rookv2\output.hpp
+	"state.hpp"
+	<wchar.h>
+	<Windows.h>
+	<stdio.h>
+	<stdbool.h>
+
+1614721093 source:c:\c_c++ code\rookv2\statechanger.cpp
+	"StateChanger.hpp"
+	"ToAlgNotation.hpp"
+	"output.hpp"
+	"moveGeneration.hpp"
+	<iostream>
+
+1614721003 c:\c_c++ code\rookv2\statechanger.hpp
+	"state.hpp"
+	<string>
+	<vector>
+
+1614710764 source:c:\c_c++ code\rook\bitutilities.cpp
+	"bitUtilities.hpp"
+	<limits.h>
+	"stdio.h"
+
+1614710477 c:\c_c++ code\rook\bitutilities.hpp
+	"state.hpp"
+	<stdbool.h>
+	"bitUtilities.hpp"
+	<limits.h>
+
+1614718931 c:\c_c++ code\rook\state.hpp
+	<stdint.h>
+	<stdbool.h>
+
+1614714258 source:c:\c_c++ code\rook\movegeneration.cpp
+	<assert.h>
+	"moveGeneration.hpp"
+	"state.hpp"
+	"bitUtilities.hpp"
+	"moveRules.hpp"
+
+1614714257 c:\c_c++ code\rook\movegeneration.hpp
+	<stdbool.h>
+	"state.hpp"
+
+1614705899 c:\c_c++ code\rook\moverules.hpp
+	<stdbool.h>
+	"state.hpp"
+
+1614705899 source:c:\c_c++ code\rook\moverules.cpp
+	<stdbool.h>
+	<stdlib.h>
+	"moveRules.hpp"
+	"state.hpp"
+	"bitUtilities.hpp"
+
+1614719823 source:c:\c_c++ code\rook\output.cpp
+	"toAlgNotation.hpp"
+	"output.hpp"
+	<wchar.h>
+	<Windows.h>
+	<stdio.h>
+	<stdbool.h>
+	"state.hpp"
+	<stdint.h>
+	"output.hpp"
+	<assert.h>
+	"bitUtilities.hpp"
+
+1614717453 c:\c_c++ code\rook\toalgnotation.hpp
+	<string>
+	<vector>
+	"state.hpp"
+
+1614719822 c:\c_c++ code\rook\output.hpp
+	"state.hpp"
+	<wchar.h>
+	<Windows.h>
+	<stdio.h>
+	<stdbool.h>
+
+1614719823 source:c:\c_c++ code\rook\state.cpp
+	"state.hpp"
+	"bitUtilities.hpp"
+	"assert.h"
+
+1614721093 source:c:\c_c++ code\rook\statechanger.cpp
+	"StateChanger.hpp"
+	"ToAlgNotation.hpp"
+	"output.hpp"
+	"moveGeneration.hpp"
+	<iostream>
+
+1614721003 c:\c_c++ code\rook\statechanger.hpp
+	"state.hpp"
+	<string>
+	<vector>
+
+1614714509 source:c:\c_c++ code\rook\toalgnotation.cpp
+	<string>
+	<vector>
+	<stdbool.h>
+	<assert.h>
+	<iostream>
+	"bitUtilities.hpp"
+	"moveGeneration.hpp"
+	"toAlgNotation.hpp"
+
