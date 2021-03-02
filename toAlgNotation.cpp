@@ -293,7 +293,7 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
-        *pieceBitboard(ss, i);
+//        *pieceBitboard(ss, i);
         ssB = *pieceBitboard(ss, i);
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;

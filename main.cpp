@@ -83,14 +83,14 @@ void multiPlayerSession(char *playerColourInput){
   //  string x;
     //cin >> x;
 
-  //  while(true){
-       sc.getState();
+   // while(true){
+       ///////////printState(sc.getState());
         //printState(sc.getState());
 //
 //        (s.whosTurn)++;
 
         //std::cin.get();
-  //  }
+   // }
 
 
 
