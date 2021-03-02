@@ -24,7 +24,7 @@ StateChanger::StateChanger(T_boardState boardState){
     genListOfValidMoves();
 }
 
-void StateChanger::changeInputState(string usrInput){
+void StateChanger::changeState(string usrInput){
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
             this->c = this->ss->bs[i];
@@ -36,7 +36,7 @@ void StateChanger::changeInputState(string usrInput){
     return ;
 }
 
-vector<string> StateChanger::printValidMoves(){
+void StateChanger::printValidMoves(){
     for(int i = 0; i < validMoves.size(); i++){
         cout << validMoves[i] << endl;
     }

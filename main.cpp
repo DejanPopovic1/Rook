@@ -2,9 +2,12 @@
 #include "moveGeneration.hpp"
 #include "output.hpp"
 #include "stateChanger.hpp"
+#include <iostream>
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
+
+//convert idiomatic c into idiomatic c++
 
 void mainPrompt(){
     printf("Rook>");
@@ -45,29 +48,23 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     T_boardState s = initialiseBoardState();
-
     StateChanger sc(s);
-    sc.getState();
+    std::string usrInput;
+    //printState(sc.getState());
+    while(true){
+        printState(sc.getState());
+        sc.printValidMoves();
+        multiPlayerPrompt();
+        std::cin >> usrInput;
+        sc.changeState(usrInput);
 
-
-    //T_boardStates *bss = initialiseStates();
-    //fflush(stdin);
-//cin.ignore(INT_MAX);
-  //  string x;
-    //cin >> x;
-
-   // while(true){
+        //printState(sc.getState());
        ///////////printState(sc.getState());
         //printState(sc.getState());
-//
-//        (s.whosTurn)++;
 
+        std::cin.get();
         //std::cin.get();
-   // }
-
-
-
-
+    }
 
     //printStates(bss);
 
@@ -98,7 +95,7 @@ void multiPlayerSession(char *playerColourInput){
     return;
 }
 
-//convert c into c++
+
 int main(){
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();

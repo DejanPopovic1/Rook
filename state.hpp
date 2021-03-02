@@ -24,6 +24,9 @@ enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, w
 
 //When copyong states, you can use = for now but moving forward you will have to define this due to the pointer PrevStates
 //Use enums to define the bitfield turns white and black
+//whosTurn is redundant if there is ply but it saves calculations and recalculations
+//Can ply not be stripped out of this - when state depth is built we dont need to know ply
+//Lets check how stockfish represents state
 struct BoardState{
     T_bitboard wPawn;
     T_bitboard wBishop;
@@ -44,7 +47,7 @@ struct BoardState{
     unsigned char whosTurn : 1; //0 Indicates white and 1 indicates black move
     unsigned char noCapturesOrPawnMoves;
     struct PrevStates *ps;
-    unsigned short ply;
+  //  unsigned short ply;
 };
 
 struct BoardStates{
@@ -61,7 +64,7 @@ bool isPawn(int p);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
 T_bitboard sameAll(const T_boardState *b);
-void removeOpponent(T_boardState *b, int pos);
+//void removeOpponent(T_boardState *b, int pos);
 int whosTurnNEW(const int ply);
 bool isRankFive(char n);
 bool isRankFour(char n);
@@ -91,6 +94,6 @@ void initialiseBEnPassants(unsigned char *c);
 void initialiseCastlesAndTurn(T_boardState *b);
 void initialiseNoCapturesOrPawnMoves(unsigned char *c);
 void initialisePreviousStates(struct PrevStates **ps);
-void initialisePly(unsigned short *i);
+//void initialisePly(unsigned short *i);
 
 #endif // STATE_H

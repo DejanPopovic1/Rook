@@ -91,8 +91,8 @@ void printTBitboardNumbersBin(T_bitboard **b){
 //To-do: Omit leading zero in printing castling state
 void printState(T_boardState b){
     T_chessboard *c = toIntArray(b);
-    printBoard(whosTurn(b.ply), *c);
-    printf("Ply: %d\n", b.ply);
+    printBoard(b.whosTurn, *c);
+    printf("Ply: THIS MUST BE ADDED IN\n", 1);
     (!b.whosTurn) ? printf("Whites Turn\n") : printf("Blacks Turn\n");
 //    if(whosTurn(b.ply) == whiteTurn){
 //        printf("Whites Turn\n");

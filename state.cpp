@@ -23,24 +23,24 @@ T_bitboard sameAll(const T_boardState *b){
     }
 }
 
-void removeOpponent(T_boardState *b, int pos){
-    if(whosTurnNEW(b->ply) == whiteTurn){
-        clearBit(&(b->bPawn), pos);
-        clearBit(&(b->bBishop), pos);
-        clearBit(&(b->bKnight), pos);
-        clearBit(&(b->bRook), pos);
-        clearBit(&(b->bQueen), pos);
-        clearBit(&(b->bKing), pos);
-    }
-    if(whosTurnNEW(b->ply) == blackTurn){
-        clearBit(&(b->wPawn), pos);
-        clearBit(&(b->wBishop), pos);
-        clearBit(&(b->wKnight), pos);
-        clearBit(&(b->wRook), pos);
-        clearBit(&(b->wQueen), pos);
-        clearBit(&(b->wKing), pos);
-    }
-}
+//void removeOpponent(T_boardState *b, int pos){
+//    if(whosTurnNEW(b->ply) == whiteTurn){
+//        clearBit(&(b->bPawn), pos);
+//        clearBit(&(b->bBishop), pos);
+//        clearBit(&(b->bKnight), pos);
+//        clearBit(&(b->bRook), pos);
+//        clearBit(&(b->bQueen), pos);
+//        clearBit(&(b->bKing), pos);
+//    }
+//    if(whosTurnNEW(b->ply) == blackTurn){
+//        clearBit(&(b->wPawn), pos);
+//        clearBit(&(b->wBishop), pos);
+//        clearBit(&(b->wKnight), pos);
+//        clearBit(&(b->wRook), pos);
+//        clearBit(&(b->wQueen), pos);
+//        clearBit(&(b->wKing), pos);
+//    }
+//}
 
 
 //
@@ -151,7 +151,7 @@ T_boardState initialiseBoardState(){
     initialiseCastlesAndTurn(&result);
     initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
     initialisePreviousStates(&(result.ps));
-    initialisePly(&(result.ply));
+//    initialisePly(&(result.ply));
     return result;
 }
 
@@ -268,6 +268,6 @@ void initialisePreviousStates(struct PrevStates **ps){
     return;
 }
 
-void initialisePly(unsigned short *i){
-    *i = 1;
-}
+//void initialisePly(unsigned short *i){
+//    *i = 1;
+//}
