@@ -170,7 +170,7 @@
 	"moveGeneration.hpp"
 	<iostream>
 
-1614724019 c:\c_c++ code\rook\statechanger.hpp
+1614724959 c:\c_c++ code\rook\statechanger.hpp
 	"state.hpp"
 	<string>
 	<vector>
@@ -185,7 +185,7 @@
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
 
-1614724158 source:c:\c_c++ code\rook\main.cpp
+1614725321 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

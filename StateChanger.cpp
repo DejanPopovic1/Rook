@@ -38,8 +38,9 @@ void StateChanger::changeState(string usrInput){
 
 void StateChanger::printValidMoves(){
     for(int i = 0; i < validMoves.size(); i++){
-        cout << validMoves[i] << endl;
+        cout << validMoves[i] << " ";
     }
+    cout << endl;
 }
 
 StateChanger::genListOfValidMoves(){
@@ -48,7 +49,7 @@ StateChanger::genListOfValidMoves(){
         s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
         this->validMoves.push_back(s);
     }
-    for(int i = 0; i < this->validMoves.size(); i++){
-        cout << validMoves[i] << endl;
-    }
+//    for(int i = 0; i < this->validMoves.size(); i++){
+//        cout << validMoves[i] << endl;
+//    }
 }
