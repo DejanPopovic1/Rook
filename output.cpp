@@ -124,11 +124,6 @@ void printStates(T_boardStates *b, int playerColour){
     }
 }
 
-//void printStateAndValidMoves(T_boardState c, T_boardState s){
-//    printState(s);
-//    printf("Valid Moves: %s\n\n", toAlgebraicNotation_C_WRAPPER(&c, &s));
-//}
-
 void printBits(size_t const size, void const * const ptr)
 {
     unsigned char *b = (unsigned char*) ptr;
@@ -175,15 +170,6 @@ void printTBitboard(T_bitboard b){
     return;
 }
 
-
-
-
-
-
-
-
-//=============================
-
 void landingMessage(){
     printf("Rook Chess Engine (Open source version)\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
     printf("This open source version of Rook uses rudimentary chessboard position encoding\n\n");
@@ -200,51 +186,15 @@ void printPlayerTurn(int halfPly){
     return;
 }
 
-//void printPosition(T_position p){
-//    printf("(%d, %d)\n", p.r, p.f);
-//}
-//
-//void printPositions(T_positions ps){
-//    for(int i = 0; i < ps.freeIndex; i++){
-//        printPosition(ps.positions[i]);
-//    }
-//}
-
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
     return;
 }
 
-//void printBoardsAndAlgNot(T_chessboard c, int playingAs, T_states* s){
-//    for(int i = 0; i < s->freeIndex; i++){
-//        printBoard(playingAs, s->states[i]);
-//        printf("\n");
-//        printf(toAlgebraicNotation(c,s->states[i]));
-//        printf("\n");
-//    }
-//    return;
-//}
-
-//void printBoards(int playingAs, T_states* s){
-//    for(int i = 0; i < s->freeIndex; i++){
-//        printBoard(playingAs, s->states[i]);
-//        printf("\n");
-//    }
-//    return;
-//}
-
 void printMove(char* c){
     printf("%s", c);
     return;
 }
-
-//void printMoves(T_moves *a){
-//    printf("Number of valid moves: %d\n", a->freeIndex);
-//    for(int i = 0; i < a->freeIndex; i++){
-//        printf("%s ", a->moves[i]);
-//    }
-//    printf("\n");
-//}
 
 bool isWhiteTile(int rank, int file){
     bool isEvenTile = ((rank + file) % 2 == 0);

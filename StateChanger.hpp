@@ -21,8 +21,8 @@ public:
     T_boardState getState();
     void printGameState();
 private:
-    int turnTimeLeft;
     void genListOfValidMoves();
+    int turnTimeLeft;
     std::vector<std::string> validMoves;
     T_boardState c;
     T_boardStates *ss;

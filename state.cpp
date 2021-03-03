@@ -165,36 +165,36 @@ void initialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
     setBit(result, 5);
-    setBit(result, 18);
-    setBit(result, 21);
-    setBit(result, 31);
-    setBit(result, 25);
+    //setBit(result, 18);
+    //setBit(result, 21);
+    //setBit(result, 31);
+    //setBit(result, 25);
 }
 
 void initialiseWKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 1);
     setBit(result, 6);
-        setBit(result, 46);
+    //setBit(result, 46);
 }
 
 void initialiseWRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 0);
     setBit(result, 7);
-    setBit(result, 41);
+    //setBit(result, 41);
 }
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 3);
-    setBit(result, 40);
+    //setBit(result, 40);
 }
 
 void initialiseWKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 4);
-    setBit(result, 26);
+    //setBit(result, 26);
 }
 
 //Initialise white in this same way
@@ -214,8 +214,8 @@ void initialiseBBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 58);
     setBit(result, 61);
-    setBit(result, 35);
-    setBit(result, 30);
+    //setBit(result, 35);
+    //setBit(result, 30);
 }
 
 void initialiseBKnights(T_bitboard *result){
@@ -228,19 +228,19 @@ void initialiseBRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 56);
     setBit(result, 63);
-    setBit(result, 27);
+    //setBit(result, 27);
 }
 
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
-    setBit(result, 28);
+    //setBit(result, 28);
 }
 
 void initialiseBKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 60);
-    setBit(result, 36);
+    //setBit(result, 36);
 }
 
 void initialiseWEnPassants(unsigned char *c){
