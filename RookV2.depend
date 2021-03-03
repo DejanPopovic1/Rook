@@ -107,7 +107,7 @@
 	"bitUtilities.hpp"
 	<limits.h>
 
-1614724497 c:\c_c++ code\rook\state.hpp
+1614796163 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
@@ -133,7 +133,7 @@
 	"state.hpp"
 	"bitUtilities.hpp"
 
-1614724603 source:c:\c_c++ code\rook\output.cpp
+1614796261 source:c:\c_c++ code\rook\output.cpp
 	"toAlgNotation.hpp"
 	"output.hpp"
 	<wchar.h>
@@ -145,6 +145,7 @@
 	"output.hpp"
 	<assert.h>
 	"bitUtilities.hpp"
+	"stateChanger.hpp"
 
 1614717453 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
@@ -163,14 +164,14 @@
 	"bitUtilities.hpp"
 	"assert.h"
 
-1614795406 source:c:\c_c++ code\rook\statechanger.cpp
+1614796230 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
 	<iostream>
 
-1614794747 c:\c_c++ code\rook\statechanger.hpp
+1614797011 c:\c_c++ code\rook\statechanger.hpp
 	"state.hpp"
 	<string>
 	<vector>
@@ -185,7 +186,7 @@
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
 
-1614725321 source:c:\c_c++ code\rook\main.cpp
+1614796314 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

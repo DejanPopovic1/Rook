@@ -17,7 +17,8 @@ T_boardState StateChanger::getState(){
     return (this->c);
 }
 //INCORPORATE FIRST COMMENT AS ITS ABSENCE LEADS TO A BUG
-StateChanger::StateChanger(T_boardState boardState){
+StateChanger::StateChanger(T_boardState boardState, bool pA){
+    this->playingAs = pA;
     this->c = boardState;
     this->ss = initialiseStates();
     genSuccStates(this->ss, &(this->c));
@@ -38,6 +39,11 @@ void StateChanger::changeState(string usrInput){
     }
     cout << "Invalid move\n";
     return ;
+}
+
+void StateChanger::printGameState(){
+
+
 }
 
 void StateChanger::printValidMoves(){

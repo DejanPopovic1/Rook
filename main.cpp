@@ -35,6 +35,7 @@ char* moveInput(){
 
 //Minimise MOVE_INPUT to hold as few characters as possible
 //Need to NOT advance the turn colour when a wrong input is made
+//Rename player colour to playingAs
 void multiPlayerSession(char *playerColourInput){
     if(strcmp(playerColourInput, "w") && strcmp(playerColourInput, "b")){
         printf("Invalid multi_player argument. See \"help\" for more details\n");
@@ -48,7 +49,7 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     T_boardState s = initialiseBoardState();
-    StateChanger sc(s);
+    StateChanger sc(s, playerColour);
     std::string usrInput;
     //printState(sc.getState());
     while(true){
@@ -63,8 +64,7 @@ void multiPlayerSession(char *playerColourInput){
         //printState(sc.getState());
 
         std::cin.get();
-        //std::cin.get();
-    }
+     }
 
     //printStates(bss);
 

@@ -14,8 +14,6 @@ typedef uint64_t T_bitboard;
 typedef struct BoardState T_boardState;
 typedef struct BoardStates T_boardStates;
 
-enum PlayingAs{asWhite, asBlack};
-
 enum Turn{whiteTurn, blackTurn};
 
 enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, whiteKing,

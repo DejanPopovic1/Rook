@@ -9,6 +9,7 @@
 #include "output.hpp"
 #include <assert.h>
 #include "bitUtilities.hpp"
+#include "stateChanger.hpp"
 
 int whosTurn(const int halfPly){
     if((halfPly % 2) == 1){
