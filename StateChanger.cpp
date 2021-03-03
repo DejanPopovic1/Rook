@@ -42,8 +42,7 @@ void StateChanger::changeState(string usrInput){
 }
 
 void StateChanger::printGameState(){
-
-
+    printState(this->c, this->playingAs);
 }
 
 void StateChanger::printValidMoves(){

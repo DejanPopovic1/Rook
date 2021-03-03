@@ -51,48 +51,16 @@ void multiPlayerSession(char *playerColourInput){
     T_boardState s = initialiseBoardState();
     StateChanger sc(s, playerColour);
     std::string usrInput;
-    //printState(sc.getState());
     while(true){
-        printState(sc.getState(), playerColour);
+        sc.printGameState();
+        //printState(sc.getState(), playerColour);
         sc.printValidMoves();
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
-
-        //printState(sc.getState());
-       ///////////printState(sc.getState());
-        //printState(sc.getState());
-
         std::cin.get();
      }
-
-    //printStates(bss);
-
-
-
-//    int halfPly = 1;
-//    int colourTurn;
-//    T_chessboard *c;
-//    c = initialiseBoard();
-//    char *multiPlayerInput;
-//
-//    while(true){
-//        colourTurn = whosTurn(halfPly);
-//        printPlayerTurn(halfPly);
-//        printBoard(asWhite, *c);
-//        T_states *wS = generateSuccessorStates(asWhite, *c);
-//        T_states *bS = generateSuccessorStates(asBlack, *c);
-//        T_moves *mW = generateListOfMoves(c, wS);
-//        T_moves *mB = generateListOfMoves(c, bS);
-//        printMoves(mW);
-//        printMoves(mB);
-//        multiPlayerPrompt();
-//        multiPlayerInput = moveInput();
-//        if(nextState(&c, multiPlayerInput, colourTurn)){
-//            halfPly++;
-//        }
-//    }
-    return;
+     return;
 }
 
 

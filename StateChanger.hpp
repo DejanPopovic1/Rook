@@ -10,7 +10,8 @@ enum PlayingAs{asWhite, asBlack};
 //1. Playing As
 //2. Ply number
 //3. List of valid moves
-//4. Time left in current move (if there is a time limit imposed)
+//4. List of all game moves
+//5. Time left in current move (if there is a time limit imposed)
 
 class StateChanger{
 public:
@@ -24,6 +25,7 @@ private:
     void genListOfValidMoves();
     int turnTimeLeft;
     std::vector<std::string> validMoves;
+    std::vector<std::string> gameMoves;
     T_boardState c;
     T_boardStates *ss;
     bool playingAs;

@@ -159,19 +159,19 @@
 	<stdio.h>
 	<stdbool.h>
 
-1614724497 source:c:\c_c++ code\rook\state.cpp
+1614801191 source:c:\c_c++ code\rook\state.cpp
 	"state.hpp"
 	"bitUtilities.hpp"
 	"assert.h"
 
-1614798181 source:c:\c_c++ code\rook\statechanger.cpp
+1614805410 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
 	<iostream>
 
-1614800198 c:\c_c++ code\rook\statechanger.hpp
+1614803615 c:\c_c++ code\rook\statechanger.hpp
 	"state.hpp"
 	<string>
 	<vector>
