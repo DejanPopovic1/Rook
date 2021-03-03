@@ -34,6 +34,7 @@ void StateChanger::changeState(string usrInput){
             genSuccStates(this->ss, &(this->c));
             this->validMoves.clear();
             genListOfValidMoves();
+            gameMoves.push_back(usrInput);
             return;
         }
     }
@@ -42,10 +43,11 @@ void StateChanger::changeState(string usrInput){
 }
 
 void StateChanger::printGameState(){
-    printState(this->c, this->playingAs);
+    printState(this->c, this->playingAs, this->gameMoves);
 }
 
 void StateChanger::printValidMoves(){
+    cout << "Valid moves: ";
     for(int i = 0; i < validMoves.size(); i++){
         cout << validMoves[i] << " ";
     }

@@ -10,6 +10,7 @@
 #include <assert.h>
 #include "bitUtilities.hpp"
 #include "stateChanger.hpp"
+#include <iostream>
 
 int whosTurn(const int halfPly){
     if((halfPly % 2) == 1){
@@ -90,7 +91,7 @@ void printTBitboardNumbersBin(T_bitboard **b){
 }
 
 //To-do: Omit leading zero in printing castling state
-void printState(T_boardState b, int playerColour){
+void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves){
     T_chessboard *c = toIntArray(b);
     printBoard(playerColour, *c);
     printf("Ply: THIS MUST BE ADDED IN\n", 1);
@@ -116,13 +117,18 @@ void printState(T_boardState b, int playerColour){
     printBits(sizeof(i), &i);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
+    printf("Game moves: ");
+    for(int i = 0; i < gameMoves.size(); i++){
+        std::cout << gameMoves[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
-void printStates(T_boardStates *b, int playerColour){
-    for(int i = 0; i < length(b); i++){
-        printState((b->bs)[i], playerColour);
-    }
-}
+//void printStates(T_boardStates *b, int playerColour){
+//    for(int i = 0; i < length(b); i++){
+//        printState((b->bs)[i], playerColour, );
+//    }
+//}
 
 void printBits(size_t const size, void const * const ptr)
 {
