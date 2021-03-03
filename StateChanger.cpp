@@ -25,13 +25,20 @@ StateChanger::StateChanger(T_boardState boardState){
 }
 
 void StateChanger::changeState(string usrInput){
+
+
+
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
             this->c = this->ss->bs[i];
+            this->ss = initialiseStates();
+            genSuccStates(this->ss, &(this->c));
+            this->validMoves.clear();
+            genListOfValidMoves();
             return;
         }
     }
-    this->c;
+    //this->c;
     cout << "Invalid move\n";
     return ;
 }
@@ -40,15 +47,17 @@ void StateChanger::printValidMoves(){
     for(int i = 0; i < validMoves.size(); i++){
         cout << validMoves[i] << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
-StateChanger::genListOfValidMoves(){
+//add a return of void
+void StateChanger::genListOfValidMoves(){
     string s;
     for(int i = 0; i < this->ss->fi; i++){
         s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
         this->validMoves.push_back(s);
     }
+
 //    for(int i = 0; i < this->validMoves.size(); i++){
 //        cout << validMoves[i] << endl;
 //    }

@@ -163,14 +163,14 @@
 	"bitUtilities.hpp"
 	"assert.h"
 
-1614721947 source:c:\c_c++ code\rook\statechanger.cpp
+1614725343 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
 	<iostream>
 
-1614724959 c:\c_c++ code\rook\statechanger.hpp
+1614794747 c:\c_c++ code\rook\statechanger.hpp
 	"state.hpp"
 	<string>
 	<vector>

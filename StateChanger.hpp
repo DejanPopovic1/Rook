@@ -13,7 +13,7 @@ public:
     void printValidMoves();
     T_boardState getState();
 private:
-    genListOfValidMoves();
+    void genListOfValidMoves();
     std::vector<std::string> validMoves;
     T_boardState c;
     T_boardStates *ss;
