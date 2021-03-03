@@ -53,7 +53,7 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     //printState(sc.getState());
     while(true){
-        printState(sc.getState());
+        printState(sc.getState(), playerColour);
         sc.printValidMoves();
         multiPlayerPrompt();
         std::cin >> usrInput;

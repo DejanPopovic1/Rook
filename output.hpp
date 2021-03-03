@@ -20,9 +20,9 @@ T_chessboard *toIntArray(T_boardState b);
 
 void printTBitboardNumber(T_bitboard b);
 void printTBitboard(T_bitboard b);
-void printState(T_boardState b);
-void printStates(T_boardStates *b);
-void printStateAndValidMoves(T_boardState c, T_boardState s);
+void printState(T_boardState b, int playerColour);
+void printStates(T_boardStates *b, int playerColour);
+//void printStateAndValidMoves(T_boardState c, T_boardState s);
 void printBits(size_t const size, void const * const ptr);
 void printTBitboardNumbersBin(T_bitboard **b);
 void printTBitboardNumbersDec(T_bitboard **b);

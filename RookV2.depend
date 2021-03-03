@@ -152,7 +152,7 @@
 	<vector>
 	"state.hpp"
 
-1614719822 c:\c_c++ code\rook\output.hpp
+1614797510 c:\c_c++ code\rook\output.hpp
 	"state.hpp"
 	<wchar.h>
 	<Windows.h>
@@ -164,7 +164,7 @@
 	"bitUtilities.hpp"
 	"assert.h"
 
-1614796230 source:c:\c_c++ code\rook\statechanger.cpp
+1614797005 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
@@ -186,7 +186,7 @@
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
 
-1614796314 source:c:\c_c++ code\rook\main.cpp
+1614797444 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

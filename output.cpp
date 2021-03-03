@@ -90,9 +90,9 @@ void printTBitboardNumbersBin(T_bitboard **b){
 }
 
 //To-do: Omit leading zero in printing castling state
-void printState(T_boardState b){
+void printState(T_boardState b, int playerColour){
     T_chessboard *c = toIntArray(b);
-    printBoard(b.whosTurn, *c);
+    printBoard(playerColour, *c);
     printf("Ply: THIS MUST BE ADDED IN\n", 1);
     (!b.whosTurn) ? printf("Whites Turn\n") : printf("Blacks Turn\n");
 //    if(whosTurn(b.ply) == whiteTurn){
@@ -118,16 +118,16 @@ void printState(T_boardState b){
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
 }
 
-void printStates(T_boardStates *b){
+void printStates(T_boardStates *b, int playerColour){
     for(int i = 0; i < length(b); i++){
-        printState((b->bs)[i]);
+        printState((b->bs)[i], playerColour);
     }
 }
 
-void printStateAndValidMoves(T_boardState c, T_boardState s){
-    printState(s);
-    printf("Valid Moves: %s\n\n", toAlgebraicNotation_C_WRAPPER(&c, &s));
-}
+//void printStateAndValidMoves(T_boardState c, T_boardState s){
+//    printState(s);
+//    printf("Valid Moves: %s\n\n", toAlgebraicNotation_C_WRAPPER(&c, &s));
+//}
 
 void printBits(size_t const size, void const * const ptr)
 {
