@@ -25,12 +25,10 @@ StateChanger::StateChanger(T_boardState boardState){
 }
 
 void StateChanger::changeState(string usrInput){
-
-
-
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
             this->c = this->ss->bs[i];
+            (this->c.whosTurn)++;
             this->ss = initialiseStates();
             genSuccStates(this->ss, &(this->c));
             this->validMoves.clear();
@@ -38,7 +36,6 @@ void StateChanger::changeState(string usrInput){
             return;
         }
     }
-    //this->c;
     cout << "Invalid move\n";
     return ;
 }
