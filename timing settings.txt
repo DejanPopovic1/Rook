@@ -1,0 +1,22 @@
+Bullet: one minute per player for all moves
+
+Blitz: 5 minutes per player for all moves
+
+Quickplay: 20, 30 or 40 minutes per player for all moves
+
+Quick tournament: 1 hour 30 mins to reach move 35, then 30 mins to finish (per player)
+
+FIDE tournament: 1 hour 30 minutes to reach move 40, then 30 mins to finish, plus 30 seconds per move (per player)
+
+Slow tournament: 2 hours to reach move 40, then one extra hour to reach move 60, then 40 mins to finish (per player)
+
+Lightning: 10 seconds per move
+
+Hourglass: 1 to 2 mins each to start with. the time you lose is added to the opponent's clock, and vice versa
+
+Fischer delay: 5 seconds (usually, can be less) are added to your clock after every move
+
+
+
+
+Time controls for the World Championship games are 120 minutes for the first 40 moves, followed by 60 minutes for the next 20 moves and then 15 minutes for the rest of the game with an increment of 30 seconds per move starting on move 61.
