@@ -47,7 +47,7 @@ void StateChanger::printGameState(){
 }
 
 void StateChanger::printSuccStates(){
-    ;
+    printStates(this->ss, this->playingAs);
 }
 
 void StateChanger::printValidMoves(){
