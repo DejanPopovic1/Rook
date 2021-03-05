@@ -280,7 +280,7 @@ string specifier(char piece){
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
-void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, bool *isEnPassantCapture){
+void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
     *isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
@@ -297,9 +297,6 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
         else if(cB != ssB && (__builtin_popcountll(cB) != __builtin_popcountll(ssB))){
             *isPieceCaptured = true;
         }
-    }
-    if(isPosEmpty(c, *to)){
-        *isEnPassantCapture = true;
     }
 }
 
@@ -323,8 +320,8 @@ string toSpecifier(char to){
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to;
-    bool isPieceCaptured, isEnPassantCapture;
-    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &isEnPassantCapture);
+    bool isPieceCaptured;
+    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);

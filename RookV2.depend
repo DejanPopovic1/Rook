@@ -148,12 +148,12 @@
 	"stateChanger.hpp"
 	<iostream>
 
-1614976602 c:\c_c++ code\rook\toalgnotation.hpp
+1614977039 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	<vector>
 	"state.hpp"
 
-1614807941 c:\c_c++ code\rook\output.hpp
+1614977244 c:\c_c++ code\rook\output.hpp
 	"state.hpp"
 	<wchar.h>
 	<Windows.h>
@@ -179,7 +179,7 @@
 	<string>
 	<vector>
 
-1614714509 source:c:\c_c++ code\rook\toalgnotation.cpp
+1614977039 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>

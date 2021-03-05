@@ -124,11 +124,12 @@ void printState(T_boardState b, int playerColour, std::vector<std::string> gameM
     std::cout << std::endl;
 }
 
-//void printStates(T_boardStates *b, int playerColour){
-//    for(int i = 0; i < length(b); i++){
-//        printState((b->bs)[i], playerColour, );
-//    }
-//}
+void printStates(T_boardStates *b, int playerColour){
+    std::vector<std::string> v;
+    for(int i = 0; i < length(b); i++){
+        printState((b->bs)[i], playerColour, v);
+    }
+}
 
 void printBits(size_t const size, void const * const ptr)
 {
