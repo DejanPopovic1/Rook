@@ -4,6 +4,7 @@
 //#include "GlobalDeclarations.h"
 #include "bitUtilities.hpp"
 #include "moveRules.hpp"
+#include <stdio.h>
 
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
@@ -206,6 +207,7 @@ void promote(T_boardStates *dst, T_boardState *b, int n, int piece){
 
 //factor out specific moves once all moveGenerations complete
 //Use generateSlideMoves() to codify these moves
+//Use *cpy instead of cpy
 void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
     //MOVE UP
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
@@ -241,10 +243,11 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         addState(dst, &cpy);
     }
     //EN PASSANT RIGHT
-    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, frFile + 1) && isRankFive(n)){
+    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile + 1)) && isRankFive(n)){
+        printf("\n\n\n\n\n\n\n\n\n\nTRUE!\n\n\n\n\n\n\n\n\n\n");
         T_boardState cpy = *b;
-        clearBit(&(b->bPawn), n + 1);
-        move(b, n + 9, n, whitePawn);
+        clearBit(&((&cpy)->bPawn), n + 1);
+        move(&cpy, n + 9, n, whitePawn);
         addState(dst, &cpy);
     }
     //PROMOTIONS
