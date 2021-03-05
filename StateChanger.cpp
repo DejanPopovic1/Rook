@@ -46,6 +46,10 @@ void StateChanger::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves);
 }
 
+void StateChanger::printSuccStates(){
+    ;
+}
+
 void StateChanger::printValidMoves(){
     cout << "Valid moves: ";
     for(int i = 0; i < validMoves.size(); i++){

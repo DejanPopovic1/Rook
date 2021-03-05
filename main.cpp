@@ -51,8 +51,12 @@ void multiPlayerSession(char *playerColourInput){
     T_boardState s = initialiseBoardState();
     StateChanger sc(s, playerColour);
     std::string usrInput;
+    T_boardStates *bss = initialiseStates();
+    T_boardState c;
     while(true){
         sc.printGameState();
+        std::cout << std::endl;
+        sc.printSuccStates();
         //printState(sc.getState(), playerColour);
         sc.printValidMoves();
         multiPlayerPrompt();

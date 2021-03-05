@@ -70,7 +70,10 @@ int whatIsPiece(T_boardState b, int i){
         result = blackKing;
         resultCount++;
     }
-    assert(resultCount < 2);
+    if(resultCount >= 2){
+        std::cout << std::endl << i << std::endl;
+        assert(false);
+    }
     return result;
 }
 

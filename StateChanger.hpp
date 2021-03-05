@@ -21,6 +21,7 @@ public:
     void printValidMoves();
     T_boardState getState();
     void printGameState();
+    void printSuccStates();
 private:
     void genListOfValidMoves();
     int turnTimeLeft;
