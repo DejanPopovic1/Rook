@@ -118,6 +118,7 @@ bool isPosEmpty(const T_boardState *b, int n){
 }
 
 void addState(T_boardStates *dst, T_boardState *src){
+    src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
     (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
 }
