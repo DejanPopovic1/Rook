@@ -111,12 +111,13 @@
 	<stdint.h>
 	<stdbool.h>
 
-1614972911 source:c:\c_c++ code\rook\movegeneration.cpp
+1614981984 source:c:\c_c++ code\rook\movegeneration.cpp
 	<assert.h>
 	"moveGeneration.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
 	"moveRules.hpp"
+	<stdio.h>
 
 1614714257 c:\c_c++ code\rook\movegeneration.hpp
 	<stdbool.h>
@@ -167,7 +168,7 @@
 	"bitUtilities.hpp"
 	"assert.h"
 
-1614979498 source:c:\c_c++ code\rook\statechanger.cpp
+1614983293 source:c:\c_c++ code\rook\statechanger.cpp
 	"StateChanger.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"

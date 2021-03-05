@@ -216,7 +216,7 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         addState(dst, &cpy);
     }
     //MOVE UP UP
-    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n)){
+    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n) && isSecondRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
         addState(dst, &cpy);
@@ -267,7 +267,7 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         addState(dst, &cpy);
     }
     //MOVE DOWN DOWN
-    if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n)){
+    if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n) && isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n - 16, n, blackPawn);
         //setCharBit(&(cpy.bEnPassants), 7 - (n % 8));
