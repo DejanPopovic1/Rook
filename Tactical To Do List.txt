@@ -11,3 +11,17 @@ check castling state changes in code and console state and implement accordingly
 Check disambiguating rank and file with uses cases:
 Queens attacking from N, NE and E
 4 castles attacking as a cross
+
+Prune successor states based on check rules
+
+Endgame including stalemates and checkmate
+
+repetitive move rule
+
+50 move rule
+
+Implement Minimax algorithm
+
+Implement heuristic assignment
+
+Done :-)

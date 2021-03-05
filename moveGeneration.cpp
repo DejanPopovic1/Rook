@@ -244,7 +244,6 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     }
     //EN PASSANT RIGHT
     if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile + 1)) && isRankFive(n)){
-        printf("\n\n\n\n\n\n\n\n\n\nTRUE!\n\n\n\n\n\n\n\n\n\n");
         T_boardState cpy = *b;
         clearBit(&((&cpy)->bPawn), n + 1);
         move(&cpy, n + 9, n, whitePawn);
@@ -289,15 +288,17 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     //EN PASSANT RIGHT
     char frFile = whatFile(n);
     if(((frFile + 1) % 8) && isCharBitSet(b->wEnPassants, 7 - (frFile + 1)) && isRankFour(n)){
+        printf("\n\n\n\n\n\n\n\n\n\nTEST 1\n\n\n\n\n\n\n\n\n\n");
         T_boardState cpy = *b;
-        clearBit(&(cpy.bPawn), n + 1);
+        clearBit(&(cpy.wPawn), n + 1);
         move(&cpy, n - 7, n, blackPawn);
         addState(dst, &cpy);
     }
     //EN PASSANT LEFT
     if((frFile % 8) && isCharBitSet(b->wEnPassants, 7 - (frFile - 1)) && isRankFour(n)){
+        printf("\n\n\n\n\n\n\n\n\n\nTEST 2\n\n\n\n\n\n\n\n\n\n");
         T_boardState cpy = *b;
-        clearBit(&(cpy.bPawn), n - 1);
+        clearBit(&(cpy.wPawn), n - 1);
         move(&cpy, n - 9, n, blackPawn);
         addState(dst, &cpy);
     }
