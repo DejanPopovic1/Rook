@@ -138,7 +138,6 @@ string formatRankDisplay(char r){
 
 string toFileRank(vector<char> departures, char departure){
     string result;
-    //printVector(departures);
     if(!departures.size()){
         ;
     }
@@ -212,9 +211,6 @@ T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival){
 void printVector(vector<char> v){
     for(int i = 0; i < v.size(); i++)
         std::cout << (int)v[i] << " ";
-//    for (vector<char>::const_iterator i = v.begin(); i != v.end(); ++i){
-//        std::cout << *i << " ";
-//    }
     cout << endl;
 }
 
@@ -223,11 +219,8 @@ vector<char> posOfPieces(T_bitboard input){
     for(int i = 0; i < 64; i++){
         if(isBitSet(input, i)){
             result.push_back(i);
-            //cout << "pushed: " << i << "   " << (int)result.back() << endl;
         }
     }
-    //printTBitboardNumber(input);
-    //printVector(result);
     return result;
 }
 
@@ -235,9 +228,7 @@ string disambiguate(T_boardState *c, char from, char to, bool isCaptured){
     string result;
     char p = piece(c, from);
     T_bitboard ps = whereAreOtherSamePieces(*pieceBitboard(c, p), from);
-    //printTBitboardNumber(ps);
     T_bitboard rps = trimOtherSamePieces(c, ps, to);
-    //printTBitboardNumber(rps);
     if(!isPawn(p)){
         return toFileRank(posOfPieces(rps), from);
     }
@@ -282,20 +273,12 @@ string specifier(char piece){
 //Use C++ pass by reference
 //Use wAll instead of cB and ssB
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
-    //*enPassantPromotedPiece = 0;
     *isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
-////        if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
-//            *enPassantPromotedPiece = i;
-//            T_bitboard fromTo = cB ^ ssB;
-//            *enPColumn = __builtin_ctzll(fromTo);
-//            *isPieceCaptured = false;
-//            return;
-//        }
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;
             T_bitboard fromTo = cB ^ ssB;
@@ -333,13 +316,11 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isA
     __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(ss)) ? *isAlsoTake = true : *isAlsoTake = false;
     c->whosTurn ? temp = c->bPawn ^ ss->bPawn : temp = c->wPawn ^ ss->wPawn;
     *from = __builtin_ctzll(temp);
-    //printf("\n%d\n", whatFile(*from));
     c->whosTurn ? *promotedRank = 0 : *promotedRank = 7;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
         if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
-
             *promotedFile = __builtin_ctzll(ssB ^ cB) % 8;
             return i;
         }
@@ -360,15 +341,8 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
     }
     if(promotedPiece && isPromoCapture){
-                //printf("\n%d\n", whatFile(from));
-        //cout << endl << from << endl;
         return formatFileDisplay(whatFile(fromPromotedFile)) + "x" + (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece)); //JUST PREPEND FROM COLUMN AND X
     }
-//    if(enPassantPromotedPiece && !isPieceCaptured){
-//        string rank;
-//        c->whosTurn ? rank = "1" : rank = "8";
-//        return (formatFileDisplay(whatFile(enPColumn)) + rank + "=" + specifier(enPassantPromotedPiece));
-//    }
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);
@@ -378,9 +352,4 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     result.append(part3);
     result.append(part4);
     return result;
-}
-
-const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss){
-    return (toAlgebraicNotation(c, ss)).c_str();
-    //return "Hello it works";
 }
