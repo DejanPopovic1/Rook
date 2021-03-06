@@ -197,12 +197,21 @@ void move(T_boardState *b, char dst, char src, char piece){
     setBit(sm, dst);
 }
 
+//Refactor this to be more inline with takePromote which will allow the use of a single promote function
 void promote(T_boardStates *dst, T_boardState *b, int n, int piece){
-        T_boardState cpy = *b;
-        T_bitboard *sm = pieceBitboard(&cpy, piece);
-        b->whosTurn ? setBit(sm, n - 8) : setBit(sm, n + 8);
-        b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
-        addState(dst, &cpy);
+    T_boardState cpy = *b;
+    T_bitboard *sm = pieceBitboard(&cpy, piece);
+    b->whosTurn ? setBit(sm, n - 8) : setBit(sm, n + 8);
+    b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
+    addState(dst, &cpy);
+}
+
+void takePromote(T_boardStates *dst, T_boardState *b, int n, int piece){
+    T_boardState cpy = *b;
+    T_bitboard *sm = pieceBitboard(&cpy, piece);
+    setBit(sm, n);
+    b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
+    addState(dst, &cpy);
 }
 
 //factor out specific moves once all moveGenerations complete
@@ -226,13 +235,29 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     if(isPosBlack(b, n + 7) && (n % 8)){
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n + 7, n, whitePawn);
-        addState(dst, &cpy);
+        if(isRankSeven(n)){
+            takePromote(dst, &cpy, n + 7, whiteBishop);
+            takePromote(dst, &cpy, n + 7, whiteKnight);
+            takePromote(dst, &cpy, n + 7, whiteRook);
+            takePromote(dst, &cpy, n + 7, whiteQueen);
+        }
+        else{
+            addState(dst, &cpy);
+        }
     }
     //CAPTURE RIGHT
     if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n + 9, n, whitePawn);
-        addState(dst, &cpy);
+        if(isRankSeven(n)){
+            takePromote(dst, &cpy, n + 9, whiteBishop);
+            takePromote(dst, &cpy, n + 9, whiteKnight);
+            takePromote(dst, &cpy, n + 9, whiteRook);
+            takePromote(dst, &cpy, n + 9, whiteQueen);
+        }
+        else{
+            addState(dst, &cpy);
+        }
     }
     //EN PASSANT LEFT
     char frFile = whatFile(n);
@@ -277,13 +302,29 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     if(isPosWhite(b, n - 7) && ((n + 1) % 8)){
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n - 7, n, blackPawn);
-        addState(dst, &cpy);
+        if(isRankTwo(n)){
+            takePromote(dst, &cpy, n - 7, blackBishop);
+            takePromote(dst, &cpy, n - 7, blackKnight);
+            takePromote(dst, &cpy, n - 7, blackRook);
+            takePromote(dst, &cpy, n - 7, blackQueen);
+        }
+        else{
+            addState(dst, &cpy);
+        }
     }
     //CAPTURE LEFT
     if(isPosWhite(b, n - 9) && (n % 8)){
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n - 9, n, blackPawn);
-        addState(dst, &cpy);
+        if(isRankTwo(n)){
+            takePromote(dst, &cpy, n - 9, blackBishop);
+            takePromote(dst, &cpy, n - 9, blackKnight);
+            takePromote(dst, &cpy, n - 9, blackRook);
+            takePromote(dst, &cpy, n - 9, blackQueen);
+        }
+        else{
+            addState(dst, &cpy);
+        }
     }
     //EN PASSANT RIGHT
     char frFile = whatFile(n);

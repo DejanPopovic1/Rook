@@ -1,12 +1,15 @@
 Saturday:
 
-promotion after taking opponent
+promotion after taking opponent state
+promotion after taking opponent algNot
 
 check castling state changes in code and console state and implement accordingly
 
 Check disambiguating rank and file with uses cases:
 Queens attacking from N, NE and E
 4 castles attacking as a cross
+
+Sunday:
 
 Prune successor states based on check rules
 
@@ -16,7 +19,7 @@ repetitive move rule
 
 50 move rule
 
-Sunday
+Monday - Friday:
 
 Implement Minimax algorithm
 
