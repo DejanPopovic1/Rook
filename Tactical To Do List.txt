@@ -1,6 +1,6 @@
-check promotion state generation
-add promotion algNotation
-test promotions to all types
+Saturday:
+
+promotion after taking opponent
 
 check castling state changes in code and console state and implement accordingly
 
@@ -15,6 +15,8 @@ Endgame including stalemates and checkmate
 repetitive move rule
 
 50 move rule
+
+Sunday
 
 Implement Minimax algorithm
 

@@ -280,14 +280,20 @@ string specifier(char piece){
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
-void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
+void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, char *enPassantPromotedPiece){
+    *enPassantPromotedPiece = 0;
     *isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
-//        *pieceBitboard(ss, i);
         ssB = *pieceBitboard(ss, i);
+        if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
+            *enPassantPromotedPiece = i;
+            T_bitboard fromTo = cB ^ ssB;
+            *from = __builtin_ctzll(fromTo);
+            return;
+        }
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;
             T_bitboard fromTo = cB ^ ssB;
@@ -320,8 +326,14 @@ string toSpecifier(char to){
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to;
+    char enPassantPromotedPiece;
     bool isPieceCaptured;
-    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
+    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &enPassantPromotedPiece);
+    if(enPassantPromotedPiece){
+        string rank;
+        c->whosTurn ? rank = "1" : rank = "8";
+        return  (formatFileDisplay(whatFile(from)) + rank + "=" + specifier(enPassantPromotedPiece));
+    }
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);
