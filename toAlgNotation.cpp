@@ -330,11 +330,12 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isA
     T_bitboard cB;
     T_bitboard ssB;
     __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(ss)) ? *isAlsoTake = true : *isAlsoTake = false;
-    c->whosTurn ? *promotedRank = 6 : *promotedRank = 1;
+    c->whosTurn ? *promotedRank = 0 : *promotedRank = 7;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
         if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
+            *promotedFile = __builtin_ctzll(ssB ^ cB) % 8;
             return i;
         }
     }
@@ -351,7 +352,7 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
     promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank);
     if(promotedPiece && !isPromoCapture){
-        return (formatFileDisplay(whatFile(promotedFile))  + "=" + specifier(promotedPiece));
+        return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
     }
 //    if(enPassantPromotedPiece && !isPieceCaptured){
 //        string rank;
