@@ -24,11 +24,11 @@ T_bitboard sameAll(const T_boardState *b){
 }
 
 T_bitboard oppositeAll(T_boardState *b){
-    if(1){
-      ;
+    if(!b->whosTurn){
+        return bAll(b);
     }
     else{
-     ;
+        return wAll(b);
     }
 }
 
