@@ -158,47 +158,43 @@ T_boardState initialiseBoardState(){
 
 void initialiseWPawns(T_bitboard *result){
     clearBits(result);
-    for(int i = 8; i <= 15; i++){
-        setBit(result, i);
-    }
+    setBit(result, 8);
+    setBit(result, 9);
+    setBit(result, 10);
+    setBit(result, 11);
+    setBit(result, 12);
+    setBit(result, 13);
+    setBit(result, 14);
+    setBit(result, 15);
 }
 void initialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
     setBit(result, 5);
-    //setBit(result, 18);
-    //setBit(result, 21);
-    //setBit(result, 31);
-    //setBit(result, 25);
 }
 
 void initialiseWKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 1);
     setBit(result, 6);
-    //setBit(result, 46);
 }
 
 void initialiseWRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 0);
     setBit(result, 7);
-    //setBit(result, 41);
 }
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 3);
-    //setBit(result, 40);
 }
 
 void initialiseWKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 4);
-    //setBit(result, 26);
 }
 
-//Initialise white in this same way
 void initialiseBPawns(T_bitboard *result){
     clearBits(result);
     setBit(result, 48);
@@ -209,14 +205,11 @@ void initialiseBPawns(T_bitboard *result){
     setBit(result, 53);
     setBit(result, 54);
     setBit(result, 55);
-
 }
 void initialiseBBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 58);
     setBit(result, 61);
-    //setBit(result, 35);
-    //setBit(result, 30);
 }
 
 void initialiseBKnights(T_bitboard *result){
@@ -229,19 +222,16 @@ void initialiseBRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 56);
     setBit(result, 63);
-    //setBit(result, 27);
 }
 
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
-    //setBit(result, 28);
 }
 
 void initialiseBKing(T_bitboard *result){
     clearBits(result);
     setBit(result, 60);
-    //setBit(result, 36);
 }
 
 void initialiseWEnPassants(unsigned char *c){

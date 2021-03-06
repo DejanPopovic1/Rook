@@ -1,7 +1,3 @@
-On the white move, for all pieces, the first thing that is done, is that the white en Passant flag is cleared
-en passant to be included in algNotation
-test en passant
-
 check promotion state generation
 add promotion algNotation
 test promotions to all types
