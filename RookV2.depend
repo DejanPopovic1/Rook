@@ -149,7 +149,7 @@
 	"stateChanger.hpp"
 	<iostream>
 
-1615033625 c:\c_c++ code\rook\toalgnotation.hpp
+1615040222 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	<vector>
 	"state.hpp"
@@ -180,7 +180,7 @@
 	<string>
 	<vector>
 
-1615033675 source:c:\c_c++ code\rook\toalgnotation.cpp
+1615038146 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -190,7 +190,7 @@
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
 
-1615026217 source:c:\c_c++ code\rook\main.cpp
+1615036488 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

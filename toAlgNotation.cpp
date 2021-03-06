@@ -280,20 +280,21 @@ string specifier(char piece){
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
-void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, char *enPassantPromotedPiece, char *enPColumn){
-    *enPassantPromotedPiece = 0;
-    *isPieceCaptured = false;
+void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
+    //*enPassantPromotedPiece = 0;
+    //*isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
-        if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
-            *enPassantPromotedPiece = i;
-            T_bitboard fromTo = cB ^ ssB;
-            *enPColumn = __builtin_ctzll(fromTo);
-            return;
-        }
+////        if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
+//            *enPassantPromotedPiece = i;
+//            T_bitboard fromTo = cB ^ ssB;
+//            *enPColumn = __builtin_ctzll(fromTo);
+//            *isPieceCaptured = false;
+//            return;
+//        }
         if(cB != ssB && (__builtin_popcountll(cB) == __builtin_popcountll(ssB))){
             *piece = i;
             T_bitboard fromTo = cB ^ ssB;
@@ -323,17 +324,32 @@ string toSpecifier(char to){
     return result;
 }
 
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile){
+    T_bitboard cB;
+    T_bitboard ssB;
+    for(char i = 1; i < 13; i++){
+        cB = *pieceBitboard(c, i);
+        ssB = *pieceBitboard(ss, i);
+        if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
+            return i;
+        }
+    }
+    return 0;
+}
+
+//Refactor to make simpler w.r.t enPassants
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
-    char piece, from, to;
-    char enPassantPromotedPiece, enPColumn;
+    char piece, from, to, promotedPiece;
+    char promotedFile;
     bool isPieceCaptured;
-    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &enPassantPromotedPiece, &enPColumn);
-    if(enPassantPromotedPiece){
-        string rank;
-        c->whosTurn ? rank = "1" : rank = "8";
-        return  (formatFileDisplay(whatFile(enPColumn)) + rank + "=" + specifier(enPassantPromotedPiece));
-    }
+    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
+    promotedPiece = isPromoted(c, ss, &promotedFile);
+//    if(enPassantPromotedPiece && !isPieceCaptured){
+//        string rank;
+//        c->whosTurn ? rank = "1" : rank = "8";
+//        return (formatFileDisplay(whatFile(enPColumn)) + rank + "=" + specifier(enPassantPromotedPiece));
+//    }
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);
     string part3 = take(isPieceCaptured);
@@ -342,6 +358,7 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     result.append(part2);
     result.append(part3);
     result.append(part4);
+
     return result;
 }
 
