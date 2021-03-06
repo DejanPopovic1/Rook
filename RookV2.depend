@@ -149,7 +149,7 @@
 	"stateChanger.hpp"
 	<iostream>
 
-1615043803 c:\c_c++ code\rook\toalgnotation.hpp
+1615045240 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	<vector>
 	"state.hpp"
@@ -163,7 +163,7 @@
 	<vector>
 	<string>
 
-1615043734 source:c:\c_c++ code\rook\state.cpp
+1615044055 source:c:\c_c++ code\rook\state.cpp
 	"state.hpp"
 	"bitUtilities.hpp"
 	"assert.h"

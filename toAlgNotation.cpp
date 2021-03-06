@@ -326,14 +326,15 @@ string toSpecifier(char to){
 }
 
 //Use wAll instead of cB and ssB
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool isAlsoTake){
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank){
     T_bitboard cB;
     T_bitboard ssB;
+    __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(ss)) ? *isAlsoTake = true : *isAlsoTake = false;
+    c->whosTurn ? *promotedRank = 6 : *promotedRank = 1;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
         if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
-            //
             return i;
         }
     }
@@ -344,14 +345,13 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool isAl
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to, promotedPiece;
-    char promotedFile;
+    char promotedFile, promotedRank;
     bool isPieceCaptured;
     bool isPromoCapture;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
-    promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture);
-    if(promotedPiece && !isPieceCaptured){
-        return "NP";
-
+    promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank);
+    if(promotedPiece && !isPromoCapture){
+        return (formatFileDisplay(whatFile(promotedFile))  + "=" + specifier(promotedPiece));
     }
 //    if(enPassantPromotedPiece && !isPieceCaptured){
 //        string rank;
@@ -366,7 +366,9 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     result.append(part2);
     result.append(part3);
     result.append(part4);
-
+    if(promotedPiece){
+        result.append(specifier(promotedPiece));
+    }
     return result;
 }
 
