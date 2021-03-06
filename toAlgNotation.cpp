@@ -280,9 +280,10 @@ string specifier(char piece){
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
+//Use wAll instead of cB and ssB
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
     //*enPassantPromotedPiece = 0;
-    //*isPieceCaptured = false;
+    *isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
@@ -324,13 +325,15 @@ string toSpecifier(char to){
     return result;
 }
 
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile){
+//Use wAll instead of cB and ssB
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool isAlsoTake){
     T_bitboard cB;
     T_bitboard ssB;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
         ssB = *pieceBitboard(ss, i);
         if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
+            //
             return i;
         }
     }
@@ -343,8 +346,13 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     char piece, from, to, promotedPiece;
     char promotedFile;
     bool isPieceCaptured;
+    bool isPromoCapture;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
-    promotedPiece = isPromoted(c, ss, &promotedFile);
+    promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture);
+    if(promotedPiece && !isPieceCaptured){
+        return "NP";
+
+    }
 //    if(enPassantPromotedPiece && !isPieceCaptured){
 //        string rank;
 //        c->whosTurn ? rank = "1" : rank = "8";

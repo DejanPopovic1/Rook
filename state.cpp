@@ -23,6 +23,15 @@ T_bitboard sameAll(const T_boardState *b){
     }
 }
 
+T_bitboard oppositeAll(T_boardState *b){
+    if(1){
+      ;
+    }
+    else{
+     ;
+    }
+}
+
 //void removeOpponent(T_boardState *b, int pos){
 //    if(whosTurnNEW(b->ply) == whiteTurn){
 //        clearBit(&(b->bPawn), pos);
