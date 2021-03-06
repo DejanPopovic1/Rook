@@ -1,9 +1,9 @@
 Saturday:
 
-promotion after taking opponent state
 promotion after taking opponent algNot
 
-check castling state changes in code and console state and implement accordingly
+implement castling state change
+implement castling algNot
 
 Check disambiguating rank and file with uses cases:
 Queens attacking from N, NE and E
