@@ -35,7 +35,7 @@ std::string specifier(char piece);
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured);
 std::string take(bool isTake);
 std::string toSpecifier(char to);
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank);
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *fromFile);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
 extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 

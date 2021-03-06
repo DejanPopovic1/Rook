@@ -326,7 +326,7 @@ string toSpecifier(char to){
 }
 
 //Use wAll instead of cB and ssB
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank){
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *fromFile){
     T_bitboard cB;
     T_bitboard ssB;
     __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(ss)) ? *isAlsoTake = true : *isAlsoTake = false;
@@ -346,13 +346,16 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isA
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
     char piece, from, to, promotedPiece;
-    char promotedFile, promotedRank;
+    char promotedFile, promotedRank, fromPromotedFile;
     bool isPieceCaptured;
     bool isPromoCapture;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
-    promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank);
+    promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank, &fromPromotedFile);
     if(promotedPiece && !isPromoCapture){
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
+    }
+    if(promotedPiece && isPromoCapture){
+        return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece)); //JUST PREPEND FROM COLUMN AND X
     }
 //    if(enPassantPromotedPiece && !isPieceCaptured){
 //        string rank;
@@ -367,9 +370,6 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     result.append(part2);
     result.append(part3);
     result.append(part4);
-    if(promotedPiece){
-        result.append(specifier(promotedPiece));
-    }
     return result;
 }
 
