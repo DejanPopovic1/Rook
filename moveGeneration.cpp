@@ -400,6 +400,7 @@ void genDirStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays,
 }
 
 void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
+    int numOfBeforeStates = dst->fi;
     switch(piece){
         case whiteBishop:
             genDirStates(dst, b, n, rays, northEast, whiteBishop);
@@ -446,6 +447,27 @@ void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **r
             genDirStates(dst, b, n, rays, northWest, blackQueen);
             break;
     }
+    int numOfAfterStates = dst->fi;
+    if(piece == whiteRook && n == 0){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesLRWhite = 0;
+        }
+    }
+    else if(piece == whiteRook && n == 7){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesRRWhite = 0;
+        }
+    }
+    else if(piece == blackRook && n == 56){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesLRBlack = 0;
+        }
+    }
+    else if(piece == blackRook && n == 63){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesRRBlack = 0;
+        }
+    }
 }
 
 void genSuccStates(T_boardStates *dst, T_boardState *b){
@@ -470,18 +492,12 @@ void genSuccStates(T_boardStates *dst, T_boardState *b){
         }
 }
 
+//Refactor out the castling into a seperate function
 void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
-    int numOfBeforeStates = dst->fi;
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
-    }
-    if(piece == whiteRook && __builtin_ctzll(allPieces) == 0){
-        int numOfAfterStates = dst->fi;
-        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
-            dst->bs[i].castlesLRWhite = 0;
-        }
     }
 }
 
