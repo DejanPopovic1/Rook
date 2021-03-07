@@ -502,6 +502,7 @@ void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveR
 }
 
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
+    int numOfBeforeStates = dst->fi;
     T_boardState cpy = *b;
     int j;
     T_bitboard test;
@@ -518,6 +519,17 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
         T_boardState cpy = *b;
         moveAndAttack(&cpy, j, n, piece);
         addState(dst, &cpy);
+    }
+    int numOfAfterStates = dst->fi;
+    if(piece == whiteKing && n == 4){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesKWhite = 0;
+        }
+    }
+    else if(piece == blackKing && n == 60){
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesKBlack = 0;
+        }
     }
 }
 
