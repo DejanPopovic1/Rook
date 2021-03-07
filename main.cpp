@@ -4,6 +4,8 @@
 #include "stateChanger.hpp"
 #include <iostream>
 
+#include "bitUtilities.hpp"
+
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
 
@@ -67,8 +69,12 @@ void multiPlayerSession(char *playerColourInput){
      return;
 }
 
+void test(){
+    std::cin.get();
+}
 
 int main(){
+    test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);

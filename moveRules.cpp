@@ -5,6 +5,21 @@
 #include "bitUtilities.hpp"
 //#include "output.h"
 
+//    T_bitboard t = 0;
+//    T_bitboard u = 0;
+//    T_bitboard v = 0;
+//    T_bitboard w = 0;
+//    setBit(&t, 5);
+//    setBit(&t, 6);
+//    setBit(&u, 1);
+//    setBit(&u, 2);
+//    setBit(&u, 3);
+//    setBit(&v, 61);
+//    setBit(&v, 62);
+//    setBit(&w, 57);
+//    setBit(&w, 58);
+//    setBit(&w, 59);
+
 //Remove returning bools from the jump casts
 bool cast1(int *index){
     *index += 17;

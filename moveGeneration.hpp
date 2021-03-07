@@ -4,6 +4,11 @@
 #include <stdbool.h>
 #include "state.hpp"
 
+#define WHITE_KINGSIDE_PASS 96
+#define WHITE_QUEENSIDE_PASS 14
+#define BLACK_KINGSIDE_PASS 6917529027641081856
+#define BLACK_QUEENSIDE_PASS 1008806316530991104
+
 enum Directions{north, northEast, east, southEast, south, southWest, west, northWest};
 
 T_bitboard getPieceFromPieces(T_bitboard *pcs);

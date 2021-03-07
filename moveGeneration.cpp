@@ -513,7 +513,9 @@ void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveR
 }
 
 bool isPosAttacked(T_boardState *b, int n){
-    return true;
+
+
+    return false;
 }
 
 //Use bitboard bit manipulation to speed this up
