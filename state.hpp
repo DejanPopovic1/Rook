@@ -43,7 +43,9 @@ struct BoardState{
     unsigned char castlesLRWhite : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
     unsigned char castlesRRWhite : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
     unsigned char castlesKWhite : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
-    unsigned char castlesBlack : 3;//First bit set if L castle moved. Second R castle moved. Third King moved
+    unsigned char castlesLRBlack : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
+    unsigned char castlesRRBlack : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
+    unsigned char castlesKBlack : 1;//First bit set if L castle moved. Second R castle moved. Third King moved
     unsigned char whosTurn : 1; //0 Indicates white and 1 indicates black move
     unsigned char noCapturesOrPawnMoves;
     struct PrevStates *ps;
