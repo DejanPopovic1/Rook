@@ -472,19 +472,17 @@ void genSuccStates(T_boardStates *dst, T_boardState *b){
 
 void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
-    //int numOfBeforeStates = dst->fi;
+    int numOfBeforeStates = dst->fi;
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
     }
-//    int numOfAfterStates = dst->fi;
-//    if(piece == whiteRook && __builtin_ctzll(allPieces) == 0){
-//        //printTBitboard(allPieces);
-//        ;
-//    }
-//    else if(piece == whiteRook && __builtin_ctzll(allPieces) == 7){
-//        ;
-//    }
+    if(piece == whiteRook && __builtin_ctzll(allPieces) == 0){
+        int numOfAfterStates = dst->fi;
+        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
+            dst->bs[i].castlesLRWhite = 0;
+        }
+    }
 }
 
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
