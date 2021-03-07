@@ -6,6 +6,7 @@
 
 enum Directions{north, northEast, east, southEast, south, southWest, west, northWest};
 
+T_bitboard getPieceFromPieces(T_bitboard *pcs);
 T_bitboard checkBit(T_bitboard number, int n);
 bool isWhitePiece(int pieceValue);
 bool isBlackPiece(int pieceValue);

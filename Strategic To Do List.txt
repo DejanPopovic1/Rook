@@ -75,3 +75,5 @@ current ASM instruction only compatible with GCC. Make compatible with other maj
 Move ALL command line outputs into a seperate file where you can reword the outputs
 Depending on Windows or Linux, optionally compile using #if and #endif
 Add program options included in this link: https://www.gnu.org/software/xboard/manual/html_node/Chess-engine-options.html
+Transposition Table
+Killer Heuristics or knowing which alpha beta branches to prune

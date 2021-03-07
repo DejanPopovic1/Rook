@@ -10,6 +10,17 @@
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
 
+T_bitboard getPieceFromPieces(T_bitboard *pcs){
+    if(!__builtin_popcountll(*pcs)){
+        return 0;
+    }
+    T_bitboard result
+    char i = __builtin_ctzll(*pcs);
+    clearBit(pcs, i);
+    setBit(result, i);
+    return result;
+}
+
 //for efficiency, enumerate empty as 6. White 0 - 5 and black 7 - 12. Then just test <6
 bool isWhitePiece(int pieceValue){
     if(pieceValue > 0 && pieceValue < 7){
