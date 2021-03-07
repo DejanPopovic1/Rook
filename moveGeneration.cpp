@@ -501,6 +501,10 @@ void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveR
     }
 }
 
+void generateCastlingStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
+
+}
+
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
     int numOfBeforeStates = dst->fi;
     T_boardState cpy = *b;
@@ -531,6 +535,7 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
             dst->bs[i].castlesKBlack = 0;
         }
     }
+    generateCastlingStates(dst, b, n, moveRules, piece);
 }
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info

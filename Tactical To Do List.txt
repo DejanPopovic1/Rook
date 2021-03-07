@@ -1,24 +1,19 @@
-implement castling state change
-implement castling algNot
+Monday:
+   implement castling state change
+Tuesday - Wednesday:
+   implement castling algNot
+Thursday:
+   Check disambiguating rank and file with uses cases
+   Queens attacking from N, NE and E
+   Knights attacking from NE, SE, SW, NW
 
-Check disambiguating rank and file with uses cases:
-Queens attacking from N, NE and E
-4 castles attacking as a cross
-
-Monday - Friday:
-
-Prune successor states based on check rules
-
-Endgame including stalemates and checkmate
-
-3 x repetitive move rule - Zobrist hash function
-
-50 move rule
-
-Next Monday - Friday:
-
-Implement Minimax algorithm
-
-Implement heuristic assignment
-
-Done :-)
+Friday - Saturday:
+   Prune successor states based on check rules
+Sunday:
+   Endgame including stalemates and checkmate
+Next Week:
+   3 x repetitive move rule - Zobrist hash function
+   50 move rule
+Week After:
+   Implement Minimax algorithm
+   Implement heuristic assignment
