@@ -14,10 +14,10 @@ T_bitboard getPieceFromPieces(T_bitboard *pcs){
     if(!__builtin_popcountll(*pcs)){
         return 0;
     }
-    T_bitboard result
+    T_bitboard result;
     char i = __builtin_ctzll(*pcs);
     clearBit(pcs, i);
-    setBit(result, i);
+    setBit(&result, i);
     return result;
 }
 
@@ -512,7 +512,7 @@ void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveR
     }
 }
 
-bool isPosNotAttacked(T_boardState *b, int n){
+bool isPosAttacked(T_boardState *b, int n){
     return true;
 }
 
@@ -520,7 +520,7 @@ bool isPosNotAttacked(T_boardState *b, int n){
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
     //Generate King side castle
     if(b->whosTurn){
-        if(isPosEmpty(b, 61) && isPosEmpty(b, 62) && isPosNotAttacked(b, 61) && isPosNotAttacked(b, 62) && b->castlesKBlack == 1 && b->castlesRRBlack == 1){
+        if(isPosEmpty(b, 61) && isPosEmpty(b, 62) && !isPosAttacked(b, 61) && !isPosAttacked(b, 62) && b->castlesKBlack == 1 && b->castlesRRBlack == 1){
             T_boardState cpy = *b;
             clearBit(&cpy.bRook, 63);
             clearBit(&cpy.bKing, 60);
@@ -530,7 +530,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, int n, T_bitboa
         }
     }
     else{
-        if(isPosEmpty(b, 5) && isPosEmpty(b, 6) && isPosNotAttacked(b, 5) && isPosNotAttacked(b, 6) && b->castlesKWhite == 1 && b->castlesRRWhite == 1){
+        if(isPosEmpty(b, 5) && isPosEmpty(b, 6) && !isPosAttacked(b, 5) && !isPosAttacked(b, 6) && b->castlesKWhite == 1 && b->castlesRRWhite == 1){
             T_boardState cpy = *b;
             clearBit(&cpy.wRook, 7);
             clearBit(&cpy.wKing, 4);
@@ -542,7 +542,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, int n, T_bitboa
     //Generate Queens side castle
     if(b->whosTurn){
         if(isPosEmpty(b, 57) && isPosEmpty(b, 58) && isPosEmpty(b, 59) &&
-        isPosNotAttacked(b, 57) && isPosNotAttacked(b, 58) && isPosNotAttacked(b, 59) &&
+        !isPosAttacked(b, 57) && !isPosAttacked(b, 58) && !isPosAttacked(b, 59) &&
         b->castlesKBlack == 1 && b->castlesLRBlack == 1){
             T_boardState cpy = *b;
             clearBit(&cpy.bRook, 56);
@@ -554,7 +554,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, int n, T_bitboa
     }
     else{
         if(isPosEmpty(b, 1) && isPosEmpty(b, 2) && isPosEmpty(b, 3) &&
-        isPosNotAttacked(b, 1) && isPosNotAttacked(b, 2) && isPosNotAttacked(b, 3) &&
+        !isPosAttacked(b, 1) && !isPosAttacked(b, 2) && !isPosAttacked(b, 3) &&
         b->castlesKWhite == 1 && b->castlesLRWhite == 1){
             T_boardState cpy = *b;
             clearBit(&cpy.wRook, 0);
