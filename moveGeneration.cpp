@@ -5,6 +5,7 @@
 #include "bitUtilities.hpp"
 #include "moveRules.hpp"
 #include <stdio.h>
+#include "output.hpp"
 
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
@@ -355,10 +356,14 @@ void genMoves(T_boardStates *dst, T_boardState *b, int n, T_bitboard *validMoves
     int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
     move(&cpy, validMove, n, piece);
+//    if(piece == whiteRook){
+//        cpy.castlesWhite
+//    }
     addState(dst, &cpy);
     clearBit(validMoves, validMove);
 }
 
+//The result of this is passed to genDirStates and it includes the ray up to and including the end of board/same piece/opponent piece
 T_bitboard moveBoardDir(T_boardState *b, int n, int direction, T_bitboard **rays){
     T_bitboard ray = rays[direction][n];
     T_bitboard occupancyBoard = bAll(b) | wAll(b);
@@ -467,10 +472,19 @@ void genSuccStates(T_boardStates *dst, T_boardState *b){
 
 void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
+    //int numOfBeforeStates = dst->fi;
     while(allPieces){
         (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
     }
+//    int numOfAfterStates = dst->fi;
+//    if(piece == whiteRook && __builtin_ctzll(allPieces) == 0){
+//        //printTBitboard(allPieces);
+//        ;
+//    }
+//    else if(piece == whiteRook && __builtin_ctzll(allPieces) == 7){
+//        ;
+//    }
 }
 
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){

@@ -1,7 +1,3 @@
-Saturday:
-
-promotion after taking opponent algNot
-
 implement castling state change
 implement castling algNot
 
@@ -9,17 +5,17 @@ Check disambiguating rank and file with uses cases:
 Queens attacking from N, NE and E
 4 castles attacking as a cross
 
-Sunday:
+Monday - Friday:
 
 Prune successor states based on check rules
 
 Endgame including stalemates and checkmate
 
-repetitive move rule
+3 x repetitive move rule - Zobrist hash function
 
 50 move rule
 
-Monday - Friday:
+Next Monday - Friday:
 
 Implement Minimax algorithm
 

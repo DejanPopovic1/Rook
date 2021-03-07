@@ -255,7 +255,9 @@ void initialiseBEnPassants(unsigned char *c){
 
 void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesBlack = 7;
-    b->castlesWhite = 7;
+    b->castlesLRWhite = 1;
+    b->castlesRRWhite = 1;
+    b->castlesKWhite = 1;
     b->whosTurn = 0;
 }
 
