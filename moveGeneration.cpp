@@ -522,32 +522,32 @@ bool isPosAttacked(T_boardState *b, T_bitboard castlePass){
 void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castlePass){
     T_boardState cpy = *b;
     switch(castlePass){
-        case BLACK_KINGSIDE_PASS:
-            clearBit(&cpy.bRook, 63);
-            clearBit(&cpy.bKing, 60);
-            setBit(&cpy.bRook, 61);
-            setBit(&cpy.bKing, 62);
-            break;
-        case BLACK_QUEENSIDE_PASS:
-            clearBit(&cpy.bRook, 56);
-            clearBit(&cpy.bKing, 60);
-            setBit(&cpy.bRook, 59);
-            setBit(&cpy.bKing, 58);
-            break;
-        case WHITE_KINGSIDE_PASS:
-            clearBit(&cpy.wRook, 7);
-            clearBit(&cpy.wKing, 4);
-            setBit(&cpy.wRook, 5);
-            setBit(&cpy.wKing, 6);
-            break;
-        case WHITE_QUEENSIDE_PASS:
-            clearBit(&cpy.wRook, 0);
-            clearBit(&cpy.wKing, 4);
-            setBit(&cpy.wRook, 3);
-            setBit(&cpy.wKing, 2);
-            break;
-        default:
-            assert(false);
+//        case BLACK_KINGSIDE_PASS:
+//            clearBit(&cpy.bRook, 63);
+//            clearBit(&cpy.bKing, 60);
+//            setBit(&cpy.bRook, 61);
+//            setBit(&cpy.bKing, 62);
+//            break;
+//        case BLACK_QUEENSIDE_PASS:
+//            clearBit(&cpy.bRook, 56);
+//            clearBit(&cpy.bKing, 60);
+//            setBit(&cpy.bRook, 59);
+//            setBit(&cpy.bKing, 58);
+//            break;
+//        case WHITE_KINGSIDE_PASS:
+//            clearBit(&cpy.wRook, 7);
+//            clearBit(&cpy.wKing, 4);
+//            setBit(&cpy.wRook, 5);
+//            setBit(&cpy.wKing, 6);
+//            break;
+//        case WHITE_QUEENSIDE_PASS:
+//            clearBit(&cpy.wRook, 0);
+//            clearBit(&cpy.wKing, 4);
+//            setBit(&cpy.wRook, 3);
+//            setBit(&cpy.wKing, 2);
+//            break;
+//        default:
+//            assert(false);
     }
     addState(dst, &cpy);
 }
@@ -555,16 +555,16 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 //Use bitboard bit manipulation to speed this up
 //Pass in rays for efficiency
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
-    T_boardState *tmp = b;
+    T_boardState tmp = *b;
     T_bitboard **rays = createRays();
     if(b->whosTurn){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
         int j, k, l;
         T_bitboard a = all(b);
-        while(tmp->bBishop){
-            if(__builtin_popcountll(tmp->bBishop)){
-                j = __builtin_ctzll(getPieceFromPieces(&(tmp->bBishop)));
+        while(tmp.bBishop){
+            if(__builtin_popcountll(tmp.bBishop)){
+                j = __builtin_ctzll(getPieceFromPieces(&(tmp.bBishop)));
             }
             else{
                 break;
@@ -576,29 +576,28 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp->bBishop){
-            if(__builtin_popcountll(tmp->bBishop)){
-                k = __builtin_ctzll(getPieceFromPieces(&(tmp->bBishop)));
+        while(cnd2 && tmp.bRook){
+            if(__builtin_popcountll(tmp.bRook)){
+                k = __builtin_ctzll(getPieceFromPieces(&(tmp.bRook)));
             }
             else{
                 break;
             }
-            if(rays[southEast][k] & castlePass && !(rays[southEast][k] & a) ||
-               rays[southWest][k] & castlePass && !(rays[southWest][k] & a)
-               ){
+            if(rays[south][k] & castlePass && !(rays[south][k] & a)){
                 cnd2 = false;
                 break;
             }
         }
-        while(cnd2 && tmp->bBishop){
-            if(__builtin_popcountll(tmp->bBishop)){
-               l = __builtin_ctzll(getPieceFromPieces(&(tmp->bBishop)));
+        while(cnd2 && tmp.bQueen){
+            if(__builtin_popcountll(tmp.bQueen)){
+               l = __builtin_ctzll(getPieceFromPieces(&(tmp.bQueen)));
             }
             else{
                 break;
             }
             if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
-               rays[southWest][l] & castlePass && !(rays[southWest][l] & a)
+               rays[southWest][l] & castlePass && !(rays[southWest][l] & a) ||
+               rays[south][l] & castlePass && !(rays[south][l] & a)
                ){
                 cnd2 = false;
                 break;
@@ -613,9 +612,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
         bool cnd2 = true;
         int j, k, l;
         T_bitboard a = all(b);
-        while(tmp->wBishop){
-            if(__builtin_popcountll(tmp->wBishop)){
-                j = __builtin_ctzll(getPieceFromPieces(&(tmp->wBishop)));
+        while(tmp.wBishop){
+            if(__builtin_popcountll(tmp.wBishop)){
+                j = __builtin_ctzll(getPieceFromPieces(&(tmp.wBishop)));
             }
             else{
                 break;
@@ -627,36 +626,36 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp->wBishop){
-            if(__builtin_popcountll(tmp->wBishop)){
-                k = __builtin_ctzll(getPieceFromPieces(&(tmp->wBishop)));
+        while(cnd2 && tmp.wRook){
+            if(__builtin_popcountll(tmp.wBishop)){
+                k = __builtin_ctzll(getPieceFromPieces(&(tmp.wBishop)));
             }
             else{
                 break;
             }
-            if(rays[northEast][k] & castlePass && !(rays[northEast][k] & a) ||
-               rays[northWest][k] & castlePass && !(rays[northWest][k] & a)
+            if(rays[north][k] & castlePass && !(rays[north][k] & a)
                ){
                 cnd2 = false;
                 break;
             }
         }
-        while(cnd2 && tmp->wBishop){
-            if(__builtin_popcountll(tmp->wBishop)){
-               l = __builtin_ctzll(getPieceFromPieces(&(tmp->wBishop)));
+        while(cnd2 && tmp.wQueen){
+            if(__builtin_popcountll(tmp.wQueen)){
+               l = __builtin_ctzll(getPieceFromPieces(&(tmp.wQueen)));
             }
             else{
                 break;
             }
             if(rays[northEast][l] & castlePass && !(rays[northEast][l] & a) ||
-               rays[northWest][l] & castlePass && !(rays[northWest][l] & a)
+               rays[northWest][l] & castlePass && !(rays[northWest][l] & a) ||
+               rays[north][l] & castlePass && !(rays[north][l] & a)
                ){
                 cnd2 = false;
                 break;
             }
         }
         if(cnd1 && cnd2){
-            generateCastlingState(dst, b, castlePass);
+            generateCastlingState(dst, &tmp, castlePass);
         }
     }
 }
@@ -693,9 +692,9 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
         }
     }
     generateCastlingStates(dst, b, moveRules, piece, BLACK_KINGSIDE_PASS);
-    generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
-    generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
-    generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
+    //generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
+    //generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
+    //generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
 }
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info
