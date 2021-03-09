@@ -15,5 +15,6 @@ Next Week:
    3 x repetitive move rule - Zobrist hash function
    50 move rule
 Week After:
+   Implement state tree
    Implement Minimax algorithm
    Implement heuristic assignment

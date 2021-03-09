@@ -512,8 +512,9 @@ void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveR
     }
 }
 
+//Just check rays for now but add in pawns/kings/knights thereafter
 bool isPosAttacked(T_boardState *b, T_bitboard castlePass){
-
+    //Generate SW, S, SE rays from all bishops, rooks and queens - all bitboards anded
 
     return false;
 }

@@ -14,6 +14,11 @@ T_bitboard bAll(const T_boardState *b){
     return o;
 }
 
+T_bitboard all(const T_boardState *b){
+    T_bitboard o =  b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing | b->bPawn | b->bBishop | b->bKnight | b->bRook | b->bQueen | b->bKing;
+    return o;
+}
+
 T_bitboard sameAll(const T_boardState *b){
     if(!b->whosTurn){
         return wAll(b);

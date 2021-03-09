@@ -107,7 +107,7 @@
 	"bitUtilities.hpp"
 	<limits.h>
 
-1615116810 c:\c_c++ code\rook\state.hpp
+1615307212 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
@@ -128,7 +128,7 @@
 	<stdbool.h>
 	"state.hpp"
 
-1614705899 source:c:\c_c++ code\rook\moverules.cpp
+1615154387 source:c:\c_c++ code\rook\moverules.cpp
 	<stdbool.h>
 	<stdlib.h>
 	"moveRules.hpp"
@@ -191,7 +191,7 @@
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
 
-1615153772 source:c:\c_c++ code\rook\main.cpp
+1615154387 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

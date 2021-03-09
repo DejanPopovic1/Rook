@@ -65,6 +65,7 @@ struct PrevStates{
 bool isPawn(int p);
 T_bitboard wAll(const T_boardState *b);
 T_bitboard bAll(const T_boardState *b);
+T_bitboard all(const T_boardState *b);
 T_bitboard sameAll(const T_boardState *b);
 T_bitboard oppositeAll(T_boardState *b);
 //void removeOpponent(T_boardState *b, int pos);
