@@ -39,7 +39,8 @@ void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **r
 void genSuccStates(T_boardStates *dst, T_boardState *b);
 void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece);
 bool isPosAttacked(T_boardState *b, T_bitboard castlePass);
-void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece);
+void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castlePass);
+void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass);
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece);
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece);
 
