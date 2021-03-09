@@ -569,8 +569,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[southEast][j] & castlePass && !(rays[southEast][j] & a) ||
-               rays[southWest][j] & castlePass && !(rays[southWest][j] & a)
+            if(rays[northEast][j] & castlePass && !(rays[northEast][j] & a) ||
+               rays[northWest][j] & castlePass && !(rays[northWest][j] & a)
                ){
                 cnd2 = false;
                 break;
@@ -583,7 +583,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[south][k] & castlePass && !(rays[south][k] & a)){
+            if(rays[north][k] & castlePass && !(rays[north][k] & a)){
                 cnd2 = false;
                 break;
             }
@@ -595,9 +595,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
-               rays[southWest][l] & castlePass && !(rays[southWest][l] & a) ||
-               rays[south][l] & castlePass && !(rays[south][l] & a)
+            if(rays[northEast][l] & castlePass && !(rays[northEast][l] & a) ||
+               rays[northWest][l] & castlePass && !(rays[northWest][l] & a) ||
+               rays[north][l] & castlePass && !(rays[north][l] & a)
                ){
                 cnd2 = false;
                 break;
@@ -619,8 +619,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[northEast][j] & castlePass && !(rays[northEast][j] & a) ||
-               rays[northWest][j] & castlePass && !(rays[northWest][j] & a)
+            if(rays[southEast][j] & castlePass && !(rays[southEast][j] & a) ||
+               rays[southWest][j] & castlePass && !(rays[southWest][j] & a)
                ){
                 cnd2 = false;
                 break;
@@ -633,7 +633,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[north][k] & castlePass && !(rays[north][k] & a)
+            if(rays[south][k] & castlePass && !(rays[south][k] & a)
                ){
                 cnd2 = false;
                 break;
@@ -646,9 +646,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[northEast][l] & castlePass && !(rays[northEast][l] & a) ||
-               rays[northWest][l] & castlePass && !(rays[northWest][l] & a) ||
-               rays[north][l] & castlePass && !(rays[north][l] & a)
+            if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
+               rays[southWest][l] & castlePass && !(rays[southWest][l] & a) ||
+               rays[south][l] & castlePass && !(rays[south][l] & a)
                ){
                 cnd2 = false;
                 break;
