@@ -562,9 +562,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
         bool cnd2 = true;
         int j, k, l;
         T_bitboard a = all(b);
-        while(tmp.bBishop){
-            if(__builtin_popcountll(tmp.bBishop)){
-                j = __builtin_ctzll(getPieceFromPieces(&(tmp.bBishop)));
+        while(tmp.wBishop){
+            if(__builtin_popcountll(tmp.wBishop)){
+                j = __builtin_ctzll(getPieceFromPieces(&(tmp.wBishop)));
             }
             else{
                 break;
@@ -576,9 +576,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.bRook){
-            if(__builtin_popcountll(tmp.bRook)){
-                k = __builtin_ctzll(getPieceFromPieces(&(tmp.bRook)));
+        while(cnd2 && tmp.wRook){
+            if(__builtin_popcountll(tmp.wRook)){
+                k = __builtin_ctzll(getPieceFromPieces(&(tmp.wRook)));
             }
             else{
                 break;
@@ -588,9 +588,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.bQueen){
-            if(__builtin_popcountll(tmp.bQueen)){
-               l = __builtin_ctzll(getPieceFromPieces(&(tmp.bQueen)));
+        while(cnd2 && tmp.wQueen){
+            if(__builtin_popcountll(tmp.wQueen)){
+               l = __builtin_ctzll(getPieceFromPieces(&(tmp.wQueen)));
             }
             else{
                 break;
@@ -612,9 +612,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
         bool cnd2 = true;
         int j, k, l;
         T_bitboard a = all(b);
-        while(tmp.wBishop){
-            if(__builtin_popcountll(tmp.wBishop)){
-                j = __builtin_ctzll(getPieceFromPieces(&(tmp.wBishop)));
+        while(tmp.bBishop){
+            if(__builtin_popcountll(tmp.bBishop)){
+                j = __builtin_ctzll(getPieceFromPieces(&(tmp.bBishop)));
             }
             else{
                 break;
@@ -626,9 +626,9 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.wRook){
-            if(__builtin_popcountll(tmp.wRook)){
-                k = __builtin_ctzll(getPieceFromPieces(&(tmp.wRook)));
+        while(cnd2 && tmp.bRook){
+            if(__builtin_popcountll(tmp.bRook)){
+                k = __builtin_ctzll(getPieceFromPieces(&(tmp.bRook)));
             }
             else{
                 break;
@@ -639,9 +639,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.wQueen){
-            if(__builtin_popcountll(tmp.wQueen)){
-               l = __builtin_ctzll(getPieceFromPieces(&(tmp.wQueen)));
+        while(cnd2 && tmp.bQueen){
+            //printf("\n\n\n\n\nHelloooooooooooo\n\n\n\n\n");
+            if(__builtin_popcountll(tmp.bQueen)){
+               l = __builtin_ctzll(getPieceFromPieces(&(tmp.bQueen)));
             }
             else{
                 break;
