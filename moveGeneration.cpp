@@ -692,9 +692,9 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
         }
     }
     generateCastlingStates(dst, b, moveRules, piece, BLACK_KINGSIDE_PASS);
-    //generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
-    //generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
-    //generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
+    generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
+    generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
+    generateCastlingStates(dst, b, moveRules, piece, WHITE_QUEENSIDE_PASS);
 }
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info
