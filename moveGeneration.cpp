@@ -549,7 +549,6 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
     addState(dst, &cpy);
 }
 
-
 //Use bitboard bit manipulation to speed this up
 //Pass in rays for efficiency
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
@@ -603,12 +602,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             }
         }
         if(cnd1 && cnd2){
-            T_boardState cpy = *b;
-            clearBit(&cpy.bRook, 63);
-            clearBit(&cpy.bKing, 60);
-            setBit(&cpy.bRook, 61);
-            setBit(&cpy.bKing, 62);
-            addState(dst, &cpy);
+            generateCastlingState(dst, b, BLACK_KINGSIDE_PASS);
         }
     }
     else{
@@ -667,27 +661,6 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             addState(dst, &cpy);
         }
     }
-
-//            T_boardState cpy = *b;
-//            clearBit(&cpy.bRook, 56);
-//            clearBit(&cpy.bKing, 60);
-//            setBit(&cpy.bRook, 59);
-//            setBit(&cpy.bKing, 58);
-//            addState(dst, &cpy);
-//
-//            T_boardState cpy = *b;
-//            clearBit(&cpy.wRook, 7);
-//            clearBit(&cpy.wKing, 4);
-//            setBit(&cpy.wRook, 5);
-//            setBit(&cpy.wKing, 6);
-//            addState(dst, &cpy);
-//
-//            T_boardState cpy = *b;
-//            clearBit(&cpy.wRook, 0);
-//            clearBit(&cpy.wKing, 4);
-//            setBit(&cpy.wRook, 3);
-//            setBit(&cpy.wKing, 2);
-//            addState(dst, &cpy);
 }
 
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
