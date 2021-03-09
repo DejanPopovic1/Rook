@@ -555,7 +555,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
     T_boardState *tmp = b;
     T_bitboard **rays = createRays();
     if(b->whosTurn){
-        bool cnd1 = !(all(b) & BLACK_KINGSIDE_PASS);
+        bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
         int j, k, l;
         T_bitboard a = all(b);
@@ -566,8 +566,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[southEast][j] & BLACK_KINGSIDE_PASS && !(rays[southEast][j] & a) ||
-               rays[southWest][j] & BLACK_KINGSIDE_PASS && !(rays[southWest][j] & a)
+            if(rays[southEast][j] & castlePass && !(rays[southEast][j] & a) ||
+               rays[southWest][j] & castlePass && !(rays[southWest][j] & a)
                ){
                 cnd2 = false;
                 break;
@@ -580,8 +580,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[southEast][k] & BLACK_KINGSIDE_PASS && !(rays[southEast][k] & a) ||
-               rays[southWest][k] & BLACK_KINGSIDE_PASS && !(rays[southWest][k] & a)
+            if(rays[southEast][k] & castlePass && !(rays[southEast][k] & a) ||
+               rays[southWest][k] & castlePass && !(rays[southWest][k] & a)
                ){
                 cnd2 = false;
                 break;
@@ -594,15 +594,15 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[southEast][l] & BLACK_KINGSIDE_PASS && !(rays[southEast][l] & a) ||
-               rays[southWest][l] & BLACK_KINGSIDE_PASS && !(rays[southWest][l] & a)
+            if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
+               rays[southWest][l] & castlePass && !(rays[southWest][l] & a)
                ){
                 cnd2 = false;
                 break;
             }
         }
         if(cnd1 && cnd2){
-            generateCastlingState(dst, b, BLACK_KINGSIDE_PASS);
+            generateCastlingState(dst, b, castlePass);
         }
     }
     else{
@@ -694,6 +694,7 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
         }
     }
     generateCastlingStates(dst, b, moveRules, piece, BLACK_KINGSIDE_PASS);
+    generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
 }
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info
