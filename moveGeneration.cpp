@@ -554,10 +554,11 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 
 //Use bitboard bit manipulation to speed this up
 //Pass in rays for efficiency
+//castlePass and turn mechanics are awkward - refactor
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
     T_bitboard **rays = createRays();
-    if(b->whosTurn){
+    if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
         int j, k, l;
@@ -607,7 +608,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             generateCastlingState(dst, &tmp, castlePass);
         }
     }
-    else{
+    else if(!b->whosTurn && (castlePass == WHITE_KINGSIDE_PASS || castlePass == WHITE_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
         int j, k, l;
@@ -656,7 +657,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             }
         }
         if(cnd1 && cnd2){
-            generateCastlingState(dst, &tmp, castlePass);
+           // generateCastlingState(dst, &tmp, castlePass);
         }
     }
 }
