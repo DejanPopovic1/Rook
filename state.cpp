@@ -243,8 +243,8 @@ void initialiseBRooks(T_bitboard *result){
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
-    //setBit(result, 34);
-    //setBit(result, 37);
+    setBit(result, 34);
+    setBit(result, 37);
 }
 
 void initialiseBKing(T_bitboard *result){

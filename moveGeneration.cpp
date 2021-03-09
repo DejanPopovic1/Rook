@@ -604,7 +604,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             }
         }
         if(cnd1 && cnd2){
-            generateCastlingState(dst, b, castlePass);
+            generateCastlingState(dst, &tmp, castlePass);
         }
     }
     else{
@@ -627,8 +627,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             }
         }
         while(cnd2 && tmp.wRook){
-            if(__builtin_popcountll(tmp.wBishop)){
-                k = __builtin_ctzll(getPieceFromPieces(&(tmp.wBishop)));
+            if(__builtin_popcountll(tmp.wRook)){
+                k = __builtin_ctzll(getPieceFromPieces(&(tmp.wRook)));
             }
             else{
                 break;
