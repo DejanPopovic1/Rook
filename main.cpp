@@ -70,7 +70,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    std::cin.get();
+    //std::cin.get();
 }
 
 int main(){
