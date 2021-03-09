@@ -172,26 +172,26 @@ T_boardState initialiseBoardState(){
 
 void initialiseWPawns(T_bitboard *result){
     clearBits(result);
-    setBit(result, 8);
-    setBit(result, 9);
-    setBit(result, 10);
-    setBit(result, 11);
-    setBit(result, 12);
-    setBit(result, 13);
-    setBit(result, 14);
-    setBit(result, 15);
-    //setBit(result, 50);
+//    setBit(result, 8);
+//    setBit(result, 9);
+//    setBit(result, 10);
+//    setBit(result, 11);
+//    setBit(result, 12);
+//    setBit(result, 13);
+//    setBit(result, 14);
+//    setBit(result, 15);
+//    //setBit(result, 50);
 }
 void initialiseWBishops(T_bitboard *result){
     clearBits(result);
-    setBit(result, 2);
-    setBit(result, 5);
+    //setBit(result, 2);
+    //setBit(result, 5);
 }
 
 void initialiseWKnights(T_bitboard *result){
     clearBits(result);
-    setBit(result, 1);
-    setBit(result, 6);
+    //setBit(result, 1);
+    //setBit(result, 6);
 }
 
 void initialiseWRooks(T_bitboard *result){
@@ -202,7 +202,7 @@ void initialiseWRooks(T_bitboard *result){
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 3);
+    //setBit(result, 3);
 }
 
 void initialiseWKing(T_bitboard *result){
@@ -243,6 +243,8 @@ void initialiseBRooks(T_bitboard *result){
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
+    //setBit(result, 34);
+    setBit(result, 37);
 }
 
 void initialiseBKing(T_bitboard *result){

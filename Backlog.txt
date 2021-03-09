@@ -9,6 +9,7 @@ Incorporate Minimax algorithm
 genQuieteMoves and genAttackMoves
 Use one function to generate all piece moves and general genSuccStates optimisation
 
+Before doing a complete test, have the ability to BACKTRACK moves. This is added functionality aswell as eases the heck out of testing
 
 BENCHMARK
 bAll and wAll to be included as part of state
