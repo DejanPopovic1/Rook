@@ -554,7 +554,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
         bool cnd2 = true;
         //
         bool cnd3 = true;
-        if(castlePass == BLACK_KINGSIDE_PASS && BLACK_KINGSIDE_ATTACKING & b->wPawn & b->wKing){
+        if(castlePass == BLACK_KINGSIDE_PASS && (BLACK_KINGSIDE_ATTACKING & b->wPawn & b->wKing || BLACK_KINGSIDE_ATTACKING_K & b->wKnight)){
+            cnd3 = false;
+        }
+        else if(castlePass == BLACK_QUEENSIDE_PASS && (BLACK_QUEENSIDE_ATTACKING & b->wPawn & b->wKing || BLACK_QUEENSIDE_ATTACKING_K & b->wKnight)){
             cnd3 = false;
         }
         //
@@ -608,7 +611,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
         bool cnd2 = true;
         //
         bool cnd3 = true;
-        if(castlePass == BLACK_KINGSIDE_PASS && BLACK_KINGSIDE_ATTACKING & b->wPawn & b->wKing){
+        if(castlePass == WHITE_KINGSIDE_PASS && (WHITE_KINGSIDE_ATTACKING & b->bPawn & b->bKing || WHITE_KINGSIDE_ATTACKING_K & b->bKnight)){
+            cnd3 = false;
+        }
+        else if(castlePass == WHITE_QUEENSIDE_PASS && (WHITE_QUEENSIDE_ATTACKING & b->bPawn & b->bKing || WHITE_QUEENSIDE_ATTACKING_K & b->bKnight)){
             cnd3 = false;
         }
         //
