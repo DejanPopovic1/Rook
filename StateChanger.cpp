@@ -33,7 +33,7 @@ void StateChanger::changeState(string usrInput){
             this->ss = initialiseStates();
             genSuccStates(this->ss, &(this->c));
             this->validMoves.clear();
-            genListOfValidMoves();
+            //genListOfValidMoves();
             gameMoves.push_back(usrInput);
             return;
         }

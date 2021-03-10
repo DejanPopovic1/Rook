@@ -172,7 +172,7 @@ T_boardState initialiseBoardState(){
 
 void initialiseWPawns(T_bitboard *result){
     clearBits(result);
-//    setBit(result, 8);
+    setBit(result, 8);
 //    setBit(result, 9);
 //    setBit(result, 10);
 //    setBit(result, 11);
@@ -184,14 +184,14 @@ void initialiseWPawns(T_bitboard *result){
 }
 void initialiseWBishops(T_bitboard *result){
     clearBits(result);
-    setBit(result, 2);
-    setBit(result, 5);
+    //setBit(result, 2);
+    //setBit(result, 5);
 }
 
 void initialiseWKnights(T_bitboard *result){
     clearBits(result);
-    setBit(result, 1);
-    setBit(result, 6);
+    //setBit(result, 1);
+    //setBit(result, 6);
 }
 
 void initialiseWRooks(T_bitboard *result){
@@ -202,8 +202,8 @@ void initialiseWRooks(T_bitboard *result){
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 3);
-    setBit(result, 28);
+    //setBit(result, 3);
+    //setBit(result, 28);
 
 }
 
@@ -214,29 +214,29 @@ void initialiseWKing(T_bitboard *result){
 
 void initialiseBPawns(T_bitboard *result){
     clearBits(result);
-    setBit(result, 48);
-    setBit(result, 49);
-    setBit(result, 50);
-    setBit(result, 51);
-    setBit(result, 52);
-    setBit(result, 53);
-    setBit(result, 54);
-    setBit(result, 55);
+//    setBit(result, 13);
+//    setBit(result, 49);
+//    setBit(result, 50);
+//    setBit(result, 51);
+//    setBit(result, 52);
+//    setBit(result, 53);
+//    setBit(result, 54);
+//    setBit(result, 55);
 }
 void initialiseBBishops(T_bitboard *result){
     clearBits(result);
-    setBit(result, 58);
-    setBit(result, 61);
+    //setBit(result, 58);
+    //setBit(result, 61);
 }
 
 void initialiseBKnights(T_bitboard *result){
     clearBits(result);
-    setBit(result, 57);
-    setBit(result, 62);
-    setBit(result, 45);
-    setBit(result, 43);
-    setBit(result, 11);
-    setBit(result, 13);
+    //setBit(result, 22);
+    //setBit(result, 62);
+    //setBit(result, 45);
+    //setBit(result, 43);
+    //setBit(result, 11);
+    //setBit(result, 13);
 }
 
 void initialiseBRooks(T_bitboard *result){
