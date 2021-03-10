@@ -36,6 +36,8 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
 std::string take(bool isTake);
 std::string toSpecifier(char to);
 char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *fromFile);
+bool isKingSideCastle(T_boardState *c, T_boardState *ss);
+bool isQueenSideCastle(T_boardState *c, T_boardState *ss);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
 extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 

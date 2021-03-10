@@ -5,6 +5,7 @@
 #include <iostream>
 #include "bitUtilities.hpp"
 #include "moveGeneration.hpp"
+#include "output.hpp"
 
 #include "toAlgNotation.hpp"
 
@@ -328,6 +329,22 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isA
     return 0;
 }
 
+bool isKingSideCastle(T_boardState *c, T_boardState *ss){
+    if(whatIsPiece(*c, 63) == blackRook && whatIsPiece(*c, 60) == blackKing &&
+       whatIsPiece(*ss, 63) == empty && whatIsPiece(*ss, 60) == empty){
+        return true;
+    }
+    else if(whatIsPiece(*c, 7) == whiteRook && whatIsPiece(*c, 4) == whiteKing &&
+       whatIsPiece(*ss, 7) == empty && whatIsPiece(*ss, 4) == empty){
+        return true;
+    }
+    return false;
+}
+
+bool isQueenSideCastle(T_boardState *c, T_boardState *ss){
+
+}
+
 //Refactor to make simpler w.r.t enPassants
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
@@ -340,8 +357,14 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     if(promotedPiece && !isPromoCapture){
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
     }
-    if(promotedPiece && isPromoCapture){
+    else if(promotedPiece && isPromoCapture){
         return formatFileDisplay(whatFile(fromPromotedFile)) + "x" + (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece)); //JUST PREPEND FROM COLUMN AND X
+    }
+    else if(isKingSideCastle(c, ss)){
+        return "O-O";
+    }
+    else if(isQueenSideCastle(c, ss)){
+        return "O-O-O";
     }
     string part1 = specifier(piece);
     string part2 = disambiguate(c, from, to, isPieceCaptured);

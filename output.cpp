@@ -19,6 +19,7 @@ int whosTurn(const int halfPly){
     return blackTurn;
 }
 
+//Rather use pointer to boardState
 int whatIsPiece(T_boardState b, int i){
     int result = empty;
     int resultCount = 0;

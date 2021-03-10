@@ -1,5 +1,3 @@
-Monday:
-   implement castling state change
 Tuesday - Wednesday:
    implement castling algNot
 Thursday:
