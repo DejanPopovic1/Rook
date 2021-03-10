@@ -120,7 +120,7 @@
 	<stdio.h>
 	"output.hpp"
 
-1615414751 c:\c_c++ code\rook\movegeneration.hpp
+1615415623 c:\c_c++ code\rook\movegeneration.hpp
 	<stdbool.h>
 	"state.hpp"
 
@@ -192,7 +192,7 @@
 	"output.hpp"
 	"toAlgNotation.hpp"
 
-1615414553 source:c:\c_c++ code\rook\main.cpp
+1615415780 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
