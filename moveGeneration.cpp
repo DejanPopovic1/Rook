@@ -557,6 +557,7 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 //Use bitboard bit manipulation to speed this up
 //Pass in rays for efficiency
 //castlePass and turn mechanics are awkward - refactor
+//There are three serial for loops. When breaking out of one, find a way to break out of all
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
     T_bitboard **rays = createRays();
@@ -649,8 +650,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            T_bitboard test = 57548;
-            printTBitboard(test);
+            //T_bitboard test = 57548;
+            //printTBitboard(test);
 //            printTBitboard(getPieceFromPieces(&test));
 //            printTBitboard(getPieceFromPieces(&test));
 //            printTBitboard(getPieceFromPieces(&test));
@@ -664,7 +665,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             //printTBitboard(a);
             //printf("%d\n\n", l);
             //printTBitboard(castlePass);
-            //printTBitboard(rays[southEast][l]);
+            //printTBitboard(rays[south][l] & castlePass);
             if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
                rays[southWest][l] & castlePass && !(rays[southWest][l] & a) ||
                rays[south][l] & castlePass && !(rays[south][l] & a)
