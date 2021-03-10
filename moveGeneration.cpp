@@ -14,7 +14,7 @@ T_bitboard getPieceFromPieces(T_bitboard *pcs){
     if(!__builtin_popcountll(*pcs)){
         return 0;
     }
-    T_bitboard result;
+    T_bitboard result = 0;
     char i = __builtin_ctzll(*pcs);
     clearBit(pcs, i);
     setBit(&result, i);
@@ -643,18 +643,33 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             }
         }
         while(tmp.bQueen){
-            printf("\n\n\n\n\nHelloooooooooooo\n\n\n\n\n");
             if(__builtin_popcountll(tmp.bQueen)){
                l = __builtin_ctzll(getPieceFromPieces(&(tmp.bQueen)));
             }
             else{
                 break;
             }
+            T_bitboard test = 57548;
+            printTBitboard(test);
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+
+            //l = __builtin_ctzll(getPieceFromPieces(&test));
+            //printTBitboard(a);
+            //printf("%d\n\n", l);
+            //printTBitboard(castlePass);
+            //printTBitboard(rays[southEast][l]);
             if(rays[southEast][l] & castlePass && !(rays[southEast][l] & a) ||
                rays[southWest][l] & castlePass && !(rays[southWest][l] & a) ||
                rays[south][l] & castlePass && !(rays[south][l] & a)
                ){
-                cnd2 = false;
+               cnd2 = false;
                 //break;
             }
         }
