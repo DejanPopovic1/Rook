@@ -71,49 +71,6 @@ void multiPlayerSession(char *playerColourInput){
 
 void test(){
     //std::cin.get();
-//    T_bitboard test1 = 0;
-//    setBit(&test1, 51);
-//    setBit(&test1, 52);
-//    setBit(&test1, 44);
-//    setBit(&test1, 45);
-//    setBit(&test1, 46);
-//    setBit(&test1, 47);
-//    setBit(&test1, 55);
-//    T_bitboard test2 = 0;
-//    setBit(&test2, 48);
-//    setBit(&test2, 49);
-//    setBit(&test2, 41);
-//    setBit(&test2, 42);
-//    setBit(&test2, 43);
-//    setBit(&test2, 44);
-//    setBit(&test2, 52);
-//    setBit(&test2, 53);
-//    T_bitboard test3 = 0;
-//    setBit(&test3, 11);
-//    setBit(&test3, 12);
-//    setBit(&test3, 20);
-//    setBit(&test3, 21);
-//    setBit(&test3, 22);
-//    setBit(&test3, 23);
-//    setBit(&test3, 15);
-//    T_bitboard test4 = 0;
-//    setBit(&test4, 8);
-//    setBit(&test4, 9);
-//    setBit(&test4, 17);
-//    setBit(&test4, 18);
-//    setBit(&test4, 19);
-//    setBit(&test4, 20);
-//    setBit(&test4, 12);
-//    setBit(&test4, 13);
-//
-//    std::cout << test1 << std::endl;
-//        std::cout << test2 << std::endl;
-//            std::cout << test3 << std::endl;
-//                std::cout << test4 << std::endl;
-//   printTBitboard(BLACK_KINGSIDE_ATTACKING);
-//   printTBitboard(BLACK_QUEENSIDE_ATTACKING);
-//   printTBitboard(WHITE_KINGSIDE_ATTACKING);
-//   printTBitboard(WHITE_QUEENSIDE_ATTACKING);
 }
 
 int main(){
