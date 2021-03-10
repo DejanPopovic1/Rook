@@ -579,7 +579,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.wRook){
+        while(tmp.wRook){
             if(__builtin_popcountll(tmp.wRook)){
                 k = __builtin_ctzll(getPieceFromPieces(&(tmp.wRook)));
             }
@@ -591,7 +591,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        while(cnd2 && tmp.wQueen){
+        while(tmp.wQueen){
             if(__builtin_popcountll(tmp.wQueen)){
                l = __builtin_ctzll(getPieceFromPieces(&(tmp.wQueen)));
             }
@@ -626,10 +626,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                rays[southWest][j] & castlePass && !(rays[southWest][j] & a)
                ){
                 cnd2 = false;
-                break;
+                //break;
             }
         }
-        while(cnd2 && tmp.bRook){
+        while(tmp.bRook){
             if(__builtin_popcountll(tmp.bRook)){
                 k = __builtin_ctzll(getPieceFromPieces(&(tmp.bRook)));
             }
@@ -639,11 +639,11 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             if(rays[south][k] & castlePass && !(rays[south][k] & a)
                ){
                 cnd2 = false;
-                break;
+                //break;
             }
         }
-        while(cnd2 && tmp.bQueen){
-            //printf("\n\n\n\n\nHelloooooooooooo\n\n\n\n\n");
+        while(tmp.bQueen){
+            printf("\n\n\n\n\nHelloooooooooooo\n\n\n\n\n");
             if(__builtin_popcountll(tmp.bQueen)){
                l = __builtin_ctzll(getPieceFromPieces(&(tmp.bQueen)));
             }
@@ -655,10 +655,11 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                rays[south][l] & castlePass && !(rays[south][l] & a)
                ){
                 cnd2 = false;
-                break;
+                //break;
             }
         }
-        if(/*cnd1 && cnd2*/true){
+        //printf("%d %d\n\n", cnd1, cnd2);
+        if(cnd1 && cnd2){
             generateCastlingState(dst, b, castlePass);
         }
     }
