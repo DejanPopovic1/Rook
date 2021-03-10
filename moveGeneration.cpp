@@ -524,34 +524,34 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
     std::vector<std::string> gameMoves;
     //printState(*b, 0, gameMoves);
     switch(castlePass){
-//        case BLACK_KINGSIDE_PASS:
-//            clearBit(&cpy.bRook, 63);
-//            clearBit(&cpy.bKing, 60);
-//            setBit(&cpy.bRook, 61);
-//            setBit(&cpy.bKing, 62);
-//            break;
-//        case BLACK_QUEENSIDE_PASS:
-//            clearBit(&cpy.bRook, 56);
-//            clearBit(&cpy.bKing, 60);
-//            setBit(&cpy.bRook, 59);
-//            setBit(&cpy.bKing, 58);
-//            break;
+        case BLACK_KINGSIDE_PASS:
+            clearBit(&cpy.bRook, 63);
+            clearBit(&cpy.bKing, 60);
+            setBit(&cpy.bRook, 61);
+            setBit(&cpy.bKing, 62);
+            break;
+        case BLACK_QUEENSIDE_PASS:
+            clearBit(&cpy.bRook, 56);
+            clearBit(&cpy.bKing, 60);
+            setBit(&cpy.bRook, 59);
+            setBit(&cpy.bKing, 58);
+            break;
         case WHITE_KINGSIDE_PASS:
-//            clearBit(&cpy.wRook, 7);
-//            clearBit(&cpy.wKing, 4);
-//            setBit(&cpy.wRook, 5);
-//            setBit(&cpy.wKing, 6);
+            clearBit(&cpy.wRook, 7);
+            clearBit(&cpy.wKing, 4);
+            setBit(&cpy.wRook, 5);
+            setBit(&cpy.wKing, 6);
             break;
         case WHITE_QUEENSIDE_PASS:
-//            clearBit(&cpy.wRook, 0);
-//            clearBit(&cpy.wKing, 4);
-//            setBit(&cpy.wRook, 3);
-//            setBit(&cpy.wKing, 2);
+            clearBit(&cpy.wRook, 0);
+            clearBit(&cpy.wKing, 4);
+            setBit(&cpy.wRook, 3);
+            setBit(&cpy.wKing, 2);
             break;
         default:
             assert(false);
     }
-    //addState(dst, &cpy);
+    addState(dst, &cpy);
 }
 
 //Use bitboard bit manipulation to speed this up
@@ -658,8 +658,8 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                 break;
             }
         }
-        if(cnd1 && cnd2){
-            generateCastlingState(dst, &tmp, castlePass);
+        if(/*cnd1 && cnd2*/true){
+            generateCastlingState(dst, b, castlePass);
         }
     }
 }
