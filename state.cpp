@@ -203,6 +203,7 @@ void initialiseWRooks(T_bitboard *result){
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 3);
+    setBit(result, 28);
 
 }
 
@@ -232,6 +233,10 @@ void initialiseBKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 57);
     setBit(result, 62);
+    setBit(result, 45);
+    setBit(result, 43);
+    setBit(result, 11);
+    setBit(result, 13);
 }
 
 void initialiseBRooks(T_bitboard *result){
@@ -242,9 +247,8 @@ void initialiseBRooks(T_bitboard *result){
 
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
-    //setBit(result, 34);
-    //setBit(result, 37);
     setBit(result, 59);
+
     //setBit(result, 34);
 
 }

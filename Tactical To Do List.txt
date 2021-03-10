@@ -1,6 +1,5 @@
 Thursday:
-   Check disambiguating rank and file with uses cases
-   Queens attacking from N, NE and E
+
    Knights attacking from NE, SE, SW, NW
 Friday - Saturday:
    implement isInCheck function
