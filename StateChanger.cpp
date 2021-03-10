@@ -22,7 +22,7 @@ StateChanger::StateChanger(T_boardState boardState, bool pA){
     this->c = boardState;
     this->ss = initialiseStates();
     genSuccStates(this->ss, &(this->c));
-    //genListOfValidMoves();
+    genListOfValidMoves();
 }
 
 void StateChanger::changeState(string usrInput){

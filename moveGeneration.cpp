@@ -10,6 +10,7 @@
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
 
+//Use the fact that this returns zero in the function that calls it
 T_bitboard getPieceFromPieces(T_bitboard *pcs){
     if(!__builtin_popcountll(*pcs)){
         return 0;
@@ -577,7 +578,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                rays[northWest][j] & castlePass && !(rays[northWest][j] & a)
                ){
                 cnd2 = false;
-                break;
+                //break;
             }
         }
         while(tmp.wRook){
@@ -587,9 +588,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
-            if(rays[north][k] & castlePass && !(rays[north][k] & a)){
+            if(rays[north][k] & castlePass && !(rays[north][k] & a)
+               ){
                 cnd2 = false;
-                break;
+                //break;
             }
         }
         while(tmp.wQueen){
@@ -599,16 +601,33 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             else{
                 break;
             }
+            //T_bitboard test = 57548;
+            //printTBitboard(test);
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+//            printTBitboard(getPieceFromPieces(&test));
+
+            //l = __builtin_ctzll(getPieceFromPieces(&test));
+            //printTBitboard(a);
+            //printf("%d\n\n", l);
+            //printTBitboard(castlePass);
+            //printTBitboard(rays[south][l] & castlePass);
             if(rays[northEast][l] & castlePass && !(rays[northEast][l] & a) ||
                rays[northWest][l] & castlePass && !(rays[northWest][l] & a) ||
                rays[north][l] & castlePass && !(rays[north][l] & a)
                ){
-                cnd2 = false;
-                break;
+               cnd2 = false;
+                //break;
             }
         }
+        //printf("%d %d\n\n", cnd1, cnd2);
         if(cnd1 && cnd2){
-            generateCastlingState(dst, &tmp, castlePass);
+            generateCastlingState(dst, b, castlePass);
         }
     }
     else if(!b->whosTurn && (castlePass == WHITE_KINGSIDE_PASS || castlePass == WHITE_QUEENSIDE_PASS)){
