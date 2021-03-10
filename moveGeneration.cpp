@@ -545,13 +545,19 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 //Use bitboard bit manipulation to speed this up
 //Pass in rays for efficiency
 //castlePass and turn mechanics are awkward - refactor
-//There are three serial for loops. When breaking out of one, find a way to break out of all
+//There are three serial "while" loops. When breaking out of one, find a way to break out of all
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
     T_bitboard **rays = createRays();
     if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
+        //
+        bool cnd3 = true;
+        if(castlePass == BLACK_KINGSIDE_PASS && BLACK_KINGSIDE_ATTACKING & b->wPawn & b->wKing){
+            cnd3 = false;
+        }
+        //
         int j, k, l;
         T_bitboard a = all(b);
         while(tmp.wBishop){
@@ -593,13 +599,19 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                cnd2 = false;
             }
         }
-        if(cnd1 && cnd2){
+        if(cnd1 && cnd2 && cnd3){
             generateCastlingState(dst, b, castlePass);
         }
     }
     else if(!b->whosTurn && (castlePass == WHITE_KINGSIDE_PASS || castlePass == WHITE_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
+        //
+        bool cnd3 = true;
+        if(castlePass == BLACK_KINGSIDE_PASS && BLACK_KINGSIDE_ATTACKING & b->wPawn & b->wKing){
+            cnd3 = false;
+        }
+        //
         int j, k, l;
         T_bitboard a = all(b);
         while(tmp.bBishop){
@@ -641,7 +653,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                cnd2 = false;
             }
         }
-        if(cnd1 && cnd2){
+        if(cnd1 && cnd2 && cnd3){
             generateCastlingState(dst, b, castlePass);
         }
     }
