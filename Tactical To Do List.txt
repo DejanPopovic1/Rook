@@ -1,5 +1,3 @@
-Tuesday - Wednesday:
-   implement castling algNot
 Thursday:
    Check disambiguating rank and file with uses cases
    Queens attacking from N, NE and E

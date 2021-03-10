@@ -25,6 +25,7 @@ enum Pieces{empty, whitePawn, whiteBishop, whiteKnight, whiteRook, whiteQueen, w
 //whosTurn is redundant if there is ply but it saves calculations and recalculations
 //Can ply not be stripped out of this - when state depth is built we dont need to know ply
 //Lets check how stockfish represents state
+//Save wAll bAll and all within the state. This saves recalculating it in future
 struct BoardState{
     T_bitboard wPawn;
     T_bitboard wBishop;
