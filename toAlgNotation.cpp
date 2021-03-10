@@ -342,7 +342,15 @@ bool isKingSideCastle(T_boardState *c, T_boardState *ss){
 }
 
 bool isQueenSideCastle(T_boardState *c, T_boardState *ss){
-
+    if(whatIsPiece(*c, 56) == blackRook && whatIsPiece(*c, 60) == blackKing &&
+       whatIsPiece(*ss, 56) == empty && whatIsPiece(*ss, 60) == empty){
+        return true;
+    }
+    else if(whatIsPiece(*c, 0) == whiteRook && whatIsPiece(*c, 4) == whiteKing &&
+       whatIsPiece(*ss, 0) == empty && whatIsPiece(*ss, 4) == empty){
+        return true;
+    }
+    return false;
 }
 
 //Refactor to make simpler w.r.t enPassants
