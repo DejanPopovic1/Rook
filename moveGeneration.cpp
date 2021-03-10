@@ -522,7 +522,7 @@ bool isPosAttacked(T_boardState *b, T_bitboard castlePass){
 void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castlePass){
     T_boardState cpy = *b;
     std::vector<std::string> gameMoves;
-    printState(*b, 0, gameMoves);
+    //printState(*b, 0, gameMoves);
     switch(castlePass){
 //        case BLACK_KINGSIDE_PASS:
 //            clearBit(&cpy.bRook, 63);
