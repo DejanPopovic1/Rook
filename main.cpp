@@ -71,19 +71,6 @@ void multiPlayerSession(char *playerColourInput){
 
 void test(){
     //std::cin.get();
-    T_bitboard test1 = 0;
-    setBit(&test1, 58);
-    setBit(&test1, 59);
-    std::cout << test1 << std::endl;
-    T_bitboard test2 = 0;
-    setBit(&test2, 2);
-    setBit(&test2, 3);
-    std::cout << test2 << std::endl;
-
-       printTBitboard(BLACK_KINGSIDE_PASS);
-   printTBitboard(BLACK_QUEENSIDE_PASS);
-   printTBitboard(WHITE_KINGSIDE_PASS);
-   printTBitboard(WHITE_QUEENSIDE_PASS);
 //    T_bitboard test1 = 0;
 //    setBit(&test1, 51);
 //    setBit(&test1, 52);
