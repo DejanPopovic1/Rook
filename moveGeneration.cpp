@@ -547,6 +547,7 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 //Pass in rays for efficiency
 //castlePass and turn mechanics are awkward - refactor
 //There are three serial "while" loops. When breaking out of one, find a way to break out of all
+//Please refactor this dogshow
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
     T_bitboard **rays = createRays();

@@ -33,6 +33,8 @@
 		</Compiler>
 		<Unit filename="bitUtilities.cpp" />
 		<Unit filename="bitUtilities.hpp" />
+		<Unit filename="keyUtilities.cpp" />
+		<Unit filename="keyUtilities.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="moveGeneration.cpp" />
 		<Unit filename="moveGeneration.hpp" />
