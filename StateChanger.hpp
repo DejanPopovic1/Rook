@@ -22,9 +22,9 @@ public:
     T_boardState getState();
     void printGameState();
     void printSuccStates();
-private:
     bool isCheckMate();
     bool isStaleMate();
+private:
     bool isValidMoves();
     bool isStateInCheck();
     void genListOfValidMoves();
