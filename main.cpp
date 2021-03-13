@@ -53,13 +53,11 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     T_boardState s = CMinitialiseBoardState();
-    std::vector<std::string> v;
-    printState(s, 0, v, 0);
     GameState sc(s, playerColour);
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    while(!sc.isCheckMate()){
+    while(!sc.isCheckMate() && !sc.isStaleMate()){
         sc.printGameState();
         //std::cout << std::endl;
         //sc.printSuccStates();
@@ -72,7 +70,6 @@ void multiPlayerSession(char *playerColourInput){
         std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
     sc.printGameState();
-    //sc.printValidMoves();
     return;
 }
 
