@@ -604,11 +604,14 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                cnd2 = false;
             }
         }
-//        bool cnd4 =
-//        if(){
-//
-//        }
-        if(cnd1 && cnd2 && cnd3){
+        bool cnd4;
+        if(castlePass == BLACK_KINGSIDE_PASS){
+            cnd4 = b->castlesKBlack && b->castlesRRBlack;
+        }
+        else if(castlePass == BLACK_QUEENSIDE_PASS){
+            cnd4 = b->castlesKBlack && b->castlesLRBlack;
+        }
+        if(cnd1 && cnd2 && cnd3 && cnd4){
             generateCastlingState(dst, b, castlePass);
         }
     }
@@ -665,7 +668,14 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                cnd2 = false;
             }
         }
-        if(cnd1 && cnd2 && cnd3){
+        bool cnd4;
+        if(castlePass == WHITE_KINGSIDE_PASS){
+            cnd4 = b->castlesKWhite && b->castlesRRWhite;
+        }
+        else if(castlePass == WHITE_QUEENSIDE_PASS){
+            cnd4 = b->castlesKWhite && b->castlesLRWhite;
+        }
+        if(cnd1 && cnd2 && cnd3 && cnd4){
             generateCastlingState(dst, b, castlePass);
         }
     }
