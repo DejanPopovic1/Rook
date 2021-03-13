@@ -241,3 +241,110 @@ void SMinitialisePreviousStates(struct PrevStates **ps){
     (*ps)->fp = 0;
     return;
 }
+
+T_boardState PPinitialiseBoardState(){
+    T_boardState result;
+    PPinitialiseWPawns(&(result.wPawn));
+    PPinitialiseWBishops(&(result.wBishop));
+    PPinitialiseWKnights(&(result.wKnight));
+    PPinitialiseWRooks(&(result.wRook));
+    PPinitialiseWQueen(&(result.wQueen));
+    PPinitialiseWKing(&(result.wKing));
+    PPinitialiseBPawns(&(result.bPawn));
+    PPinitialiseBBishops(&(result.bBishop));
+    PPinitialiseBKnights(&(result.bKnight));
+    PPinitialiseBRooks(&(result.bRook));
+    PPinitialiseBQueen(&(result.bQueen));
+    PPinitialiseBKing(&(result.bKing));
+    PPinitialiseWEnPassants(&(result.wEnPassants));
+    PPinitialiseBEnPassants(&(result.bEnPassants));
+    PPinitialiseCastlesTurnCheck(&result);
+    PPinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
+    PPinitialisePreviousStates(&(result.ps));
+    return result;
+}
+
+void PPinitialiseWPawns(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 49);
+}
+void PPinitialiseWBishops(T_bitboard *result){
+    clearBits(result);
+}
+
+void PPinitialiseWKnights(T_bitboard *result){
+    clearBits(result);
+}
+
+void PPinitialiseWRooks(T_bitboard *result){
+    clearBits(result);
+}
+
+void PPinitialiseWQueen(T_bitboard *result){
+    clearBits(result);
+}
+
+void PPinitialiseWKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 4);
+}
+
+void PPinitialiseBPawns(T_bitboard *result){
+    clearBits(result);
+}
+void PPinitialiseBBishops(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 58);
+}
+
+void PPinitialiseBKnights(T_bitboard *result){
+    clearBits(result);
+    //setBit(result, 57);
+    setBit(result, 62);
+}
+
+void PPinitialiseBRooks(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 56);
+    setBit(result, 63);
+}
+
+void PPinitialiseBQueen(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 24);
+}
+
+void PPinitialiseBKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 60);
+}
+
+void PPinitialiseWEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void PPinitialiseBEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void PPinitialiseCastlesTurnCheck(T_boardState *b){
+    b->castlesLRWhite = 1;
+    b->castlesRRWhite = 1;
+    b->castlesKWhite = 1;
+    b->castlesLRBlack = 1;
+    b->castlesRRBlack = 1;
+    b->castlesKBlack = 1;
+    b->whosTurn = 0;
+    b->evaluateCheck = 0;
+}
+
+void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c){
+    *c = 0;
+}
+
+//Need to add in this functionality later
+void PPinitialisePreviousStates(struct PrevStates **ps){
+    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+    (*ps)->fp = 0;
+    return;
+}

@@ -1,5 +1,4 @@
 Saturday - Sunday:
-	stalemate
 	zobrist keys
 	3 fold repetition rule
 	50 move rule
