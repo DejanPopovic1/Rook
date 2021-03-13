@@ -18,6 +18,7 @@ T_boardState GameState::getState(){
 }
 //INCORPORATE FIRST COMMENT AS ITS ABSENCE LEADS TO A BUG
 GameState::GameState(T_boardState boardState, bool pA){
+    this->ply = 0;
     this->playingAs = pA;
     this->c = boardState;
     this->ss = initialiseStates();
@@ -28,6 +29,7 @@ GameState::GameState(T_boardState boardState, bool pA){
 void GameState::changeState(string usrInput){
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
+            this->ply++;
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
             this->ss = initialiseStates();
@@ -67,7 +69,7 @@ bool GameState::isValidMoves(){
 
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 void GameState::printGameState(){
-    printState(this->c, this->playingAs, this->gameMoves);
+    printState(this->c, this->playingAs, this->gameMoves, this->ply);
     printValidMoves();
 }
 

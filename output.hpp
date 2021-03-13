@@ -20,7 +20,7 @@ int whatIsPiece(T_boardState b, int i);
 T_chessboard *toIntArray(T_boardState b);
 void printTBitboardNumber(T_bitboard b);
 void printTBitboard(T_bitboard b);
-void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves);
+void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves, unsigned short int ply);
 void printStates(T_boardStates *b, int playerColour);
 void printBits(size_t const size, void const * const ptr);
 void printTBitboardNumbersBin(T_bitboard **b);

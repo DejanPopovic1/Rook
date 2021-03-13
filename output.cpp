@@ -95,10 +95,10 @@ void printTBitboardNumbersBin(T_bitboard **b){
 }
 
 //To-do: Omit leading zero in printing castling state
-void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves){
+void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves, unsigned short int ply){
     T_chessboard *c = toIntArray(b);
     printBoard(playerColour, *c);
-    printf("Ply: THIS MUST BE ADDED IN\n", 1);
+    printf("Ply: %d\n", ply);
     (!b.whosTurn) ? printf("White Turn\n") : printf("Black Turn\n");
     printf("State of white en Passants: ");
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
@@ -118,7 +118,7 @@ void printState(T_boardState b, int playerColour, std::vector<std::string> gameM
 void printStates(T_boardStates *b, int playerColour){
     std::vector<std::string> v;
     for(int i = 0; i < length(b); i++){
-        printState((b->bs)[i], playerColour, v);
+        printState((b->bs)[i], playerColour, v, 0);
     }
 }
 
