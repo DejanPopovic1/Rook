@@ -46,6 +46,8 @@
 		<Unit filename="output.hpp" />
 		<Unit filename="state.cpp" />
 		<Unit filename="state.hpp" />
+		<Unit filename="testInitialisations.cpp" />
+		<Unit filename="testInitialisations.hpp" />
 		<Unit filename="toAlgNotation.cpp" />
 		<Unit filename="toAlgNotation.hpp" />
 		<Extensions>
