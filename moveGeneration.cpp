@@ -766,12 +766,15 @@ bool isInCheck(T_boardState *b){
     bool result;
     bool whosTurn = b->whosTurn;
     b->whosTurn++;
+    b->evaluateCheck = 1;
     T_boardStates *bss = initialiseStates();
     genSuccStates(bss, b);
     if(!isKingsExist(bss, whosTurn)){
         b->whosTurn++;
+        b->evaluateCheck = 0;
         return true;
     }
     b->whosTurn++;
+    b->evaluateCheck = 0;
     return false;
 }

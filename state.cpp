@@ -133,10 +133,13 @@ bool isPosEmpty(const T_boardState *b, int n){
 }
 
 void addState(T_boardStates *dst, T_boardState *src){
+    if(src->evaluateCheck){
+        return;
+    }
     src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-//    if(isInCheck(src)){
-//        return;
-//    }
+    if(isInCheck(src)){
+        return;
+    }
     (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
 }
@@ -250,6 +253,7 @@ void initialiseBRooks(T_bitboard *result){
 void initialiseBQueen(T_bitboard *result){
     clearBits(result);
     setBit(result, 59);
+    setBit(result, 25);
 
     //setBit(result, 34);
 
