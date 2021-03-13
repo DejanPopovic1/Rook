@@ -18,13 +18,13 @@ public:
     StateChanger();
     StateChanger(T_boardState boardState, bool pA);
     void changeState(std::string usrInput);
-    void printValidMoves();
     T_boardState getState();
     void printGameState();
     void printSuccStates();
     bool isCheckMate();
     bool isStaleMate();
 private:
+    void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck();
     void genListOfValidMoves();

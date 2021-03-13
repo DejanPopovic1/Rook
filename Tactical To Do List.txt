@@ -1,5 +1,4 @@
 Saturday - Sunday:
-	checkmate
 	stalemate
 	zobrist keys
 	3 fold repetition rule

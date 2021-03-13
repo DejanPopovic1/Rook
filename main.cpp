@@ -61,7 +61,7 @@ void multiPlayerSession(char *playerColourInput){
         //std::cout << std::endl;
         //sc.printSuccStates();
         //printState(sc.getState(), playerColour);
-        sc.printValidMoves();//This should be part of the class printGameState()
+        //sc.printValidMoves();//This should be part of the class printGameState()
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
@@ -69,7 +69,7 @@ void multiPlayerSession(char *playerColourInput){
         std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
     sc.printGameState();
-    sc.printValidMoves();
+    //sc.printValidMoves();
     return;
 }
 

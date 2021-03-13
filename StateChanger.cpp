@@ -49,7 +49,7 @@ void StateChanger::changeState(string usrInput){
 }
 
 bool StateChanger::isCheckMate(){
-    return /*isStateInCheck() &&*/ !isValidMoves();
+    return isStateInCheck() && !isValidMoves();
 }
 
 bool StateChanger::isStaleMate(){
@@ -68,6 +68,7 @@ bool StateChanger::isValidMoves(){
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 void StateChanger::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves);
+    printValidMoves();
 }
 
 void StateChanger::printSuccStates(){
