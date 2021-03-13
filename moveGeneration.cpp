@@ -747,37 +747,23 @@ bool isKingExist(T_boardState *b, bool whosKing){
 
 //Group all jumps, steps, rays and pAttacks into a single struct
 bool isInCheck(T_boardState *b){
-    bool result = false;
+    bool result;
     if(b->whosTurn){
         b->whosTurn++;
         T_boardStates *bss = initialiseStates();
         genSuccStates(bss, b);
-        if(true){
-            result != result;
+        if(!isKingExist(b, 1)){
+            return true;
         }
-        if(true){
-            result != result;
-        }
-        if(true){
-            result != result;
-        }
-        b->whosTurn++;
-        return result;
+        return false;
     }
     else{
         b->whosTurn++;
         T_boardStates *bss = initialiseStates();
         genSuccStates(bss, b);
-        if(true){
-            result != result;
+        if(!isKingExist(b, 0)){
+            return true;
         }
-        if(true){
-            result != result;
-        }
-        if(true){
-            result != result;
-        }
-        b->whosTurn++;
-        return result;
+        return false;
     }
 }
