@@ -247,6 +247,8 @@ T_bitboard **createJumps(){
 //    return result;
 //}
 
+
+//Use this in moveGeneration
 T_bitboard **createWPawnAttacks(){
     T_bitboard **pAttacks = (T_bitboard **)malloc(2 * sizeof(T_bitboard*));
     pAttacks[0] = castSteps(&castNE);

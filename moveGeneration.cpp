@@ -739,6 +739,39 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n
     }
 }
 
+//Group all jumps, steps, rays and pAttacks into a single struct
 bool isInCheck(T_boardState *b){
-
+    bool result = false;
+    if(b->whosTurn){
+        b->whosTurn++;
+        T_boardStates *bss = initialiseStates();
+        genSuccStates(bss, b);
+        if(true){
+            result != result;
+        }
+        if(true){
+            result != result;
+        }
+        if(true){
+            result != result;
+        }
+        b->whosTurn++;
+        return result;
+    }
+    else{
+        b->whosTurn++;
+        T_boardStates *bss = initialiseStates();
+        genSuccStates(bss, b);
+        if(true){
+            result != result;
+        }
+        if(true){
+            result != result;
+        }
+        if(true){
+            result != result;
+        }
+        b->whosTurn++;
+        return result;
+    }
 }
