@@ -56,17 +56,16 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    while(!sc.isCheckMate() && !sc.isStaleMate()){
-            //printTBitboard(createBPawnAttacks()[0][63]);
+    while(!sc.isCheckMate() || !sc.isStaleMate()){
         sc.printGameState();
-        std::cout << std::endl;
+        //std::cout << std::endl;
         //sc.printSuccStates();
         //printState(sc.getState(), playerColour);
         sc.printValidMoves();
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
-        std::cin.get();
+        //std::cin.get();
      }
      return;
 }

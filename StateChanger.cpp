@@ -36,7 +36,7 @@ void StateChanger::changeState(string usrInput){
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
             if(isCheckMate()){
-                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+                this->c.whosTurn ? gameMoves.push_back("0 - 1") : gameMoves.push_back("1 - 0");
             }
             else if(isStaleMate()){
                 gameMoves.push_back("1/2 - 1/2");
