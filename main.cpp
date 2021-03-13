@@ -52,7 +52,7 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-    T_boardState s = PPinitialiseBoardState();
+    T_boardState s = initialiseBoardState();
     GameState sc(s, playerColour);
     std::string usrInput;
     T_boardStates *bss = initialiseStates();

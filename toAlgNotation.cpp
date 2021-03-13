@@ -6,6 +6,7 @@
 #include "bitUtilities.hpp"
 #include "moveGeneration.hpp"
 #include "output.hpp"
+#include "state.hpp"
 
 #include "toAlgNotation.hpp"
 
@@ -17,49 +18,6 @@ using std::cout;
 using std::endl;
 
 //Add consts in this file
-
-T_bitboard *pieceBitboard(T_boardState *b, char piece){
-    switch(piece){
-    case whitePawn:
-        return &b->wPawn;
-        break;
-    case whiteBishop:
-        return &b->wBishop;
-        break;
-    case whiteKnight:
-        return &b->wKnight;
-        break;
-    case whiteRook:
-        return &b->wRook;
-        break;
-    case whiteQueen:
-        return &b->wQueen;
-        break;
-    case whiteKing:
-        return &b->wKing;
-        break;
-    case blackPawn:
-        return &b->bPawn;
-        break;
-    case blackBishop:
-        return &b->bBishop;
-        break;
-    case blackKnight:
-        return &b->bKnight;
-        break;
-    case blackRook:
-        return &b->bRook;
-        break;
-    case blackQueen:
-        return &b->bQueen;
-        break;
-    case blackKing:
-        return &b->bKing;
-        break;
-    default:
-        assert(false);
-    }
-}
 
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){

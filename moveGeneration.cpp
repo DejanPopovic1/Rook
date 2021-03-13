@@ -146,49 +146,6 @@ void clearOppPosition(T_boardState *b, char pos){
     }
 }
 
-T_bitboard *pieceBitboard(T_boardState *b, int piece){
-    switch(piece){
-    case whitePawn:
-        return &(b->wPawn);
-        break;
-    case whiteBishop:
-        return &(b->wBishop);
-        break;
-    case whiteKnight:
-        return &(b->wKnight);
-        break;
-    case whiteRook:
-        return &(b->wRook);
-        break;
-    case whiteQueen:
-        return &(b->wQueen);
-        break;
-    case whiteKing:
-        return &(b->wKing);
-        break;
-    case blackPawn:
-        return &(b->bPawn);
-        break;
-    case blackBishop:
-        return &(b->bBishop);
-        break;
-    case blackKnight:
-        return &(b->bKnight);
-        break;
-    case blackRook:
-        return &(b->bRook);
-        break;
-    case blackQueen:
-        return &(b->bQueen);
-        break;
-    case blackKing:
-        return &(b->bKing);
-        break;
-    default:
-        assert(false);
-    }
-}
-
 //Piece is a redundant piece of info that is supplied for efficiency purposes
 //First make sure destination does not contain same colour before calling this function
 //When calling this function, we dont know if the move also constitutes an attack

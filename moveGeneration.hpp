@@ -35,7 +35,6 @@ bool isUpUpEmpty(T_boardState *b, int n);
 bool isDownEmpty(T_boardState *b, int n);
 bool isDownDownEmpty(T_boardState *b, int n);
 void clearOppPosition(T_boardState *b, char pos);
-T_bitboard *pieceBitboard(T_boardState *b, int piece);
 void moveAndAttack(T_boardState *b, char dst, char src, char piece);
 void move(T_boardState *b, char dst, char src, char piece);
 void promote(T_boardStates *dst, T_boardState *b, int n, int piece);
