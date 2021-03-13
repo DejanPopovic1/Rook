@@ -769,7 +769,9 @@ bool isInCheck(T_boardState *b){
     T_boardStates *bss = initialiseStates();
     genSuccStates(bss, b);
     if(!isKingsExist(bss, whosTurn)){
+        b->whosTurn++;
         return true;
     }
+    b->whosTurn++;
     return false;
 }
