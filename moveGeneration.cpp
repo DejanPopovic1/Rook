@@ -740,12 +740,19 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n
 }
 
 bool isKingExist(T_boardState *b, bool whosKing){
-
-
-    return true;
+    if(whosKing){
+        if(b->bKing){
+            return true;
+        }
+    }
+    else{
+        if(b->wKing){
+            return true;
+        }
+    }
+    return false;
 }
 
-//Group all jumps, steps, rays and pAttacks into a single struct
 bool isInCheck(T_boardState *b){
     bool result;
     if(b->whosTurn){
