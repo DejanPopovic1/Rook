@@ -739,6 +739,12 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n
     }
 }
 
+bool isKingExist(T_boardState *b){
+
+
+    return true;
+}
+
 //Group all jumps, steps, rays and pAttacks into a single struct
 bool isInCheck(T_boardState *b){
     bool result = false;
