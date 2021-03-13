@@ -1,4 +1,5 @@
 #include "keyUtilities.hpp"
+#include "state.hpp"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -16,4 +17,9 @@ uint64_t ***createRandomKey(){
             }
         }
     }
+}
+
+uint64_t generateKey(T_boardState *b){
+    uint64_t result = 0;
+    return result;
 }
