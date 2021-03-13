@@ -1,5 +1,4 @@
 Saturday - Sunday:
-	pawnRays
 	isInCheck
 	check
 	checkmate

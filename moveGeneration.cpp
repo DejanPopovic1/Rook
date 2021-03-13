@@ -738,3 +738,7 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n
             assert(false);
     }
 }
+
+bool isInCheck(T_boardState *b){
+
+}

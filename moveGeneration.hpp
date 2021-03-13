@@ -51,5 +51,6 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass);
 void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece);
 void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece);
+bool isInCheck(T_boardState *b);
 
 #endif // MOVEGENERATION_H
