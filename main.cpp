@@ -1,7 +1,7 @@
 #include "state.hpp"
 #include "moveGeneration.hpp"
 #include "output.hpp"
-#include "stateChanger.hpp"
+#include "gameState.hpp"
 #include <iostream>
 #include "moveRules.hpp"
 
@@ -52,7 +52,7 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     T_boardState s = initialiseBoardState();
-    StateChanger sc(s, playerColour);
+    GameState sc(s, playerColour);
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;

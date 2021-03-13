@@ -1,5 +1,5 @@
-#ifndef CHANGE_STATE_H
-#define CHANGE_STATE_H
+#ifndef GAME_STATE_H
+#define GAME_STATE_H
 
 #include "state.hpp"
 #include <string>
@@ -13,10 +13,10 @@ enum PlayingAs{asWhite, asBlack};
 //4. List of all game moves
 //5. Time left in current move (if there is a time limit imposed)
 
-class StateChanger{
+class GameState{
 public:
-    StateChanger();
-    StateChanger(T_boardState boardState, bool pA);
+    GameState();
+    GameState(T_boardState boardState, bool pA);
     void changeState(std::string usrInput);
     T_boardState getState();
     void printGameState();
@@ -37,4 +37,4 @@ private:
     short int ply;
 };
 
-#endif //CHANGE_STATE_H
+#endif //GAME_STATE_H

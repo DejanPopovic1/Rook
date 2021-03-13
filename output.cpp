@@ -9,7 +9,7 @@
 #include "output.hpp"
 #include <assert.h>
 #include "bitUtilities.hpp"
-#include "stateChanger.hpp"
+#include "gameState.hpp"
 #include <iostream>
 
 int whosTurn(const int halfPly){

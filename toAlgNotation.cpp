@@ -9,7 +9,7 @@
 
 #include "toAlgNotation.hpp"
 
-//#include "StateChanger.hpp"
+//#include "gameState.hpp"
 
 using std::string;
 using std::vector;

@@ -1,4 +1,4 @@
-#include "StateChanger.hpp"
+#include "gameState.hpp"
 #include "ToAlgNotation.hpp"
 #include "output.hpp"
 #include "moveGeneration.hpp"
@@ -9,15 +9,15 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-StateChanger::StateChanger(){
+GameState::GameState(){
 
 }
 
-T_boardState StateChanger::getState(){
+T_boardState GameState::getState(){
     return (this->c);
 }
 //INCORPORATE FIRST COMMENT AS ITS ABSENCE LEADS TO A BUG
-StateChanger::StateChanger(T_boardState boardState, bool pA){
+GameState::GameState(T_boardState boardState, bool pA){
     this->playingAs = pA;
     this->c = boardState;
     this->ss = initialiseStates();
@@ -25,7 +25,7 @@ StateChanger::StateChanger(T_boardState boardState, bool pA){
     genListOfValidMoves();
 }
 
-void StateChanger::changeState(string usrInput){
+void GameState::changeState(string usrInput){
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
             this->c = this->ss->bs[i];
@@ -48,34 +48,34 @@ void StateChanger::changeState(string usrInput){
     return ;
 }
 
-bool StateChanger::isCheckMate(){
+bool GameState::isCheckMate(){
     return isStateInCheck() && !isValidMoves();
 }
 
-bool StateChanger::isStaleMate(){
+bool GameState::isStaleMate(){
     return !isStateInCheck() && !isValidMoves();
 }
 
 //Rename
-bool StateChanger::isStateInCheck(){
+bool GameState::isStateInCheck(){
     return isInCheck(&this->c);
 }
 
-bool StateChanger::isValidMoves(){
+bool GameState::isValidMoves(){
     return this->ss->fi;
 }
 
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
-void StateChanger::printGameState(){
+void GameState::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves);
     printValidMoves();
 }
 
-void StateChanger::printSuccStates(){
+void GameState::printSuccStates(){
     printStates(this->ss, this->playingAs);
 }
 
-void StateChanger::printValidMoves(){
+void GameState::printValidMoves(){
     cout << "Valid moves: ";
     for(int i = 0; i < validMoves.size(); i++){
         cout << validMoves[i] << " ";
@@ -84,7 +84,7 @@ void StateChanger::printValidMoves(){
 }
 
 //add a return of void
-void StateChanger::genListOfValidMoves(){
+void GameState::genListOfValidMoves(){
     string s;
     for(int i = 0; i < this->ss->fi; i++){
         s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
