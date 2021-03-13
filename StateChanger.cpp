@@ -35,10 +35,10 @@ void StateChanger::changeState(string usrInput){
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
-            if(isStateInCheck() && !isValidMoves()){
+            if(isCheckMate()){
                 this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
             }
-            else if(!isStateInCheck() && !isValidMoves()){
+            else if(isStaleMate()){
                 gameMoves.push_back("1/2 - 1/2");
             }
             return;
@@ -46,6 +46,14 @@ void StateChanger::changeState(string usrInput){
     }
     cout << "Invalid move\n";
     return ;
+}
+
+bool StateChanger::isCheckMate(){
+    return isStateInCheck() && !isValidMoves();
+}
+
+bool StateChanger::isStaleMate(){
+    return !isStateInCheck() && !isValidMoves();
 }
 
 bool StateChanger::isStateInCheck(){

@@ -23,6 +23,8 @@ public:
     void printGameState();
     void printSuccStates();
 private:
+    bool isCheckMate();
+    bool isStaleMate();
     bool isValidMoves();
     bool isStateInCheck();
     void genListOfValidMoves();
