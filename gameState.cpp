@@ -16,7 +16,7 @@ GameState::GameState(){
 T_boardState GameState::getState(){
     return (this->c);
 }
-//INCORPORATE FIRST COMMENT AS ITS ABSENCE LEADS TO A BUG
+//Dont pass in board state, rather create it in this constructor
 GameState::GameState(T_boardState boardState, bool pA){
     this->ply = 0;
     this->playingAs = pA;

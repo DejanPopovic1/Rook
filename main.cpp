@@ -4,6 +4,7 @@
 #include "gameState.hpp"
 #include <iostream>
 #include "moveRules.hpp"
+#include "testInitialisations.hpp"
 
 #include "bitUtilities.hpp"
 
@@ -51,7 +52,9 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-    T_boardState s = initialiseBoardState();
+    T_boardState s = CMinitialiseBoardState();
+    std::vector<std::string> v;
+    printState(s, 0, v, 0);
     GameState sc(s, playerColour);
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
