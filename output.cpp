@@ -99,27 +99,13 @@ void printState(T_boardState b, int playerColour, std::vector<std::string> gameM
     T_chessboard *c = toIntArray(b);
     printBoard(playerColour, *c);
     printf("Ply: THIS MUST BE ADDED IN\n", 1);
-    (!b.whosTurn) ? printf("Whites Turn\n") : printf("Blacks Turn\n");
-//    if(whosTurn(b.ply) == whiteTurn){
-//        printf("Whites Turn\n");
-//    }
-//    else if(whosTurn(b.ply) == blackTurn){
-//        printf("Blacks Turn\n");
-//    }
-//    else{
-//        assert(false);
-//    }
+    (!b.whosTurn) ? printf("White Turn\n") : printf("Black Turn\n");
     printf("State of white en Passants: ");
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
     printf("State of white castling: "); printf("%d", b.castlesLRWhite); printf("%d", b.castlesKWhite); printf("%d\n", b.castlesRRWhite);
-    //char i = b.castlesWhite;
-    //printBits(sizeof(i), &i);
     printf("State of black en Passants: ");
     printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
-    //printf("State of black castling: ");
-    //char i = b.castlesBlack;
     printf("State of black castling: "); printf("%d", b.castlesLRBlack); printf("%d", b.castlesKBlack); printf("%d\n", b.castlesRRBlack);
-    //printBits(sizeof(i), &i);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
     printf("Game moves: ");

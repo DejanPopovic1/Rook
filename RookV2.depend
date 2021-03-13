@@ -137,7 +137,7 @@
 	"bitUtilities.hpp"
 	"output.hpp"
 
-1615409536 source:c:\c_c++ code\rook\output.cpp
+1615663582 source:c:\c_c++ code\rook\output.cpp
 	"toAlgNotation.hpp"
 	"output.hpp"
 	<wchar.h>
@@ -149,7 +149,7 @@
 	"output.hpp"
 	<assert.h>
 	"bitUtilities.hpp"
-	"stateChanger.hpp"
+	"gameState.hpp"
 	<iostream>
 
 1615408954 c:\c_c++ code\rook\toalgnotation.hpp
@@ -184,7 +184,7 @@
 	<string>
 	<vector>
 
-1615409840 source:c:\c_c++ code\rook\toalgnotation.cpp
+1615663582 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -205,4 +205,16 @@
 	"bitUtilities.hpp"
 
 1615420348 source:c:\c_c++ code\rook\keyutilities.cpp
+
+1615663582 source:c:\c_c++ code\rook\gamestate.cpp
+	"gameState.hpp"
+	"ToAlgNotation.hpp"
+	"output.hpp"
+	"moveGeneration.hpp"
+	<iostream>
+
+1615663582 c:\c_c++ code\rook\gamestate.hpp
+	"state.hpp"
+	<string>
+	<vector>
 
