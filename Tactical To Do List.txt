@@ -1,12 +1,11 @@
-Friday - Saturday:
-   implement isInCheck function
-   Prune successor states based on check rules
-Sunday:
-   Endgame including stalemates and checkmate
-Next Week:
-   3 x repetitive move rule - Zobrist hash function
-   50 move rule
-Week After:
-   Implement state tree
-   Implement Minimax algorithm
-   Implement heuristic assignment
+Saturday - Sunday:
+	check
+	checkmate
+	3 fold repetition rule
+	50 move rule
+	stalemate
+Monday - Sunday:
+	Implement heuristic assignment	
+	Implement state tree
+	Implement random AI rule
+	Implement Minimax algorithm

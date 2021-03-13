@@ -125,7 +125,7 @@
 	<stdbool.h>
 	"state.hpp"
 
-1614705899 c:\c_c++ code\rook\moverules.hpp
+1615631704 c:\c_c++ code\rook\moverules.hpp
 	<stdbool.h>
 	"state.hpp"
 
@@ -193,7 +193,7 @@
 	"output.hpp"
 	"toAlgNotation.hpp"
 
-1615416619 source:c:\c_c++ code\rook\main.cpp
+1615587505 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"

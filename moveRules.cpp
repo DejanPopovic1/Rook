@@ -226,7 +226,7 @@ T_bitboard** createSteps(){
 }
 
 //Enumerate directions 0 - 7
-T_bitboard** createJumps(){
+T_bitboard **createJumps(){
     T_bitboard **jumps = (T_bitboard **)malloc(8 * sizeof(T_bitboard*));
     jumps[0] = castJumps(&cast1);
     jumps[1] = castJumps(&cast2);
@@ -238,3 +238,14 @@ T_bitboard** createJumps(){
     jumps[7] = castJumps(&cast8);
     return jumps;
 }
+
+T_bitboard *castWPawnAttacks(bool (*castDir)(int *)){
+    return NULL;
+}
+
+T_bitboard **createWPawnAttacks(){
+    T_bitboard **pAttacks = (T_bitboard **)malloc(2 * sizeof(T_bitboard*));
+    pAttacks[0] = castWPawnAttacks(&castNE);
+    pAttacks[1] = castWPawnAttacks(&castNW);
+}
+

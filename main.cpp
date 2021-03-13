@@ -55,6 +55,11 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
+    printf ("\n%d\n", sizeof(c.wPawn));
+    printf ("\n%d\n", sizeof(c.wEnPassants));
+    printf ("\n%d\n", sizeof(c.noCapturesOrPawnMoves));
+    printf ("\n%d\n", sizeof(*(c.ps)));
+    printf("\n%d\n", sizeof(c));
     while(true){
         sc.printGameState();
         std::cout << std::endl;
