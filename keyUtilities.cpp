@@ -19,7 +19,11 @@ uint64_t ***createRandomKey(){
     }
 }
 
-uint64_t generateKey(T_boardState *b){
+uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
     uint64_t result = 0;
+    for(char i = 0; i < 13; i++){
+
+
+    }
     return result;
 }
