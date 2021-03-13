@@ -764,22 +764,12 @@ bool isKingExist(T_boardState *b, bool whosKing){
 
 bool isInCheck(T_boardState *b){
     bool result;
-    if(b->whosTurn){
-        b->whosTurn++;
-        T_boardStates *bss = initialiseStates();
-        genSuccStates(bss, b);
-        if(!isKingsExist(bss, 1)){
-            return true;
-        }
-        return false;
+    bool whosTurn = b->whosTurn;
+    b->whosTurn++;
+    T_boardStates *bss = initialiseStates();
+    genSuccStates(bss, b);
+    if(!isKingsExist(bss, whosTurn)){
+        return true;
     }
-    else{
-        b->whosTurn++;
-        T_boardStates *bss = initialiseStates();
-        genSuccStates(bss, b);
-        if(!isKingsExist(bss, 0)){
-            return true;
-        }
-        return false;
-    }
+    return false;
 }
