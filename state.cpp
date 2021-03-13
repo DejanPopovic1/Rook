@@ -167,7 +167,7 @@ T_boardState initialiseBoardState(){
     initialiseBKing(&(result.bKing));
     initialiseWEnPassants(&(result.wEnPassants));
     initialiseBEnPassants(&(result.bEnPassants));
-    initialiseCastlesAndTurn(&result);
+    initialiseCastlesTurnCheck(&result);
     initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
     initialisePreviousStates(&(result.ps));
 //    initialisePly(&(result.ply));
@@ -268,7 +268,7 @@ void initialiseBEnPassants(unsigned char *c){
     clearCharBits(c);
 }
 
-void initialiseCastlesAndTurn(T_boardState *b){
+void initialiseCastlesTurnCheck(T_boardState *b){
     b->castlesLRWhite = 1;
     b->castlesRRWhite = 1;
     b->castlesKWhite = 1;
@@ -276,6 +276,7 @@ void initialiseCastlesAndTurn(T_boardState *b){
     b->castlesRRBlack = 1;
     b->castlesKBlack = 1;
     b->whosTurn = 0;
+    b->evaluateCheck = 0;
 }
 
 void initialiseNoCapturesOrPawnMoves(unsigned char *c){
