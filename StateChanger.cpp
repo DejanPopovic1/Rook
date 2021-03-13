@@ -35,8 +35,11 @@ void StateChanger::changeState(string usrInput){
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
-            if(!this->ss->fi){
+            if(isStateInCheck() && !isValidMoves()){
                 this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+            }
+            else if(!isStateInCheck() && !isValidMoves()){
+                gameMoves.push_back("1/2 - 1/2");
             }
             return;
         }
