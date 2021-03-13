@@ -604,6 +604,10 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
                cnd2 = false;
             }
         }
+//        bool cnd4 =
+//        if(){
+//
+//        }
         if(cnd1 && cnd2 && cnd3){
             generateCastlingState(dst, b, castlePass);
         }
@@ -763,6 +767,9 @@ bool isKingExist(T_boardState *b, bool whosKing){
 }
 
 bool isInCheck(T_boardState *b){
+//    if(b->evaluateCheck){
+//        return false;
+//    }
     bool result;
     bool whosTurn = b->whosTurn;
     b->whosTurn++;
@@ -770,11 +777,11 @@ bool isInCheck(T_boardState *b){
     T_boardStates *bss = initialiseStates();
     genSuccStates(bss, b);
     if(!isKingsExist(bss, whosTurn)){
-        b->whosTurn++;
-        b->evaluateCheck = 0;
+        //b->whosTurn++;
+    //    b->evaluateCheck = 0;
         return true;
     }
-    b->whosTurn++;
-    b->evaluateCheck = 0;
+    //b->whosTurn++;
+    //b->evaluateCheck = 0;
     return false;
 }

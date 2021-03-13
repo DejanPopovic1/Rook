@@ -2,6 +2,7 @@ Saturday - Sunday:
 	check
 	checkmate
 	stalemate
+	zobrist keys
 	3 fold repetition rule
 	50 move rule
 Monday - Sunday:

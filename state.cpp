@@ -134,14 +134,18 @@ bool isPosEmpty(const T_boardState *b, int n){
 
 void addState(T_boardStates *dst, T_boardState *src){
     if(src->evaluateCheck){
-        return;
+        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+        (dst->bs)[dst->fi] = *src;
+        (dst->fi)++;
     }
-    src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-    if(isInCheck(src)){
-        return;
+    else {
+        T_boardState cpy = *src;
+        if(!isInCheck(&cpy)){
+            src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+            (dst->bs)[dst->fi] = *src;
+            (dst->fi)++;
+        }
     }
-    (dst->bs)[dst->fi] = *src;
-    (dst->fi)++;
 }
 
 T_boardStates *initialiseStates(){
