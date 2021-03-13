@@ -49,6 +49,10 @@ bool StateChanger::isStateInCheck(){
     return isInCheck(&this->c);
 }
 
+bool StateChanger::isValidMoves(){
+    return this->ss->fi;
+}
+
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 void StateChanger::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves);

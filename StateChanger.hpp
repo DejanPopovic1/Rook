@@ -23,6 +23,7 @@ public:
     void printGameState();
     void printSuccStates();
 private:
+    bool isValidMoves();
     bool isStateInCheck();
     void genListOfValidMoves();
     int turnTimeLeft;
