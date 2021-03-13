@@ -1,5 +1,4 @@
 Saturday - Sunday:
-	check
 	checkmate
 	stalemate
 	zobrist keys

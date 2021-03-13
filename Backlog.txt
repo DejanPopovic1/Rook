@@ -81,3 +81,5 @@ Depending on Windows or Linux, optionally compile using #if and #endif
 Add program options included in this link: https://www.gnu.org/software/xboard/manual/html_node/Chess-engine-options.html
 Transposition Table
 Killer Heuristics or knowing which alpha beta branches to prune
+
+toAlgNotation must specify # and +

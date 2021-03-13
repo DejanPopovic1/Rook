@@ -35,6 +35,9 @@ void StateChanger::changeState(string usrInput){
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
+            if(!this->ss->fi){
+                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+            }
             return;
         }
     }

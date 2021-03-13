@@ -187,16 +187,18 @@ void initialiseWPawns(T_bitboard *result){
     setBit(result, 9);
     setBit(result, 10);
     setBit(result, 11);
-    setBit(result, 12);
+    //setBit(result, 12);
     setBit(result, 13);
     setBit(result, 14);
     setBit(result, 15);
+    setBit(result, 3);
+    setBit(result, 5);
     //setBit(result, 50);
 }
 void initialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
-    setBit(result, 5);
+    //setBit(result, 5);
 }
 
 void initialiseWKnights(T_bitboard *result){
@@ -213,7 +215,7 @@ void initialiseWRooks(T_bitboard *result){
 
 void initialiseWQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 3);
+    //setBit(result, 3);
 }
 
 void initialiseWKing(T_bitboard *result){
