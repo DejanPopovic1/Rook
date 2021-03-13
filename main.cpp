@@ -56,7 +56,7 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    while(true){
+    while(!sc.isCheckMate() && !sc.isStaleMate()){
             //printTBitboard(createBPawnAttacks()[0][63]);
         sc.printGameState();
         std::cout << std::endl;
