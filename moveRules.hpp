@@ -29,7 +29,7 @@ T_bitboard *castJumps(bool (*castDir)(int*));
 T_bitboard** createRays();
 T_bitboard** createSteps();
 T_bitboard** createJumps();
-T_bitboard *castWPawnAttacks(bool (*castE)(int *));
+//T_bitboard *castWPawnAttacks(bool (*castE)(int *));
 T_bitboard **createWPawnAttacks();
 
 #endif // MOVERULES_H

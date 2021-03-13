@@ -1,9 +1,11 @@
 Saturday - Sunday:
+	pawnRays
+	isInCheck
 	check
 	checkmate
+	stalemate
 	3 fold repetition rule
 	50 move rule
-	stalemate
 Monday - Sunday:
 	Implement heuristic assignment	
 	Implement state tree

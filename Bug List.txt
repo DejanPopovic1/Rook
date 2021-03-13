@@ -1,0 +1,1 @@
+Castling must change the castling flag of the relevant castle aswell as king

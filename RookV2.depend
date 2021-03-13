@@ -125,16 +125,17 @@
 	<stdbool.h>
 	"state.hpp"
 
-1615631704 c:\c_c++ code\rook\moverules.hpp
+1615633662 c:\c_c++ code\rook\moverules.hpp
 	<stdbool.h>
 	"state.hpp"
 
-1615154387 source:c:\c_c++ code\rook\moverules.cpp
+1615633962 source:c:\c_c++ code\rook\moverules.cpp
 	<stdbool.h>
 	<stdlib.h>
 	"moveRules.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
+	"output.hpp"
 
 1615409536 source:c:\c_c++ code\rook\output.cpp
 	"toAlgNotation.hpp"
@@ -193,12 +194,13 @@
 	"output.hpp"
 	"toAlgNotation.hpp"
 
-1615587505 source:c:\c_c++ code\rook\main.cpp
+1615633905 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
 	"stateChanger.hpp"
 	<iostream>
+	"moveRules.hpp"
 	"bitUtilities.hpp"
 
 1615420348 source:c:\c_c++ code\rook\keyutilities.cpp

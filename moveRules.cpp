@@ -3,7 +3,7 @@
 #include "moveRules.hpp"
 #include "state.hpp"
 #include "bitUtilities.hpp"
-//#include "output.h"
+#include "output.hpp"
 
 //    T_bitboard t = 0;
 //    T_bitboard u = 0;
@@ -239,13 +239,19 @@ T_bitboard **createJumps(){
     return jumps;
 }
 
-T_bitboard *castWPawnAttacks(bool (*castDir)(int *)){
-    return NULL;
-}
+//T_bitboard *castWPawnAttacks(bool (*castDir)(int *)){
+//    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
+//    for(int i = 0; i < BITBOARD_SIZE; i++){
+//        result[i] = castStep(castDir, i);
+//    }
+//    return result;
+//}
 
 T_bitboard **createWPawnAttacks(){
     T_bitboard **pAttacks = (T_bitboard **)malloc(2 * sizeof(T_bitboard*));
-    pAttacks[0] = castWPawnAttacks(&castNE);
-    pAttacks[1] = castWPawnAttacks(&castNW);
+    pAttacks[0] = castSteps(&castNE);
+    pAttacks[1] = castSteps(&castNW);
+    return pAttacks;
+    //printTBitboard(pAttacks[0][0]);
 }
 
