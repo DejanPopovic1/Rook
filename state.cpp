@@ -80,12 +80,12 @@ bool isPawn(int p){
     return (p == whitePawn || p == blackPawn) ? true : false;
 }
 
-int whosTurnNEW(const int ply){
-    if((ply % 2) == 1){
-        return whiteTurn;
-    }
-    return blackTurn;
-}
+//int whosTurnNEW(const int ply){
+//    if((ply % 2) == 1){
+//        return whiteTurn;
+//    }
+//    return blackTurn;
+//}
 
 bool isRankFive(char n){
     if(n <= 39 && n >= 32){

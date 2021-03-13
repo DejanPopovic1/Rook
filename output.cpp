@@ -12,12 +12,12 @@
 #include "gameState.hpp"
 #include <iostream>
 
-int whosTurn(const int halfPly){
-    if((halfPly % 2) == 1){
-        return whiteTurn;
-    }
-    return blackTurn;
-}
+//int whosTurn(const int halfPly){
+//    if((halfPly % 2) == 1){
+//        return whiteTurn;
+//    }
+//    return blackTurn;
+//}
 
 //Rather use pointer to boardState
 int whatIsPiece(T_boardState b, int i){
@@ -135,7 +135,6 @@ void printBits(size_t const size, void const * const ptr)
     puts("");
 }
 
-
 void printTBitboardNumbersDec(T_bitboard **b){
     for(int i = 0; i < 64; i++){
         printf("%llu\n", *(b[i]));
@@ -174,15 +173,15 @@ void landingMessage(){
     printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
 }
 
-void printPlayerTurn(int halfPly){
-    if(whosTurn(halfPly) == whiteTurn){
-        printf("W: ");
-    }
-    else if(whosTurn(halfPly) == blackTurn){
-        printf("B: ");
-    }
-    return;
-}
+//void printPlayerTurn(int halfPly){
+//    if(whosTurn(halfPly) == whiteTurn){
+//        printf("W: ");
+//    }
+//    else if(whosTurn(halfPly) == blackTurn){
+//        printf("B: ");
+//    }
+//    return;
+//}
 
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);

@@ -71,7 +71,7 @@ T_bitboard all(const T_boardState *b);
 T_bitboard sameAll(const T_boardState *b);
 T_bitboard oppositeAll(T_boardState *b);
 //void removeOpponent(T_boardState *b, int pos);
-int whosTurnNEW(const int ply);
+//int whosTurnNEW(const int ply);
 bool isRankFive(char n);
 bool isRankFour(char n);
 bool isRankSeven(char n);

@@ -34,7 +34,7 @@ private:
     T_boardState c;
     T_boardStates *ss;
     bool playingAs;
-    short int ply;
+    unsigned short int ply;
 };
 
 #endif //GAME_STATE_H
