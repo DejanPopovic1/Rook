@@ -739,6 +739,12 @@ void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n
     }
 }
 
+bool isKingsExist(T_boardStates *bss, bool whosKing){
+
+
+
+}
+
 bool isKingExist(T_boardState *b, bool whosKing){
     if(whosKing){
         if(b->bKing){

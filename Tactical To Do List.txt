@@ -1,6 +1,4 @@
 Saturday - Sunday:
-	group all moveRules into single struct and pass down from main
-	isInCheck
 	check
 	checkmate
 	stalemate
