@@ -56,18 +56,21 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    while(!sc.isCheckMate() || !sc.isStaleMate()){
+    while(!sc.isCheckMate()){
         sc.printGameState();
         //std::cout << std::endl;
         //sc.printSuccStates();
         //printState(sc.getState(), playerColour);
-        sc.printValidMoves();
+        sc.printValidMoves();//This should be part of the class printGameState()
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
-        //std::cin.get();
+        std::cin.get();
+        std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
-     return;
+    sc.printGameState();
+    sc.printValidMoves();
+    return;
 }
 
 void test(){

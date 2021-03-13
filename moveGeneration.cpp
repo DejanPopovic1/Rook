@@ -777,9 +777,6 @@ bool isKingExist(T_boardState *b, bool whosKing){
 }
 
 bool isInCheck(T_boardState *b){
-//    if(b->evaluateCheck){
-//        return false;
-//    }
     bool result;
     bool whosTurn = b->whosTurn;
     b->whosTurn++;
@@ -787,11 +784,9 @@ bool isInCheck(T_boardState *b){
     T_boardStates *bss = initialiseStates();
     genSuccStates(bss, b);
     if(!isKingsExist(bss, whosTurn)){
-        //b->whosTurn++;
-    //    b->evaluateCheck = 0;
+        b->whosTurn++;
         return true;
     }
-    //b->whosTurn++;
-    //b->evaluateCheck = 0;
+    b->whosTurn++;
     return false;
 }

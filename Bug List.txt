@@ -1,1 +1,2 @@
 Castling must change the castling flag of the relevant castle aswell as king
+playing more than one multiplayer gives an error. I think its because memory wasnt free'd
