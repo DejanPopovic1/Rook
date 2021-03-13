@@ -2,6 +2,7 @@
 //#include "output.h"
 #include "bitUtilities.hpp"
 #include "assert.h"
+#include "moveGeneration.hpp"
 
 //bAll and wAll might need to be done immediately after a state generatioin and saved as a state
 T_bitboard wAll(const T_boardState *b){
@@ -133,6 +134,9 @@ bool isPosEmpty(const T_boardState *b, int n){
 
 void addState(T_boardStates *dst, T_boardState *src){
     src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+//    if(isInCheck(src)){
+//        return;
+//    }
     (dst->bs)[dst->fi] = *src;
     (dst->fi)++;
 }
