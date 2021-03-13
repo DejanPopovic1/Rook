@@ -23,6 +23,7 @@ public:
     void printGameState();
     void printSuccStates();
 private:
+    bool isStateInCheck();
     void genListOfValidMoves();
     int turnTimeLeft;
     std::vector<std::string> validMoves;
