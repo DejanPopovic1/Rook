@@ -24,7 +24,6 @@ T_boardState CMinitialiseBoardState(){
     CMinitialiseCastlesTurnCheck(&result);
     CMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
     CMinitialisePreviousStates(&(result.ps));
-//    initialisePly(&(result.ply));
     return result;
 }
 
@@ -34,18 +33,15 @@ void CMinitialiseWPawns(T_bitboard *result){
     setBit(result, 9);
     setBit(result, 10);
     setBit(result, 11);
-    //setBit(result, 12);
     setBit(result, 13);
     setBit(result, 14);
     setBit(result, 15);
     setBit(result, 3);
     setBit(result, 5);
-    //setBit(result, 50);
 }
 void CMinitialiseWBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 2);
-    //setBit(result, 5);
 }
 
 void CMinitialiseWKnights(T_bitboard *result){
@@ -77,7 +73,6 @@ void CMinitialiseBPawns(T_bitboard *result){
     setBit(result, 49);
     setBit(result, 50);
     setBit(result, 51);
-    //setBit(result, 52);
     setBit(result, 53);
     setBit(result, 54);
     setBit(result, 55);
@@ -87,17 +82,12 @@ void CMinitialiseBPawns(T_bitboard *result){
 void CMinitialiseBBishops(T_bitboard *result){
     clearBits(result);
     setBit(result, 58);
-    //setBit(result, 61);
 }
 
 void CMinitialiseBKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 57);
     setBit(result, 62);
-    //setBit(result, 45);
-    //setBit(result, 43);
-    //setBit(result, 11);
-    //setBit(result, 13);
 }
 
 void CMinitialiseBRooks(T_bitboard *result){
@@ -108,11 +98,7 @@ void CMinitialiseBRooks(T_bitboard *result){
 
 void CMinitialiseBQueen(T_bitboard *result){
     clearBits(result);
-    //setBit(result, 59);
     setBit(result, 24);
-
-    //setBit(result, 34);
-
 }
 
 void CMinitialiseBKing(T_bitboard *result){
@@ -150,6 +136,108 @@ void CMinitialisePreviousStates(struct PrevStates **ps){
     return;
 }
 
-//void initialisePly(unsigned short *i){
-//    *i = 1;
-//}
+T_boardState SMinitialiseBoardState(){
+    T_boardState result;
+    SMinitialiseWPawns(&(result.wPawn));
+    SMinitialiseWBishops(&(result.wBishop));
+    SMinitialiseWKnights(&(result.wKnight));
+    SMinitialiseWRooks(&(result.wRook));
+    SMinitialiseWQueen(&(result.wQueen));
+    SMinitialiseWKing(&(result.wKing));
+    SMinitialiseBPawns(&(result.bPawn));
+    SMinitialiseBBishops(&(result.bBishop));
+    SMinitialiseBKnights(&(result.bKnight));
+    SMinitialiseBRooks(&(result.bRook));
+    SMinitialiseBQueen(&(result.bQueen));
+    SMinitialiseBKing(&(result.bKing));
+    SMinitialiseWEnPassants(&(result.wEnPassants));
+    SMinitialiseBEnPassants(&(result.bEnPassants));
+    SMinitialiseCastlesTurnCheck(&result);
+    SMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
+    SMinitialisePreviousStates(&(result.ps));
+    return result;
+}
+
+void SMinitialiseWPawns(T_bitboard *result){
+    clearBits(result);
+}
+void SMinitialiseWBishops(T_bitboard *result){
+    clearBits(result);
+}
+
+void SMinitialiseWKnights(T_bitboard *result){
+    clearBits(result);
+}
+
+void SMinitialiseWRooks(T_bitboard *result){
+    clearBits(result);
+}
+
+void SMinitialiseWQueen(T_bitboard *result){
+    clearBits(result);
+}
+
+void SMinitialiseWKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 4);
+}
+
+void SMinitialiseBPawns(T_bitboard *result){
+    clearBits(result);
+}
+void SMinitialiseBBishops(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 58);
+}
+
+void SMinitialiseBKnights(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 57);
+    setBit(result, 62);
+}
+
+void SMinitialiseBRooks(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 56);
+    setBit(result, 63);
+}
+
+void SMinitialiseBQueen(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 24);
+}
+
+void SMinitialiseBKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 60);
+}
+
+void SMinitialiseWEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void SMinitialiseBEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void SMinitialiseCastlesTurnCheck(T_boardState *b){
+    b->castlesLRWhite = 1;
+    b->castlesRRWhite = 1;
+    b->castlesKWhite = 1;
+    b->castlesLRBlack = 1;
+    b->castlesRRBlack = 1;
+    b->castlesKBlack = 1;
+    b->whosTurn = 0;
+    b->evaluateCheck = 0;
+}
+
+void SMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
+    *c = 0;
+}
+
+//Need to add in this functionality later
+void SMinitialisePreviousStates(struct PrevStates **ps){
+    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+    (*ps)->fp = 0;
+    return;
+}
