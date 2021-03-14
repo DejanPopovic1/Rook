@@ -111,7 +111,7 @@
 	<stdint.h>
 	<stdbool.h>
 
-1615679013 source:c:\c_c++ code\rook\movegeneration.cpp
+1615711842 source:c:\c_c++ code\rook\movegeneration.cpp
 	<assert.h>
 	"moveGeneration.hpp"
 	"state.hpp"
@@ -196,7 +196,7 @@
 	"state.hpp"
 	"toAlgNotation.hpp"
 
-1615671385 source:c:\c_c++ code\rook\main.cpp
+1615712247 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
@@ -205,12 +205,15 @@
 	"moveRules.hpp"
 	"testInitialisations.hpp"
 	"bitUtilities.hpp"
-
-1615678839 source:c:\c_c++ code\rook\keyutilities.cpp
 	"keyUtilities.hpp"
+
+1615712237 source:c:\c_c++ code\rook\keyutilities.cpp
+	"keyUtilities.hpp"
+	"moveGeneration.hpp"
 	"state.hpp"
 	<stdint.h>
 	<stdlib.h>
+	<stdio.h>
 
 1615665545 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"

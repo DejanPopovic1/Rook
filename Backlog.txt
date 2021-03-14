@@ -82,5 +82,7 @@ Add program options included in this link: https://www.gnu.org/software/xboard/m
 Transposition Table
 Killer Heuristics or knowing which alpha beta branches to prune
 Add statistics like average branching factor
+Opening book: https://www.chessprogramming.org/Opening_Book
+
 
 toAlgNotation must specify # and +

@@ -1,8 +1,10 @@
 #include "keyUtilities.hpp"
+#include "moveGeneration.hpp"
+#include "output.hpp"
 #include "state.hpp"
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <stdio.h>
 
 uint64_t rand64(){
     return rand() ^ ((uint64_t)rand() << 15) ^ ((uint64_t)rand() << 30) ^ ((uint64_t)rand() << 45) ^ ((uint64_t)rand() << 60);
@@ -21,9 +23,12 @@ uint64_t ***createRandomKey(){
 
 uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
     uint64_t result = 0;
-    for(char i = 0; i < 13; i++){
-
-
+    T_boardState cpy = *b;
+    T_bitboard pc;
+    for(char i = 1; i < 13; i++){
+        while(pc = getPieceFromPieces(pieceBitboard(&cpy, i))){
+            printTBitboard(pc);
+        }
     }
     return result;
 }

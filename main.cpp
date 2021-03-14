@@ -7,6 +7,7 @@
 #include "testInitialisations.hpp"
 
 #include "bitUtilities.hpp"
+#include "keyUtilities.hpp"
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
@@ -57,6 +58,7 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
+    generateKey(&s, 1);
     while(!sc.isCheckMate() && !sc.isStaleMate()){
         sc.printGameState();
         //std::cout << std::endl;

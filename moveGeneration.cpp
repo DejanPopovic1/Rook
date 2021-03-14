@@ -11,6 +11,8 @@
 //Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
 
+//Alot of the functions here should be defined in state.cpp so move them there
+
 //Use the fact that this returns zero in the function that calls it
 T_bitboard getPieceFromPieces(T_bitboard *pcs){
     if(!__builtin_popcountll(*pcs)){
