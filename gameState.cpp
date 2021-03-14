@@ -49,8 +49,10 @@ void GameState::changeState(string usrInput){
             else if(isStaleMate()){
                 gameMoves.push_back("1/2 - 1/2");
             }
-            //uint64_t key = incrementKey(gameMoves.back(), &cpy, &this->c, key *randomKey);
-            //this->previousStates.push_back( );
+            //std::cout<< "TEST: "<<this->gameMoves.back() << std::endl;
+            //uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
+            //incrementKey(uint64_t k, T_boardState *b, T_boardState *ss, key *randomKey)
+            //this->previousStates.push_back(key);
             return;
         }
     }
