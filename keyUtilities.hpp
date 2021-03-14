@@ -11,7 +11,7 @@
 typedef uint64_t key[PIECE][POSITIONS];
 
 uint64_t rand64();
-uint64_t ***createRandomKey();
+uint64_t **createRandomKey();
 uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber);
 
 #endif // KEYUTILITIES_H

@@ -24,7 +24,7 @@ uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
     uint64_t result = 0;
     T_boardState cpy = *b;
     T_bitboard pc;
-    for(char i = 1; i < 13; i++){
+    for(int i = 1; i < 13; i++){
         while(pc = getPieceFromPieces(pieceBitboard(&cpy, i))){
             printTBitboard(pc);
         }
