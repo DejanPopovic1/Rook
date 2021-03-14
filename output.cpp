@@ -108,6 +108,9 @@ void printState(T_boardState b, int playerColour, std::vector<std::string> gameM
     printf("State of black castling: "); printf("%d", b.castlesLRBlack); printf("%d", b.castlesKBlack); printf("%d\n", b.castlesRRBlack);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n - TO BE COMPLETED\n");
+    for(int i = 0; i < previousStates.size(); i++){
+        std::cout << std::hex << previousStates[i] << std::endl << std::dec ;
+    }
     printf("Game moves: ");
     for(int i = 0; i < gameMoves.size(); i++){
         std::cout << gameMoves[i] << " ";
