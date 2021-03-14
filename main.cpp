@@ -58,7 +58,9 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    generateKey(&s, 1);
+    //printTBitboardNumber(generateKey(&s, 1));
+    std::cout << std::hex << generateKey(&s) << std::dec;
+    //printf("%d", generateKey(&s, 1));
     while(!sc.isCheckMate() && !sc.isStaleMate()){
         sc.printGameState();
         //std::cout << std::endl;

@@ -227,6 +227,7 @@ string specifier(char piece){
     return result;
 }
 
+//Because this is also used by keyUtilities, maybe this should sit in state.cpp?
 //Doesnt take into account en Passants
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference

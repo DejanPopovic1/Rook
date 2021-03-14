@@ -1,5 +1,6 @@
 #include "keyUtilities.hpp"
 #include "moveGeneration.hpp"
+#include "toAlgNotation.hpp"
 #include "output.hpp"
 #include "state.hpp"
 #include <stdint.h>
@@ -20,7 +21,8 @@ key *createRandomKey(){
     return result;
 }
 
-uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
+//Doesnt take into accout en passant and castling rights - to be added in backlog
+uint64_t generateKey(T_boardState *b){
     uint64_t result = 0;
     T_boardState cpy = *b;
     T_bitboard pc;
@@ -32,5 +34,18 @@ uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
             result ^= (*rk)[i][j];
         }
     }
+    if(b->whosTurn){
+        result ^= rand();
+    }
     return result;
 }
+
+//If this is either castling or promotion, instead of incrementally adjusting, regenerate the key. So in that instance, call the generateKey function
+uint64_t incrementKey(uint64_t key, T_boardState *b, T_boardState *ss){
+    char *from, *to, *piece;
+    bool *isPieceCaptured;
+    whereFromTo(b, ss, from, to, piece, isPieceCaptured);
+    return key;
+}
+
+
