@@ -71,7 +71,7 @@ void multiPlayerSession(char *playerColourInput){
         std::cin >> usrInput;
         sc.changeState(usrInput);
         std::cin.get();
-        std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
+        //std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
     sc.printGameState();
     return;

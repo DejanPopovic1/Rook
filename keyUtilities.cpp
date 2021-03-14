@@ -42,15 +42,18 @@ uint64_t generateKey(T_boardState *b){
 
 //If this is either castling or promotion, instead of incrementally adjusting, regenerate the key. So in that instance, call the generateKey function
 uint64_t incrementKey(uint64_t k, T_boardState *b, T_boardState *ss, key *randomKey){
-    char *from, *to, *piece, *capturedPiece;
-    bool *isPieceCaptured;
-    whereFromTo(b, ss, from, to, piece, isPieceCaptured, capturedPiece);
-    uint64_t xoredFrom = (*randomKey)[*piece][*from];
-    uint64_t xoredTo = (*randomKey)[*piece][*to];
-    k ^= xoredFrom ^ xoredTo;
-    if(*isPieceCaptured){
-        xoredTo = (*randomKey)[*capturedPiece][*to];
-        k ^= xoredTo;
-    }
+//    char *from, *to, *piece, *capturedPiece;
+//    bool *isPieceCaptured;
+//    whereFromTo(b, ss, from, to, piece, isPieceCaptured, capturedPiece);
+//    uint64_t xoredFrom = (*randomKey)[*piece][*from];
+//    uint64_t xoredTo = (*randomKey)[*piece][*to];
+//    k ^= xoredFrom ^ xoredTo;
+//    if(*isPieceCaptured){
+//        xoredTo = (*randomKey)[*capturedPiece][*to];
+//        k ^= xoredTo;
+//    }
+//    return k;
+
+
     return k;
 }

@@ -50,7 +50,7 @@ struct BoardState{
     unsigned char whosTurn : 1; //0 Indicates white and 1 indicates black move
     unsigned char evaluateCheck : 1;
     unsigned char noCapturesOrPawnMoves;
-    struct PrevStates *ps;
+    //struct PrevStates *ps;
   //  unsigned short ply;
 };
 

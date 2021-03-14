@@ -175,6 +175,7 @@ bool isPosEmpty(const T_boardState *b, int n){
     return false;
 }
 
+//Need to change player turn when adding state
 void addState(T_boardStates *dst, T_boardState *src){
     if(src->evaluateCheck){
         src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
@@ -219,7 +220,7 @@ T_boardState initialiseBoardState(){
     initialiseBEnPassants(&(result.bEnPassants));
     initialiseCastlesTurnCheck(&result);
     initialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-    initialisePreviousStates(&(result.ps));
+//    initialisePreviousStates(&(result.ps));
 //    initialisePly(&(result.ply));
     return result;
 }

@@ -23,7 +23,7 @@ T_boardState CMinitialiseBoardState(){
     CMinitialiseBEnPassants(&(result.bEnPassants));
     CMinitialiseCastlesTurnCheck(&result);
     CMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-    CMinitialisePreviousStates(&(result.ps));
+//    CMinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -154,7 +154,7 @@ T_boardState SMinitialiseBoardState(){
     SMinitialiseBEnPassants(&(result.bEnPassants));
     SMinitialiseCastlesTurnCheck(&result);
     SMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-    SMinitialisePreviousStates(&(result.ps));
+//    SMinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -260,7 +260,7 @@ T_boardState PPinitialiseBoardState(){
     PPinitialiseBEnPassants(&(result.bEnPassants));
     PPinitialiseCastlesTurnCheck(&result);
     PPinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-    PPinitialisePreviousStates(&(result.ps));
+//    PPinitialisePreviousStates(&(result.ps));
     return result;
 }
 
