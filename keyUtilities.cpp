@@ -29,9 +29,7 @@ uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
     for(int i = 1; i < 13; i++){
         while(pc = getPieceFromPieces(pieceBitboard(&cpy, i))){
             j = __builtin_ctzll(pc);
-
-            //printTBitboard(pc);
-            //printf("%d\n", j);
+            result ^= (*rk)[i][j];
         }
     }
     return result;
