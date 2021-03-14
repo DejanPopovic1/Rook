@@ -137,7 +137,7 @@
 	"bitUtilities.hpp"
 	"output.hpp"
 
-1615664667 source:c:\c_c++ code\rook\output.cpp
+1615727525 source:c:\c_c++ code\rook\output.cpp
 	"toAlgNotation.hpp"
 	"output.hpp"
 	<wchar.h>
@@ -225,11 +225,12 @@
 	<iostream>
 	"keyUtilities.hpp"
 
-1615726805 c:\c_c++ code\rook\gamestate.hpp
+1615728388 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	<stdint.h>
 	<string>
 	<vector>
+	"keyUtilities.hpp"
 
 1615671375 source:c:\c_c++ code\rook\testinitialisations.cpp
 	"bitUtilities.hpp"

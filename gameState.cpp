@@ -30,8 +30,10 @@ GameState::GameState(T_boardState boardState, bool pA){
 }
 
 void GameState::changeState(string usrInput){
+    T_boardState cpy;
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
+            cpy = this->c;
             this->ply++;
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
@@ -46,6 +48,7 @@ void GameState::changeState(string usrInput){
             else if(isStaleMate()){
                 gameMoves.push_back("1/2 - 1/2");
             }
+            //uint64_t key = incrementKey(gameMoves.back(), &cpy, &this->c, key *randomKey);
             //this->previousStates.push_back( );
             return;
         }

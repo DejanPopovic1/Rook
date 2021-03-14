@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "keyUtilities.hpp"
 
 enum PlayingAs{asWhite, asBlack};
 //What state does state changer keep that stat doesnt? There are three
@@ -25,6 +26,7 @@ public:
     bool isCheckMate();
     bool isStaleMate();
 private:
+    key *randomKey;
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck();
