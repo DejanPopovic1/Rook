@@ -11,12 +11,10 @@ uint64_t rand64(){
 }
 
 uint64_t ***createRandomKey(){
-    uint64_t ***result = (uint64_t ***)malloc(1 * sizeof(key));
-    for(int i = 0; i < PIECE_TYPES; i++){
-        for(int j = 0; j < PLAYERS; j++){
-            for(int k = 0; k < POSITIONS; k++){
-                result[i][j][k] = rand64();
-            }
+    uint64_t **result = (uint64_t **)malloc(1 * sizeof(key));
+    for(int i = 0; i < PIECE; i++){
+        for(int j = 0; j < POSITIONS; j++){
+                result[i][j] = rand64();
         }
     }
 }
