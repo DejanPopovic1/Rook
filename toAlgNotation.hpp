@@ -31,7 +31,7 @@ T_bitboard trimOtherSamePieces(T_boardState *s, T_bitboard ps, char arrival);
 std::vector<char> posOfPieces(T_bitboard input);
 std::string disambiguate(T_boardState *c, char from, char to, bool isCaptured);
 std::string specifier(char piece);
-void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured);
+void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, char* capturedPiece);
 std::string take(bool isTake);
 std::string toSpecifier(char to);
 char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *fromFile);

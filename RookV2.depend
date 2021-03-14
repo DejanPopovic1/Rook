@@ -152,7 +152,7 @@
 	"gameState.hpp"
 	<iostream>
 
-1615678913 c:\c_c++ code\rook\toalgnotation.hpp
+1615725204 c:\c_c++ code\rook\toalgnotation.hpp
 	<string>
 	<vector>
 	"state.hpp"
@@ -207,9 +207,10 @@
 	"bitUtilities.hpp"
 	"keyUtilities.hpp"
 
-1615722967 source:c:\c_c++ code\rook\keyutilities.cpp
+1615725225 source:c:\c_c++ code\rook\keyutilities.cpp
 	"keyUtilities.hpp"
 	"moveGeneration.hpp"
+	"toAlgNotation.hpp"
 	"output.hpp"
 	"state.hpp"
 	<stdint.h>

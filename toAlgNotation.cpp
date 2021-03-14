@@ -232,7 +232,7 @@ string specifier(char piece){
 //simplify so that stateMember doesnt return pointer but rather a copy of the board
 //Use C++ pass by reference
 //Use wAll instead of cB and ssB
-void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured){
+void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, char* capturedPiece){
     *isPieceCaptured = false;
     T_bitboard cB;
     T_bitboard ssB;
@@ -247,6 +247,7 @@ void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *
         }
         else if(cB != ssB && (__builtin_popcountll(cB) != __builtin_popcountll(ssB))){
             *isPieceCaptured = true;
+            *capturedPiece = i;
         }
     }
 }
@@ -315,11 +316,11 @@ bool isQueenSideCastle(T_boardState *c, T_boardState *ss){
 //Refactor to make simpler w.r.t enPassants
 string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     string result;
-    char piece, from, to, promotedPiece;
+    char piece, from, to, promotedPiece, capturedPiece;
     char promotedFile, promotedRank, fromPromotedFile;
     bool isPieceCaptured;
     bool isPromoCapture;
-    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured);
+    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
     promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank, &fromPromotedFile);
     if(promotedPiece && !isPromoCapture){
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));

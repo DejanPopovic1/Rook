@@ -42,10 +42,10 @@ uint64_t generateKey(T_boardState *b){
 
 //If this is either castling or promotion, instead of incrementally adjusting, regenerate the key. So in that instance, call the generateKey function
 uint64_t incrementKey(uint64_t key, T_boardState *b, T_boardState *ss){
-    char *from, *to, *piece;
+    char *from, *to, *piece, *capturedPiece;
     bool *isPieceCaptured;
-    whereFromTo(b, ss, from, to, piece, isPieceCaptured);
+    whereFromTo(b, ss, from, to, piece, isPieceCaptured, capturedPiece);
+
+
     return key;
 }
-
-
