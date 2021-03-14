@@ -10,13 +10,14 @@ uint64_t rand64(){
     return rand() ^ ((uint64_t)rand() << 15) ^ ((uint64_t)rand() << 30) ^ ((uint64_t)rand() << 45) ^ ((uint64_t)rand() << 60);
 }
 
-uint64_t ***createRandomKey(){
+uint64_t **createRandomKey(){
     uint64_t **result = (uint64_t **)malloc(1 * sizeof(key));
     for(int i = 0; i < PIECE; i++){
         for(int j = 0; j < POSITIONS; j++){
                 result[i][j] = rand64();
         }
     }
+    return result;
 }
 
 uint64_t generateKey(T_boardState *b, uint64_t constantRandomNumber){
