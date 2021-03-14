@@ -3,6 +3,7 @@
 #include "output.hpp"
 #include "moveGeneration.hpp"
 #include <iostream>
+#include "keyUtilities.hpp"
 
 using std::string;
 using std::vector;
@@ -22,6 +23,8 @@ GameState::GameState(T_boardState boardState, bool pA){
     this->playingAs = pA;
     this->c = boardState;
     this->ss = initialiseStates();
+    uint64_t initialKey = generateKey(&this->c);
+    this->previousStates.push_back(initialKey);
     genSuccStates(this->ss, &(this->c));
     genListOfValidMoves();
 }
@@ -69,7 +72,7 @@ bool GameState::isValidMoves(){
 
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 void GameState::printGameState(){
-    printState(this->c, this->playingAs, this->gameMoves, this->ply);
+    printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates);
     printValidMoves();
 }
 

@@ -2,6 +2,7 @@
 #define GAME_STATE_H
 
 #include "state.hpp"
+#include <stdint.h>
 #include <string>
 #include <vector>
 
@@ -31,6 +32,7 @@ private:
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
+    std::vector<uint64_t> previousStates;
     T_boardState c;
     T_boardStates *ss;
     bool playingAs;

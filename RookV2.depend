@@ -107,7 +107,7 @@
 	"bitUtilities.hpp"
 	<limits.h>
 
-1615678913 c:\c_c++ code\rook\state.hpp
+1615726534 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
@@ -157,7 +157,7 @@
 	<vector>
 	"state.hpp"
 
-1615664569 c:\c_c++ code\rook\output.hpp
+1615727247 c:\c_c++ code\rook\output.hpp
 	"state.hpp"
 	<wchar.h>
 	<Windows.h>
@@ -207,7 +207,7 @@
 	"bitUtilities.hpp"
 	"keyUtilities.hpp"
 
-1615725225 source:c:\c_c++ code\rook\keyutilities.cpp
+1615726355 source:c:\c_c++ code\rook\keyutilities.cpp
 	"keyUtilities.hpp"
 	"moveGeneration.hpp"
 	"toAlgNotation.hpp"
@@ -217,15 +217,17 @@
 	<stdlib.h>
 	<stdio.h>
 
-1615665545 source:c:\c_c++ code\rook\gamestate.cpp
+1615727247 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
 	<iostream>
+	"keyUtilities.hpp"
 
-1615663964 c:\c_c++ code\rook\gamestate.hpp
+1615726805 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
+	<stdint.h>
 	<string>
 	<vector>
 

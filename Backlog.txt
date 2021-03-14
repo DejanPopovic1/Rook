@@ -11,7 +11,6 @@ Use one function to generate all piece moves and general genSuccStates optimisat
 
 Before doing a complete test, have the ability to BACKTRACK moves. This is added functionality aswell as eases the heck out of testing
 
-
 BENCHMARK
 bAll and wAll to be included as part of state
 Functions that are inlined for performance in one file but not inlined in another should be defined in the header file and not .c file! An example of this is functions in binUtils
