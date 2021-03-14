@@ -46,6 +46,7 @@ void GameState::changeState(string usrInput){
             else if(isStaleMate()){
                 gameMoves.push_back("1/2 - 1/2");
             }
+            //this->previousStates.push_back( );
             return;
         }
     }
