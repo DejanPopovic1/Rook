@@ -19,6 +19,7 @@ T_boardState GameState::getState(){
 }
 //Dont pass in board state, rather create it in this constructor
 GameState::GameState(T_boardState boardState, bool pA){
+    this->randomKey = createRandomKey();
     this->ply = 0;
     this->playingAs = pA;
     this->c = boardState;
