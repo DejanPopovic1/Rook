@@ -30,6 +30,7 @@ public:
     bool isStaleMate();
 private:
     key *randomKey;
+    bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck();

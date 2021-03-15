@@ -108,6 +108,17 @@ void GameState::printSuccStates(){
     printStates(this->ss, this->playingAs);
 }
 
+//implement isPawn function
+bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
+    char from, to, piece, capturedPiece;
+    bool isPieceCaptured;
+    whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
+    if(piece == whitePawn || piece == blackPawn || isPieceCaptured){
+       return true;
+    }
+    return false;
+}
+
 void GameState::printValidMoves(){
     cout << "Valid moves: ";
     for(int i = 0; i < validMoves.size(); i++){
