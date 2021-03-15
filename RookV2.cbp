@@ -35,6 +35,8 @@
 		<Unit filename="bitUtilities.hpp" />
 		<Unit filename="gameState.cpp" />
 		<Unit filename="gameState.hpp" />
+		<Unit filename="heuristics.cpp" />
+		<Unit filename="heuristics.hpp" />
 		<Unit filename="keyUtilities.cpp" />
 		<Unit filename="keyUtilities.hpp" />
 		<Unit filename="main.cpp" />
