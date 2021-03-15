@@ -71,10 +71,11 @@ void multiPlayerSession(char *playerColourInput){
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
-        std::cin.get();
+        //std::cin.get();
         //std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
     sc.printGameState();
+    std::cin.get();
     return;
 }
 
@@ -103,6 +104,7 @@ int main(){
     char argument1[100];
     landingMessage();
     while(true){
+        //printf("MAIN LOOP\n\n");
         mainPrompt();
         mainInput = mainSelection();
         sscanf(mainInput, "%s %s", command, argument1);
