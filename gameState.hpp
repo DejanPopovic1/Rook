@@ -42,6 +42,7 @@ private:
     T_boardStates *ss;
     bool playingAs;
     unsigned short int ply;
+    char movesWithoutTakeOrPawnMove;
 };
 
 #endif //GAME_STATE_H
