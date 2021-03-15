@@ -67,6 +67,10 @@ void GameState::changeState(string usrInput){
 }
 
 bool GameState::isThreeFoldRepetition(){
+    for (auto it = this->previousStatesCount.begin(); it != this->previousStatesCount.end(); ++it)
+        if (it->second == 3){
+            return true;
+        }
     return false;
 }
 
