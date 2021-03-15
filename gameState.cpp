@@ -43,6 +43,9 @@ void GameState::changeState(string usrInput){
             if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
                 this->movesWithoutTakeOrPawnMove++;
             }
+            else{
+                this->movesWithoutTakeOrPawnMove = 0;
+            }
             this->ply++;
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
@@ -73,7 +76,7 @@ void GameState::changeState(string usrInput){
 }
 
 bool GameState::isFiftyMoveRule(){
-    if(this->movesWithoutTakeOrPawnMove == 5){
+    if(this->movesWithoutTakeOrPawnMove == 100){
         return true;
     }
     return false;
@@ -119,7 +122,6 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     char from, to, piece, capturedPiece;
     bool isPieceCaptured;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
-    cout << (int)piece << endl << endl;
     if(piece == whitePawn || piece == blackPawn || isPieceCaptured){
        return true;
     }
