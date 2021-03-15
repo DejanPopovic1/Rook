@@ -9,6 +9,7 @@ using std::string;
 using std::vector;
 using std::cout;
 using std::endl;
+using std::pair;
 
 GameState::GameState(){
 
@@ -26,6 +27,7 @@ GameState::GameState(T_boardState boardState, bool pA){
     this->ss = initialiseStates();
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
+    this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
     genSuccStates(this->ss, &(this->c));
     genListOfValidMoves();
 }

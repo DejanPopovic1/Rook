@@ -36,7 +36,7 @@ private:
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
     std::vector<uint64_t> previousStates;
-    std::map<uint64_t, char> previousStatesCount;
+    std::map<uint64_t, int> previousStatesCount;
     T_boardState c;
     T_boardStates *ss;
     bool playingAs;
