@@ -196,7 +196,7 @@
 	"state.hpp"
 	"toAlgNotation.hpp"
 
-1615729433 source:c:\c_c++ code\rook\main.cpp
+1615832824 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
@@ -204,6 +204,7 @@
 	<iostream>
 	"moveRules.hpp"
 	"testInitialisations.hpp"
+	<cstdlib>
 	"bitUtilities.hpp"
 	"keyUtilities.hpp"
 
@@ -226,11 +227,12 @@
 	<iostream>
 	"keyUtilities.hpp"
 
-1615728388 c:\c_c++ code\rook\gamestate.hpp
+1615840045 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	<stdint.h>
 	<string>
 	<vector>
+	<map>
 	"keyUtilities.hpp"
 
 1615729781 source:c:\c_c++ code\rook\testinitialisations.cpp

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "moveRules.hpp"
 #include "testInitialisations.hpp"
+#include <cstdlib>
 
 #include "bitUtilities.hpp"
 #include "keyUtilities.hpp"
@@ -79,9 +80,13 @@ void multiPlayerSession(char *playerColourInput){
 
 void test(){
     //std::cin.get();
+//    printf("%ull\n", rand());
+//    printf("%ull\n", rand());
+//    getchar();
 }
 
 int main(){
+    test();
     test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();

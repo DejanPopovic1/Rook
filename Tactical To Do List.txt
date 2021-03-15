@@ -1,5 +1,4 @@
 Saturday - Sunday:
-	print updated previous Zobrist Keys
 	3 fold repetition rule
 	50 move rule
 Monday - Sunday:

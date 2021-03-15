@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include <map>
 #include "keyUtilities.hpp"
 
 enum PlayingAs{asWhite, asBlack};
@@ -35,6 +36,7 @@ private:
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
     std::vector<uint64_t> previousStates;
+    std::map<uint64_t, char> previousStatesCount;
     T_boardState c;
     T_boardStates *ss;
     bool playingAs;
