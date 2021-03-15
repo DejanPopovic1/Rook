@@ -33,14 +33,16 @@ GameState::GameState(T_boardState boardState, bool pA){
     genListOfValidMoves();
 }
 
+//Rope out the for loop and determine if its valid input in a seperate function
 void GameState::changeState(string usrInput){
     T_boardState cpy;
     for(int i = 0; i < this->ss->fi; i++){
+        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
         if(validMoves[i] == usrInput){
+            cpy = this->c;
             if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
                 this->movesWithoutTakeOrPawnMove++;
             }
-            cpy = this->c;
             this->ply++;
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
@@ -117,6 +119,7 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     char from, to, piece, capturedPiece;
     bool isPieceCaptured;
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
+    cout << (int)piece << endl << endl;
     if(piece == whitePawn || piece == blackPawn || isPieceCaptured){
        return true;
     }
