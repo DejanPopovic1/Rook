@@ -21,6 +21,7 @@ T_boardState GameState::getState(){
 //Dont pass in board state, rather create it in this constructor
 GameState::GameState(T_boardState boardState, bool pA){
     this->randomKey = createRandomKey();
+    this->movesWithoutTakeOrPawnMove = 0;
     this->ply = 0;
     this->playingAs = pA;
     this->c = boardState;
@@ -70,7 +71,7 @@ void GameState::changeState(string usrInput){
 }
 
 bool GameState::isFiftyMoveRule(){
-    if(this->movesWithoutTakeOrPawnMove == 50){
+    if(this->movesWithoutTakeOrPawnMove == 5){
         return true;
     }
     return false;
