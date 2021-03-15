@@ -36,6 +36,9 @@ void GameState::changeState(string usrInput){
     T_boardState cpy;
     for(int i = 0; i < this->ss->fi; i++){
         if(validMoves[i] == usrInput){
+            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
+                this->movesWithoutTakeOrPawnMove++;
+            }
             cpy = this->c;
             this->ply++;
             this->c = this->ss->bs[i];
