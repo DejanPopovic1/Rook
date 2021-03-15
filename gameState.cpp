@@ -56,7 +56,7 @@ void GameState::changeState(string usrInput){
             if(isCheckMate()){
                 this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
             }
-            else if(isStaleMate() || isThreeFoldRepetition()){
+            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){
                 gameMoves.push_back("1/2 - 1/2");
             }
             return;
@@ -64,6 +64,10 @@ void GameState::changeState(string usrInput){
     }
     cout << "Invalid move\n";
     return ;
+}
+
+bool GameState::isFiftyMoveRule(){
+    return false;
 }
 
 bool GameState::isThreeFoldRepetition(){

@@ -62,7 +62,7 @@ void multiPlayerSession(char *playerColourInput){
     //printTBitboardNumber(generateKey(&s, 1));
     //std::cout << std::hex << generateKey(&s) << std::dec;
     //printf("%d", generateKey(&s, 1));
-    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition()){
+    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
         sc.printGameState();
         //std::cout << std::endl;
         //sc.printSuccStates();
