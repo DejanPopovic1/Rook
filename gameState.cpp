@@ -45,12 +45,6 @@ void GameState::changeState(string usrInput){
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
-            if(isCheckMate()){
-                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-            }
-            else if(isStaleMate()){
-                gameMoves.push_back("1/2 - 1/2");
-            }
             uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
             this->previousStates.push_back(key);
             if(this->previousStatesCount.count(key)){
@@ -59,11 +53,21 @@ void GameState::changeState(string usrInput){
             else{
                 this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
             }
+            if(isCheckMate()){
+                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+            }
+            else if(isStaleMate() || isThreeFoldRepetition()){
+                gameMoves.push_back("1/2 - 1/2");
+            }
             return;
         }
     }
     cout << "Invalid move\n";
     return ;
+}
+
+bool GameState::isThreeFoldRepetition(){
+    return false;
 }
 
 bool GameState::isCheckMate(){

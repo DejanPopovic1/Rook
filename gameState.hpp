@@ -30,6 +30,7 @@ private:
     key *randomKey;
     void printValidMoves();
     bool isValidMoves();
+    bool isThreeFoldRepetition();
     bool isStateInCheck();
     void genListOfValidMoves();
     int turnTimeLeft;
