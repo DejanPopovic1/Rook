@@ -87,7 +87,6 @@ void test(){
 
 int main(){
     test();
-    test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);

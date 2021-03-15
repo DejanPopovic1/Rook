@@ -24,13 +24,13 @@ public:
     T_boardState getState();
     void printGameState();
     void printSuccStates();
+    bool isThreeFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
 private:
     key *randomKey;
     void printValidMoves();
     bool isValidMoves();
-    bool isThreeFoldRepetition();
     bool isStateInCheck();
     void genListOfValidMoves();
     int turnTimeLeft;
