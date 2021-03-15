@@ -67,6 +67,9 @@ void GameState::changeState(string usrInput){
 }
 
 bool GameState::isFiftyMoveRule(){
+    if(this->movesWithoutTakeOrPawnMove == 50){
+        return true;
+    }
     return false;
 }
 
