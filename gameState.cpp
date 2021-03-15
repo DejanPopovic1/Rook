@@ -58,10 +58,10 @@ void GameState::changeState(string usrInput){
             //incrementKey(uint64_t k, T_boardState *b, T_boardState *ss, key *randomKey)
             this->previousStates.push_back(key);
             if(this->previousStatesCount.count(key)){
-                //Update the count of occurance;
+                previousStatesCount[key] += 1;
             }
             else{
-                //add in a key value;
+                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
             }
             return;
         }
