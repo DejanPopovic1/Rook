@@ -219,7 +219,7 @@
 	<stdio.h>
 	<iostream>
 
-1615851894 source:c:\c_c++ code\rook\gamestate.cpp
+1615900968 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
@@ -227,7 +227,7 @@
 	<iostream>
 	"keyUtilities.hpp"
 
-1615849466 c:\c_c++ code\rook\gamestate.hpp
+1615900997 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	<stdint.h>
 	<string>
@@ -258,8 +258,9 @@
 1615896850 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
-1615897650 source:c:\c_c++ code\rook\searchtree.cpp
+1615899669 source:c:\c_c++ code\rook\searchtree.cpp
 	"searchTree.hpp"
+	"moveGeneration.hpp"
 
 1615897925 c:\c_c++ code\rook\searchtree.hpp
 	"state.hpp"

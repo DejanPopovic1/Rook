@@ -28,6 +28,7 @@ public:
     bool isThreeFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
+    void moveCycle(std::string usrInput);
 private:
     key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);

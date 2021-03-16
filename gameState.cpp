@@ -117,6 +117,10 @@ void GameState::printSuccStates(){
     printStates(this->ss, this->playingAs);
 }
 
+void GameState::moveCycle(string usrInput){
+    changeState(usrInput);
+}
+
 //implement isPawn function
 bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     char from, to, piece, capturedPiece;
