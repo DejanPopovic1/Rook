@@ -177,6 +177,7 @@ bool isPosEmpty(const T_boardState *b, int n){
 
 //Need to change player turn when adding state
 //At this point in time, the state that is input, src, is pseudo valid. We must now make it valid.
+//This complication, with the flag aswell, I think will be avoided when we have a proper searchTree in place
 void addState(T_boardStates *dst, T_boardState *src){
     if(src->evaluateCheck){
         src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
