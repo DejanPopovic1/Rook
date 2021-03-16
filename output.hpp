@@ -15,6 +15,7 @@
 
 typedef int T_chessboard[RANK_SIZE][FILE_SIZE];
 
+void multiPlayerPrompt();
 //int whosTurn(const int halfPly);
 int whatIsPiece(T_boardState b, int i);
 T_chessboard *toIntArray(T_boardState b);

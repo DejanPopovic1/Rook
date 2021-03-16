@@ -20,11 +20,6 @@ void mainPrompt(){
     return;
 }
 
-void multiPlayerPrompt(){
-    printf(" -> ");
-    return;
-}
-
 char* mainSelection(){
     char *mainSelection = (char*)malloc(MAIN_SELECTION * sizeof(char));
     fgets(mainSelection, MAIN_SELECTION, stdin);
@@ -60,17 +55,9 @@ void multiPlayerSession(char *playerColourInput){
     T_boardStates *bss = initialiseStates();
     T_boardState c;
     while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
-        sc.printGameState();
-        multiPlayerPrompt();
-        std::cin >> usrInput;
+        //sc.printGameState();
         sc.moveCycle(usrInput);
-
-
-
-
-
-//        sc.changeState(usrInput);
-     }
+    }
     sc.printGameState();
     std::cin.get();
     return;

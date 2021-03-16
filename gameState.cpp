@@ -117,8 +117,31 @@ void GameState::printSuccStates(){
     printStates(this->ss, this->playingAs);
 }
 
+string GameState::engineMove(){
+    T_boardStates *bss = initialiseStates();
+    genSuccStates(bss, &this->c);
+    int randomMoveIndex = rand() % bss->fi;
+    T_boardState ss = bss->bs[randomMoveIndex];
+    return toAlgebraicNotation(&this->c, &ss);
+}
+
 void GameState::moveCycle(string usrInput){
-    changeState(usrInput);
+    if(this->playingAs){
+        printGameState();
+        changeState(engineMove());
+        printGameState();
+        multiPlayerPrompt();
+        std::cin >> usrInput;
+        changeState(usrInput);
+    }
+    else{
+        printGameState();
+        multiPlayerPrompt();
+        std::cin >> usrInput;
+        changeState(usrInput);
+        printGameState();
+        changeState(engineMove());
+    }
 }
 
 //implement isPawn function

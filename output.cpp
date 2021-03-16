@@ -12,6 +12,12 @@
 #include "gameState.hpp"
 #include <iostream>
 
+
+void multiPlayerPrompt(){
+    printf(" -> ");
+    return;
+}
+
 //int whosTurn(const int halfPly){
 //    if((halfPly % 2) == 1){
 //        return whiteTurn;

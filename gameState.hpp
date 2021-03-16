@@ -29,6 +29,7 @@ public:
     bool isCheckMate();
     bool isStaleMate();
     void moveCycle(std::string usrInput);
+    std::string engineMove();
 private:
     key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
