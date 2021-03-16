@@ -1,4 +1,5 @@
-	Implement heuristic assignment	
+	Implement simple heuristic assignment - Pieces, positioning and castling
 	Implement state tree
-	Implement random AI rule
+	Retrofitting code to utilise state tree (the tree should be SUPPLEMENTED to the list and gradually phased out instead of refactoring it in one go)
+	Implement random AI rule and interface to random response
 	Implement Minimax algorithm
