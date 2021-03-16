@@ -4,3 +4,4 @@ threefold repetition rule automatically results in a draw
 50 move rule automatically results in a draw
 No fivefold repetition or 75 move rule
 Crashes on valid moves when the opponent (black) is checkmated in AI random mode
+test the whole check mate thing a bit more against AI

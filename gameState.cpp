@@ -119,7 +119,7 @@ void GameState::printSuccStates(){
 
 string GameState::engineMove(){
     T_boardStates *bss = initialiseStates();
-    this->c.evaluateCheck = 0;
+    this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
     genSuccStates(bss, &this->c);
     //this->validMoves.clear();
     //this->ss = initialiseStates();
@@ -138,7 +138,7 @@ string GameState::engineMove(){
     return toAlgebraicNotation(&this->c, &ss);
 }
 
-//As per comment above, this needs refactoring to first determine if input is correctS
+//As per comment above, this needs refactoring to first determine if input is correct
 void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
