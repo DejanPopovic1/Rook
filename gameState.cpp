@@ -125,7 +125,8 @@ string GameState::engineMove(){
     return toAlgebraicNotation(&this->c, &ss);
 }
 
-void GameState::moveCycle(string usrInput){
+void GameState::moveCycle(){
+    string usrInput;
     if(this->playingAs){
         printGameState();
         changeState(engineMove());

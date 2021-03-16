@@ -28,7 +28,7 @@ public:
     bool isThreeFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
-    void moveCycle(std::string usrInput);
+    void moveCycle();
     std::string engineMove();
 private:
     key *randomKey;

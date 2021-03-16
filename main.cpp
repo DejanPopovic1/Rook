@@ -56,7 +56,7 @@ void multiPlayerSession(char *playerColourInput){
     T_boardState c;
     while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
         //sc.printGameState();
-        sc.moveCycle(usrInput);
+        sc.moveCycle();
     }
     sc.printGameState();
     std::cin.get();
