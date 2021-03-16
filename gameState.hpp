@@ -20,7 +20,7 @@ class GameState{
 public:
     GameState();
     GameState(T_boardState boardState, bool pA);
-    void changeState(std::string usrInput);
+    bool changeState(std::string usrInput);
     T_boardState getState();
     void printGameState();
     void printSuccStates();

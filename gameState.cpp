@@ -34,7 +34,7 @@ GameState::GameState(T_boardState boardState, bool pA){
 }
 
 //Rope out the for loop and determine if its valid input in a seperate function
-void GameState::changeState(string usrInput){
+bool GameState::changeState(string usrInput){
     T_boardState cpy;
     for(int i = 0; i < this->ss->fi; i++){
         //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
@@ -68,11 +68,11 @@ void GameState::changeState(string usrInput){
             else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){
                 gameMoves.push_back("1/2 - 1/2");
             }
-            return;
+            return true;
         }
     }
     cout << "Invalid move\n";
-    return ;
+    return false;
 }
 
 bool GameState::isFiftyMoveRule(){
@@ -125,21 +125,24 @@ string GameState::engineMove(){
     return toAlgebraicNotation(&this->c, &ss);
 }
 
+//As per comment above, this needs refactoring to first determine if input is correctS
 void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
         printGameState();
         changeState(engineMove());
         printGameState();
-        multiPlayerPrompt();
-        std::cin >> usrInput;
-        changeState(usrInput);
+        do{
+            multiPlayerPrompt();
+            std::cin >> usrInput;
+        }while(!changeState(usrInput));
     }
     else{
         printGameState();
-        multiPlayerPrompt();
-        std::cin >> usrInput;
-        changeState(usrInput);
+        do{
+            multiPlayerPrompt();
+            std::cin >> usrInput;
+        }while(!changeState(usrInput));
         printGameState();
         changeState(engineMove());
     }
