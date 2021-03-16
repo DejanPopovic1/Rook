@@ -46,6 +46,8 @@
 		<Unit filename="moveRules.hpp" />
 		<Unit filename="output.cpp" />
 		<Unit filename="output.hpp" />
+		<Unit filename="searchTree.cpp" />
+		<Unit filename="searchTree.hpp" />
 		<Unit filename="state.cpp" />
 		<Unit filename="state.hpp" />
 		<Unit filename="testInitialisations.cpp" />

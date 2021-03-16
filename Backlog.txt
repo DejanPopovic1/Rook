@@ -13,6 +13,9 @@ Before doing a complete test, have the ability to BACKTRACK moves. This is added
 
 Linefeed to show progress of AI state generator (add colours and animating ASCII's to make it look impressive)
 BENCHMARK
+Enhance the very basic evaluation function
+Benchmark a previous version to a new version to know if heuristics are of higher quality
+Basic opening moves
 bAll and wAll to be included as part of state
 Functions that are inlined for performance in one file but not inlined in another should be defined in the header file and not .c file! An example of this is functions in binUtils
 Establish BENCHMARKING before starting efficiency gains

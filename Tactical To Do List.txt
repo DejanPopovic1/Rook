@@ -1,5 +1,4 @@
-	Implement simple heuristic assignment - Pieces, positioning and castling
-	Implement state tree
+	Implement state tree - return NUMBER of moves - this is needed for mobility heuristics
 	Retrofitting code to utilise state tree (the tree should be SUPPLEMENTED to the list and gradually phased out instead of refactoring it in one go)
 	Implement random AI rule and interface to random response
 	Implement Minimax algorithm
