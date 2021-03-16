@@ -59,20 +59,11 @@ void multiPlayerSession(char *playerColourInput){
     std::string usrInput;
     T_boardStates *bss = initialiseStates();
     T_boardState c;
-    //printTBitboardNumber(generateKey(&s, 1));
-    //std::cout << std::hex << generateKey(&s) << std::dec;
-    //printf("%d", generateKey(&s, 1));
     while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
         sc.printGameState();
-        //std::cout << std::endl;
-        //sc.printSuccStates();
-        //printState(sc.getState(), playerColour);
-        //sc.printValidMoves();//This should be part of the class printGameState()
         multiPlayerPrompt();
         std::cin >> usrInput;
         sc.changeState(usrInput);
-        //std::cin.get();
-        //std::cout << !sc.isCheckMate() << std::endl << !sc.isStaleMate() << std::endl;
      }
     sc.printGameState();
     std::cin.get();

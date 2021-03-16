@@ -6,6 +6,9 @@
 //
 //}
 
+
+
+
 T_searchNode* initialiseSearchTree(T_boardState *rootState){
     T_searchNode rootNode;
     rootNode.b = *rootState;
