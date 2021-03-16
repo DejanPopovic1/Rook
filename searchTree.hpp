@@ -3,6 +3,8 @@
 
 #include "state.hpp"
 
+typedef struct searchNode T_searchNode;
+
 struct searchNode{
     T_boardState b;
     searchNode *scc[MAX_SUCC_STATES];

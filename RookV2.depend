@@ -258,3 +258,9 @@
 1615896850 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
+1615897650 source:c:\c_c++ code\rook\searchtree.cpp
+	"searchTree.hpp"
+
+1615897925 c:\c_c++ code\rook\searchtree.hpp
+	"state.hpp"
+
