@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "state.hpp"
 
-//FIX THESE, THEY ARE ERRORS
+//FIX THESE, THEY ARE ERRORS - I think its fixed now. Check
 #define WHITE_KINGSIDE_PASS 96
 #define WHITE_QUEENSIDE_PASS 12
 #define BLACK_KINGSIDE_PASS 6917529027641081856
