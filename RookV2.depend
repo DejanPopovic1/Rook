@@ -107,7 +107,7 @@
 	"bitUtilities.hpp"
 	<limits.h>
 
-1615729757 c:\c_c++ code\rook\state.hpp
+1615897681 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
@@ -249,5 +249,12 @@
 
 1615726123 c:\c_c++ code\rook\keyutilities.hpp
 	<stdint.h>
+	"state.hpp"
+
+1615896868 source:c:\c_c++ code\rook\heuristics.cpp
+	"heuristics.hpp"
+	"state.hpp"
+
+1615896850 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
