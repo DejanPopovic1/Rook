@@ -119,7 +119,9 @@ void GameState::printSuccStates(){
 
 string GameState::engineMove(){
     T_boardStates *bss = initialiseStates();
-    this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
+    cout << "Debug: " << (int)this->c.evaluateCheck << endl;
+    cout << "End Debug" << endl;
+    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
     genSuccStates(bss, &this->c);
     //this->validMoves.clear();
     //this->ss = initialiseStates();

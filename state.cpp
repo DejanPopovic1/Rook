@@ -176,16 +176,19 @@ bool isPosEmpty(const T_boardState *b, int n){
 }
 
 //Need to change player turn when adding state
+//At this point in time, the state that is input, src, is pseudo valid. We must now make it valid.
 void addState(T_boardStates *dst, T_boardState *src){
     if(src->evaluateCheck){
         src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+        //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
         (dst->bs)[dst->fi] = *src;
         (dst->fi)++;
     }
     else {
-        T_boardState cpy = *src;
+        T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
         if(!isInCheck(&cpy)){
             src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+            //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
             (dst->bs)[dst->fi] = *src;
             (dst->fi)++;
         }
