@@ -3,3 +3,4 @@ playing more than one multiplayer gives an error. I think its because memory was
 threefold repetition rule automatically results in a draw
 50 move rule automatically results in a draw
 No fivefold repetition or 75 move rule
+Crashes on valid moves when the opponent (black) is checkmated in AI random mode
