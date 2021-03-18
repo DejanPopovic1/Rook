@@ -63,22 +63,34 @@ int generateLinkedList(T_Node **iterator, int level){
     T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
     newNode->b = (*iterator)->b;
     genSuccStatesSTUB(&newNode);
-
-    //newNode->info = 3;//In this step, you would pass execute genSuccStates(newNode); The genSuccStates will populate the array of pointers to point to Nodes with values of each succesor states. These pointed to nodes array's will be left undefined. When there are no more successor states, a NULL value is added in the array
-//    **iterator = newNode;
-    //newNode->link = NULL;
-    (*iterator) = newNode;
-    for(int i = 0; newNode->scc[i] != NULL; i++){
-        generateLinkedList(iterator, level);
-
-
-
+    (*iterator) = newNode->scc[0];
+    if((*iterator)->b.whosTurn){
+        int min = 1000;
+        int e;
+        for(int i = 0; newNode->scc[i] != NULL; i++){
+            e = generateLinkedList(iterator, level);
+            if(e < min){
+                min = e;
+            }
+        }
+        return min;
     }
+    else{
+        int max = -1000;
+        int e;
+        for(int i = 0; newNode->scc[i] != NULL; i++){
+            e = generateLinkedList(iterator, level);
+            if(e > max){
+                max = e;
+            }
+        }
+        return max;
+    }
+}
         //Contain the following statement in a for loop. Iterate UNTIL a NULL pointer is reached
     //generateLinkedList(iterator, level); //Iterate through all the pointers. The function returns an int value so you must add in if statement to say if white then if result of function is greater than current max, then set new current max
         //End for
         //Return min/max
-}
 
 
 

@@ -196,7 +196,7 @@
 	"state.hpp"
 	"toAlgNotation.hpp"
 
-1615903941 source:c:\c_c++ code\rook\main.cpp
+1616077788 source:c:\c_c++ code\rook\main.cpp
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
@@ -204,6 +204,7 @@
 	<iostream>
 	"moveRules.hpp"
 	"testInitialisations.hpp"
+	"searchTree.hpp"
 	<cstdlib>
 	"bitUtilities.hpp"
 	"keyUtilities.hpp"
@@ -264,6 +265,6 @@
 	"testInitialisations.hpp"
 	<iostream>
 
-1616077726 c:\c_c++ code\rook\searchtree.hpp
+1616078301 c:\c_c++ code\rook\searchtree.hpp
 	"state.hpp"
 
