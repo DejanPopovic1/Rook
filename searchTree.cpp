@@ -60,7 +60,7 @@ int generateLinkedList(T_Node **iterator, int level){
     }
     level++;
     T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
-    //newNode->b = (*iterator)->b;//THIS IS A DUMMY STATEMENT THAT MAKES A DUPLICATE - REMOVE IN FINAL VERSION
+    newNode->b = (*iterator)->b;
     genSuccStatesSTUB(&newNode);
 
     //newNode->info = 3;//In this step, you would pass execute genSuccStates(newNode); The genSuccStates will populate the array of pointers to point to Nodes with values of each succesor states. These pointed to nodes array's will be left undefined. When there are no more successor states, a NULL value is added in the array
