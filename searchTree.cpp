@@ -1,6 +1,7 @@
 #include "searchTree.hpp"
 #include "moveGeneration.hpp"
 #include "testInitialisations.hpp"
+#include "output.hpp"
 
 #include <iostream>
 
@@ -55,20 +56,25 @@ int evaluateSTUB(T_Node **iterator){
     return 5;
 }
 
-int generateLinkedList(T_Node **iterator, int level){
+int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
         return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+        cout << "Leaf evaluated" << endl;
     }
     level++;
     T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
     newNode->b = (*iterator)->b;
     genSuccStatesSTUB(&newNode);
-    (*iterator) = newNode->scc[0];
+    (*iterator) = newNode;
+    //printTBitboard((*iterator)->b.wPawn);//THIS LINE IS AN ERROR
+    (*iterator)->b.whosTurn;
     if((*iterator)->b.whosTurn){
+        cout << "black turn" << endl;
         int min = 1000;
         int e;
         for(int i = 0; newNode->scc[i] != NULL; i++){
-            e = generateLinkedList(iterator, level);
+            cout << "Test black" << endl;
+            e = generateTreeNode(iterator, level);
             if(e < min){
                 min = e;
             }
@@ -76,10 +82,12 @@ int generateLinkedList(T_Node **iterator, int level){
         return min;
     }
     else{
+        cout << "white turn" << endl;
         int max = -1000;
         int e;
         for(int i = 0; newNode->scc[i] != NULL; i++){
-            e = generateLinkedList(iterator, level);
+            cout << "Test white" << endl;
+            e = generateTreeNode(iterator, level);
             if(e > max){
                 max = e;
             }

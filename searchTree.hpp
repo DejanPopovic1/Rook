@@ -3,7 +3,7 @@
 
 #include "state.hpp"
 
-#define DEPTH_LIMIT_LEVEL 3
+#define DEPTH_LIMIT_LEVEL 6
 
 typedef struct Node T_Node;
 
@@ -14,6 +14,6 @@ struct Node{
 
 void genSuccStatesSTUB(T_Node **newNode);
 int evaluateSTUB(T_Node **iterator);
-int generateLinkedList(T_Node **iterator, int level);
+int generateTreeNode(T_Node **iterator, int level);
 
 #endif // SEARCH_TREE_H
