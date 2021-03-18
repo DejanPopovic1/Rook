@@ -50,9 +50,13 @@ void genSuccStatesSTUB(T_Node **newNode){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
+int evaluateSTUB(T_Node **iterator){
+    return 5;
+}
+
 int generateLinkedList(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        return 5;//Heuristically evaluate the state and return this evaluated value
+        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
     T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
@@ -60,7 +64,7 @@ int generateLinkedList(T_Node **iterator, int level){
     genSuccStatesSTUB(&newNode);
 
     //newNode->info = 3;//In this step, you would pass execute genSuccStates(newNode); The genSuccStates will populate the array of pointers to point to Nodes with values of each succesor states. These pointed to nodes array's will be left undefined. When there are no more successor states, a NULL value is added in the array
-    //(*iterator)->link = newNode;
+//    **iterator = newNode;
     //newNode->link = NULL;
     (*iterator) = newNode;
         //Contain the following statement in a for loop. Iterate UNTIL a NULL pointer is reached
