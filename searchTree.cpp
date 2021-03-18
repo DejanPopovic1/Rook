@@ -30,33 +30,19 @@ using namespace std;
 //    (*tail) = newNode;
 //}
 
-
-
-
-
 //Arbitrarily populate 5 Successor states
 void genSuccStatesSTUB(T_Node **newNode){
-    T_boardState x1 = initialiseBoardState();
-    T_boardState x2 = CMinitialiseBoardState();
-    T_boardState x3 = SMinitialiseBoardState();
-    T_boardState x4 = initialiseBoardState();
-    T_boardState x5 = PPinitialiseBoardState();
-
     (*newNode)->scc[1] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[2] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[3] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[4] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[5] = (T_Node*)malloc(sizeof(T_Node));
-
     (*newNode)->scc[1]->b = initialiseBoardState();
     (*newNode)->scc[2]->b = CMinitialiseBoardState();
     (*newNode)->scc[3]->b = SMinitialiseBoardState();
     (*newNode)->scc[4]->b = initialiseBoardState();
     (*newNode)->scc[5]->b = PPinitialiseBoardState();
 }
-
-
-
 
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
 //1) No need to conduct if statements below
