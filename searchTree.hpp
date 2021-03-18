@@ -3,11 +3,13 @@
 
 #include "state.hpp"
 
-typedef struct searchNode T_searchNode;
+#define DEPTH_LEVEL
 
-struct searchNode{
+typedef struct Node T_Node;
+
+struct Node{
     T_boardState b;
-    searchNode *scc[MAX_SUCC_STATES];
+    Node *scc[MAX_SUCC_STATES];
 };
 
 #endif // SEARCH_TREE_H
