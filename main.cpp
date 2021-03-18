@@ -67,7 +67,8 @@ void test(){
     //std::cin.get();
 //    printf("%ull\n", rand());
 //    printf("%ull\n", rand());
-//    getchar();
+
+    getchar();
 }
 
 int main(){

@@ -68,6 +68,12 @@ int generateLinkedList(T_Node **iterator, int level){
 //    **iterator = newNode;
     //newNode->link = NULL;
     (*iterator) = newNode;
+    for(int i = 0; newNode->scc[i] != NULL; i++){
+        generateLinkedList(iterator, level);
+
+
+
+    }
         //Contain the following statement in a for loop. Iterate UNTIL a NULL pointer is reached
     //generateLinkedList(iterator, level); //Iterate through all the pointers. The function returns an int value so you must add in if statement to say if white then if result of function is greater than current max, then set new current max
         //End for
