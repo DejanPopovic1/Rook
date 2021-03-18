@@ -5,6 +5,7 @@
 #include <iostream>
 #include "moveRules.hpp"
 #include "testInitialisations.hpp"
+#include "searchTree.hpp"
 #include <cstdlib>
 
 #include "bitUtilities.hpp"
@@ -67,7 +68,11 @@ void test(){
     //std::cin.get();
 //    printf("%ull\n", rand());
 //    printf("%ull\n", rand());
-
+    T_boardState bs = initialiseBoardState();
+    T_Node *head;
+    head->b = bs;
+    int level = 0;
+    std::cout << generateLinkedList(&head, level) << std::endl;
     getchar();
 }
 
