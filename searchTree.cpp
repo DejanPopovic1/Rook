@@ -37,6 +37,7 @@ void genSuccStatesSTUB(T_Node **newNode){
     (*newNode)->scc[3] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[4] = (T_Node*)malloc(sizeof(T_Node));
     (*newNode)->scc[5] = (T_Node*)malloc(sizeof(T_Node));
+    (*newNode)->scc[6] = NULL;
     (*newNode)->scc[1]->b = initialiseBoardState();
     (*newNode)->scc[2]->b = CMinitialiseBoardState();
     (*newNode)->scc[3]->b = SMinitialiseBoardState();
