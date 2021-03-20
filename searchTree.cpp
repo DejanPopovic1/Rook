@@ -123,7 +123,7 @@ void genSuccStatesSTUB(T_Node *node){
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
 int evaluateSTUB(T_Node *iterator){
-    cout << evaluateBoard(&iterator->b) << endl;
+    //cout << evaluateBoard(&iterator->b) << endl;
     return evaluateBoard(&iterator->b);
 }
 

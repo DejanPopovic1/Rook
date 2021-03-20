@@ -75,15 +75,15 @@ void test(){
     h4.b = PPinitialiseBoardState();
     int level = 0;
     T_Node *headPtr = &head;
-    printState(head.b);
-    printState(h2.b);
-    printState(h3.b);
-    printState(h4.b);
-    std::cout << evaluateBoard(&head.b) << endl;
-        std::cout << evaluateBoard(&h2.b)<< endl;
-            std::cout << evaluateBoard(&h3.b)<< endl;
-                std::cout << evaluateBoard(&h4.b)<< endl;
-    //std::cout << generateTreeNode(&headPtr, level) << std::endl;
+//    printState(head.b);
+//    printState(h2.b);
+//    printState(h3.b);
+//    printState(h4.b);
+//    std::cout << evaluateBoard(&head.b) << endl;
+//    std::cout << evaluateBoard(&h2.b)<< endl;
+//    std::cout << evaluateBoard(&h3.b)<< endl;
+//    std::cout << evaluateBoard(&h4.b)<< endl;
+    std::cout << generateTreeNode(&headPtr, level) << std::endl;
     getchar();
 }
 

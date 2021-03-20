@@ -13,6 +13,7 @@ Before doing a complete test, have the ability to BACKTRACK moves. This is added
 
 Linefeed to show progress of AI state generator (add colours and animating ASCII's to make it look impressive)
 BENCHMARK
+https://www.chessprogramming.org/Simplified_Evaluation_Function
 Enhance the very basic evaluation function
 Benchmark a previous version to a new version to know if heuristics are of higher quality
 Basic opening moves
