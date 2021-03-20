@@ -32,6 +32,14 @@ using namespace std;
 //}
 
 //Arbitrarily populate 5 Successor states
+
+void freeTreeNode(T_Node *node){
+    for(int i = 0; node->scc[i] != NULL; i++){
+        free(node->scc[i]);
+    }
+}
+
+
 void genSuccStatesSTUB(T_Node *node){
     node->scc[0] = (T_Node*)malloc(sizeof(T_Node));
     node->scc[1] = (T_Node*)malloc(sizeof(T_Node));
@@ -138,6 +146,7 @@ int generateTreeNode(T_Node **iterator, int level){
                 min = e;
             }
         }
+        //freeTreeNode(*iterator);
         return min;
     }
     else{
