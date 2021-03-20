@@ -207,6 +207,7 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         addState(dst, &cpy);
         addStateNode(node, &cpy);
         setCharBit(&((dst->bs[dst->fi - 1]).wEnPassants), 7 - (n % 8));
+        setCharBit(&node->scc[node->fp - 1]->b.wEnPassants, 7 - (n % 8));
     }
     //CAPTURE LEFT
     if(isPosBlack(b, n + 7) && (n % 8)){
@@ -279,6 +280,7 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         addState(dst, &cpy);
         addStateNode(node, &cpy);
         setCharBit(&((dst->bs[dst->fi - 1]).bEnPassants), 7 - (n % 8));
+        setCharBit(&node->scc[node->fp - 1]->b.bEnPassants, 7 - (n % 8));
     }
     //CAPTURE RIGHT
     if(isPosWhite(b, n - 7) && ((n + 1) % 8)){
@@ -386,6 +388,7 @@ void genDirStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bi
 
 void genRaySuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
     int numOfBeforeStates = dst->fi;
+    int numOfBeforeStatesN = node->fp;
     switch(piece){
         case whiteBishop:
             genDirStates(node, dst, b, n, rays, northEast, whiteBishop);
@@ -433,6 +436,7 @@ void genRaySuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, 
             break;
     }
     int numOfAfterStates = dst->fi;
+    int numOfAfterStatesN = node->fp;
     if(piece == whiteRook && n == 0){
         for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
             dst->bs[i].castlesLRWhite = 0;
@@ -453,6 +457,36 @@ void genRaySuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, 
             dst->bs[i].castlesRRBlack = 0;
         }
     }
+
+
+    if(piece == whiteRook && n == 0){
+        for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
+            node->scc[i]->b.castlesLRWhite = 0;
+        }
+    }
+    else if(piece == whiteRook && n == 7){
+        for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
+            node->scc[i]->b.castlesRRWhite = 0;
+        }
+    }
+    else if(piece == blackRook && n == 56){
+        for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
+            node->scc[i]->b.castlesLRBlack = 0;
+        }
+    }
+    else if(piece == blackRook && n == 63){
+        for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
+            node->scc[i]->b.castlesRRBlack = 0;
+        }
+    }
+
+
+
+
+
+
+
+
 }
 
 void genSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b){
@@ -754,6 +788,9 @@ bool isKingExist(T_boardState *b, bool whosKing){
     return false;
 }
 
+//!!!!!!!!!!!!!!!
+//CHANGE BSS TO NODE!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!
 bool isInCheck(T_boardState *b){
     bool result;
     bool whosTurn = b->whosTurn;

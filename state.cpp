@@ -196,8 +196,6 @@ void addState(T_boardStates *dst, T_boardState *src){
     }
 }
 
-
-
 T_boardStates *initialiseStates(){
     T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));
     bss->fi = 0;
