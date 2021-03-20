@@ -69,13 +69,14 @@ void test(){
     T_Node head;
     head.b = initialiseBoardState();
     int level = 0;
+    T_Node *headPtr = &head;
     //T_Node *headPtr = &head;
-    genSuccStatesSTUB(&head);
+    //genSuccStatesSTUB(&head);
 
-    printState(head.b);
-    printState(head.scc[2]->b);
+    //printState(head.b);
+    //printState(head.scc[2]->b);
     //printState(head->b);
-    //std::cout << generateTreeNode(&head, level) << std::endl;
+    std::cout << generateTreeNode(&headPtr, level) << std::endl;
     getchar();
 }
 

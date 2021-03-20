@@ -52,49 +52,49 @@ void genSuccStatesSTUB(T_Node *node){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
-//int evaluateSTUB(T_Node **iterator){
-//    return 5;
-//}
-//
-//int generateTreeNode(T_Node **iterator, int level){
-//    if(level == DEPTH_LIMIT_LEVEL){
-//        cout << "Leaf evaluated" << endl;
-//        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
-//
-//    }
-//    level++;
-//    genSuccStatesSTUB(iterator);
-//    if((*iterator)->b.whosTurn){
-//        cout << "black turn" << endl;
-//        int min = 1000;
-//        int e;
-//        cout << "This should print 1" << endl;
-//        //cout << newNode->scc[0]<< endl;
-//        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-//            cout << "Test black" << endl;
-//            e = generateTreeNode(iterator, level);
-//            if(e < min){
-//                min = e;
-//            }
-//        }
-//        return min;
-//    }
-//    else{
-//        cout << "white turn" << endl;
-//        int max = -1000;
-//        int e;
-//        cout << "This should print 2" << endl;
-////                cout << newNode->scc[0]<< endl;
-//        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-//            cout << "Test white" << endl;
-//            e = generateTreeNode(iterator, level);
-//            if(e > max){
-//                max = e;
-//            }
-//        }
-//        return max;
-//    }
-//}
+int evaluateSTUB(T_Node **iterator){
+    return 5;
+}
+
+int generateTreeNode(T_Node **iterator, int level){
+    if(level == DEPTH_LIMIT_LEVEL){
+        cout << "Leaf evaluated" << endl;
+        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+
+    }
+    level++;
+    genSuccStatesSTUB(*iterator);
+    if((*iterator)->b.whosTurn){
+        cout << "black turn" << endl;
+        int min = 1000;
+        int e;
+        cout << "This should print 1" << endl;
+        //cout << newNode->scc[0]<< endl;
+        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+            cout << "Test black" << endl;
+            e = generateTreeNode(iterator, level);
+            if(e < min){
+                min = e;
+            }
+        }
+        return min;
+    }
+    else{
+        cout << "white turn" << endl;
+        int max = -1000;
+        int e;
+        cout << "This should print 2" << endl;
+//                cout << newNode->scc[0]<< endl;
+        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+            cout << "Test white" << endl;
+            e = generateTreeNode(iterator, level);
+            if(e > max){
+                max = e;
+            }
+        }
+        return max;
+    }
+}
 
 
 
