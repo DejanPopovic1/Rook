@@ -39,7 +39,6 @@ void freeTreeNode(T_Node *node){
     }
 }
 
-
 void genSuccStatesSTUB(T_Node *node){
     node->scc[0] = (T_Node*)malloc(sizeof(T_Node));
     node->scc[1] = (T_Node*)malloc(sizeof(T_Node));
@@ -146,7 +145,7 @@ int generateTreeNode(T_Node **iterator, int level){
                 min = e;
             }
         }
-        //freeTreeNode(*iterator);
+        freeTreeNode(*iterator);
         return min;
     }
     else{
@@ -162,6 +161,7 @@ int generateTreeNode(T_Node **iterator, int level){
                 max = e;
             }
         }
+        freeTreeNode(*iterator);
         return max;
     }
 }
