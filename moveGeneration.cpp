@@ -177,6 +177,7 @@ void promote(T_Node *node, T_boardStates *dst, T_boardState *b, int n, int piece
     b->whosTurn ? setBit(sm, n - 8) : setBit(sm, n + 8);
     b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
     addState(dst, &cpy);
+    addStateNode(node, &cpy);
 }
 
 void takePromote(T_Node *node, T_boardStates *dst, T_boardState *b, int n, int piece){
@@ -185,6 +186,7 @@ void takePromote(T_Node *node, T_boardStates *dst, T_boardState *b, int n, int p
     setBit(sm, n);
     b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
     addState(dst, &cpy);
+    addStateNode(node, &cpy);
 }
 
 //factor out specific moves once all moveGenerations complete
@@ -196,12 +198,14 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         T_boardState cpy = *b;
         move(&cpy, n + 8, n, whitePawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //MOVE UP UP
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n) && isSecondRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
         setCharBit(&((dst->bs[dst->fi - 1]).wEnPassants), 7 - (n % 8));
     }
     //CAPTURE LEFT
@@ -216,6 +220,7 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         }
         else{
             addState(dst, &cpy);
+            addStateNode(node, &cpy);
         }
     }
     //CAPTURE RIGHT
@@ -230,6 +235,7 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         }
         else{
             addState(dst, &cpy);
+            addStateNode(node, &cpy);
         }
     }
     //EN PASSANT LEFT
@@ -239,6 +245,7 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         clearBit(&((&cpy)->bPawn), n - 1);
         move(&cpy, n + 7, n, whitePawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //EN PASSANT RIGHT
     if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile + 1)) && isRankFive(n)){
@@ -246,6 +253,7 @@ void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         clearBit(&((&cpy)->bPawn), n + 1);
         move(&cpy, n + 9, n, whitePawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //PROMOTIONS
     if(isRankSeven(n) && isUpEmpty(b, n)){
@@ -262,12 +270,14 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         T_boardState cpy = *b;
         move(&cpy, n - 8, n, blackPawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //MOVE DOWN DOWN
     if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n) && isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n - 16, n, blackPawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
         setCharBit(&((dst->bs[dst->fi - 1]).bEnPassants), 7 - (n % 8));
     }
     //CAPTURE RIGHT
@@ -282,6 +292,7 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         }
         else{
             addState(dst, &cpy);
+            addStateNode(node, &cpy);
         }
     }
     //CAPTURE LEFT
@@ -296,6 +307,7 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         }
         else{
             addState(dst, &cpy);
+            addStateNode(node, &cpy);
         }
     }
     //EN PASSANT RIGHT
@@ -305,6 +317,7 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         clearBit(&(cpy.wPawn), n + 1);
         move(&cpy, n - 7, n, blackPawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //EN PASSANT LEFT
     if((frFile % 8) && isCharBitSet(b->wEnPassants, 7 - (frFile - 1)) && isRankFour(n)){
@@ -312,6 +325,7 @@ void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n
         clearBit(&(cpy.wPawn), n - 1);
         move(&cpy, n - 9, n, blackPawn);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     //PROMOTIONS
     if(isRankTwo(n) && isDownEmpty(b, n)){
@@ -328,6 +342,7 @@ void genMoves(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboa
     T_boardState cpy = *b;
     move(&cpy, validMove, n, piece);
     addState(dst, &cpy);
+    addStateNode(node, &cpy);
     clearBit(validMoves, validMove);
 }
 
@@ -359,11 +374,13 @@ void genDirStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bi
         T_boardState cpy = *b;
         move(&cpy, lastPos, n, piece);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     else{
         T_boardState cpy = *b;
         moveAndAttack(&cpy, lastPos, n, piece);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
 }
 
@@ -500,6 +517,7 @@ void generateCastlingState(T_Node *node, T_boardStates *dst, T_boardState *b, T_
             assert(false);
     }
     addState(dst, &cpy);
+    addStateNode(node, &cpy);
 }
 
 //Use bitboard bit manipulation to speed this up
@@ -659,6 +677,7 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, 
         T_boardState cpy = *b;
         moveAndAttack(&cpy, j, n, piece);
         addState(dst, &cpy);
+        addStateNode(node, &cpy);
     }
     int numOfAfterStates = dst->fi;
     if(piece == whiteKing && n == 4){
