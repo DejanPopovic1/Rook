@@ -171,7 +171,7 @@ void move(T_boardState *b, char dst, char src, char piece){
 }
 
 //Refactor this to be more inline with takePromote which will allow the use of a single promote function
-void promote(T_boardStates *dst, T_boardState *b, int n, int piece){
+void promote(T_Node *node, T_boardStates *dst, T_boardState *b, int n, int piece){
     T_boardState cpy = *b;
     T_bitboard *sm = pieceBitboard(&cpy, piece);
     b->whosTurn ? setBit(sm, n - 8) : setBit(sm, n + 8);
@@ -179,7 +179,7 @@ void promote(T_boardStates *dst, T_boardState *b, int n, int piece){
     addState(dst, &cpy);
 }
 
-void takePromote(T_boardStates *dst, T_boardState *b, int n, int piece){
+void takePromote(T_Node *node, T_boardStates *dst, T_boardState *b, int n, int piece){
     T_boardState cpy = *b;
     T_bitboard *sm = pieceBitboard(&cpy, piece);
     setBit(sm, n);
@@ -190,7 +190,7 @@ void takePromote(T_boardStates *dst, T_boardState *b, int n, int piece){
 //factor out specific moves once all moveGenerations complete
 //Use generateSlideMoves() to codify these moves
 //Use *cpy instead of cpy
-void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
+void genWPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
     //MOVE UP
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
@@ -209,10 +209,10 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n + 7, n, whitePawn);
         if(isRankSeven(n)){
-            takePromote(dst, &cpy, n + 7, whiteBishop);
-            takePromote(dst, &cpy, n + 7, whiteKnight);
-            takePromote(dst, &cpy, n + 7, whiteRook);
-            takePromote(dst, &cpy, n + 7, whiteQueen);
+            takePromote(node, dst, &cpy, n + 7, whiteBishop);
+            takePromote(node, dst, &cpy, n + 7, whiteKnight);
+            takePromote(node, dst, &cpy, n + 7, whiteRook);
+            takePromote(node, dst, &cpy, n + 7, whiteQueen);
         }
         else{
             addState(dst, &cpy);
@@ -223,10 +223,10 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n + 9, n, whitePawn);
         if(isRankSeven(n)){
-            takePromote(dst, &cpy, n + 9, whiteBishop);
-            takePromote(dst, &cpy, n + 9, whiteKnight);
-            takePromote(dst, &cpy, n + 9, whiteRook);
-            takePromote(dst, &cpy, n + 9, whiteQueen);
+            takePromote(node, dst, &cpy, n + 9, whiteBishop);
+            takePromote(node, dst, &cpy, n + 9, whiteKnight);
+            takePromote(node, dst, &cpy, n + 9, whiteRook);
+            takePromote(node, dst, &cpy, n + 9, whiteQueen);
         }
         else{
             addState(dst, &cpy);
@@ -249,14 +249,14 @@ void genWPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     }
     //PROMOTIONS
     if(isRankSeven(n) && isUpEmpty(b, n)){
-        promote(dst, b, n, whiteBishop);
-        promote(dst, b, n, whiteKnight);
-        promote(dst, b, n, whiteRook);
-        promote(dst, b, n, whiteQueen);
+        promote(node, dst, b, n, whiteBishop);
+        promote(node, dst, b, n, whiteKnight);
+        promote(node, dst, b, n, whiteRook);
+        promote(node, dst, b, n, whiteQueen);
     }
 }
 
-void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
+void genBPawnSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
     //MOVE DOWN
     if(isDownEmpty(b, n) && !isSecondRank(n)){
         T_boardState cpy = *b;
@@ -275,10 +275,10 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n - 7, n, blackPawn);
         if(isRankTwo(n)){
-            takePromote(dst, &cpy, n - 7, blackBishop);
-            takePromote(dst, &cpy, n - 7, blackKnight);
-            takePromote(dst, &cpy, n - 7, blackRook);
-            takePromote(dst, &cpy, n - 7, blackQueen);
+            takePromote(node, dst, &cpy, n - 7, blackBishop);
+            takePromote(node, dst, &cpy, n - 7, blackKnight);
+            takePromote(node, dst, &cpy, n - 7, blackRook);
+            takePromote(node, dst, &cpy, n - 7, blackQueen);
         }
         else{
             addState(dst, &cpy);
@@ -289,10 +289,10 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
         T_boardState cpy = *b;
         moveAndAttack(&cpy, n - 9, n, blackPawn);
         if(isRankTwo(n)){
-            takePromote(dst, &cpy, n - 9, blackBishop);
-            takePromote(dst, &cpy, n - 9, blackKnight);
-            takePromote(dst, &cpy, n - 9, blackRook);
-            takePromote(dst, &cpy, n - 9, blackQueen);
+            takePromote(node, dst, &cpy, n - 9, blackBishop);
+            takePromote(node, dst, &cpy, n - 9, blackKnight);
+            takePromote(node, dst, &cpy, n - 9, blackRook);
+            takePromote(node, dst, &cpy, n - 9, blackQueen);
         }
         else{
             addState(dst, &cpy);
@@ -315,15 +315,15 @@ void genBPawnSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard *
     }
     //PROMOTIONS
     if(isRankTwo(n) && isDownEmpty(b, n)){
-        promote(dst, b, n, blackBishop);
-        promote(dst, b, n, blackKnight);
-        promote(dst, b, n, blackRook);
-        promote(dst, b, n, blackQueen);
+        promote(node, dst, b, n, blackBishop);
+        promote(node, dst, b, n, blackKnight);
+        promote(node, dst, b, n, blackRook);
+        promote(node, dst, b, n, blackQueen);
     }
 }
 
 //Copy and paste these for other pieces
-void genMoves(T_boardStates *dst, T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
+void genMoves(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard *validMoves, int piece, int direction){
     int validMove = (isNortherlyOrEast(direction) ? __builtin_ctzll(*validMoves) : BITBOARD_INDEX_SIZE - __builtin_clzll(*validMoves));
     T_boardState cpy = *b;
     move(&cpy, validMove, n, piece);
@@ -343,13 +343,13 @@ T_bitboard moveBoardDir(T_boardState *b, int n, int direction, T_bitboard **rays
 
 //Refactor out quiete vs attacking moves
 //This function wont work for black unless you have a function called OPPOSING_COLOUR instead of isPosBlack. Or, pass function pointer. Better yet, use info in state.
-void genDirStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int direction, int piece){
+void genDirStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int direction, int piece){
     T_bitboard mb = moveBoardDir(b, n, direction, rays);
     if(!mb){
         return;
     }
     while(__builtin_popcountll(mb) > 1){
-        genMoves(dst, b, n, &mb, piece, direction);
+        genMoves(node, dst, b, n, &mb, piece, direction);
     }
     int lastPos = BITBOARD_INDEX_SIZE - __builtin_clzll(mb);
     if(isPosSameSide(b, lastPos)){
@@ -367,52 +367,52 @@ void genDirStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays,
     }
 }
 
-void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
+void genRaySuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
     int numOfBeforeStates = dst->fi;
     switch(piece){
         case whiteBishop:
-            genDirStates(dst, b, n, rays, northEast, whiteBishop);
-            genDirStates(dst, b, n, rays, southEast, whiteBishop);
-            genDirStates(dst, b, n, rays, southWest, whiteBishop);
-            genDirStates(dst, b, n, rays, northWest, whiteBishop);
+            genDirStates(node, dst, b, n, rays, northEast, whiteBishop);
+            genDirStates(node, dst, b, n, rays, southEast, whiteBishop);
+            genDirStates(node, dst, b, n, rays, southWest, whiteBishop);
+            genDirStates(node, dst, b, n, rays, northWest, whiteBishop);
             break;
         case whiteRook:
-            genDirStates(dst, b, n, rays, north, whiteRook);
-            genDirStates(dst, b, n, rays, east, whiteRook);
-            genDirStates(dst, b, n, rays, south, whiteRook);
-            genDirStates(dst, b, n, rays, west, whiteRook);
+            genDirStates(node, dst, b, n, rays, north, whiteRook);
+            genDirStates(node, dst, b, n, rays, east, whiteRook);
+            genDirStates(node, dst, b, n, rays, south, whiteRook);
+            genDirStates(node, dst, b, n, rays, west, whiteRook);
             break;
         case whiteQueen:
-            genDirStates(dst, b, n, rays, north, whiteQueen);
-            genDirStates(dst, b, n, rays, northEast, whiteQueen);
-            genDirStates(dst, b, n, rays, east, whiteQueen);
-            genDirStates(dst, b, n, rays, southEast, whiteQueen);
-            genDirStates(dst, b, n, rays, south, whiteQueen);
-            genDirStates(dst, b, n, rays, southWest, whiteQueen);
-            genDirStates(dst, b, n, rays, west, whiteQueen);
-            genDirStates(dst, b, n, rays, northWest, whiteQueen);
+            genDirStates(node, dst, b, n, rays, north, whiteQueen);
+            genDirStates(node, dst, b, n, rays, northEast, whiteQueen);
+            genDirStates(node, dst, b, n, rays, east, whiteQueen);
+            genDirStates(node, dst, b, n, rays, southEast, whiteQueen);
+            genDirStates(node, dst, b, n, rays, south, whiteQueen);
+            genDirStates(node, dst, b, n, rays, southWest, whiteQueen);
+            genDirStates(node, dst, b, n, rays, west, whiteQueen);
+            genDirStates(node, dst, b, n, rays, northWest, whiteQueen);
             break;
         case blackBishop:
-            genDirStates(dst, b, n, rays, northEast, blackBishop);
-            genDirStates(dst, b, n, rays, southEast, blackBishop);
-            genDirStates(dst, b, n, rays, southWest, blackBishop);
-            genDirStates(dst, b, n, rays, northWest, blackBishop);
+            genDirStates(node, dst, b, n, rays, northEast, blackBishop);
+            genDirStates(node, dst, b, n, rays, southEast, blackBishop);
+            genDirStates(node, dst, b, n, rays, southWest, blackBishop);
+            genDirStates(node, dst, b, n, rays, northWest, blackBishop);
             break;
         case blackRook:
-            genDirStates(dst, b, n, rays, north, blackRook);
-            genDirStates(dst, b, n, rays, east, blackRook);
-            genDirStates(dst, b, n, rays, south, blackRook);
-            genDirStates(dst, b, n, rays, west, blackRook);
+            genDirStates(node, dst, b, n, rays, north, blackRook);
+            genDirStates(node, dst, b, n, rays, east, blackRook);
+            genDirStates(node, dst, b, n, rays, south, blackRook);
+            genDirStates(node, dst, b, n, rays, west, blackRook);
             break;
         case blackQueen:
-            genDirStates(dst, b, n, rays, north, blackQueen);
-            genDirStates(dst, b, n, rays, northEast, blackQueen);
-            genDirStates(dst, b, n, rays, east, blackQueen);
-            genDirStates(dst, b, n, rays, southEast, blackQueen);
-            genDirStates(dst, b, n, rays, south, blackQueen);
-            genDirStates(dst, b, n, rays, southWest, blackQueen);
-            genDirStates(dst, b, n, rays, west, blackQueen);
-            genDirStates(dst, b, n, rays, northWest, blackQueen);
+            genDirStates(node, dst, b, n, rays, north, blackQueen);
+            genDirStates(node, dst, b, n, rays, northEast, blackQueen);
+            genDirStates(node, dst, b, n, rays, east, blackQueen);
+            genDirStates(node, dst, b, n, rays, southEast, blackQueen);
+            genDirStates(node, dst, b, n, rays, south, blackQueen);
+            genDirStates(node, dst, b, n, rays, southWest, blackQueen);
+            genDirStates(node, dst, b, n, rays, west, blackQueen);
+            genDirStates(node, dst, b, n, rays, northWest, blackQueen);
             break;
     }
     int numOfAfterStates = dst->fi;
@@ -438,38 +438,38 @@ void genRaySuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **r
     }
 }
 
-void genSuccStates(T_boardStates *dst, T_boardState *b){
+void genSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
         T_bitboard **steps = createSteps();
         if(!b->whosTurn){
-            genPiecesSuccStates(dst, b, rays, whitePawn);
-            genPiecesSuccStates(dst, b, rays, whiteBishop);
-            genPiecesSuccStates(dst, b, jumps, whiteKnight);
-            genPiecesSuccStates(dst, b, rays, whiteRook);
-            genPiecesSuccStates(dst, b, rays, whiteQueen);
-            genPiecesSuccStates(dst, b, steps, whiteKing);
+            genPiecesSuccStates(node, dst, b, rays, whitePawn);
+            genPiecesSuccStates(node, dst, b, rays, whiteBishop);
+            genPiecesSuccStates(node, dst, b, jumps, whiteKnight);
+            genPiecesSuccStates(node, dst, b, rays, whiteRook);
+            genPiecesSuccStates(node, dst, b, rays, whiteQueen);
+            genPiecesSuccStates(node, dst, b, steps, whiteKing);
         }
         else{
-            genPiecesSuccStates(dst, b, rays, blackPawn);
-            genPiecesSuccStates(dst, b, rays, blackBishop);
-            genPiecesSuccStates(dst, b, jumps, blackKnight);
-            genPiecesSuccStates(dst, b, rays, blackRook);
-            genPiecesSuccStates(dst, b, rays, blackQueen);
-            genPiecesSuccStates(dst, b, steps, blackKing);
+            genPiecesSuccStates(node, dst, b, rays, blackPawn);
+            genPiecesSuccStates(node, dst, b, rays, blackBishop);
+            genPiecesSuccStates(node, dst, b, jumps, blackKnight);
+            genPiecesSuccStates(node, dst, b, rays, blackRook);
+            genPiecesSuccStates(node, dst, b, rays, blackQueen);
+            genPiecesSuccStates(node, dst, b, steps, blackKing);
         }
 }
 
 //Refactor out the castling into a seperate function
-void genPiecesSuccStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
+void genPiecesSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
     while(allPieces){
-        (*genPieceSuccStates(piece))(dst, b, __builtin_ctzll(allPieces), moveRules, piece);
+        (*genPieceSuccStates(piece))(node, dst, b, __builtin_ctzll(allPieces), moveRules, piece);
         clearBit(&allPieces, __builtin_ctzll(allPieces));
     }
 }
 
-void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castlePass){
+void generateCastlingState(T_Node *node, T_boardStates *dst, T_boardState *b, T_bitboard castlePass){
     T_boardState cpy = *b;
     switch(castlePass){
         case BLACK_KINGSIDE_PASS:
@@ -507,7 +507,7 @@ void generateCastlingState(T_boardStates *dst, T_boardState *b, T_bitboard castl
 //castlePass and turn mechanics are awkward - refactor
 //There are three serial "while" loops. When breaking out of one, find a way to break out of all
 //Please refactor this dogshow
-void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
+void generateCastlingStates(T_Node *node, T_boardStates *dst, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
     T_bitboard **rays = createRays();
     if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
@@ -571,7 +571,7 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             cnd4 = b->castlesKBlack && b->castlesLRBlack;
         }
         if(cnd1 && cnd2 && cnd3 && cnd4){
-            generateCastlingState(dst, b, castlePass);
+            generateCastlingState(node, dst, b, castlePass);
         }
     }
     else if(!b->whosTurn && (castlePass == WHITE_KINGSIDE_PASS || castlePass == WHITE_QUEENSIDE_PASS)){
@@ -635,13 +635,13 @@ void generateCastlingStates(T_boardStates *dst, T_boardState *b, T_bitboard **mo
             cnd4 = b->castlesKWhite && b->castlesLRWhite;
         }
         if(cnd1 && cnd2 && cnd3 && cnd4){
-            generateCastlingState(dst, b, castlePass);
+            generateCastlingState(node, dst, b, castlePass);
         }
     }
 }
 
 //Remove mentions of white and black generations of castling at the bottom of this functionS
-void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
+void genJumpOrStepSuccStates(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **moveRules, int piece){
     int numOfBeforeStates = dst->fi;
     T_boardState cpy = *b;
     int j;
@@ -672,16 +672,16 @@ void genJumpOrStepSuccStates(T_boardStates *dst, T_boardState *b, int n, T_bitbo
         }
     }
     if(piece == whiteKing || piece == blackKing){
-        generateCastlingStates(dst, b, moveRules, piece, BLACK_KINGSIDE_PASS);
-        generateCastlingStates(dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
-        generateCastlingStates(dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
-        generateCastlingStates(dst, b, moveRules, piece, WHITE_QUEENSIDE_PASS);
+        generateCastlingStates(node, dst, b, moveRules, piece, BLACK_KINGSIDE_PASS);
+        generateCastlingStates(node, dst, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
+        generateCastlingStates(node, dst, b, moveRules, piece, WHITE_KINGSIDE_PASS);
+        generateCastlingStates(node, dst, b, moveRules, piece, WHITE_QUEENSIDE_PASS);
     }
 }
 
 //Look at potentially removing this. It would have worked if the moveGenerators took the same info
 //wPawnGenerate doesnt take the last argument piece so this needs to be corrected
-void (*genPieceSuccStates(int piece))(T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
+void (*genPieceSuccStates(int piece))(T_Node *node, T_boardStates *dst, T_boardState *b, int n, T_bitboard **rays, int piece){
     switch(piece){
         case whitePawn:
             return &genWPawnSuccStates;
@@ -741,7 +741,8 @@ bool isInCheck(T_boardState *b){
     b->whosTurn++;
     b->evaluateCheck = 1;
     T_boardStates *bss = initialiseStates();
-    genSuccStates(bss, b);
+    T_Node node;
+    genSuccStates(&node, bss, b);
     if(!isKingsExist(bss, whosTurn)){
         b->whosTurn++;
         b->evaluateCheck = 0;

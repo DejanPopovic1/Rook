@@ -4,6 +4,7 @@
 #include "moveGeneration.hpp"
 #include <iostream>
 #include "keyUtilities.hpp"
+#include "searchTree.hpp"
 
 using std::string;
 using std::vector;
@@ -20,6 +21,7 @@ T_boardState GameState::getState(){
 }
 //Dont pass in board state, rather create it in this constructor
 GameState::GameState(T_boardState boardState, bool pA){
+    T_Node n;
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
     this->ply = 0;
@@ -29,12 +31,13 @@ GameState::GameState(T_boardState boardState, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    genSuccStates(this->ss, &(this->c));
+    genSuccStates(&n, this->ss, &(this->c));
     genListOfValidMoves();
 }
 
 //Rope out the for loop and determine if its valid input in a seperate function
 bool GameState::changeState(string usrInput){
+    T_Node node;
     T_boardState cpy;
     for(int i = 0; i < this->ss->fi; i++){
         //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
@@ -50,7 +53,7 @@ bool GameState::changeState(string usrInput){
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
             this->ss = initialiseStates();
-            genSuccStates(this->ss, &(this->c));
+            genSuccStates(&node, this->ss, &(this->c));
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
@@ -118,9 +121,10 @@ void GameState::printSuccStates(){
 }
 
 string GameState::engineMove(){
+    T_Node node;
     T_boardStates *bss = initialiseStates();
     //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
-    genSuccStates(bss, &this->c);
+    genSuccStates(&node, bss, &this->c);
     //this->validMoves.clear();
     //this->ss = initialiseStates();
     //genSuccStates(this->ss, &(this->c));

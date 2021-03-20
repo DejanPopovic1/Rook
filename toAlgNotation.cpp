@@ -139,11 +139,12 @@ bool doesStateChangeDepartFromPos(T_boardState *f, T_boardState *t, char pos){
 
 //The problem is here. In the calling function, the pieces are not trimmed despite its intention. In this specific function "d" is not used enough
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
+    T_Node node;
     char p = piece(b, d);
     T_boardStates *bss = initialiseStates();
     T_boardState *state;
     T_bitboard stateDepPcs;
-    genSuccStates(bss, b);
+    genSuccStates(&node, bss, b);
     for(int i = 0; i < bss->fi; i++){
         state = &((bss->bs)[i]);
         if(!doesStateChangeDepartFromPos(b, state, d)){

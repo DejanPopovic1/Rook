@@ -121,9 +121,10 @@
 	"output.hpp"
 	<iostream>
 
-1615921557 c:\c_c++ code\rook\movegeneration.hpp
+1616254565 c:\c_c++ code\rook\movegeneration.hpp
 	<stdbool.h>
 	"state.hpp"
+	"searchTree.hpp"
 
 1615634574 c:\c_c++ code\rook\moverules.hpp
 	<stdbool.h>
@@ -184,7 +185,7 @@
 	<string>
 	<vector>
 
-1615730964 source:c:\c_c++ code\rook\toalgnotation.cpp
+1616254997 source:c:\c_c++ code\rook\toalgnotation.cpp
 	<string>
 	<vector>
 	<stdbool.h>
@@ -221,13 +222,14 @@
 	<stdio.h>
 	<iostream>
 
-1615921557 source:c:\c_c++ code\rook\gamestate.cpp
+1616255061 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
 	<iostream>
 	"keyUtilities.hpp"
+	"searchTree.hpp"
 
 1615904560 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
