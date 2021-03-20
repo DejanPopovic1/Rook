@@ -2,6 +2,7 @@
 #include "moveGeneration.hpp"
 #include "testInitialisations.hpp"
 #include "output.hpp"
+#include "heuristics.hpp"
 
 #include <iostream>
 
@@ -121,13 +122,15 @@ void genSuccStatesSTUB(T_Node *node){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
-int evaluateSTUB(T_Node **iterator){
-    return 5;
+int evaluateSTUB(T_Node *iterator){
+    cout << evaluateBoard(&iterator->b) << endl;
+    return evaluateBoard(&iterator->b);
 }
 
+//If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+        return evaluateSTUB(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
     genSuccStatesSTUB(*iterator);

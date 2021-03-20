@@ -7,12 +7,15 @@
 #include "testInitialisations.hpp"
 #include "searchTree.hpp"
 #include <cstdlib>
+#include "heuristics.hpp"
 
 #include "bitUtilities.hpp"
 #include "keyUtilities.hpp"
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100
+
+using namespace std;
 
 //convert idiomatic c into idiomatic c++
 
@@ -65,18 +68,22 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    //T_boardState bs = initialiseBoardState();
-    T_Node head;
+    T_Node head, h2, h3, h4;
     head.b = initialiseBoardState();
+    h2.b = CMinitialiseBoardState();
+    h3.b = SMinitialiseBoardState();
+    h4.b = PPinitialiseBoardState();
     int level = 0;
     T_Node *headPtr = &head;
-    //T_Node *headPtr = &head;
-    //genSuccStatesSTUB(&head);
-
-    //printState(head.b);
-    //printState(head.scc[2]->b);
-    //printState(head->b);
-    std::cout << generateTreeNode(&headPtr, level) << std::endl;
+    printState(head.b);
+    printState(h2.b);
+    printState(h3.b);
+    printState(h4.b);
+    std::cout << evaluateBoard(&head.b) << endl;
+        std::cout << evaluateBoard(&h2.b)<< endl;
+            std::cout << evaluateBoard(&h3.b)<< endl;
+                std::cout << evaluateBoard(&h4.b)<< endl;
+    //std::cout << generateTreeNode(&headPtr, level) << std::endl;
     getchar();
 }
 

@@ -13,6 +13,6 @@ int evaluateBlackMaterial(T_boardState *c){
            QUEEN_VALUE*(__builtin_popcountll(c->bQueen)) + KING_VALUE*(__builtin_popcountll(c->bKing));
 }
 
-int boardEvaluation(T_boardState *c){
+int evaluateBoard(T_boardState *c){
     return evaluateWhiteMaterial(c) - evaluateBlackMaterial(c);
 }

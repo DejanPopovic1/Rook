@@ -252,20 +252,21 @@
 	<stdint.h>
 	"state.hpp"
 
-1615896868 source:c:\c_c++ code\rook\heuristics.cpp
+1616251462 source:c:\c_c++ code\rook\heuristics.cpp
 	"heuristics.hpp"
 	"state.hpp"
 
-1615896850 c:\c_c++ code\rook\heuristics.hpp
+1616251462 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
-1616250186 source:c:\c_c++ code\rook\searchtree.cpp
+1616251588 source:c:\c_c++ code\rook\searchtree.cpp
 	"searchTree.hpp"
 	"moveGeneration.hpp"
 	"testInitialisations.hpp"
 	"output.hpp"
+	"heuristics.hpp"
 	<iostream>
 
-1616250245 c:\c_c++ code\rook\searchtree.hpp
+1616251522 c:\c_c++ code\rook\searchtree.hpp
 	"state.hpp"
 

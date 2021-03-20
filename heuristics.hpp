@@ -12,6 +12,6 @@
 
 int evaluateWhiteMaterial(T_boardState *c);
 int evaluateBlackMaterial(T_boardState *c);
-int boardEvaluationPieces(T_boardState *c);
+int evaluateBoard(T_boardState *c);
 
 #endif // HEURISTICS_H
