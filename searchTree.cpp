@@ -178,9 +178,9 @@ T_Node* createNode(){
 void addStateNode(T_Node *dstNode, T_boardState *src){
     if(src->evaluateCheck){
         src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-        //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
-
-
+        dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
+        dstNode->scc[dstNode->fp]->b = *src;
+        dstNode->fp++;
         //(dst->bs)[dst->fi] = *src;
         //(dst->fi)++;
     }
