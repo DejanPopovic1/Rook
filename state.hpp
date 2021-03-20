@@ -69,6 +69,7 @@ struct PrevStates{
     int fp;
 };
 
+//T_Node* initialiseNode();
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 bool isPawn(int p);
 T_bitboard wAll(const T_boardState *b);

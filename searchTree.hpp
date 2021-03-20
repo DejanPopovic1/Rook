@@ -9,13 +9,13 @@ struct Node;
 
 typedef struct Node T_Node;
 
-
-
 struct Node{
     T_boardState b;
     Node *scc[MAX_SUCC_STATES];
+    int fp;
 };
 
+T_Node* createNode();
 void freeTreeNode(T_Node *node);
 void genSuccStatesSTUB(T_Node *newNode);
 int evaluateSTUB(T_Node **iterator);

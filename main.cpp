@@ -75,6 +75,8 @@ void test(){
     h4.b = PPinitialiseBoardState();
     int level = 0;
     T_Node *headPtr = &head;
+
+    T_Node *test = createNode();
 //    printState(head.b);
 //    printState(h2.b);
 //    printState(h3.b);

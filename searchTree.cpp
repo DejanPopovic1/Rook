@@ -168,16 +168,22 @@ int generateTreeNode(T_Node **iterator, int level){
         //Return min/max
 
 
-
+T_Node* createNode(){
+    T_Node *result = (T_Node*)malloc(sizeof(T_Node));
+    result->fp = 0;
+    return result;
+}
 
 
 void addStateNode(T_Node *dstNode, T_boardState *src){
-//    if(src->evaluateCheck){
-//        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-//        //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
-//        (dst->bs)[dst->fi] = *src;
-//        (dst->fi)++;
-//    }
+    if(src->evaluateCheck){
+        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+        //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
+
+
+        //(dst->bs)[dst->fi] = *src;
+        //(dst->fi)++;
+    }
 //    else {
 //        T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
 //        if(!isInCheck(&cpy)){
