@@ -135,7 +135,6 @@ int generateTreeNode(T_Node **iterator, int level){
         int min = 1000;
         int e;
         for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-            //cout << "Test black" << endl;
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e < min){
                 min = e;
