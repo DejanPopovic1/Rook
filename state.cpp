@@ -1,8 +1,8 @@
 #include "state.hpp"
-//#include "output.h"
 #include "bitUtilities.hpp"
-#include "assert.h"
 #include "moveGeneration.hpp"
+
+#include <assert.h>
 
 T_bitboard *pieceBitboard(T_boardState *b, char piece){
     switch(piece){
@@ -195,6 +195,8 @@ void addState(T_boardStates *dst, T_boardState *src){
         }
     }
 }
+
+
 
 T_boardStates *initialiseStates(){
     T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));

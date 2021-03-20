@@ -1,8 +1,9 @@
 #ifndef MOVERULES_H
 #define MOVERULES_H
 
-#include <stdbool.h>
 #include "state.hpp"
+
+#include <stdbool.h>
 
 bool cast1(int *index);
 bool cast2(int *index);

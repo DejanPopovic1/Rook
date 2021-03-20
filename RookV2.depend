@@ -96,67 +96,66 @@
 	<string>
 	<vector>
 
-1614710764 source:c:\c_c++ code\rook\bitutilities.cpp
+1616267075 source:c:\c_c++ code\rook\bitutilities.cpp
 	"bitUtilities.hpp"
 	<limits.h>
-	"stdio.h"
+	<stdio.h>
 
-1614710477 c:\c_c++ code\rook\bitutilities.hpp
+1616267324 c:\c_c++ code\rook\bitutilities.hpp
 	"state.hpp"
 	<stdbool.h>
 	"bitUtilities.hpp"
 	<limits.h>
 
-1615897681 c:\c_c++ code\rook\state.hpp
+1616269203 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
-1615920956 source:c:\c_c++ code\rook\movegeneration.cpp
-	<assert.h>
+1616268022 source:c:\c_c++ code\rook\movegeneration.cpp
 	"moveGeneration.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
 	"moveRules.hpp"
-	<stdio.h>
 	"output.hpp"
+	<stdio.h>
+	<assert.h>
 	<iostream>
 
-1616254565 c:\c_c++ code\rook\movegeneration.hpp
-	<stdbool.h>
+1616267954 c:\c_c++ code\rook\movegeneration.hpp
 	"state.hpp"
 	"searchTree.hpp"
-
-1615634574 c:\c_c++ code\rook\moverules.hpp
 	<stdbool.h>
+
+1616267324 c:\c_c++ code\rook\moverules.hpp
 	"state.hpp"
-
-1615637184 source:c:\c_c++ code\rook\moverules.cpp
 	<stdbool.h>
-	<stdlib.h>
+
+1616267209 source:c:\c_c++ code\rook\moverules.cpp
 	"moveRules.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
 	"output.hpp"
+	<stdbool.h>
+	<stdlib.h>
 
-1616243186 source:c:\c_c++ code\rook\output.cpp
-	"toAlgNotation.hpp"
+1616268058 source:c:\c_c++ code\rook\output.cpp
 	"output.hpp"
+	"toAlgNotation.hpp"
+	"state.hpp"
+	"bitUtilities.hpp"
+	"gameState.hpp"
+	<assert.h>
+	<stdint.h>
 	<wchar.h>
 	<Windows.h>
 	<stdio.h>
 	<stdbool.h>
-	"state.hpp"
-	<stdint.h>
-	"output.hpp"
-	<assert.h>
-	"bitUtilities.hpp"
-	"gameState.hpp"
 	<iostream>
 
-1615725204 c:\c_c++ code\rook\toalgnotation.hpp
+1616267324 c:\c_c++ code\rook\toalgnotation.hpp
+	"state.hpp"
 	<string>
 	<vector>
-	"state.hpp"
 
 1616243130 c:\c_c++ code\rook\output.hpp
 	"state.hpp"
@@ -167,7 +166,7 @@
 	<vector>
 	<string>
 
-1615921435 source:c:\c_c++ code\rook\state.cpp
+1616263075 source:c:\c_c++ code\rook\state.cpp
 	"state.hpp"
 	"bitUtilities.hpp"
 	"assert.h"
@@ -185,31 +184,31 @@
 	<string>
 	<vector>
 
-1616254997 source:c:\c_c++ code\rook\toalgnotation.cpp
+1616267209 source:c:\c_c++ code\rook\toalgnotation.cpp
+	"toAlgNotation.hpp"
+	"bitUtilities.hpp"
+	"moveGeneration.hpp"
+	"output.hpp"
+	"state.hpp"
 	<string>
 	<vector>
 	<stdbool.h>
 	<assert.h>
 	<iostream>
-	"bitUtilities.hpp"
-	"moveGeneration.hpp"
-	"output.hpp"
-	"state.hpp"
-	"toAlgNotation.hpp"
 
-1616253462 source:c:\c_c++ code\rook\main.cpp
+1616267865 source:c:\c_c++ code\rook\main.cpp
+	"searchTree.hpp"
 	"state.hpp"
 	"moveGeneration.hpp"
 	"output.hpp"
 	"gameState.hpp"
-	<iostream>
 	"moveRules.hpp"
 	"testInitialisations.hpp"
-	"searchTree.hpp"
-	<cstdlib>
 	"heuristics.hpp"
 	"bitUtilities.hpp"
 	"keyUtilities.hpp"
+	<iostream>
+	<cstdlib>
 
 1615731580 source:c:\c_c++ code\rook\keyutilities.cpp
 	"keyUtilities.hpp"
@@ -222,38 +221,35 @@
 	<stdio.h>
 	<iostream>
 
-1616255061 source:c:\c_c++ code\rook\gamestate.cpp
+1616267075 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
 	"moveGeneration.hpp"
-	<iostream>
 	"keyUtilities.hpp"
 	"searchTree.hpp"
+	<iostream>
 
-1615904560 c:\c_c++ code\rook\gamestate.hpp
+1616267324 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
+	"keyUtilities.hpp"
 	<stdint.h>
 	<string>
 	<vector>
 	<map>
-	"keyUtilities.hpp"
 
-1615729781 source:c:\c_c++ code\rook\testinitialisations.cpp
-	"bitUtilities.hpp"
-	"assert.h"
-	"moveGeneration.hpp"
+1616268073 source:c:\c_c++ code\rook\testinitialisations.cpp
 	"testInitialisations.hpp"
-
-1615671307 c:\c_c++ code\rook\testinitialisations.hpp
-	"state.hpp"
 	"bitUtilities.hpp"
-	"assert.h"
 	"moveGeneration.hpp"
+	<assert.h>
 
-1615726123 c:\c_c++ code\rook\keyutilities.hpp
-	<stdint.h>
+1616267954 c:\c_c++ code\rook\testinitialisations.hpp
 	"state.hpp"
+
+1616267324 c:\c_c++ code\rook\keyutilities.hpp
+	"state.hpp"
+	<stdint.h>
 
 1616251462 source:c:\c_c++ code\rook\heuristics.cpp
 	"heuristics.hpp"
@@ -270,6 +266,6 @@
 	"heuristics.hpp"
 	<iostream>
 
-1616251522 c:\c_c++ code\rook\searchtree.hpp
+1616269303 c:\c_c++ code\rook\searchtree.hpp
 	"state.hpp"
 

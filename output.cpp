@@ -1,15 +1,15 @@
-#include "toAlgNotation.hpp"
 #include "output.hpp"
+#include "toAlgNotation.hpp"
+#include "state.hpp"
+#include "bitUtilities.hpp"
+#include "gameState.hpp"
+
+#include <assert.h>
+#include <stdint.h>
 #include <wchar.h>
 #include <Windows.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "state.hpp"
-#include <stdint.h>
-#include "output.hpp"
-#include <assert.h>
-#include "bitUtilities.hpp"
-#include "gameState.hpp"
 #include <iostream>
 
 

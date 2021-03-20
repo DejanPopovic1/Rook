@@ -1,10 +1,10 @@
-#include <stdbool.h>
-#include <stdlib.h>
 #include "moveRules.hpp"
 #include "state.hpp"
 #include "bitUtilities.hpp"
 #include "output.hpp"
 
+#include <stdbool.h>
+#include <stdlib.h>
 //    T_bitboard t = 0;
 //    T_bitboard u = 0;
 //    T_bitboard v = 0;

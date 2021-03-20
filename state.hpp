@@ -7,8 +7,13 @@
 #define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
 #define NUM_PIECE_TYPES 12
 
+//#include "searchTree.hpp"
+
 #include <stdint.h>
 #include <stdbool.h>
+
+struct BoardState;
+struct BoardStates;
 
 typedef uint64_t T_bitboard;
 typedef struct BoardState T_boardState;
@@ -80,6 +85,7 @@ bool isRankTwo(char n);
 char whatRank(char n);
 char whatFile(char n);
 bool isPosEmpty(const T_boardState *b, int n);
+//void addStateNode(T_Node *dstNode, T_boardState *src);
 void addState(T_boardStates *dst, T_boardState *src);
 T_boardStates *initialiseStates();
 int length(T_boardStates *bss);

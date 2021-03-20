@@ -1,16 +1,14 @@
-#include <string>
-#include <vector>
-#include <stdbool.h>
-#include <assert.h>
-#include <iostream>
+#include "toAlgNotation.hpp"
 #include "bitUtilities.hpp"
 #include "moveGeneration.hpp"
 #include "output.hpp"
 #include "state.hpp"
 
-#include "toAlgNotation.hpp"
-
-//#include "gameState.hpp"
+#include <string>
+#include <vector>
+#include <stdbool.h>
+#include <assert.h>
+#include <iostream>
 
 using std::string;
 using std::vector;

@@ -1,9 +1,9 @@
-//#include "state.hpp"
-//#include "output.h"
-#include "bitUtilities.hpp"
-#include "assert.h"
-#include "moveGeneration.hpp"
 #include "testInitialisations.hpp"
+#include "bitUtilities.hpp"
+#include "moveGeneration.hpp"
+
+#include <assert.h>
+
 
 T_boardState CMinitialiseBoardState(){
     T_boardState result;

@@ -1,9 +1,10 @@
 #ifndef MOVEGENERATION_H
 #define MOVEGENERATION_H
 
-#include <stdbool.h>
 #include "state.hpp"
 #include "searchTree.hpp"
+
+#include <stdbool.h>
 
 //FIX THESE, THEY ARE ERRORS - I think its fixed now. Check
 #define WHITE_KINGSIDE_PASS 96

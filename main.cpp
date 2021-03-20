@@ -1,16 +1,16 @@
+#include "searchTree.hpp"
 #include "state.hpp"
 #include "moveGeneration.hpp"
 #include "output.hpp"
 #include "gameState.hpp"
-#include <iostream>
 #include "moveRules.hpp"
 #include "testInitialisations.hpp"
-#include "searchTree.hpp"
-#include <cstdlib>
 #include "heuristics.hpp"
-
 #include "bitUtilities.hpp"
 #include "keyUtilities.hpp"
+
+#include <iostream>
+#include <cstdlib>
 
 #define MAIN_SELECTION 100
 #define MOVE_INPUT 100

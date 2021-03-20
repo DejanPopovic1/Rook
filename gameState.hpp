@@ -2,11 +2,12 @@
 #define GAME_STATE_H
 
 #include "state.hpp"
+#include "keyUtilities.hpp"
+
 #include <stdint.h>
 #include <string>
 #include <vector>
 #include <map>
-#include "keyUtilities.hpp"
 
 enum PlayingAs{asWhite, asBlack};
 //What state does state changer keep that stat doesnt? There are three

@@ -1,8 +1,8 @@
 #ifndef KEYUTILITIES_H
 #define KEYUTILITIES_H
 
-#include <stdint.h>
 #include "state.hpp"
+#include <stdint.h>
 
 #define PIECE 12
 #define POSITIONS 64

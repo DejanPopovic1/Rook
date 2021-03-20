@@ -2,10 +2,9 @@
 #define TEST_INITIALISATIONS_H
 
 #include "state.hpp"
-//#include "output.h"
-#include "bitUtilities.hpp"
-#include "assert.h"
-#include "moveGeneration.hpp"
+//#include "bitUtilities.hpp"
+//#include "assert.h"
+//#include "moveGeneration.hpp"
 
 T_boardState CMinitialiseBoardState();
 void CMinitialiseWPawns(T_bitboard *result);

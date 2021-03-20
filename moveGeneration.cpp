@@ -1,11 +1,11 @@
-#include <assert.h>
 #include "moveGeneration.hpp"
 #include "state.hpp"
-//#include "GlobalDeclarations.h"
 #include "bitUtilities.hpp"
 #include "moveRules.hpp"
-#include <stdio.h>
 #include "output.hpp"
+
+#include <stdio.h>
+#include <assert.h>
 #include <iostream>
 
 //Use MovePiece function to simplify statements

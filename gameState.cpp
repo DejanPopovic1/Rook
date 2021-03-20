@@ -2,9 +2,10 @@
 #include "ToAlgNotation.hpp"
 #include "output.hpp"
 #include "moveGeneration.hpp"
-#include <iostream>
 #include "keyUtilities.hpp"
 #include "searchTree.hpp"
+
+#include <iostream>
 
 using std::string;
 using std::vector;

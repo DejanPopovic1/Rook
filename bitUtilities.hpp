@@ -2,7 +2,9 @@
 #define BITUTILITIES_H
 
 #include "state.hpp"
+
 #include <stdbool.h>
+
 #define incl 1
 
 #include "bitUtilities.hpp"
