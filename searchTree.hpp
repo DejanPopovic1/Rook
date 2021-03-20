@@ -12,7 +12,7 @@ struct Node{
     Node *scc[MAX_SUCC_STATES];
 };
 
-void genSuccStatesSTUB(T_Node **newNode);
+void genSuccStatesSTUB(T_Node *newNode);
 int evaluateSTUB(T_Node **iterator);
 int generateTreeNode(T_Node **iterator, int level);
 

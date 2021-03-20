@@ -32,18 +32,18 @@ using namespace std;
 //}
 
 //Arbitrarily populate 5 Successor states
-void genSuccStatesSTUB(T_Node **node){
-    (*node)->scc[1] = (T_Node*)malloc(sizeof(T_Node));
-    (*node)->scc[2] = (T_Node*)malloc(sizeof(T_Node));
-    (*node)->scc[3] = (T_Node*)malloc(sizeof(T_Node));
-    (*node)->scc[4] = (T_Node*)malloc(sizeof(T_Node));
-    (*node)->scc[5] = (T_Node*)malloc(sizeof(T_Node));
-    (*node)->scc[6] = NULL;
-    (*node)->scc[1]->b = initialiseBoardState();
-    (*node)->scc[2]->b = CMinitialiseBoardState();
-    (*node)->scc[3]->b = SMinitialiseBoardState();
-    (*node)->scc[4]->b = initialiseBoardState();
-    (*node)->scc[5]->b = PPinitialiseBoardState();
+void genSuccStatesSTUB(T_Node *node){
+    node->scc[0] = (T_Node*)malloc(sizeof(T_Node));
+    node->scc[1] = (T_Node*)malloc(sizeof(T_Node));
+    node->scc[2] = (T_Node*)malloc(sizeof(T_Node));
+    node->scc[3] = (T_Node*)malloc(sizeof(T_Node));
+    node->scc[4] = (T_Node*)malloc(sizeof(T_Node));
+    node->scc[5] = NULL;
+    node->scc[0]->b = initialiseBoardState();
+    node->scc[1]->b = CMinitialiseBoardState();
+    node->scc[2]->b = SMinitialiseBoardState();
+    node->scc[3]->b = initialiseBoardState();
+    node->scc[4]->b = PPinitialiseBoardState();
 }
 
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
@@ -52,54 +52,52 @@ void genSuccStatesSTUB(T_Node **node){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
-int evaluateSTUB(T_Node **iterator){
-    return 5;
-}
+//int evaluateSTUB(T_Node **iterator){
+//    return 5;
+//}
+//
+//int generateTreeNode(T_Node **iterator, int level){
+//    if(level == DEPTH_LIMIT_LEVEL){
+//        cout << "Leaf evaluated" << endl;
+//        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+//
+//    }
+//    level++;
+//    genSuccStatesSTUB(iterator);
+//    if((*iterator)->b.whosTurn){
+//        cout << "black turn" << endl;
+//        int min = 1000;
+//        int e;
+//        cout << "This should print 1" << endl;
+//        //cout << newNode->scc[0]<< endl;
+//        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+//            cout << "Test black" << endl;
+//            e = generateTreeNode(iterator, level);
+//            if(e < min){
+//                min = e;
+//            }
+//        }
+//        return min;
+//    }
+//    else{
+//        cout << "white turn" << endl;
+//        int max = -1000;
+//        int e;
+//        cout << "This should print 2" << endl;
+////                cout << newNode->scc[0]<< endl;
+//        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+//            cout << "Test white" << endl;
+//            e = generateTreeNode(iterator, level);
+//            if(e > max){
+//                max = e;
+//            }
+//        }
+//        return max;
+//    }
+//}
 
-int generateTreeNode(T_Node **iterator, int level){
-    if(level == DEPTH_LIMIT_LEVEL){
-        cout << "Leaf evaluated" << endl;
-        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
 
-    }
-    level++;
-    //T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
-    //newNode->b = (*iterator)->b;
-    genSuccStatesSTUB(iterator);
-    //(*iterator) = newNode;
-    //printTBitboard((*iterator)->b.wPawn);//THIS LINE IS AN ERROR
-    //(*iterator)->b.whosTurn;
-    if((*iterator)->b.whosTurn){
-        cout << "black turn" << endl;
-        int min = 1000;
-        int e;
-        cout << "This should print 1" << endl;
-        //cout << newNode->scc[0]<< endl;
-        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-            cout << "Test black" << endl;
-            e = generateTreeNode(iterator, level);
-            if(e < min){
-                min = e;
-            }
-        }
-        return min;
-    }
-    else{
-        cout << "white turn" << endl;
-        int max = -1000;
-        int e;
-        cout << "This should print 2" << endl;
-//                cout << newNode->scc[0]<< endl;
-        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-            cout << "Test white" << endl;
-            e = generateTreeNode(iterator, level);
-            if(e > max){
-                max = e;
-            }
-        }
-        return max;
-    }
-}
+
         //Contain the following statement in a for loop. Iterate UNTIL a NULL pointer is reached
     //generateLinkedList(iterator, level); //Iterate through all the pointers. The function returns an int value so you must add in if statement to say if white then if result of function is greater than current max, then set new current max
         //End for

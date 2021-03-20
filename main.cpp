@@ -65,16 +65,16 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    //std::cin.get();
-//    printf("%ull\n", rand());
-//    printf("%ull\n", rand());
-    T_boardState bs = initialiseBoardState();
-    T_Node *head;
-    head->b = bs;
+    //T_boardState bs = initialiseBoardState();
+    T_Node head;
+    head.b = initialiseBoardState();
     int level = 0;
+    //T_Node *headPtr = &head;
     genSuccStatesSTUB(&head);
 
-    printState(head->b);
+    printState(head.b);
+    printState(head.scc[2]->b);
+    //printState(head->b);
     //std::cout << generateTreeNode(&head, level) << std::endl;
     getchar();
 }
