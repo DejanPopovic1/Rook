@@ -72,7 +72,10 @@ void test(){
     T_Node *head;
     head->b = bs;
     int level = 0;
-    std::cout << generateTreeNode(&head, level) << std::endl;
+    genSuccStatesSTUB(&head);
+
+    printState(head->b);
+    //std::cout << generateTreeNode(&head, level) << std::endl;
     getchar();
 }
 

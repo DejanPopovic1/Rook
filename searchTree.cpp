@@ -32,18 +32,18 @@ using namespace std;
 //}
 
 //Arbitrarily populate 5 Successor states
-void genSuccStatesSTUB(T_Node **newNode){
-    (*newNode)->scc[1] = (T_Node*)malloc(sizeof(T_Node));
-    (*newNode)->scc[2] = (T_Node*)malloc(sizeof(T_Node));
-    (*newNode)->scc[3] = (T_Node*)malloc(sizeof(T_Node));
-    (*newNode)->scc[4] = (T_Node*)malloc(sizeof(T_Node));
-    (*newNode)->scc[5] = (T_Node*)malloc(sizeof(T_Node));
-    (*newNode)->scc[6] = NULL;
-    (*newNode)->scc[1]->b = initialiseBoardState();
-    (*newNode)->scc[2]->b = CMinitialiseBoardState();
-    (*newNode)->scc[3]->b = SMinitialiseBoardState();
-    (*newNode)->scc[4]->b = initialiseBoardState();
-    (*newNode)->scc[5]->b = PPinitialiseBoardState();
+void genSuccStatesSTUB(T_Node **node){
+    (*node)->scc[1] = (T_Node*)malloc(sizeof(T_Node));
+    (*node)->scc[2] = (T_Node*)malloc(sizeof(T_Node));
+    (*node)->scc[3] = (T_Node*)malloc(sizeof(T_Node));
+    (*node)->scc[4] = (T_Node*)malloc(sizeof(T_Node));
+    (*node)->scc[5] = (T_Node*)malloc(sizeof(T_Node));
+    (*node)->scc[6] = NULL;
+    (*node)->scc[1]->b = initialiseBoardState();
+    (*node)->scc[2]->b = CMinitialiseBoardState();
+    (*node)->scc[3]->b = SMinitialiseBoardState();
+    (*node)->scc[4]->b = initialiseBoardState();
+    (*node)->scc[5]->b = PPinitialiseBoardState();
 }
 
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
@@ -58,21 +58,24 @@ int evaluateSTUB(T_Node **iterator){
 
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
         cout << "Leaf evaluated" << endl;
+        return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+
     }
     level++;
-    T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
-    newNode->b = (*iterator)->b;
-    genSuccStatesSTUB(&newNode);
-    (*iterator) = newNode;
+    //T_Node *newNode = (T_Node*)malloc(sizeof(T_Node));
+    //newNode->b = (*iterator)->b;
+    genSuccStatesSTUB(iterator);
+    //(*iterator) = newNode;
     //printTBitboard((*iterator)->b.wPawn);//THIS LINE IS AN ERROR
-    (*iterator)->b.whosTurn;
+    //(*iterator)->b.whosTurn;
     if((*iterator)->b.whosTurn){
         cout << "black turn" << endl;
         int min = 1000;
         int e;
-        for(int i = 0; newNode->scc[i] != NULL; i++){
+        cout << "This should print 1" << endl;
+        //cout << newNode->scc[0]<< endl;
+        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
             cout << "Test black" << endl;
             e = generateTreeNode(iterator, level);
             if(e < min){
@@ -85,7 +88,9 @@ int generateTreeNode(T_Node **iterator, int level){
         cout << "white turn" << endl;
         int max = -1000;
         int e;
-        for(int i = 0; newNode->scc[i] != NULL; i++){
+        cout << "This should print 2" << endl;
+//                cout << newNode->scc[0]<< endl;
+        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
             cout << "Test white" << endl;
             e = generateTreeNode(iterator, level);
             if(e > max){
