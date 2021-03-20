@@ -127,17 +127,13 @@ int evaluateSTUB(T_Node **iterator){
 
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        //cout << "Leaf evaluated" << endl;
         return evaluateSTUB(iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
     genSuccStatesSTUB(*iterator);
     if((*iterator)->b.whosTurn){
-        //cout << "black turn" << endl;
         int min = 1000;
         int e;
-        //cout << "This should print 1" << endl;
-        //cout << newNode->scc[0]<< endl;
         for(int i = 0; (*iterator)->scc[i] != NULL; i++){
             //cout << "Test black" << endl;
             e = generateTreeNode(&(*iterator)->scc[i], level);
@@ -149,13 +145,9 @@ int generateTreeNode(T_Node **iterator, int level){
         return min;
     }
     else{
-        //cout << "white turn" << endl;
         int max = -1000;
         int e;
-        //cout << "This should print 2" << endl;
-//                cout << newNode->scc[0]<< endl;
         for(int i = 0; (*iterator)->scc[i] != NULL; i++){
-            //cout << "Test white" << endl;
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e > max){
                 max = e;
