@@ -2,7 +2,7 @@
 #define STATE_H
 
 #define MAX_PREV_STATES 10000 //If you apply a 50-move limit, the longest possible chess game is 5898.5 moves long.
-#define MAX_SUCC_STATES 100 //Its theoretically possible to go higher, but then we're wasting memory allocation
+#define MAX_SUCC_STATES 200 //Its theoretically possible to go higher, but then we're wasting memory allocation
 #define BITBOARD_SIZE 64
 #define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
 #define NUM_PIECE_TYPES 12

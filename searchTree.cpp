@@ -122,7 +122,7 @@ void genSuccStatesSTUB(T_Node *node){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
-int evaluateSTUB(T_Node *iterator){
+int evaluate(T_Node *iterator){
     //cout << evaluateBoard(&iterator->b) << endl;
     return evaluateBoard(&iterator->b);
 }
@@ -131,44 +131,38 @@ int evaluateSTUB(T_Node *iterator){
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
         //printState((*iterator)->b);
-        return evaluateSTUB(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+        static int test = 0;
+        cout << "Completed iteration: " << test << endl;
+        test++;
+        return evaluate(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
-    //genSuccStatesSTUB(*iterator);
-    //T_boardStates *bss = initialiseStates();
     genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         int min = 1000;
         int e;
-        //for(int i = 0; (*iterator)->scc[i] != NULL; i++){
         for(int i = 0; i < (*iterator)->fp; i++){
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e < min){
                 min = e;
             }
         }
-        //printState((*iterator)->b);
         freeTreeNode(*iterator);
         return min;
     }
     else{
         int max = -1000;
         int e;
-        //for(int i = 0; (*iterator)->scc[i] != NULL; i++){
         for(int i = 0; i < (*iterator)->fp; i++){
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e > max){
                 max = e;
             }
         }
-        //printState((*iterator)->b);
         freeTreeNode(*iterator);
         return max;
     }
 }
-
-
-
         //Contain the following statement in a for loop. Iterate UNTIL a NULL pointer is reached
     //generateLinkedList(iterator, level); //Iterate through all the pointers. The function returns an int value so you must add in if statement to say if white then if result of function is greater than current max, then set new current max
         //End for

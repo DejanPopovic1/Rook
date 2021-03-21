@@ -3,7 +3,7 @@
 
 #include "state.hpp"
 
-#define DEPTH_LIMIT_LEVEL 5
+#define DEPTH_LIMIT_LEVEL 3
 
 struct Node;
 
@@ -18,7 +18,7 @@ struct Node{
 T_Node* createNode();
 void freeTreeNode(T_Node *node);
 void genSuccStatesSTUB(T_Node *newNode);
-int evaluateSTUB(T_Node **iterator);
+int evaluate(T_Node **iterator);
 int generateTreeNode(T_Node **iterator, int level);
 void addStateNode(T_Node *dstNode, T_boardState *src);
 
