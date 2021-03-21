@@ -158,6 +158,7 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
+//This function is agnostic to what colour AI is assigned to. It will be assigned to the coloour whos turn it currently is
 T_boardState *computerMove(T_boardState *input){
     T_Node *head = createNode();
     head->b = *input;
@@ -173,14 +174,16 @@ T_boardState *computerMove(T_boardState *input){
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 //Rather countdown to zero instead of specifying to start at zero
+//return NUMBER of moves - this is needed for mobility heuristics
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
-            cout << evaluateBoard(&(*iterator)->b) << endl;
+            //cout << evaluateBoard(&(*iterator)->b) << endl;
         return evaluateBoard(&(*iterator)->b);
     }
     level++;
     genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
+        //cout << "First" << endl;
         int min = 1000;
         int maybeNewMin;
         for(int i = 0; i < (*iterator)->fp; i++){
@@ -194,16 +197,19 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
         return min;
     }
     else{
+        //cout << "Second" << endl;
         int max = -1000;
         int maybeNewMax;
         for(int i = 0; i < (*iterator)->fp; i++){
             maybeNewMax = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
             if(maybeNewMax > max){
                 max = maybeNewMax;
+                cout << "LATEST " << i << endl;
                 *indexMaxMin = i;
             }
         }
         freeTreeNode(*iterator);
+        //cout << "Double check indexMaxMin" << *indexMaxMin << endl;
         return max;
     }
 }
