@@ -130,7 +130,7 @@ int evaluate(T_Node *iterator){
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        //printState((*iterator)->b);
+        printState((*iterator)->b);
         static int test = 0;
         cout << "Completed iteration: " << test << endl;
         test++;
