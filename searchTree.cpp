@@ -130,13 +130,13 @@ int evaluateSTUB(T_Node *iterator){
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
-        printState((*iterator)->b);
+        //printState((*iterator)->b);
         return evaluateSTUB(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
     //genSuccStatesSTUB(*iterator);
-    T_boardStates *bss = initialiseStates();
-    genSuccStates(*iterator, bss, &(*iterator)->b);
+    //T_boardStates *bss = initialiseStates();
+    genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         int min = 1000;
         int e;

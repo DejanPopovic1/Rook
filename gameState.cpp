@@ -32,7 +32,7 @@ GameState::GameState(T_boardState boardState, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    genSuccStates(&n, this->ss, &(this->c));
+    genSuccStates(&n, &(this->c));
     genListOfValidMoves();
 }
 
@@ -54,7 +54,7 @@ bool GameState::changeState(string usrInput){
             this->c = this->ss->bs[i];
             (this->c.whosTurn)++;
             this->ss = initialiseStates();
-            genSuccStates(&node, this->ss, &(this->c));
+            genSuccStates(&node, &(this->c));
             this->validMoves.clear();
             genListOfValidMoves();
             gameMoves.push_back(usrInput);
@@ -128,7 +128,7 @@ string GameState::engineMove(){
     T_Node node;
     T_boardStates *bss = initialiseStates();
     //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
-    genSuccStates(&node, bss, &this->c);
+    genSuccStates(&node, &this->c);
     //this->validMoves.clear();
     //this->ss = initialiseStates();
     //genSuccStates(this->ss, &(this->c));
