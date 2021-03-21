@@ -11,6 +11,7 @@ Use one function to generate all piece moves and general genSuccStates optimisat
 
 Before doing a complete test, have the ability to BACKTRACK moves. This is added functionality aswell as eases the heck out of testing
 
+Unit tests
 Linefeed to show progress of AI state generator (add colours and animating ASCII's to make it look impressive)
 BENCHMARK
 https://www.chessprogramming.org/Simplified_Evaluation_Function

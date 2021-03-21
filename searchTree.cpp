@@ -190,7 +190,9 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             maybeNewMin = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
             if(maybeNewMin < min){
                 min = maybeNewMin;
-                *indexMaxMin = i;
+                if(level == 1){
+                    *indexMaxMin = i;
+                }
             }
         }
         freeTreeNode(*iterator);
@@ -204,9 +206,11 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             maybeNewMax = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
             if(maybeNewMax > max){
                 max = maybeNewMax;
-                cout << "LATEST " << i << endl;
-                *indexMaxMin = i;
+                if(level == 1){
+                    *indexMaxMin = i;
+                }
             }
+
         }
         freeTreeNode(*iterator);
         //cout << "Double check indexMaxMin" << *indexMaxMin << endl;
