@@ -504,12 +504,12 @@ void genSuccStates(T_Node *node, T_boardState *b){
             genPiecesSuccStates(node, b, steps, whiteKing);
         }
         else{
-            //genPiecesSuccStates(node, b, rays, blackPawn);
-            //genPiecesSuccStates(node, b, rays, blackBishop);
-            //genPiecesSuccStates(node, b, jumps, blackKnight);
-            //genPiecesSuccStates(node, b, rays, blackRook);
-            //genPiecesSuccStates(node, b, rays, blackQueen);
-            //genPiecesSuccStates(node, b, steps, blackKing);
+            genPiecesSuccStates(node, b, rays, blackPawn);
+            genPiecesSuccStates(node, b, rays, blackBishop);
+            genPiecesSuccStates(node, b, jumps, blackKnight);
+            genPiecesSuccStates(node, b, rays, blackRook);
+            genPiecesSuccStates(node, b, rays, blackQueen);
+            genPiecesSuccStates(node, b, steps, blackKing);
         }
         freeRays(rays);
         freeJumps(jumps);
@@ -735,12 +735,6 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **
             node->scc[i]->b.castlesKBlack = 0;
         }
     }
-
-
-
-
-
-
     if(piece == whiteKing || piece == blackKing){
         generateCastlingStates(node, b, moveRules, piece, BLACK_KINGSIDE_PASS);
         generateCastlingStates(node, b, moveRules, piece, BLACK_QUEENSIDE_PASS);
