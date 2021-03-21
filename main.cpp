@@ -68,24 +68,12 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    T_Node head, h2, h3, h4;
-    head.b = initialiseBoardState();
-    h2.b = CMinitialiseBoardState();
-    h3.b = SMinitialiseBoardState();
-    h4.b = PPinitialiseBoardState();
+    T_Node *head = createNode();
+    head->b = initialiseBoardState();
     int level = 0;
-    T_Node *headPtr = &head;
-
-    T_Node *test = createNode();
-//    printState(head.b);
-//    printState(h2.b);
-//    printState(h3.b);
-//    printState(h4.b);
-//    std::cout << evaluateBoard(&head.b) << endl;
-//    std::cout << evaluateBoard(&h2.b)<< endl;
-//    std::cout << evaluateBoard(&h3.b)<< endl;
-//    std::cout << evaluateBoard(&h4.b)<< endl;
-    std::cout << generateTreeNode(&headPtr, level) << std::endl;
+    printState(head->b);
+    cout << endl << endl << "======SUCCESSOR STATES======" << endl << endl;
+    std::cout << generateTreeNode(&head, level) << std::endl;
     getchar();
 }
 

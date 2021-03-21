@@ -130,31 +130,38 @@ int evaluateSTUB(T_Node *iterator){
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
     if(level == DEPTH_LIMIT_LEVEL){
+        printState((*iterator)->b);
         return evaluateSTUB(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
-    genSuccStatesSTUB(*iterator);
+    //genSuccStatesSTUB(*iterator);
+    T_boardStates *bss = initialiseStates();
+    genSuccStates(*iterator, bss, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         int min = 1000;
         int e;
-        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+        //for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+        for(int i = 0; i < (*iterator)->fp; i++){
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e < min){
                 min = e;
             }
         }
+        //printState((*iterator)->b);
         freeTreeNode(*iterator);
         return min;
     }
     else{
         int max = -1000;
         int e;
-        for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+        //for(int i = 0; (*iterator)->scc[i] != NULL; i++){
+        for(int i = 0; i < (*iterator)->fp; i++){
             e = generateTreeNode(&(*iterator)->scc[i], level);
             if(e > max){
                 max = e;
             }
         }
+        //printState((*iterator)->b);
         freeTreeNode(*iterator);
         return max;
     }
@@ -167,13 +174,11 @@ int generateTreeNode(T_Node **iterator, int level){
         //End for
         //Return min/max
 
-
 T_Node* createNode(){
     T_Node *result = (T_Node*)malloc(sizeof(T_Node));
     result->fp = 0;
     return result;
 }
-
 
 void addStateNode(T_Node *dstNode, T_boardState *src){
     if(src->evaluateCheck){
@@ -184,7 +189,8 @@ void addStateNode(T_Node *dstNode, T_boardState *src){
     }
     else {
         T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
-        if(!isInCheck(&cpy)){
+        //if(!isInCheck(&cpy)){
+        if(true){
             src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
             dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
             dstNode->scc[dstNode->fp]->b = *src;

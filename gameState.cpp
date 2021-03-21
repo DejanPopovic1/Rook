@@ -95,16 +95,19 @@ bool GameState::isThreeFoldRepetition(){
 }
 
 bool GameState::isCheckMate(){
-    return isStateInCheck() && !isValidMoves();
+    return false;
+    //return isStateInCheck() && !isValidMoves();
 }
 
 bool GameState::isStaleMate(){
-    return !isStateInCheck() && !isValidMoves();
+    return false;
+    //return !isStateInCheck() && !isValidMoves();
 }
 
 //Rename
 bool GameState::isStateInCheck(){
-    return isInCheck(&this->c);
+    return false;
+    //return isInCheck(&this->c);
 }
 
 bool GameState::isValidMoves(){
