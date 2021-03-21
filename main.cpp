@@ -70,7 +70,6 @@ void multiPlayerSession(char *playerColourInput){
 void test(){
     T_boardState b = initialiseBoardState();
     printState(*computerMove(&b));
-    //std::cout << generateTreeNodeMinimax(&head, level) << std::endl;
     getchar();
 }
 

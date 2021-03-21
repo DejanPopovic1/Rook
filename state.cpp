@@ -294,7 +294,8 @@ void initialiseBKnights(T_bitboard *result){
 void initialiseBRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 56);
-    setBit(result, 63);
+    //setBit(result, 63);
+    setBit(result, 21);
 }
 
 void initialiseBQueen(T_bitboard *result){
