@@ -163,7 +163,7 @@ T_boardState *computerMove(T_boardState *input){
     head->b = *input;
     int bestEval;
     int indexMaxMin;
-    bestEval = generateTreeNodeMinimax(&head, 0, &indexMaxMin);
+    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
     cout << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
@@ -172,7 +172,7 @@ T_boardState *computerMove(T_boardState *input){
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 //Rather countdown to zero instead of specifying to start at zero
-int generateTreeNodeMinimax(T_Node **iterator, int level, int *indexMaxMin){
+int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
         return evaluateBoard(&(*iterator)->b);
     }
@@ -182,7 +182,7 @@ int generateTreeNodeMinimax(T_Node **iterator, int level, int *indexMaxMin){
         int min = 1000;
         int e;
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNodeMinimax(&(*iterator)->scc[i], level, indexMaxMin);
+            e = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
             if(e < min){
                 min = e;
                 *indexMaxMin = i;
@@ -195,7 +195,7 @@ int generateTreeNodeMinimax(T_Node **iterator, int level, int *indexMaxMin){
         int max = -1000;
         int e;
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNodeMinimax(&(*iterator)->scc[i], level, indexMaxMin);
+            e = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
             if(e > max){
                 max = e;
                 *indexMaxMin = i;
