@@ -36,6 +36,4 @@ void freeRays(T_bitboard **rays);
 void freeSteps(T_bitboard **steps);
 void freeJumps(T_bitboard **jumps);
 
-
-
 #endif // MOVERULES_H

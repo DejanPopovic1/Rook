@@ -35,7 +35,7 @@ using namespace std;
 //Arbitrarily populate 5 Successor states
 
 void freeTreeNode(T_Node *node){
-    for(int i = 0; node->scc[i] != NULL; i++){
+    for(int i = 0; i < node->fp; i++){
         free(node->scc[i]);
     }
 }
@@ -165,7 +165,7 @@ int evaluate(T_Node *iterator){
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
-    printState((*iterator)->b);
+    //printState((*iterator)->b);
     if(level == DEPTH_LIMIT_LEVEL){
 
         //static int test = 0;

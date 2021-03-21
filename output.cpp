@@ -104,6 +104,7 @@ void printTBitboardNumbersBin(T_bitboard **b){
 void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves, unsigned short int ply, std::vector<uint64_t> previousStates){
     T_chessboard *c = toIntArray(b);
     printBoard(playerColour, *c);
+    free(c);
     printf("Ply: %d\n", ply);
     (!b.whosTurn) ? printf("White Turn\n") : printf("Black Turn\n");
     printf("State of white en Passants: ");

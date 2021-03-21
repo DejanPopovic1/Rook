@@ -511,6 +511,9 @@ void genSuccStates(T_Node *node, T_boardState *b){
             //genPiecesSuccStates(node, b, rays, blackQueen);
             //genPiecesSuccStates(node, b, steps, blackKing);
         }
+        freeRays(rays);
+        freeJumps(jumps);
+        freeSteps(steps);
 }
 
 //Refactor out the castling into a seperate function
