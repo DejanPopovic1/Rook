@@ -501,7 +501,7 @@ void genSuccStates(T_Node *node, T_boardState *b){
             genPiecesSuccStates(node, b, jumps, whiteKnight);
             genPiecesSuccStates(node, b, rays, whiteRook);
             genPiecesSuccStates(node, b, rays, whiteQueen);
-            //genPiecesSuccStates(node, b, steps, whiteKing);
+            genPiecesSuccStates(node, b, steps, whiteKing);
         }
         else{
             //genPiecesSuccStates(node, b, rays, blackPawn);
@@ -517,6 +517,7 @@ void genSuccStates(T_Node *node, T_boardState *b){
 }
 
 //Refactor out the castling into a seperate function
+//Use get piece from pieces
 void genPiecesSuccStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece){
     T_bitboard allPieces = *(pieceBitboard(b, piece));
     while(allPieces){
@@ -566,7 +567,8 @@ void generateCastlingState(T_Node *node, T_boardState *b, T_bitboard castlePass)
 //Please refactor this dogshow
 void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
-    T_bitboard **rays = createRays();
+    //T_bitboard **rays = createRays();
+    T_bitboard **rays = moveRules;
     if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
