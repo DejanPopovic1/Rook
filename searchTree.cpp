@@ -164,7 +164,8 @@ T_boardState *computerMove(T_boardState *input){
     int bestEval;
     int indexMaxMin;
     bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
-    cout << indexMaxMin << endl;
+    cout << endl << bestEval << endl;
+    cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
     return &head2->scc[indexMaxMin]->b;
@@ -174,17 +175,18 @@ T_boardState *computerMove(T_boardState *input){
 //Rather countdown to zero instead of specifying to start at zero
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
+            cout << evaluateBoard(&(*iterator)->b) << endl;
         return evaluateBoard(&(*iterator)->b);
     }
     level++;
     genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         int min = 1000;
-        int e;
+        int maybeNewMin;
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
-            if(e < min){
-                min = e;
+            maybeNewMin = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
+            if(maybeNewMin < min){
+                min = maybeNewMin;
                 *indexMaxMin = i;
             }
         }
@@ -193,11 +195,11 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     }
     else{
         int max = -1000;
-        int e;
+        int maybeNewMax;
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
-            if(e > max){
-                max = e;
+            maybeNewMax = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
+            if(maybeNewMax > max){
+                max = maybeNewMax;
                 *indexMaxMin = i;
             }
         }

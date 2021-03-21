@@ -3,7 +3,7 @@
 
 #include "state.hpp"
 
-#define DEPTH_LIMIT_LEVEL 4
+#define DEPTH_LIMIT_LEVEL 1
 
 struct Node;
 
