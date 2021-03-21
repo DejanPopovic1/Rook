@@ -32,5 +32,10 @@ T_bitboard** createSteps();
 T_bitboard** createJumps();
 T_bitboard** createWPawnAttacks();
 T_bitboard** createBPawnAttacks();
+void freeRays(T_bitboard **rays);
+void freeSteps(T_bitboard **steps);
+void freeJumps(T_bitboard **jumps);
+
+
 
 #endif // MOVERULES_H

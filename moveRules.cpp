@@ -239,6 +239,43 @@ T_bitboard **createJumps(){
     return jumps;
 }
 
+void freeRays(T_bitboard **rays){
+    free(rays[0]);
+    free(rays[1]);
+    free(rays[2]);
+    free(rays[3]);
+    free(rays[4]);
+    free(rays[5]);
+    free(rays[6]);
+    free(rays[7]);
+    free(rays);
+}
+
+void freeSteps(T_bitboard **steps){
+    free(steps[0]);
+    free(steps[1]);
+    free(steps[2]);
+    free(steps[3]);
+    free(steps[4]);
+    free(steps[5]);
+    free(steps[6]);
+    free(steps[7]);
+    free(steps);
+}
+
+void freeJumps(T_bitboard **jumps){
+    free(jumps[0]);
+    free(jumps[1]);
+    free(jumps[2]);
+    free(jumps[3]);
+    free(jumps[4]);
+    free(jumps[5]);
+    free(jumps[6]);
+    free(jumps[7]);
+    free(jumps);
+}
+
+
 //T_bitboard *castWPawnAttacks(bool (*castDir)(int *)){
 //    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
 //    for(int i = 0; i < BITBOARD_SIZE; i++){

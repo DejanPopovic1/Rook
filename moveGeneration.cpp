@@ -197,69 +197,74 @@ void genWPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
     if(isUpEmpty(b, n) && !isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 8, n, whitePawn);
-
         addStateNode(node, &cpy);
     }
-    //MOVE UP UP
-    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n) && isSecondRank(n)){
-        T_boardState cpy = *b;
-        move(&cpy, n + 16, n, whitePawn);
-
-        addStateNode(node, &cpy);
-        //setCharBit(&((dst->bs[dst->fi - 1]).wEnPassants), 7 - (n % 8));
-        setCharBit(&node->scc[node->fp - 1]->b.wEnPassants, 7 - (n % 8));
-    }
-    //CAPTURE LEFT
-    if(isPosBlack(b, n + 7) && (n % 8)){
-        T_boardState cpy = *b;
-        moveAndAttack(&cpy, n + 7, n, whitePawn);
-        if(isRankSeven(n)){
-            takePromote(node, &cpy, n + 7, whiteBishop);
-            takePromote(node, &cpy, n + 7, whiteKnight);
-            takePromote(node, &cpy, n + 7, whiteRook);
-            takePromote(node, &cpy, n + 7, whiteQueen);
-        }
-        else{
-
-            addStateNode(node, &cpy);
-        }
-    }
-    //CAPTURE RIGHT
-    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
-        T_boardState cpy = *b;
-        moveAndAttack(&cpy, n + 9, n, whitePawn);
-        if(isRankSeven(n)){
-            takePromote(node, &cpy, n + 9, whiteBishop);
-            takePromote(node, &cpy, n + 9, whiteKnight);
-            takePromote(node, &cpy, n + 9, whiteRook);
-            takePromote(node, &cpy, n + 9, whiteQueen);
-        }
-        else{
-            addStateNode(node, &cpy);
-        }
-    }
-    //EN PASSANT LEFT
-    char frFile = whatFile(n);
-    if((frFile % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile - 1)) && isRankFive(n)){
-        T_boardState cpy = *b;
-        clearBit(&((&cpy)->bPawn), n - 1);
-        move(&cpy, n + 7, n, whitePawn);
-        addStateNode(node, &cpy);
-    }
-    //EN PASSANT RIGHT
-    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile + 1)) && isRankFive(n)){
-        T_boardState cpy = *b;
-        clearBit(&((&cpy)->bPawn), n + 1);
-        move(&cpy, n + 9, n, whitePawn);
-        addStateNode(node, &cpy);
-    }
-    //PROMOTIONS
-    if(isRankSeven(n) && isUpEmpty(b, n)){
-        promote(node, b, n, whiteBishop);
-        promote(node, b, n, whiteKnight);
-        promote(node, b, n, whiteRook);
-        promote(node, b, n, whiteQueen);
-    }
+//    //MOVE UP UP
+//    if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n) && isSecondRank(n)){
+//        T_boardState cpy = *b;
+//        move(&cpy, n + 16, n, whitePawn);
+//                std::cout << "Before2: " << std::endl;
+//        addStateNode(node, &cpy);
+//                        std::cout << "After2: " << std::endl;
+//        //setCharBit(&((dst->bs[dst->fi - 1]).wEnPassants), 7 - (n % 8));
+//                std::cout << "Before3: " << std::endl;
+//        setCharBit(&node->scc[node->fp - 1]->b.wEnPassants, 7 - (n % 8));
+//                std::cout << "After3: " << std::endl;
+//    }
+//    //CAPTURE LEFT
+//    if(isPosBlack(b, n + 7) && (n % 8)){
+//        T_boardState cpy = *b;
+//        moveAndAttack(&cpy, n + 7, n, whitePawn);
+//        if(isRankSeven(n)){
+//            takePromote(node, &cpy, n + 7, whiteBishop);
+//            takePromote(node, &cpy, n + 7, whiteKnight);
+//            takePromote(node, &cpy, n + 7, whiteRook);
+//            takePromote(node, &cpy, n + 7, whiteQueen);
+//        }
+//        else{
+//                std::cout << "Before4: " << std::endl;
+//            addStateNode(node, &cpy);
+//                            std::cout << "After4: " << std::endl;
+//        }
+//    }
+//    //CAPTURE RIGHT
+//    if(isPosBlack(b, n + 9) && ((n + 1) % 8)){
+//        T_boardState cpy = *b;
+//        moveAndAttack(&cpy, n + 9, n, whitePawn);
+//        if(isRankSeven(n)){
+//            takePromote(node, &cpy, n + 9, whiteBishop);
+//            takePromote(node, &cpy, n + 9, whiteKnight);
+//            takePromote(node, &cpy, n + 9, whiteRook);
+//            takePromote(node, &cpy, n + 9, whiteQueen);
+//        }
+//        else{
+//            std::cout << "Before5: " << std::endl;
+//            addStateNode(node, &cpy);
+//            std::cout << "After5: " << std::endl;
+//        }
+//    }
+//    //EN PASSANT LEFT
+//    char frFile = whatFile(n);
+//    if((frFile % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile - 1)) && isRankFive(n)){
+//        T_boardState cpy = *b;
+//        clearBit(&((&cpy)->bPawn), n - 1);
+//        move(&cpy, n + 7, n, whitePawn);
+//        addStateNode(node, &cpy);
+//    }
+//    //EN PASSANT RIGHT
+//    if(((frFile + 1) % 8) && isCharBitSet(b->bEnPassants, 7 - (frFile + 1)) && isRankFive(n)){
+//        T_boardState cpy = *b;
+//        clearBit(&((&cpy)->bPawn), n + 1);
+//        move(&cpy, n + 9, n, whitePawn);
+//        addStateNode(node, &cpy);
+//    }
+//    //PROMOTIONS
+//    if(isRankSeven(n) && isUpEmpty(b, n)){
+//        promote(node, b, n, whiteBishop);
+//        promote(node, b, n, whiteKnight);
+//        promote(node, b, n, whiteRook);
+//        promote(node, b, n, whiteQueen);
+//    }
 }
 
 void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int DUMMY){
@@ -492,19 +497,19 @@ void genSuccStates(T_Node *node, T_boardState *b){
         T_bitboard **steps = createSteps();
         if(!b->whosTurn){
             genPiecesSuccStates(node, b, rays, whitePawn);
-            genPiecesSuccStates(node, b, rays, whiteBishop);
-            genPiecesSuccStates(node, b, jumps, whiteKnight);
-            genPiecesSuccStates(node, b, rays, whiteRook);
-            genPiecesSuccStates(node, b, rays, whiteQueen);
-            genPiecesSuccStates(node, b, steps, whiteKing);
+            //genPiecesSuccStates(node, b, rays, whiteBishop);
+            //genPiecesSuccStates(node, b, jumps, whiteKnight);
+            //genPiecesSuccStates(node, b, rays, whiteRook);
+            //genPiecesSuccStates(node, b, rays, whiteQueen);
+            //genPiecesSuccStates(node, b, steps, whiteKing);
         }
         else{
-            genPiecesSuccStates(node, b, rays, blackPawn);
-            genPiecesSuccStates(node, b, rays, blackBishop);
-            genPiecesSuccStates(node, b, jumps, blackKnight);
-            genPiecesSuccStates(node, b, rays, blackRook);
-            genPiecesSuccStates(node, b, rays, blackQueen);
-            genPiecesSuccStates(node, b, steps, blackKing);
+            //genPiecesSuccStates(node, b, rays, blackPawn);
+            //genPiecesSuccStates(node, b, rays, blackBishop);
+            //genPiecesSuccStates(node, b, jumps, blackKnight);
+            //genPiecesSuccStates(node, b, rays, blackRook);
+            //genPiecesSuccStates(node, b, rays, blackQueen);
+            //genPiecesSuccStates(node, b, steps, blackKing);
         }
 }
 

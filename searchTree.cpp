@@ -40,80 +40,116 @@ void freeTreeNode(T_Node *node){
     }
 }
 
-void genSuccStatesSTUB(T_Node *node){
-    node->scc[0] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[1] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[2] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[3] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[4] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[5] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[6] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[7] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[8] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[9] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[10] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[11] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[12] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[13] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[14] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[15] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[16] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[17] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[18] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[19] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[20] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[21] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[22] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[23] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[24] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[25] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[26] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[27] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[28] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[29] = (T_Node*)malloc(sizeof(T_Node));
+void genSuccStatesSTUB(T_Node *node, T_boardState *b){
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+//    addStateNode(node, b);
+
+//    node->scc[0] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[1] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[2] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[3] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[4] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[5] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[6] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[7] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[8] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[9] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[10] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[11] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[12] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[13] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[14] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[15] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[16] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[17] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[18] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[19] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[20] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[21] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[22] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[23] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[24] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[25] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[26] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[27] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[28] = (T_Node*)malloc(sizeof(T_Node));
+//    node->scc[29] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[30] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[31] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[32] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[33] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[34] = (T_Node*)malloc(sizeof(T_Node));
 //    node->scc[35] = (T_Node*)malloc(sizeof(T_Node));
-    node->scc[30] = NULL;
-    node->scc[0]->b = initialiseBoardState();
-    node->scc[1]->b = CMinitialiseBoardState();
-    node->scc[2]->b = SMinitialiseBoardState();
-    node->scc[3]->b = initialiseBoardState();
-    node->scc[4]->b = PPinitialiseBoardState();
-    node->scc[5]->b = initialiseBoardState();
-    node->scc[6]->b = CMinitialiseBoardState();
-    node->scc[7]->b = SMinitialiseBoardState();
-    node->scc[8]->b = initialiseBoardState();
-    node->scc[9]->b = PPinitialiseBoardState();
-    node->scc[10]->b = initialiseBoardState();
-    node->scc[11]->b = CMinitialiseBoardState();
-    node->scc[12]->b = SMinitialiseBoardState();
-    node->scc[13]->b = initialiseBoardState();
-    node->scc[14]->b = PPinitialiseBoardState();
-    node->scc[15]->b = initialiseBoardState();
-    node->scc[16]->b = CMinitialiseBoardState();
-    node->scc[17]->b = SMinitialiseBoardState();
-    node->scc[18]->b = initialiseBoardState();
-    node->scc[19]->b = PPinitialiseBoardState();
-    node->scc[20]->b = initialiseBoardState();
-    node->scc[21]->b = CMinitialiseBoardState();
-    node->scc[22]->b = SMinitialiseBoardState();
-    node->scc[23]->b = initialiseBoardState();
-    node->scc[24]->b = PPinitialiseBoardState();
-    node->scc[25]->b = initialiseBoardState();
-    node->scc[26]->b = CMinitialiseBoardState();
-    node->scc[27]->b = SMinitialiseBoardState();
-    node->scc[28]->b = initialiseBoardState();
-    node->scc[29]->b = PPinitialiseBoardState();
+//    node->scc[0]->b = initialiseBoardState();
+//    node->scc[1]->b = CMinitialiseBoardState();
+//    node->scc[2]->b = SMinitialiseBoardState();
+//    node->scc[3]->b = initialiseBoardState();
+//    node->scc[4]->b = PPinitialiseBoardState();
+//    node->scc[5]->b = initialiseBoardState();
+//    node->scc[6]->b = CMinitialiseBoardState();
+//    node->scc[7]->b = SMinitialiseBoardState();
+//    node->scc[8]->b = initialiseBoardState();
+//    node->scc[9]->b = PPinitialiseBoardState();
+//    node->scc[10]->b = initialiseBoardState();
+//    node->scc[11]->b = CMinitialiseBoardState();
+//    node->scc[12]->b = SMinitialiseBoardState();
+//    node->scc[13]->b = initialiseBoardState();
+//    node->scc[14]->b = PPinitialiseBoardState();
+//    node->scc[15]->b = initialiseBoardState();
+//    node->scc[16]->b = CMinitialiseBoardState();
+//    node->scc[17]->b = SMinitialiseBoardState();
+//    node->scc[18]->b = initialiseBoardState();
+//    node->scc[19]->b = PPinitialiseBoardState();
+//    node->scc[20]->b = initialiseBoardState();
+//    node->scc[21]->b = CMinitialiseBoardState();
+//    node->scc[22]->b = SMinitialiseBoardState();
+//    node->scc[23]->b = initialiseBoardState();
+//    node->scc[24]->b = PPinitialiseBoardState();
+//    node->scc[25]->b = initialiseBoardState();
+//    node->scc[26]->b = CMinitialiseBoardState();
+//    node->scc[27]->b = SMinitialiseBoardState();
+//    node->scc[28]->b = initialiseBoardState();
+//    node->scc[29]->b = PPinitialiseBoardState();
 //    node->scc[30]->b = initialiseBoardState();
 //    node->scc[31]->b = CMinitialiseBoardState();
 //    node->scc[32]->b = SMinitialiseBoardState();
 //    node->scc[33]->b = initialiseBoardState();
 //    node->scc[34]->b = PPinitialiseBoardState();
 //    node->scc[35]->b = initialiseBoardState();
+//    node->fp = 36;
 }
 
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
@@ -129,11 +165,12 @@ int evaluate(T_Node *iterator){
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 int generateTreeNode(T_Node **iterator, int level){
+    printState((*iterator)->b);
     if(level == DEPTH_LIMIT_LEVEL){
-        printState((*iterator)->b);
-        static int test = 0;
-        cout << "Completed iteration: " << test << endl;
-        test++;
+
+        //static int test = 0;
+        //cout << "Completed iteration: " << test << endl;
+        //test++;
         return evaluate(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
@@ -175,23 +212,30 @@ T_Node* createNode(){
 }
 
 void addStateNode(T_Node *dstNode, T_boardState *src){
-    if(src->evaluateCheck){
-        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-        dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
-        dstNode->scc[dstNode->fp]->b = *src;
-        dstNode->fp++;
-    }
-    else {
-        T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
-        //if(!isInCheck(&cpy)){
-        if(true){
-            src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-            dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
-            dstNode->scc[dstNode->fp]->b = *src;
-            dstNode->fp++;
-        }
-    }
+    src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+    dstNode->scc[dstNode->fp] = createNode();
+    dstNode->scc[dstNode->fp]->b = *src;
+    (dstNode->fp)++;
 }
+
+//void addStateNodeOLDVERSION(T_Node *dstNode, T_boardState *src){
+//    if(src->evaluateCheck){
+//        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+//        dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
+//        dstNode->scc[dstNode->fp]->b = *src;
+//        dstNode->fp++;
+//    }
+//    else {
+//        T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
+//        //if(!isInCheck(&cpy)){
+//        if(true){
+//            src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
+//            dstNode->scc[dstNode->fp] = (T_Node*)malloc(sizeof(T_Node));
+//            dstNode->scc[dstNode->fp]->b = *src;
+//            dstNode->fp++;
+//        }
+//    }
+//}
 
 //int min(T_Node *n){
 //    int min = 1000;
