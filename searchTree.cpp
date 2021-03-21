@@ -158,11 +158,6 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //3) KEEP original function and allow swapping between the two :-)
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
-int evaluate(T_Node *iterator){
-    //cout << evaluateBoard(&iterator->b) << endl;
-    return evaluateBoard(&iterator->b);
-}
-
 T_boardState *computerMove(T_boardState *input){
     T_Node *head = createNode();
     head->b = *input;
