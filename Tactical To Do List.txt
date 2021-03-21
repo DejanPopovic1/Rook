@@ -1,4 +1,6 @@
-Simplify state tree with singly linked list implementation first	
+WRAP generateTreeNode in another function called T_bitboard *minimax(T_bitboard *input); and test this function from test()
+
+
 Implement state tree - return NUMBER of moves - this is needed for mobility heuristics
 	Retrofitting code to utilise state tree (the tree should be SUPPLEMENTED to the list and gradually phased out instead of refactoring it in one go)
 	Implement Minimax algorithm

@@ -68,12 +68,9 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    T_Node *head = createNode();
-    head->b = initialiseBoardState();
-    int level = 0;
-    printState(head->b);
-    cout << endl << endl << "======SUCCESSOR STATES======" << endl << endl;
-    std::cout << generateTreeNode(&head, level) << std::endl;
+    T_boardState b = initialiseBoardState();
+    printState(*computerMove(&b));
+    //std::cout << generateTreeNodeMinimax(&head, level) << std::endl;
     getchar();
 }
 

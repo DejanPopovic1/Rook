@@ -163,27 +163,45 @@ int evaluate(T_Node *iterator){
     return evaluateBoard(&iterator->b);
 }
 
+T_boardState *computerMove(T_boardState *input){
+    T_Node *head = createNode();
+    head->b = *input;
+    int bestEval;
+    int indexMaxMin;
+    bestEval = generateTreeNodeMinimax(&head, 0, &indexMaxMin);
+    T_Node *head2 = createNode();
+    genSuccStates(head2, input);
+    return &head2->scc[indexMaxMin]->b;
+}
+
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
-int generateTreeNode(T_Node **iterator, int level){
+//Rather countdown to zero instead of specifying to start at zero
+int generateTreeNodeMinimax(T_Node **iterator, int level, int *indexMaxMin){
     //printState((*iterator)->b);
     if(level == DEPTH_LIMIT_LEVEL){
-
         //static int test = 0;
         //cout << "Completed iteration: " << test << endl;
         //test++;
-        return evaluate(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
+        return evaluateBoard(&(*iterator)->b);
+        //return evaluate(*iterator);//Heuristically evaluate the state and return this evaluated value. For now, let it evaluate to
     }
     level++;
     genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         int min = 1000;
         int e;
+        //int i;
+        //int indexOfMaxMin;//Add this as an argument return
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNode(&(*iterator)->scc[i], level);
+            e = generateTreeNodeMinimax(&(*iterator)->scc[i], level, indexMaxMin);
             if(e < min){
                 min = e;
+                *indexMaxMin = i;
             }
         }
+//        if(level == 1){
+//            (*iterator) =
+//        }
         freeTreeNode(*iterator);
         return min;
     }
@@ -191,9 +209,10 @@ int generateTreeNode(T_Node **iterator, int level){
         int max = -1000;
         int e;
         for(int i = 0; i < (*iterator)->fp; i++){
-            e = generateTreeNode(&(*iterator)->scc[i], level);
+            e = generateTreeNodeMinimax(&(*iterator)->scc[i], level, indexMaxMin);
             if(e > max){
                 max = e;
+                *indexMaxMin = i;
             }
         }
         freeTreeNode(*iterator);
