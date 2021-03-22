@@ -30,8 +30,7 @@ GameState::GameState(T_boardState boardState, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    T_Node *n = createNode();
-    genListOfValidMoves(n);
+    genListOfValidMoves();
 }
 
 //Rope out the for loop and determine if its valid input in a seperate function
@@ -198,13 +197,12 @@ void GameState::printValidMoves(){
 }
 
 //add a return of void
-void GameState::genListOfValidMoves(T_Node *n){
+void GameState::genListOfValidMoves(){
+    T_Node *n = createNode();
     string s;
     genSuccStates(n, &(this->c));
-//    for(int i = 0; i < this->ss->fi; i++){
-//        s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
-//        this->validMoves.push_back(s);
-//    }
-
-
+    for(int i = 0; i < n->fp; i++){
+        s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
+        this->validMoves.push_back(s);
+    }
 }

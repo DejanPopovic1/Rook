@@ -38,7 +38,7 @@ private:
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck();
-    void genListOfValidMoves(T_Node *n);
+    void genListOfValidMoves();
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
