@@ -520,14 +520,14 @@ bool genSuccStates(T_Node *node, T_boardState *b){
         return false;
 }
 
-//bool isKingsExist(T_boardStates *bss, bool whosKing){
-//    for(int i; i < bss->fi; i++){
-//        if(!isKingExist(&bss->bs[i], whosKing)){
-//            return false;
-//        }
-//    }
-//    return true;
-//}
+bool isKingsExist(T_Node *n, bool whosKing){
+    for(int i = 0; i < n->fp; i++){
+        if(isKingExist(n->scc[i], whosKing)){
+            return true;
+        }
+    }
+    return false;
+}
 
 bool isKingExist(T_Node *n, bool whosKing){
     if(whosKing){
