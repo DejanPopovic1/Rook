@@ -3,6 +3,7 @@
 
 #include "state.hpp"
 #include "keyUtilities.hpp"
+#include "searchTree.hpp"
 
 #include <stdint.h>
 #include <string>
@@ -37,7 +38,7 @@ private:
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck();
-    void genListOfValidMoves();
+    void genListOfValidMoves(T_Node *n);
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;

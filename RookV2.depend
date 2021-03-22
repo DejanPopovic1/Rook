@@ -230,9 +230,10 @@
 	"searchTree.hpp"
 	<iostream>
 
-1616416695 c:\c_c++ code\rook\gamestate.hpp
+1616417174 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	"keyUtilities.hpp"
+	"searchTree.hpp"
 	<stdint.h>
 	<string>
 	<vector>
