@@ -177,20 +177,24 @@ T_boardState *computerMove(T_boardState *input){
 //return NUMBER of moves - this is needed for mobility heuristics
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
-            //cout << evaluateBoard(&(*iterator)->b) << endl;
         return evaluateBoard(&(*iterator)->b);
     }
-    if(genSuccStates(*iterator, &(*iterator)->b)){
-        ;
-
-    }
+    bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
+    //Opposite player is in check, which means opposite player made a move that put them in check (illegal)
+    //Thus, no further nodes may be generated
+    //Since its illegal, its the same as losing the king, something to be avoided based on its value
     level++;
     if((*iterator)->b.whosTurn){
-        //cout << "First" << endl;
+        if(isOppPlayerInCheck){//Condition: Black turn, White in check
+            return -1000;//This line is executed as black and returns to white code
+        }
         int min = 1000;
         int maybeNewMin;
         for(int i = 0; i < (*iterator)->fp; i++){
             maybeNewMin = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
+            if(maybeNewMin == 1000){//Condition: Black has just generated a tree node where it is in check
+                continue;
+            }
             if(maybeNewMin < min){
                 min = maybeNewMin;
                 if(level == 1){
@@ -202,21 +206,24 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
         return min;
     }
     else{
-        //cout << "Second" << endl;
+        if(isOppPlayerInCheck){//Condition: White turn, Black in check
+            return 1000;//This line is executed as white and returns to black code
+        }
         int max = -1000;
         int maybeNewMax;
         for(int i = 0; i < (*iterator)->fp; i++){
             maybeNewMax = generateTreeNodeMinMax(&(*iterator)->scc[i], level, indexMaxMin);
+            if(maybeNewMax == -1000){//Condition: White has just generated a tree node where it is in check
+                continue;
+            }
             if(maybeNewMax > max){
                 max = maybeNewMax;
                 if(level == 1){
                     *indexMaxMin = i;
                 }
             }
-
         }
         freeTreeNode(*iterator);
-        //cout << "Double check indexMaxMin" << *indexMaxMin << endl;
         return max;
     }
 }

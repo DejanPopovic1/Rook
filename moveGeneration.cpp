@@ -515,19 +515,19 @@ bool genSuccStates(T_Node *node, T_boardState *b){
         freeJumps(jumps);
         freeSteps(steps);
         bool player = b->whosTurn;
-        if(isKingsExist(node, player)){
-            return true;//Current state is not in check
+        if(isKingsExist(node, !player)){
+            return false;//Current opposite player is in check
         }
-        return false;//Current state is in check
+        return true;//Current opposite player is not in check
 }
 
 bool isKingsExist(T_Node *n, bool whosKing){
     for(int i = 0; i < n->fp; i++){
-        if(isKingExist(n->scc[i], whosKing)){
-            return true;
+        if(!isKingExist(n->scc[i], whosKing)){
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
 bool isKingExist(T_Node *n, bool whosKing){
