@@ -22,17 +22,16 @@ T_boardState GameState::getState(){
 }
 //Dont pass in board state, rather create it in this constructor
 GameState::GameState(T_boardState boardState, bool pA){
-    T_Node n;
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
     this->ply = 0;
     this->playingAs = pA;
     this->c = boardState;
-    this->ss = initialiseStates();
+    T_Node *n = createNode();
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    genSuccStates(&n, &(this->c));
+    genSuccStates(n, &(this->c));
     genListOfValidMoves();
 }
 
@@ -40,41 +39,41 @@ GameState::GameState(T_boardState boardState, bool pA){
 bool GameState::changeState(string usrInput){
     T_Node node;
     T_boardState cpy;
-    for(int i = 0; i < this->ss->fi; i++){
-        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
-        if(validMoves[i] == usrInput){
-            cpy = this->c;
-            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
-                this->movesWithoutTakeOrPawnMove++;
-            }
-            else{
-                this->movesWithoutTakeOrPawnMove = 0;
-            }
-            this->ply++;
-            this->c = this->ss->bs[i];
-            (this->c.whosTurn)++;
-            this->ss = initialiseStates();
-            genSuccStates(&node, &(this->c));
-            this->validMoves.clear();
-            genListOfValidMoves();
-            gameMoves.push_back(usrInput);
-            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
-            this->previousStates.push_back(key);
-            if(this->previousStatesCount.count(key)){
-                previousStatesCount[key] += 1;
-            }
-            else{
-                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
-            }
-            if(isCheckMate()){
-                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-            }
-            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){
-                gameMoves.push_back("1/2 - 1/2");
-            }
-            return true;
-        }
-    }
+//    for(int i = 0; i < this->ss->fi; i++){
+//        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
+//        if(validMoves[i] == usrInput){
+//            cpy = this->c;
+//            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
+//                this->movesWithoutTakeOrPawnMove++;
+//            }
+//            else{
+//                this->movesWithoutTakeOrPawnMove = 0;
+//            }
+//            this->ply++;
+//            this->c = this->ss->bs[i];
+//            (this->c.whosTurn)++;
+//            this->ss = initialiseStates();
+//            genSuccStates(&node, &(this->c));
+//            this->validMoves.clear();
+//            genListOfValidMoves();
+//            gameMoves.push_back(usrInput);
+//            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
+//            this->previousStates.push_back(key);
+//            if(this->previousStatesCount.count(key)){
+//                previousStatesCount[key] += 1;
+//            }
+//            else{
+//                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
+//            }
+//            if(isCheckMate()){
+//                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+//            }
+//            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){
+//                gameMoves.push_back("1/2 - 1/2");
+//            }
+//            return true;
+//        }
+//    }
     cout << "Invalid move\n";
     return false;
 }
@@ -111,7 +110,8 @@ bool GameState::isStateInCheck(){
 }
 
 bool GameState::isValidMoves(){
-    return this->ss->fi;
+    return true;
+    //return this->ss->fi;
 }
 
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
@@ -121,7 +121,7 @@ void GameState::printGameState(){
 }
 
 void GameState::printSuccStates(){
-    printStates(this->ss, this->playingAs);
+    //printStates(this->ss, this->playingAs);
 }
 
 string GameState::engineMove(){
@@ -201,12 +201,10 @@ void GameState::printValidMoves(){
 //add a return of void
 void GameState::genListOfValidMoves(){
     string s;
-    for(int i = 0; i < this->ss->fi; i++){
-        s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
-        this->validMoves.push_back(s);
-    }
-
-//    for(int i = 0; i < this->validMoves.size(); i++){
-//        cout << validMoves[i] << endl;
+//    for(int i = 0; i < this->ss->fi; i++){
+//        s = toAlgebraicNotation(&(this->c), &(this->ss->bs[i]));
+//        this->validMoves.push_back(s);
 //    }
+
+
 }

@@ -44,7 +44,7 @@ private:
     std::vector<uint64_t> previousStates;
     std::map<uint64_t, int> previousStatesCount;
     T_boardState c;
-    T_boardStates *ss;
+    //T_boardStates *ss;
     bool playingAs;
     unsigned short int ply;
     char movesWithoutTakeOrPawnMove;
