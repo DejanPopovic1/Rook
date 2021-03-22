@@ -33,6 +33,7 @@ public:
     void moveCycle();
     std::string engineMove();
 private:
+    int moveIndex(std::string s);
     bool isValidMove(std::string s);
     key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);

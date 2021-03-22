@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <iterator>
 
 using std::string;
 using std::vector;
@@ -14,6 +15,7 @@ using std::cout;
 using std::endl;
 using std::pair;
 using std::find;
+using std::iterator;
 
 GameState::GameState(){
 
@@ -36,18 +38,33 @@ GameState::GameState(bool pA){
 }
 
 bool GameState::isValidMove(string s){
-    this->validMoves.begin();
-    this->validMoves.end();
     if(find(this->validMoves.begin(), this->validMoves.end(), s) != this->validMoves.end()){
         return true;
     }
     return false;
 }
 
+int GameState::moveIndex(string s){
+    vector<string>::iterator it = find(this->validMoves.begin(), this->validMoves.end(), s);
+    return std::distance(this->validMoves.begin(), it);
+}
+
+T_boardState stateAtMoveIndex(T_boardState *s, int i){
+    T_Node *n = createNode();
+    genSuccStates(n, s);
+    return n->scc[i]->b;
+}
+
 //Rope out the for loop and determine if its valid input in a seperate function
 bool GameState::changeState(string usrInput){
-    T_Node node;
-    T_boardState cpy;
+    if(!isValidMove(usrInput)){
+       cout << "Invalid move\n" << endl;
+       return false;
+    }
+    this->c = stateAtMoveIndex(&this->c, moveIndex(usrInput));
+    this->ply++;
+//    T_Node node;
+//    T_boardState cpy;
 //    for(int i = 0; i < this->ss->fi; i++){
 //        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
 //        if(validMoves[i] == usrInput){
@@ -58,13 +75,13 @@ bool GameState::changeState(string usrInput){
 //            else{
 //                this->movesWithoutTakeOrPawnMove = 0;
 //            }
-//            this->ply++;
+//            this->ply++;///////////////////////////////////
 //            this->c = this->ss->bs[i];
-//            (this->c.whosTurn)++;
+//            (this->c.whosTurn)++;xxxxxxxxxxxxxxxxxxxxxxxxxxx
 //            this->ss = initialiseStates();
 //            genSuccStates(&node, &(this->c));
-//            this->validMoves.clear();
-//            genListOfValidMoves();
+//            this->validMoves.clear();xxxxxxxxxxxxxxxxxxxx
+//            genListOfValidMoves();////////////////
 //            gameMoves.push_back(usrInput);
 //            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
 //            this->previousStates.push_back(key);
@@ -83,8 +100,8 @@ bool GameState::changeState(string usrInput){
 //            return true;
 //        }
 //    }
-    cout << "Invalid move\n";
-    return false;
+
+    return true;
 }
 
 bool GameState::isFiftyMoveRule(){
@@ -124,6 +141,7 @@ bool GameState::isValidMoves(){
 }
 
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
+//printValidmoves should be part of printState
 void GameState::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates);
     printValidMoves();
@@ -209,6 +227,7 @@ void GameState::printValidMoves(){
 
 //add a return of void
 void GameState::genListOfValidMoves(){
+    this->validMoves.clear();
     T_Node *n = createNode();
     string s;
     genSuccStates(n, &(this->c));
@@ -216,5 +235,5 @@ void GameState::genListOfValidMoves(){
         s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
         this->validMoves.push_back(s);
     }
-    printValidMoves();
+    //printValidMoves();
 }
