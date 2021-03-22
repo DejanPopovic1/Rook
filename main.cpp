@@ -55,7 +55,8 @@ void multiPlayerSession(char *playerColourInput){
     }
     //T_boardState s = initialiseBoardState();
     GameState sc(playerColour);
-
+    sc.changeState("g");
+    cout << "Test" << endl;
 
 
 
@@ -68,7 +69,7 @@ void multiPlayerSession(char *playerColourInput){
 //    }
 //    sc.printGameState();
 //    std::cin.get();
-//    return;
+    return;
 }
 
 void test(){

@@ -6,12 +6,14 @@
 #include "searchTree.hpp"
 
 #include <iostream>
+#include <algorithm>
 
 using std::string;
 using std::vector;
 using std::cout;
 using std::endl;
 using std::pair;
+using std::find;
 
 GameState::GameState(){
 
@@ -31,6 +33,15 @@ GameState::GameState(bool pA){
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
     genListOfValidMoves();
+}
+
+bool GameState::isValidMove(string s){
+    this->validMoves.begin();
+    this->validMoves.end();
+    if(find(this->validMoves.begin(), this->validMoves.end(), s) != this->validMoves.end()){
+        return true;
+    }
+    return false;
 }
 
 //Rope out the for loop and determine if its valid input in a seperate function
@@ -205,4 +216,5 @@ void GameState::genListOfValidMoves(){
         s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
         this->validMoves.push_back(s);
     }
+    printValidMoves();
 }
