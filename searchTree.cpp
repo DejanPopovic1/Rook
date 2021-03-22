@@ -180,8 +180,11 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             //cout << evaluateBoard(&(*iterator)->b) << endl;
         return evaluateBoard(&(*iterator)->b);
     }
+    if(genSuccStates(*iterator, &(*iterator)->b)){
+        ;
+
+    }
     level++;
-    genSuccStates(*iterator, &(*iterator)->b);
     if((*iterator)->b.whosTurn){
         //cout << "First" << endl;
         int min = 1000;
