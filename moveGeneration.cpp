@@ -491,7 +491,7 @@ void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, i
 
 }
 
-void genSuccStates(T_Node *node, T_boardState *b){
+bool genSuccStates(T_Node *node, T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
         T_bitboard **steps = createSteps();
@@ -511,10 +511,41 @@ void genSuccStates(T_Node *node, T_boardState *b){
             genPiecesSuccStates(node, b, rays, blackQueen);
             genPiecesSuccStates(node, b, steps, blackKing);
         }
+
+
+
         freeRays(rays);
         freeJumps(jumps);
         freeSteps(steps);
+        return false;
 }
+
+//bool isKingsExist(T_boardStates *bss, bool whosKing){
+//    for(int i; i < bss->fi; i++){
+//        if(!isKingExist(&bss->bs[i], whosKing)){
+//            return false;
+//        }
+//    }
+//    return true;
+//}
+
+bool isKingExist(T_Node *n, bool whosKing){
+    if(whosKing){
+        if(n->b.bKing){
+            return true;
+        }
+    }
+    else{
+        if(n->b.wKing){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
 
 //Refactor out the castling into a seperate function
 //Use get piece from pieces

@@ -46,14 +46,14 @@ void genMoves(T_Node *node, T_boardState *b, int n, T_bitboard *validMoves, int 
 T_bitboard moveBoardDir(T_boardState *b, int n, int direction, T_bitboard **rays);
 void genDirStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int direction, int piece);
 void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece);
-void genSuccStates(T_Node *node, T_boardState *b);
+bool genSuccStates(T_Node *node, T_boardState *b);
 void genPiecesSuccStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece);
 void generateCastlingState(T_Node *node, T_boardState *b, T_bitboard castlePass);
 void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass);
 void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **moveRules, int piece);
 void (*genPieceSuccStates(int piece))(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece);
 bool isKingsExist(T_boardStates *bss, bool whosKing);
-bool isKingExist(T_boardState *b, bool whosKing);
+bool isKingExist(T_Node *n, bool whosKing);
 bool isInCheck(T_boardState *b/*, T_bitboard **jumps, T_bitboard **steps, T_bitboard **wPAttacks, T_bitboard **bPAttacks, T_bitboard **rays*/);
 
 #endif // MOVEGENERATION_H

@@ -1,4 +1,3 @@
-Debug minimax
 Incorporate minimax in gameState
 Include check rules - to save computation, generated move will never sacrifice the 100 king points. Do this instead of computing complicated rules
 Done :-)
