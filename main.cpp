@@ -53,18 +53,22 @@ void multiPlayerSession(char *playerColourInput){
     else if(!strcmp(playerColourInput, "b")){
         playerColour = asBlack;
     }
-    T_boardState s = initialiseBoardState();
-    GameState sc(s, playerColour);
-    std::string usrInput;
-    T_boardStates *bss = initialiseStates();
-    T_boardState c;
-    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
-        //sc.printGameState();
-        sc.moveCycle();
-    }
-    sc.printGameState();
-    std::cin.get();
-    return;
+    //T_boardState s = initialiseBoardState();
+    GameState sc(playerColour);
+
+
+
+
+
+//    std::string usrInput;
+//    T_boardStates *bss = initialiseStates();
+//    T_boardState c;
+//    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isThreeFoldRepetition() && !sc.isFiftyMoveRule()){
+//        sc.moveCycle();
+//    }
+//    sc.printGameState();
+//    std::cin.get();
+//    return;
 }
 
 void test(){
@@ -74,7 +78,7 @@ void test(){
 }
 
 int main(){
-    test();
+//    test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);

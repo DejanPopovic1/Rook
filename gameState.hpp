@@ -21,7 +21,7 @@ enum PlayingAs{asWhite, asBlack};
 class GameState{
 public:
     GameState();
-    GameState(T_boardState boardState, bool pA);
+    GameState(bool pA);
     bool changeState(std::string usrInput);
     T_boardState getState();
     void printGameState();

@@ -21,12 +21,12 @@ T_boardState GameState::getState(){
     return (this->c);
 }
 //Dont pass in board state, rather create it in this constructor
-GameState::GameState(T_boardState boardState, bool pA){
+GameState::GameState(bool pA){
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
     this->ply = 0;
     this->playingAs = pA;
-    this->c = boardState;
+    this->c = initialiseBoardState();
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
