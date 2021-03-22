@@ -511,12 +511,13 @@ bool genSuccStates(T_Node *node, T_boardState *b){
             genPiecesSuccStates(node, b, rays, blackQueen);
             genPiecesSuccStates(node, b, steps, blackKing);
         }
-
-
-
         freeRays(rays);
         freeJumps(jumps);
         freeSteps(steps);
+        bool followingTurn = b->whosTurn;
+        if(isKingsExist(node, ++followingTurn)){
+            return true;
+        }
         return false;
 }
 

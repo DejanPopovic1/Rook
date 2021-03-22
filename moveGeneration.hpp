@@ -52,7 +52,7 @@ void generateCastlingState(T_Node *node, T_boardState *b, T_bitboard castlePass)
 void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass);
 void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **moveRules, int piece);
 void (*genPieceSuccStates(int piece))(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece);
-bool isKingsExist(T_boardStates *bss, bool whosKing);
+bool isKingsExist(T_Node *n, bool whosKing);
 bool isKingExist(T_Node *n, bool whosKing);
 bool isInCheck(T_boardState *b/*, T_bitboard **jumps, T_bitboard **steps, T_bitboard **wPAttacks, T_bitboard **bPAttacks, T_bitboard **rays*/);
 
