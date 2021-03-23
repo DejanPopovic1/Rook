@@ -55,22 +55,15 @@ void multiPlayerSession(char *playerColourInput){
     }
     //T_boardState s = initialiseBoardState();
     GameState sc(playerColour);
-    sc.printGameState();
-    sc.changeState("Nc3");
-    sc.printGameState();
-    cout << "Test" << endl;
-
-
-
-
-//    std::string usrInput;
-//    T_boardStates *bss = initialiseStates();
-//    T_boardState c;
-//    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
-//        sc.moveCycle();
-//    }
-//    sc.printGameState();
-//    std::cin.get();
+    //sc.printGameState();
+    string usrInput;
+    //T_boardStates *bss = initialiseStates();
+    //T_boardState c;
+    while(/*!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()*/true){
+        sc.moveCycle();
+    }
+    //sc.printGameState();
+    std::cin.get();
     return;
 }
 

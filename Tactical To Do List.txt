@@ -1,4 +1,5 @@
 add AIMove in gameState
+Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate
 isCheckMate
 isStaleMate
 Done :-)

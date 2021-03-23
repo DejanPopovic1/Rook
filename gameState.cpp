@@ -142,7 +142,7 @@ void GameState::printSuccStates(){
 }
 
 string GameState::engineMove(){
-    T_boardStates *bss = initialiseStates();
+    //T_boardStates *bss = initialiseStates();
 //    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
     T_boardState cm = computerMove(&this->c);
     //genSuccStates(&node, &this->c);
@@ -156,15 +156,16 @@ string GameState::engineMove(){
 ////
 ////
 ////    cout << "===End Debug===" << endl;
-    int randomMoveIndex = rand() % bss->fi;
-    T_boardState ss = bss->bs[randomMoveIndex];
-    return toAlgebraicNotation(&this->c, &ss);
+    //int randomMoveIndex = rand() % bss->fi;
+    //T_boardState ss = bss->bs[randomMoveIndex];
+    return toAlgebraicNotation(&this->c, &cm);
 }
 
 //As per comment above, this needs refactoring to first determine if input is correct
 void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
+
         printGameState();
         changeState(engineMove());
         printGameState();
@@ -174,6 +175,7 @@ void GameState::moveCycle(){
         }while(!changeState(usrInput));
     }
     else{
+                        //cout << "test" << endl<< endl <<endl;
         printGameState();
         do{
             multiPlayerPrompt();
