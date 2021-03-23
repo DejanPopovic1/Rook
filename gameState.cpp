@@ -182,6 +182,8 @@ void GameState::moveCycle(){
             std::cin >> usrInput;
         }while(!changeState(usrInput));
         printGameState();
+        cout << "COMPUTER MOVE:" << endl;
+        printState(computerMove(&this->c));
         changeState(engineMove());
     }
 }
