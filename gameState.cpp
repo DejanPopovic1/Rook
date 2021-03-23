@@ -67,7 +67,6 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
     }
 }
 
-//Rope out the for loop and determine if its valid input in a seperate function
 bool GameState::changeState(string usrInput){
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
@@ -76,50 +75,27 @@ bool GameState::changeState(string usrInput){
     T_boardState successorState = stateAtMoveIndex(&this->c, moveIndex(usrInput));
     updateMovesWithoutTakeOrPawnMove(&this->c, &successorState);
     this->ply++;
-
-//    T_Node node;
-//    T_boardState cpy;
-//    for(int i = 0; i < this->ss->fi; i++){
-//        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;
-//        if(validMoves[i] == usrInput){
-//            cpy = this->c;
-//            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){
-//                this->movesWithoutTakeOrPawnMove++;
-//            }
-//            else{
-//                this->movesWithoutTakeOrPawnMove = 0;
-//            }
-//            this->ply++;///////////////////////////////////
-//            this->c = this->ss->bs[i];
-//            (this->c.whosTurn)++;xxxxxxxxxxxxxxxxxxxxxxxxxxx
-//            this->ss = initialiseStates();
-//            genSuccStates(&node, &(this->c));
-//            this->validMoves.clear();xxxxxxxxxxxxxxxxxxxx
-//            genListOfValidMoves();////////////////
-//            gameMoves.push_back(usrInput);
-//            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);
-//            this->previousStates.push_back(key);
-//            if(this->previousStatesCount.count(key)){
-//                previousStatesCount[key] += 1;
-//            }
-//            else{
-//                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
-//            }
-//            if(isCheckMate()){
-//                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-//            }
-//            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){
-//                gameMoves.push_back("1/2 - 1/2");
-//            }
-//            return true;
-//        }
-//    }
+    this->gameMoves.push_back(usrInput);
+    uint64_t key = incrementKey(this->previousStates.back(), &this->c, &successorState, this->randomKey);
+    this->previousStates.push_back(key);
+    if(this->previousStatesCount.count(key)){
+        previousStatesCount[key] += 1;
+    }
+    else{
+        this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
+    }
+    if(isCheckMate()){
+        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+    }
+    else if(isStaleMate() || isThreeFoldRepetition() || isSeventyFiveMoveRule()){
+        gameMoves.push_back("1/2 - 1/2");
+    }
     this->c = successorState;
     return true;
 }
 
-bool GameState::isFiftyMoveRule(){
-    if(this->movesWithoutTakeOrPawnMove == 100){
+bool GameState::isSeventyFiveMoveRule(){
+    if(this->movesWithoutTakeOrPawnMove == 150){
         return true;
     }
     return false;
@@ -251,3 +227,42 @@ void GameState::genListOfValidMoves(){
     }
     //printValidMoves();
 }
+
+
+//    T_Node node;xxxxxxxxxxxxxx
+//    T_boardState cpy;xxxxxxxxx
+//    for(int i = 0; i < this->ss->fi; i++){xxxxxxxxxxx
+//        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;////////////
+//        if(validMoves[i] == usrInput){xxxxxxxxxxxxxxxxx
+//            cpy = this->c;xxxxxxxxxxx
+//            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){////////
+//                this->movesWithoutTakeOrPawnMove++;/////////////
+//            }//////////////
+//            else{////////////
+//                this->movesWithoutTakeOrPawnMove = 0;///////////
+//            }//////////////////
+//            this->ply++;///////////////////////////////////
+//            this->c = this->ss->bs[i];xxxxxxxxxxx
+//            (this->c.whosTurn)++;xxxxxxxxxxxxxxxxxxxxxxxxxxx
+//            this->ss = initialiseStates();xxxxxxxxx
+//            genSuccStates(&node, &(this->c));xxxxxxxxxxxxxxxxx
+//            this->validMoves.clear();xxxxxxxxxxxxxxxxxxxx
+//            genListOfValidMoves();////////////////
+//            gameMoves.push_back(usrInput);//////////////////////
+//            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);////////////////
+//            this->previousStates.push_back(key);//////////////
+//            if(this->previousStatesCount.count(key)){////////////
+//                previousStatesCount[key] += 1;///////////
+//            }//////////////
+//            else{///////////////////////
+//                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));//////////////
+//            }////////////////////
+//            if(isCheckMate()){//////////////
+//                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");//////////////
+//            }//////////////
+//            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){//////////////
+//                gameMoves.push_back("1/2 - 1/2");//////////////
+//            }//////////////
+//            return true;xxxxxxxxx
+//        }xxxxxxxxxxxx
+//    }xxxxxxxxxxxxx

@@ -28,7 +28,7 @@ public:
     T_boardState getState();
     void printGameState();
     void printSuccStates();
-    bool isFiftyMoveRule();
+    bool isSeventyFiveMoveRule();
     bool isThreeFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
