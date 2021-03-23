@@ -142,20 +142,20 @@ void GameState::printSuccStates(){
 }
 
 string GameState::engineMove(){
-    T_Node node;
     T_boardStates *bss = initialiseStates();
-    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
-    genSuccStates(&node, &this->c);
-    //this->validMoves.clear();
-    //this->ss = initialiseStates();
-    //genSuccStates(this->ss, &(this->c));
-    //genListOfValidMoves();
-
-//    cout << "===Start Debug===" << endl;
-//    printStates(bss, 0);
+//    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
+    T_boardState cm = computerMove(&this->c);
+    //genSuccStates(&node, &this->c);
+//    //this->validMoves.clear();
+//    //this->ss = initialiseStates();
+//    //genSuccStates(this->ss, &(this->c));
+//    //genListOfValidMoves();
 //
-//
-//    cout << "===End Debug===" << endl;
+////    cout << "===Start Debug===" << endl;
+////    printStates(bss, 0);
+////
+////
+////    cout << "===End Debug===" << endl;
     int randomMoveIndex = rand() % bss->fi;
     T_boardState ss = bss->bs[randomMoveIndex];
     return toAlgebraicNotation(&this->c, &ss);

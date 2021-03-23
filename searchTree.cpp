@@ -159,7 +159,7 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
 //This function is agnostic to what colour AI is assigned to. It will be assigned to the coloour whos turn it currently is
-T_boardState *computerMove(T_boardState *input){
+T_boardState computerMove(T_boardState *input){
     T_Node *head = createNode();
     head->b = *input;
     int bestEval;
@@ -169,7 +169,8 @@ T_boardState *computerMove(T_boardState *input){
     cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
-    return &head2->scc[indexMaxMin]->b;
+    T_boardState result = head2->scc[indexMaxMin]->b;
+    return result;
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code

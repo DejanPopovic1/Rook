@@ -76,7 +76,7 @@ void multiPlayerSession(char *playerColourInput){
 
 void test(){
     T_boardState b = initialiseBoardState();
-    printState(*computerMove(&b));
+    printState(computerMove(&b));
     getchar();
 }
 

@@ -1,4 +1,3 @@
-moveCycle
 add AIMove in gameState
 isCheckMate
 isStaleMate
