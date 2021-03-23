@@ -56,7 +56,7 @@ void multiPlayerSession(char *playerColourInput){
     //T_boardState s = initialiseBoardState();
     GameState sc(playerColour);
     sc.printGameState();
-    sc.changeState("Nxf3");
+    sc.changeState("Nc3");
     sc.printGameState();
     cout << "Test" << endl;
 

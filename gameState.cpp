@@ -55,14 +55,28 @@ T_boardState stateAtMoveIndex(T_boardState *s, int i){
     return n->scc[i]->b;
 }
 
+void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s){
+    T_Node *n = createNode();
+    genSuccStates(n, c);
+    //isPawnMoveOrCapture(s, &stateAtMoveIndex(s, moveIndex(usrInput)))
+    if(!isPawnMoveOrCapture(c, s)){
+        s->noCapturesOrPawnMoves++;
+    }
+    else{
+        s->noCapturesOrPawnMoves = 0;
+    }
+}
+
 //Rope out the for loop and determine if its valid input in a seperate function
 bool GameState::changeState(string usrInput){
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
        return false;
     }
-    this->c = stateAtMoveIndex(&this->c, moveIndex(usrInput));
+    T_boardState successorState = stateAtMoveIndex(&this->c, moveIndex(usrInput));
+    updateMovesWithoutTakeOrPawnMove(&this->c, &successorState);
     this->ply++;
+
 //    T_Node node;
 //    T_boardState cpy;
 //    for(int i = 0; i < this->ss->fi; i++){
@@ -100,7 +114,7 @@ bool GameState::changeState(string usrInput){
 //            return true;
 //        }
 //    }
-
+    this->c = successorState;
     return true;
 }
 

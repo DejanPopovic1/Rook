@@ -18,6 +18,8 @@ enum PlayingAs{asWhite, asBlack};
 //4. List of all game moves
 //5. Time left in current move (if there is a time limit imposed)
 
+
+//Create a MAP that has all successor states and associated moves
 class GameState{
 public:
     GameState();
@@ -33,6 +35,7 @@ public:
     void moveCycle();
     std::string engineMove();
 private:
+    void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
     bool isValidMove(std::string s);
     key *randomKey;
