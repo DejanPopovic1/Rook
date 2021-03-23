@@ -87,7 +87,7 @@ bool GameState::changeState(string usrInput){
     if(isCheckMate()){
         this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
     }
-    else if(isStaleMate() || isThreeFoldRepetition() || isSeventyFiveMoveRule()){
+    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
         gameMoves.push_back("1/2 - 1/2");
     }
     this->c = successorState;
@@ -101,9 +101,9 @@ bool GameState::isSeventyFiveMoveRule(){
     return false;
 }
 
-bool GameState::isThreeFoldRepetition(){
+bool GameState::isFiveFoldRepetition(){
     for (auto it = this->previousStatesCount.begin(); it != this->previousStatesCount.end(); ++it)
-        if (it->second == 3){
+        if (it->second == 5){
             return true;
         }
     return false;
@@ -182,18 +182,6 @@ void GameState::moveCycle(){
         printGameState();
         changeState(engineMove());
     }
-
-
-//        printGameState();
-//        do{
-//            multiPlayerPrompt();
-//            std::cin >> usrInput;
-//        }while(!changeState(usrInput));
-
-
-//        printGameState();
-//        changeState(engineMove());
-
 }
 
 //implement isPawn function

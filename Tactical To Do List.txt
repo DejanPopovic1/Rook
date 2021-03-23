@@ -1,4 +1,5 @@
-complete changeState()
+moveCycle
 add AIMove in gameState
-Add three ending conditions
+isCheckMate
+isStaleMate
 Done :-)

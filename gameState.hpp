@@ -29,7 +29,7 @@ public:
     void printGameState();
     void printSuccStates();
     bool isSeventyFiveMoveRule();
-    bool isThreeFoldRepetition();
+    bool isFiveFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
     void moveCycle();
