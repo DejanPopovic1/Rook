@@ -6,3 +6,4 @@ No fivefold repetition or 75 move rule
 Crashes on valid moves when the opponent (black) is checkmated in AI random mode
 test the whole check mate thing a bit more against AI
 Closing the game after minimax unusually terminates the program
+*IF* the game starts off in a non-standard state, the valid King moves are skewed

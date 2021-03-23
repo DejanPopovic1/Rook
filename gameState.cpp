@@ -68,6 +68,7 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
 }
 
 bool GameState::changeState(string usrInput){
+    genListOfValidMoves();
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
        return false;
@@ -162,10 +163,10 @@ string GameState::engineMove(){
 }
 
 //As per comment above, this needs refactoring to first determine if input is correct
+//Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate
 void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
-
         printGameState();
         changeState(engineMove());
         printGameState();
@@ -181,9 +182,12 @@ void GameState::moveCycle(){
             multiPlayerPrompt();
             std::cin >> usrInput;
         }while(!changeState(usrInput));
+//        cout << "STATE AFTER HUMAN MOVE:" << endl;
+//                printState(this->c);
         printGameState();
         cout << "COMPUTER MOVE:" << endl;
-        printState(computerMove(&this->c));
+//        printState(computerMove(&this->c));
+//        cout << engineMove();
         changeState(engineMove());
     }
 }
@@ -207,7 +211,22 @@ void GameState::printValidMoves(){
     cout << endl << endl;
 }
 
-//add a return of void
+//vector<string> genListOfValidSuccStates(T_boardState *input){
+//    T_Node *head = createNode();
+//    head->b = *input;
+//    int bestEval;
+//    int indexMaxMin;
+//    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
+//    //cout << endl << bestEval << endl;
+//    //cout << endl << indexMaxMin << endl;
+//    T_Node *head2 = createNode();
+//    genSuccStates(head2, input);
+//    T_boardState result = head2->scc[indexMaxMin]->b;
+//    return result;
+//}
+
+
+//Change name to listOfValidNotations
 void GameState::genListOfValidMoves(){
     this->validMoves.clear();
     T_Node *n = createNode();

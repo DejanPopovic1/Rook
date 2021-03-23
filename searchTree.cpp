@@ -152,6 +152,10 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //    node->fp = 36;
 }
 
+
+
+
+
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
 //1) No need to conduct if statements below
 //2) No need to copy across player turn as a struct member when creating a new node in the tree
@@ -165,8 +169,8 @@ T_boardState computerMove(T_boardState *input){
     int bestEval;
     int indexMaxMin;
     bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
-    cout << endl << bestEval << endl;
-    cout << endl << indexMaxMin << endl;
+    //cout << endl << bestEval << endl;
+    //cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
     T_boardState result = head2->scc[indexMaxMin]->b;

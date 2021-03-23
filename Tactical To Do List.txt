@@ -1,5 +1,6 @@
-add AIMove in gameState
-Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate
+As a player, cannot move King into a check state. (As a computer, this is already done)
+After ~20 plies, memory usage is massive. Must be forgetting to free() memory somewhere in the programme
+
 isCheckMate
 isStaleMate
 Done :-)
