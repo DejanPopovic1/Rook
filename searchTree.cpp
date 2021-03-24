@@ -186,8 +186,9 @@ T_boardState computerMove(T_boardState *input){
 //return NUMBER of moves - this is needed for mobility heuristics
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
-        //int result = evaluateBoard(&(*iterator)->b);
+        //int result =
                 //freeTreeNode(*iterator);
+                //free(*iterator);
         return evaluateBoard(&(*iterator)->b);
     }
     bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
@@ -197,6 +198,7 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     level++;
     if((*iterator)->b.whosTurn){
         if(isOppPlayerInCheck){//Condition: Black turn, White in check
+            freeTreeNode(*iterator);
             return -1000;//This line is executed as black and returns to white code
         }
         int min = 1000;
@@ -218,6 +220,7 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     }
     else{
         if(isOppPlayerInCheck){//Condition: White turn, Black in check
+            freeTreeNode(*iterator);
             return 1000;//This line is executed as white and returns to black code
         }
         int max = -1000;
