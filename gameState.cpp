@@ -60,16 +60,12 @@ T_boardState GameState::stateAtMoveIndex(T_boardState *s, int i){
 }
 
 void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s){
-    //T_Node *n = createNode();
-    //genSuccStates(n, c);
-    ////isPawnMoveOrCapture(s, &stateAtMoveIndex(s, moveIndex(usrInput)))
     if(!isPawnMoveOrCapture(c, s)){
         s->noCapturesOrPawnMoves++;
     }
     else{
         s->noCapturesOrPawnMoves = 0;
     }
-    //free(n);
 }
 
 //A map corresponding to moves and states should be made in change State
@@ -149,24 +145,7 @@ void GameState::printSuccStates(){
 }
 
 string GameState::engineMove(){
-
-    //T_boardStates *bss = initialiseStates();
-//    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
     T_boardState cm = computerMove(&this->c);
-
-    //genSuccStates(&node, &this->c);
-//    //this->validMoves.clear();
-//    //this->ss = initialiseStates();
-//    //genSuccStates(this->ss, &(this->c));
-//    //genListOfValidMoves();
-//
-////    cout << "===Start Debug===" << endl;
-////    printStates(bss, 0);
-////
-////
-////    cout << "===End Debug===" << endl;
-    //int randomMoveIndex = rand() % bss->fi;
-    //T_boardState ss = bss->bs[randomMoveIndex];
     return toAlgebraicNotation(&this->c, &cm);
 }
 
@@ -189,12 +168,6 @@ void GameState::moveCycle(){
             multiPlayerPrompt();
             std::cin >> usrInput;
         }while(!changeState(usrInput));
-//        cout << "STATE AFTER HUMAN MOVE:" << endl;
-//                printState(this->c);
-        //printGameState();
-        cout << "COMPUTER MOVE:" << endl;
-//        printState(computerMove(&this->c));
-//        cout << engineMove();
         changeState(engineMove());
     }
 }
@@ -210,21 +183,6 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     return false;
 }
 
-
-//vector<string> genListOfValidSuccStates(T_boardState *input){
-//    T_Node *head = createNode();
-//    head->b = *input;
-//    int bestEval;
-//    int indexMaxMin;
-//    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
-//    //cout << endl << bestEval << endl;
-//    //cout << endl << indexMaxMin << endl;
-//    T_Node *head2 = createNode();
-//    genSuccStates(head2, input);
-//    T_boardState result = head2->scc[indexMaxMin]->b;
-//    return result;
-//}
-
 bool GameState::isStateInCheck(T_boardState *b){
     T_Node *n = createNode();
     genSuccStates(n, b);
@@ -238,7 +196,6 @@ T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
     for(int i = 0; i < n->fp; i++){
         if(!isStateInCheck(&n->scc[i]->b)){
             T_boardState cpy = n->scc[i]->b;
-            //printState(cpy);
             addStateNode(result, &cpy);
         }
     }
@@ -248,11 +205,7 @@ T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
 T_Node *GameState::genValidStatesFromState(T_boardState *input){
     T_Node *n = createNode();
     genSuccStates(n, input);
-
     T_Node *result = genValidFromPseudoValidStates(n);
-
-    //free(input);
-
     return result;
     //!!!Free the calling function!!!
 }
@@ -260,17 +213,9 @@ T_Node *GameState::genValidStatesFromState(T_boardState *input){
 //Change name to listOfValidNotations
 //Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
 vector<string> GameState::genListOfValidMoves(T_boardState input){
-
     vector<string> result;
-    //this->validMoves.clear();
-    //T_Node *n = createNode();
-
     string s;
     T_Node *vs = genValidStatesFromState(&input);
-
-
-    //genSuccStates(n, &(input));
-    //T_Node *v = genValidFromPseudoValidStates(n);
     for(int i = 0; i < vs->fp; i++){
         s = toAlgebraicNotation(&(input), &vs->scc[i]->b);
         result.push_back(s);
@@ -280,42 +225,3 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     return result;
     //!!!FREE V!!!
 }
-
-
-//    T_Node node;xxxxxxxxxxxxxx
-//    T_boardState cpy;xxxxxxxxx
-//    for(int i = 0; i < this->ss->fi; i++){xxxxxxxxxxx
-//        //cout << (int)this->movesWithoutTakeOrPawnMove << endl;////////////
-//        if(validMoves[i] == usrInput){xxxxxxxxxxxxxxxxx
-//            cpy = this->c;xxxxxxxxxxx
-//            if(!isPawnMoveOrCapture(&cpy, &this->ss->bs[i])){////////
-//                this->movesWithoutTakeOrPawnMove++;/////////////
-//            }//////////////
-//            else{////////////
-//                this->movesWithoutTakeOrPawnMove = 0;///////////
-//            }//////////////////
-//            this->ply++;///////////////////////////////////
-//            this->c = this->ss->bs[i];xxxxxxxxxxx
-//            (this->c.whosTurn)++;xxxxxxxxxxxxxxxxxxxxxxxxxxx
-//            this->ss = initialiseStates();xxxxxxxxx
-//            genSuccStates(&node, &(this->c));xxxxxxxxxxxxxxxxx
-//            this->validMoves.clear();xxxxxxxxxxxxxxxxxxxx
-//            genListOfValidMoves();////////////////
-//            gameMoves.push_back(usrInput);//////////////////////
-//            uint64_t key = incrementKey(this->previousStates.back(), &cpy, &this->c, this->randomKey);////////////////
-//            this->previousStates.push_back(key);//////////////
-//            if(this->previousStatesCount.count(key)){////////////
-//                previousStatesCount[key] += 1;///////////
-//            }//////////////
-//            else{///////////////////////
-//                this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));//////////////
-//            }////////////////////
-//            if(isCheckMate()){//////////////
-//                this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");//////////////
-//            }//////////////
-//            else if(isStaleMate() || isThreeFoldRepetition() || isFiftyMoveRule()){//////////////
-//                gameMoves.push_back("1/2 - 1/2");//////////////
-//            }//////////////
-//            return true;xxxxxxxxx
-//        }xxxxxxxxxxxx
-//    }xxxxxxxxxxxxx
