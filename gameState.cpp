@@ -35,7 +35,7 @@ GameState::GameState(bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    this->validMoves = genListOfValidMoves();
+    this->validMoves = genListOfValidMoves(this->c);
 }
 
 bool GameState::isValidMove(string s){
@@ -52,8 +52,10 @@ int GameState::moveIndex(string s){
 
 T_boardState GameState::stateAtMoveIndex(T_boardState *s, int i){
     T_Node *n = createNode();
+
     genSuccStates(n, s);
-    //T_Node *v = genValidFromPseudoValidStates(n);
+    T_Node *v = genValidFromPseudoValidStates(n);
+    //return v->scc[i]->b;
     T_boardState result = n->scc[i]->b;
     freeTreeNode(n);
     free(n);
@@ -99,7 +101,7 @@ bool GameState::changeState(string usrInput){
         gameMoves.push_back("1/2 - 1/2");
     }
     this->c = successorState;
-    this->validMoves = genListOfValidMoves();
+    this->validMoves = genListOfValidMoves(this->c);
     return true;
 }
 
@@ -245,17 +247,27 @@ T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
     }
     return result;
 }
+
+T_Node *GameState::genValidStatesFromState(T_boardState *input){
+    T_Node *n = createNode();
+    genSuccStates(n, input);
+    T_Node *result = genValidFromPseudoValidStates(n);
+    free(input);
+    return result;
+    //!!!Free the calling function!!!
+}
+
 //Change name to listOfValidNotations
 //Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
-vector<string> GameState::genListOfValidMoves(){
+vector<string> GameState::genListOfValidMoves(T_boardState input){
     vector<string> result;
     //this->validMoves.clear();
     T_Node *n = createNode();
     string s;
-    genSuccStates(n, &(this->c));
+    genSuccStates(n, &(input));
     T_Node *v = genValidFromPseudoValidStates(n);
     for(int i = 0; i < v->fp; i++){
-        s = toAlgebraicNotation(&(this->c), &v->scc[i]->b);
+        s = toAlgebraicNotation(&(input), &v->scc[i]->b);
         result.push_back(s);
     }
     freeTreeNode(n);

@@ -37,7 +37,7 @@ public:
     bool isStateInCheck(T_boardState *b);//Move back to Private
 private:
     T_Node *genValidFromPseudoValidStates(T_Node *n);
-
+    T_Node *genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
@@ -47,7 +47,7 @@ private:
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck2();
-    std::vector<std::string> genListOfValidMoves();
+    std::vector<std::string> genListOfValidMoves(T_boardState input);
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
