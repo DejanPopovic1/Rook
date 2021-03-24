@@ -251,8 +251,11 @@ T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
 T_Node *GameState::genValidStatesFromState(T_boardState *input){
     T_Node *n = createNode();
     genSuccStates(n, input);
+
     T_Node *result = genValidFromPseudoValidStates(n);
-    free(input);
+
+    //free(input);
+
     return result;
     //!!!Free the calling function!!!
 }
@@ -260,18 +263,23 @@ T_Node *GameState::genValidStatesFromState(T_boardState *input){
 //Change name to listOfValidNotations
 //Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
 vector<string> GameState::genListOfValidMoves(T_boardState input){
+
     vector<string> result;
     //this->validMoves.clear();
-    T_Node *n = createNode();
+    //T_Node *n = createNode();
+
     string s;
-    genSuccStates(n, &(input));
-    T_Node *v = genValidFromPseudoValidStates(n);
-    for(int i = 0; i < v->fp; i++){
-        s = toAlgebraicNotation(&(input), &v->scc[i]->b);
+    T_Node *vs = genValidStatesFromState(&input);
+
+
+    //genSuccStates(n, &(input));
+    //T_Node *v = genValidFromPseudoValidStates(n);
+    for(int i = 0; i < vs->fp; i++){
+        s = toAlgebraicNotation(&(input), &vs->scc[i]->b);
         result.push_back(s);
     }
-    freeTreeNode(n);
-    free(n);
+    freeTreeNode(vs);
+    free(vs);
     return result;
     //!!!FREE V!!!
 }
