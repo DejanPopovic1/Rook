@@ -255,8 +255,8 @@ void initialiseWKnights(T_bitboard *result){
 void initialiseWRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 0);
-    //setBit(result, 7);
-    setBit(result, 18);
+    setBit(result, 7);
+    //setBit(result, 18);
 }
 
 void initialiseWQueen(T_bitboard *result){
@@ -295,8 +295,8 @@ void initialiseBKnights(T_bitboard *result){
 void initialiseBRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 56);
-    //setBit(result, 63);
-    setBit(result, 21);
+    setBit(result, 63);
+    //setBit(result, 21);
 }
 
 void initialiseBQueen(T_bitboard *result){

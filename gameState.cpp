@@ -97,7 +97,7 @@ bool GameState::changeState(string usrInput){
         gameMoves.push_back("1/2 - 1/2");
     }
     this->c = successorState;
-        genListOfValidMoves();
+    genListOfValidMoves();
     return true;
 }
 
@@ -224,8 +224,18 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
 //    return result;
 //}
 
+bool GameState::isStateInCheck(T_boardState *b){
+    T_Node *n = createNode();
+    genSuccStates(n, b);
+    bool result = isKingsExist(n, b->whosTurn);
+    free(n);
+    return result;
+}
+
+
 
 //Change name to listOfValidNotations
+//Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
 void GameState::genListOfValidMoves(){
     this->validMoves.clear();
     T_Node *n = createNode();

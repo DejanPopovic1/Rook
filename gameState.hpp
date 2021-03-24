@@ -35,6 +35,7 @@ public:
     void moveCycle();
     std::string engineMove();
 private:
+    bool isStateInCheck(T_boardState *b);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
     bool isValidMove(std::string s);
