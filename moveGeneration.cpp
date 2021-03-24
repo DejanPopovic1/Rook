@@ -491,6 +491,7 @@ void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, i
 
 }
 
+//Rename this to genPseudoValidStates
 bool genSuccStates(T_Node *node, T_boardState *b){
         T_bitboard **rays = createRays();
         T_bitboard **jumps = createJumps();
@@ -521,6 +522,8 @@ bool genSuccStates(T_Node *node, T_boardState *b){
         return true;//Current opposite player is not in check
 }
 
+
+//THIS FUNCTION MUST BE CALLED AS OTHER PLAYER - RATHER BUILD THIS FACT INTO THIS FUNCTION
 bool isKingsExist(T_Node *n, bool whosKing){
     for(int i = 0; i < n->fp; i++){
         if(!isKingExist(n->scc[i], whosKing)){

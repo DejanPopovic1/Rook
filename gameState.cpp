@@ -50,9 +50,10 @@ int GameState::moveIndex(string s){
     return std::distance(this->validMoves.begin(), it);
 }
 
-T_boardState stateAtMoveIndex(T_boardState *s, int i){
+T_boardState GameState::stateAtMoveIndex(T_boardState *s, int i){
     T_Node *n = createNode();
     genSuccStates(n, s);
+    //T_Node *v = genValidFromPseudoValidStates(n);
     T_boardState result = n->scc[i]->b;
     freeTreeNode(n);
     free(n);
@@ -227,7 +228,7 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
 bool GameState::isStateInCheck(T_boardState *b){
     T_Node *n = createNode();
     genSuccStates(n, b);
-    bool result = isKingsExist(n, b->whosTurn);
+    bool result = !isKingsExist(n, !b->whosTurn);
     free(n);
     return result;
 }
@@ -235,8 +236,11 @@ bool GameState::isStateInCheck(T_boardState *b){
 T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
     T_Node *result = createNode();
     for(int i = 0; i < n->fp; i++){
-        T_boardState cpy = n->scc[i]->b;
-        addStateNode(result, &cpy);
+        if(!isStateInCheck(&n->scc[i]->b)){
+            T_boardState cpy = n->scc[i]->b;
+            //printState(cpy);
+            addStateNode(result, &cpy);
+        }
     }
     return result;
 }
@@ -254,6 +258,7 @@ void GameState::genListOfValidMoves(){
     }
     freeTreeNode(n);
     free(n);
+    //!!!FREE V!!!
 }
 
 

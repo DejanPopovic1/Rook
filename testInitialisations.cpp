@@ -348,3 +348,103 @@ void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c){
 //    (*ps)->fp = 0;
 //    return;
 //}
+
+T_boardState ICinitialiseBoardState(){
+    T_boardState result;
+    ICinitialiseWPawns(&(result.wPawn));
+    ICinitialiseWBishops(&(result.wBishop));
+    ICinitialiseWKnights(&(result.wKnight));
+    ICinitialiseWRooks(&(result.wRook));
+    ICinitialiseWQueen(&(result.wQueen));
+    ICinitialiseWKing(&(result.wKing));
+    ICinitialiseBPawns(&(result.bPawn));
+    ICinitialiseBBishops(&(result.bBishop));
+    ICinitialiseBKnights(&(result.bKnight));
+    ICinitialiseBRooks(&(result.bRook));
+    ICinitialiseBQueen(&(result.bQueen));
+    ICinitialiseBKing(&(result.bKing));
+    ICinitialiseWEnPassants(&(result.wEnPassants));
+    ICinitialiseBEnPassants(&(result.bEnPassants));
+    ICinitialiseCastlesTurnCheck(&result);
+    ICinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
+//    PPinitialisePreviousStates(&(result.ps));
+    return result;
+}
+
+void ICinitialiseWPawns(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 49);
+}
+void ICinitialiseWBishops(T_bitboard *result){
+    clearBits(result);
+}
+
+void ICinitialiseWKnights(T_bitboard *result){
+    clearBits(result);
+}
+
+void ICinitialiseWRooks(T_bitboard *result){
+    clearBits(result);
+}
+
+void ICinitialiseWQueen(T_bitboard *result){
+    clearBits(result);
+}
+
+void ICinitialiseWKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 25);
+}
+
+void ICinitialiseBPawns(T_bitboard *result){
+    clearBits(result);
+}
+void ICinitialiseBBishops(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 58);
+}
+
+void ICinitialiseBKnights(T_bitboard *result){
+    clearBits(result);
+    //setBit(result, 57);
+    setBit(result, 62);
+}
+
+void ICinitialiseBRooks(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 56);
+    setBit(result, 63);
+}
+
+void ICinitialiseBQueen(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 24);
+}
+
+void ICinitialiseBKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 60);
+}
+
+void ICinitialiseWEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void ICinitialiseBEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void ICinitialiseCastlesTurnCheck(T_boardState *b){
+    b->castlesLRWhite = 1;
+    b->castlesRRWhite = 1;
+    b->castlesKWhite = 1;
+    b->castlesLRBlack = 1;
+    b->castlesRRBlack = 1;
+    b->castlesKBlack = 1;
+    b->whosTurn = 0;
+    b->evaluateCheck = 0;
+}
+
+void ICinitialiseNoCapturesOrPawnMoves(unsigned char *c){
+    *c = 0;
+}

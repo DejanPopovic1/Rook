@@ -34,9 +34,11 @@ public:
     bool isStaleMate();
     void moveCycle();
     std::string engineMove();
+    bool isStateInCheck(T_boardState *b);//Move back to Private
 private:
     T_Node *genValidFromPseudoValidStates(T_Node *n);
-    bool isStateInCheck(T_boardState *b);
+
+    T_boardState stateAtMoveIndex(T_boardState *s, int i);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
     bool isValidMove(std::string s);

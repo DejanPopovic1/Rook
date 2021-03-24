@@ -68,9 +68,16 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    T_boardState b = initialiseBoardState();
-    printState(computerMove(&b));
-    getchar();
+    GameState sc(0);
+    T_boardState IC = ICinitialiseBoardState();
+    printState(IC);
+    if(sc.isStateInCheck(&IC)){
+        exit(-1);
+    }
+    else{
+        ;
+    }
+    std::cin.get();
 }
 
 int main(){
