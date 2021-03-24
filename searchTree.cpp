@@ -170,12 +170,13 @@ T_boardState computerMove(T_boardState *input){
     int bestEval;
     int indexMaxMin;
     bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
+    free(head);
     //cout << endl << bestEval << endl;
     //cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
     T_boardState result = head2->scc[indexMaxMin]->b;
-    free(head);
+    freeTreeNode(head2);
     free(head2);
     return result;
 }
