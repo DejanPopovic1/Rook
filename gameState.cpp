@@ -35,7 +35,7 @@ GameState::GameState(bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    genListOfValidMoves();
+    this->validMoves = genListOfValidMoves();
 }
 
 bool GameState::isValidMove(string s){
@@ -73,6 +73,7 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
     //free(n);
 }
 
+//A map corresponding to moves and states should be made in change State
 bool GameState::changeState(string usrInput){
     //genListOfValidMoves();
     if(!isValidMove(usrInput)){
@@ -98,7 +99,7 @@ bool GameState::changeState(string usrInput){
         gameMoves.push_back("1/2 - 1/2");
     }
     this->c = successorState;
-    genListOfValidMoves();
+    this->validMoves = genListOfValidMoves();
     return true;
 }
 
@@ -246,18 +247,20 @@ T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
 }
 //Change name to listOfValidNotations
 //Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
-void GameState::genListOfValidMoves(){
-    this->validMoves.clear();
+vector<string> GameState::genListOfValidMoves(){
+    vector<string> result;
+    //this->validMoves.clear();
     T_Node *n = createNode();
     string s;
     genSuccStates(n, &(this->c));
     T_Node *v = genValidFromPseudoValidStates(n);
     for(int i = 0; i < v->fp; i++){
         s = toAlgebraicNotation(&(this->c), &v->scc[i]->b);
-        this->validMoves.push_back(s);
+        result.push_back(s);
     }
     freeTreeNode(n);
     free(n);
+    return result;
     //!!!FREE V!!!
 }
 

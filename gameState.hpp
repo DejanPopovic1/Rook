@@ -47,7 +47,7 @@ private:
     void printValidMoves();
     bool isValidMoves();
     bool isStateInCheck2();
-    void genListOfValidMoves();
+    std::vector<std::string> genListOfValidMoves();
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;
