@@ -34,6 +34,7 @@ using namespace std;
 
 //Arbitrarily populate 5 Successor states
 
+//Rename this to freeTreeNodeChildren
 void freeTreeNode(T_Node *node){
     for(int i = 0; i < node->fp; i++){
         free(node->scc[i]);
@@ -174,6 +175,8 @@ T_boardState computerMove(T_boardState *input){
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
     T_boardState result = head2->scc[indexMaxMin]->b;
+    free(head);
+    free(head2);
     return result;
 }
 
@@ -182,6 +185,8 @@ T_boardState computerMove(T_boardState *input){
 //return NUMBER of moves - this is needed for mobility heuristics
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
+        //int result = evaluateBoard(&(*iterator)->b);
+                //freeTreeNode(*iterator);
         return evaluateBoard(&(*iterator)->b);
     }
     bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
@@ -246,7 +251,7 @@ T_Node* createNode(){
 void addStateNode(T_Node *dstNode, T_boardState *src){
     src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
     src->whosTurn++;
-    dstNode->scc[dstNode->fp] = createNode();
+    dstNode->scc[dstNode->fp] = createNode();//MEMORY LEAK
     dstNode->scc[dstNode->fp]->b = *src;
     (dstNode->fp)++;
 }

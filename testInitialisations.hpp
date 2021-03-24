@@ -23,7 +23,7 @@ void CMinitialiseWEnPassants(unsigned char *c);
 void CMinitialiseBEnPassants(unsigned char *c);
 void CMinitialiseCastlesTurnCheck(T_boardState *b);
 void CMinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-void CMinitialisePreviousStates(struct PrevStates **ps);
+//void CMinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState SMinitialiseBoardState();
 void SMinitialiseWPawns(T_bitboard *result);
@@ -42,7 +42,7 @@ void SMinitialiseWEnPassants(unsigned char *c);
 void SMinitialiseBEnPassants(unsigned char *c);
 void SMinitialiseCastlesTurnCheck(T_boardState *b);
 void SMinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-void SMinitialisePreviousStates(struct PrevStates **ps);
+//void SMinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState PPinitialiseBoardState();
 void PPinitialiseWPawns(T_bitboard *result);
@@ -61,6 +61,6 @@ void PPinitialiseWEnPassants(unsigned char *c);
 void PPinitialiseBEnPassants(unsigned char *c);
 void PPinitialiseCastlesTurnCheck(T_boardState *b);
 void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-void PPinitialisePreviousStates(struct PrevStates **ps);
+//void PPinitialisePreviousStates(struct PrevStates **ps);
 
 #endif // TEST_INITIALISATIONS_H

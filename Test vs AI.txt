@@ -4,3 +4,5 @@ Rc5 b6 exf3 bxc5 Nc3 Ba6 Nh3 Bxf1 Kxf1 c4
 
 Depth 5
 Rc5 Rf4 Nh3 d6 c3 Bxh3 Rh5 Bg4 Rh4 e6 d3 h6 g3 g5 gxf4 gxh4 Qa4 b5 Qxb5 Nd7 Bg2 c6 Bxc6 Rb8 Qa4 Bh3 <----- At this point take the knight
+
+Rc5 Rf4 Nh3 d6 c3 Bxh3 Rh5 Bg4 Rh4 e6 d3 h6 g3 g5 gxf4 gxh4 Qa4 b5 Qxb5 Nd7 Bg2 c6 Bxc6 Rb8 Qa4 Bh3

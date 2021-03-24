@@ -68,13 +68,13 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-//    T_boardState b = initialiseBoardState();
-//    printState(computerMove(&b));
-//    getchar();
+    T_boardState b = initialiseBoardState();
+    printState(computerMove(&b));
+    getchar();
 }
 
 int main(){
-//    test();
+    //test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);

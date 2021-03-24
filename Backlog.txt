@@ -11,6 +11,7 @@ Use one function to generate all piece moves and general genSuccStates optimisat
 
 Before doing a complete test, have the ability to BACKTRACK moves. This is added functionality aswell as eases the heck out of testing
 
+In gameState, references to createNode must be freed otherwise we get bad memory leaks ~35 plies into the game. Use smart pointers for this to avoid cluttering the code with free()
 Unit tests
 seperate programm that starts two processes - an older version and newer version of rook and benchmarks them against each other, say 1000 times, and prints statistical output. If you dont add randomness of moves, this will be same output each time and therefore must throw in randommness
 Linefeed to show progress of AI state generator (add colours and animating ASCII's to make it look impressive)

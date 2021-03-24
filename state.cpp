@@ -196,11 +196,11 @@ bool isPosEmpty(const T_boardState *b, int n){
 //    }
 //}
 
-T_boardStates *initialiseStates(){
-    T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));
-    bss->fi = 0;
-    return bss;
-}
+//T_boardStates *initialiseStates(){
+//    T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));
+//    bss->fi = 0;
+//    return bss;
+//}
 
 int length(T_boardStates *bss){
     return bss->fi;

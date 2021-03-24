@@ -88,7 +88,7 @@ char whatFile(char n);
 bool isPosEmpty(const T_boardState *b, int n);
 //void addStateNode(T_Node *dstNode, T_boardState *src);
 //void addState(T_boardStates *dst, T_boardState *src);
-T_boardStates *initialiseStates();
+//T_boardStates *initialiseStates();
 int length(T_boardStates *bss);
 T_boardState initialiseBoardState();
 void initialiseWPawns(T_bitboard *result);

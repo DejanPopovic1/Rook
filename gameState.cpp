@@ -52,19 +52,22 @@ int GameState::moveIndex(string s){
 T_boardState stateAtMoveIndex(T_boardState *s, int i){
     T_Node *n = createNode();
     genSuccStates(n, s);
-    return n->scc[i]->b;
+    T_boardState result = n->scc[i]->b;
+    free(n);
+    return result;
 }
 
 void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s){
-    T_Node *n = createNode();
-    genSuccStates(n, c);
-    //isPawnMoveOrCapture(s, &stateAtMoveIndex(s, moveIndex(usrInput)))
+    //T_Node *n = createNode();
+    //genSuccStates(n, c);
+    ////isPawnMoveOrCapture(s, &stateAtMoveIndex(s, moveIndex(usrInput)))
     if(!isPawnMoveOrCapture(c, s)){
         s->noCapturesOrPawnMoves++;
     }
     else{
         s->noCapturesOrPawnMoves = 0;
     }
+    //free(n);
 }
 
 bool GameState::changeState(string usrInput){
@@ -236,7 +239,7 @@ void GameState::genListOfValidMoves(){
         s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
         this->validMoves.push_back(s);
     }
-    //printValidMoves();
+    free(n);
 }
 
 

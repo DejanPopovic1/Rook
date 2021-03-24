@@ -139,7 +139,7 @@ bool doesStateChangeDepartFromPos(T_boardState *f, T_boardState *t, char pos){
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     T_Node *head = createNode();
     char p = piece(b, d);
-    T_boardStates *bss = initialiseStates();
+    //T_boardStates *bss = initialiseStates();
     T_boardState *state;
     T_bitboard stateDepPcs;
     genSuccStates(head, b);
@@ -155,6 +155,7 @@ bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
             return true;
         }
     }
+    free(head);
     return false;
 }
 

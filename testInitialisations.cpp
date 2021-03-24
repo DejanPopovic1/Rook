@@ -130,11 +130,11 @@ void CMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
 }
 
 //Need to add in this functionality later
-void CMinitialisePreviousStates(struct PrevStates **ps){
-    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-    (*ps)->fp = 0;
-    return;
-}
+//void CMinitialisePreviousStates(struct PrevStates **ps){
+//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+//    (*ps)->fp = 0;
+//    return;
+//}
 
 T_boardState SMinitialiseBoardState(){
     T_boardState result;
@@ -236,11 +236,11 @@ void SMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
 }
 
 //Need to add in this functionality later
-void SMinitialisePreviousStates(struct PrevStates **ps){
-    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-    (*ps)->fp = 0;
-    return;
-}
+//void SMinitialisePreviousStates(struct PrevStates **ps){
+//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+//    (*ps)->fp = 0;
+//    return;
+//}
 
 T_boardState PPinitialiseBoardState(){
     T_boardState result;
@@ -343,8 +343,8 @@ void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c){
 }
 
 //Need to add in this functionality later
-void PPinitialisePreviousStates(struct PrevStates **ps){
-    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-    (*ps)->fp = 0;
-    return;
-}
+//void PPinitialisePreviousStates(struct PrevStates **ps){
+//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
+//    (*ps)->fp = 0;
+//    return;
+//}
