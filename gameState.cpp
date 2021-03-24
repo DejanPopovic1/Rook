@@ -53,7 +53,6 @@ int GameState::moveIndex(string s){
 T_boardState GameState::stateAtMoveIndex(T_boardState *s, int i){
     T_Node *n = createNode();
     genSuccStates(n, s);
-    T_Node *v = genValidFromPseudoValidStates(n);
     T_boardState result = n->scc[i]->b;
     freeTreeNode(n);
     free(n);
