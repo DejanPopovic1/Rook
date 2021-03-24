@@ -155,6 +155,7 @@ bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
             return true;
         }
     }
+    freeTreeNode(head);//This saved ~20Mb in leakage per move
     free(head);
     return false;
 }

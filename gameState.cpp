@@ -53,6 +53,7 @@ T_boardState stateAtMoveIndex(T_boardState *s, int i){
     T_Node *n = createNode();
     genSuccStates(n, s);
     T_boardState result = n->scc[i]->b;
+    freeTreeNode(n);
     free(n);
     return result;
 }
@@ -239,6 +240,7 @@ void GameState::genListOfValidMoves(){
         s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
         this->validMoves.push_back(s);
     }
+    freeTreeNode(n);
     free(n);
 }
 
