@@ -127,7 +127,7 @@ bool GameState::isStaleMate(){
 }
 
 //Rename
-bool GameState::isStateInCheck(){
+bool GameState::isStateInCheck2(){
     return false;
     //return isInCheck(&this->c);
 }
@@ -232,8 +232,14 @@ bool GameState::isStateInCheck(T_boardState *b){
     return result;
 }
 
-
-
+T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
+    T_Node *result = createNode();
+    for(int i = 0; i < n->fp; i++){
+        T_boardState cpy = n->scc[i]->b;
+        addStateNode(result, &cpy);
+    }
+    return result;
+}
 //Change name to listOfValidNotations
 //Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
 void GameState::genListOfValidMoves(){
@@ -241,8 +247,9 @@ void GameState::genListOfValidMoves(){
     T_Node *n = createNode();
     string s;
     genSuccStates(n, &(this->c));
-    for(int i = 0; i < n->fp; i++){
-        s = toAlgebraicNotation(&(this->c), &n->scc[i]->b);
+    T_Node *v = genValidFromPseudoValidStates(n);
+    for(int i = 0; i < v->fp; i++){
+        s = toAlgebraicNotation(&(this->c), &v->scc[i]->b);
         this->validMoves.push_back(s);
     }
     freeTreeNode(n);

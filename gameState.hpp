@@ -35,6 +35,7 @@ public:
     void moveCycle();
     std::string engineMove();
 private:
+    T_Node *genValidFromPseudoValidStates(T_Node *n);
     bool isStateInCheck(T_boardState *b);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
@@ -43,7 +44,7 @@ private:
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
     bool isValidMoves();
-    bool isStateInCheck();
+    bool isStateInCheck2();
     void genListOfValidMoves();
     int turnTimeLeft;
     std::vector<std::string> validMoves;
