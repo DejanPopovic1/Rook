@@ -1,4 +1,3 @@
-Fix memory leak - After ~20 plies, memory usage is massive. Must be forgetting to free() memory somewhere in the programme
 Latest valid moves shown is one ply behind - fix this
 What if invalid move is put in? Does it do that old bug where it goes to black
 As a player, cannot move King into a check state. (As a computer, this is already done) - first check if this is already maybe disallowed

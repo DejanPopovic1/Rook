@@ -73,7 +73,7 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
 }
 
 bool GameState::changeState(string usrInput){
-    genListOfValidMoves();
+    //genListOfValidMoves();
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
        return false;
@@ -97,6 +97,7 @@ bool GameState::changeState(string usrInput){
         gameMoves.push_back("1/2 - 1/2");
     }
     this->c = successorState;
+        genListOfValidMoves();
     return true;
 }
 
@@ -139,8 +140,7 @@ bool GameState::isValidMoves(){
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 //printValidmoves should be part of printState
 void GameState::printGameState(){
-    printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates);
-    printValidMoves();
+    printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
 
 void GameState::printSuccStates(){
@@ -148,9 +148,11 @@ void GameState::printSuccStates(){
 }
 
 string GameState::engineMove(){
+
     //T_boardStates *bss = initialiseStates();
 //    //this->c.evaluateCheck = 0;//This is a bad design pattern. The flag was already set to zero. Creating a new state
     T_boardState cm = computerMove(&this->c);
+
     //genSuccStates(&node, &this->c);
 //    //this->validMoves.clear();
 //    //this->ss = initialiseStates();
@@ -181,7 +183,6 @@ void GameState::moveCycle(){
         }while(!changeState(usrInput));
     }
     else{
-                        //cout << "test" << endl<< endl <<endl;
         printGameState();
         do{
             multiPlayerPrompt();
@@ -189,7 +190,7 @@ void GameState::moveCycle(){
         }while(!changeState(usrInput));
 //        cout << "STATE AFTER HUMAN MOVE:" << endl;
 //                printState(this->c);
-        printGameState();
+        //printGameState();
         cout << "COMPUTER MOVE:" << endl;
 //        printState(computerMove(&this->c));
 //        cout << engineMove();
@@ -208,13 +209,6 @@ bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     return false;
 }
 
-void GameState::printValidMoves(){
-    cout << "Valid moves: ";
-    for(int i = 0; i < validMoves.size(); i++){
-        cout << validMoves[i] << " ";
-    }
-    cout << endl << endl;
-}
 
 //vector<string> genListOfValidSuccStates(T_boardState *input){
 //    T_Node *head = createNode();
