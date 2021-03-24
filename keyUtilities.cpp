@@ -38,6 +38,7 @@ uint64_t generateKey(T_boardState *b){
     if(b->whosTurn){
         result ^= rand();
     }
+    free(rk);
     return result;
 }
 

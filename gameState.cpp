@@ -25,6 +25,7 @@ T_boardState GameState::getState(){
     return (this->c);
 }
 //Dont pass in board state, rather create it in this constructor
+//Add a class destructor that free's the randomKey malloc
 GameState::GameState(bool pA){
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
