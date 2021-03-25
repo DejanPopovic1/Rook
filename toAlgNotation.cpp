@@ -273,17 +273,19 @@ string toSpecifier(char to){
 }
 
 //Use wAll instead of cB and ssB
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *from){
+char isPromoted(T_boardState *c, T_boardState *ss_original, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *from){
+    T_boardState ss = *ss_original;
+    ss.whosTurn++;
     T_bitboard cB;
     T_bitboard ssB;
     T_bitboard temp;
-    __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(ss)) ? *isAlsoTake = true : *isAlsoTake = false;
-    c->whosTurn ? temp = c->bPawn ^ ss->bPawn : temp = c->wPawn ^ ss->wPawn;
+    __builtin_popcountll(oppositeAll(c)) > __builtin_popcountll(oppositeAll(&ss)) ? *isAlsoTake = true : *isAlsoTake = false;
+    c->whosTurn ? temp = c->bPawn ^ ss.bPawn : temp = c->wPawn ^ ss.wPawn;
     *from = __builtin_ctzll(temp);
     c->whosTurn ? *promotedRank = 0 : *promotedRank = 7;
     for(char i = 1; i < 13; i++){
         cB = *pieceBitboard(c, i);
-        ssB = *pieceBitboard(ss, i);
+        ssB = *pieceBitboard(&ss, i);
         if(__builtin_popcountll(ssB) > __builtin_popcountll(cB)){
             *promotedFile = __builtin_ctzll(ssB ^ cB) % 8;
             return i;
