@@ -605,7 +605,6 @@ void generateCastlingState(T_Node *node, T_boardState *b, T_bitboard castlePass)
 //Please refactor this dogshow
 void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRules, int piece, T_bitboard castlePass){
     T_boardState tmp = *b;
-    //T_bitboard **rays = createRays();
     T_bitboard **rays = moveRules;
     if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
@@ -661,13 +660,16 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
             }
         }
         bool cnd4;
+        bool cnd5;
         if(castlePass == BLACK_KINGSIDE_PASS){
             cnd4 = b->castlesKBlack && b->castlesRRBlack;
+            cnd5 = isBitSet(b->bKing, 60) && isBitSet(b->bRook, 63);
         }
         else if(castlePass == BLACK_QUEENSIDE_PASS){
             cnd4 = b->castlesKBlack && b->castlesLRBlack;
+            cnd5 = isBitSet(b->bKing, 60) && isBitSet(b->bRook, 56);
         }
-        if(cnd1 && cnd2 && cnd3 && cnd4){
+        if(cnd1 && cnd2 && cnd3 && cnd4 && cnd5){
             generateCastlingState(node, b, castlePass);
         }
     }
@@ -725,13 +727,16 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
             }
         }
         bool cnd4;
+        bool cnd5;
         if(castlePass == WHITE_KINGSIDE_PASS){
             cnd4 = b->castlesKWhite && b->castlesRRWhite;
+            cnd5 = isBitSet(b->bKing, 4) && isBitSet(b->bRook, 7);
         }
         else if(castlePass == WHITE_QUEENSIDE_PASS){
             cnd4 = b->castlesKWhite && b->castlesLRWhite;
+            cnd5 = isBitSet(b->bKing, 4) && isBitSet(b->bRook, 0);
         }
-        if(cnd1 && cnd2 && cnd3 && cnd4){
+        if(cnd1 && cnd2 && cnd3 && cnd4 && cnd5){
             generateCastlingState(node, b, castlePass);
         }
     }
