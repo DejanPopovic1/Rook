@@ -51,13 +51,8 @@ int GameState::moveIndex(string s){
 }
 
 T_boardState GameState::stateAtMoveIndex(T_boardState *s, int i){
-    //T_Node *n = createNode();
-    //genSuccStates(n, s);
-    T_Node *n = genValidStatesFromState(s);
-    T_boardState result = n->scc[i]->b;
-    freeTreeNode(n);
-    free(n);
-    return result;
+    vector<T_boardState> bs = genValidStatesFromState(s);
+    return bs[i];
 }
 
 void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s){
@@ -129,12 +124,6 @@ bool GameState::isStaleMate(){
     //return !isStateInCheck() && !isValidMoves();
 }
 
-//Rename
-bool GameState::isStateInCheck2(){
-    return false;
-    //return isInCheck(&this->c);
-}
-
 bool GameState::isValidMoves(){
     return true;
     //return this->ss->fi;
@@ -150,6 +139,7 @@ void GameState::printSuccStates(){
     //printStates(this->ss, this->playingAs);
 }
 
+//Move this to an interface file within the engine and NOT in this class
 string GameState::engineMove(){
     T_boardState cm = computerMove(&this->c);
     return toAlgebraicNotation(&this->c, &cm);
@@ -174,6 +164,7 @@ void GameState::moveCycle(){
             multiPlayerPrompt();
             std::cin >> usrInput;
         }while(!changeState(usrInput));
+        //cout << "HUMAN TURN COMPLETE" << endl;
         changeState(engineMove());
     }
 }
@@ -194,35 +185,30 @@ bool GameState::isInCheck(T_boardState b){
     T_Node *n = createNode();
     b.whosTurn++;
     genSuccStates(n, &b);
-    return !isKingsExist(n, ++b.whosTurn);
+    b.whosTurn++;
+    return !isKingsExist(n, b.whosTurn);
 }
 
-bool GameState::isStateInCheck(T_boardState *b){
+//bool GameState::isStateInCheck(T_boardState *b){
+//    T_Node *n = createNode();
+//    genSuccStates(n, b);
+//    bool result = !isKingsExist(n, !b->whosTurn);
+//    //free(n);
+//    return result;
+//}
+
+vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
+    vector<T_boardState> result;
     T_Node *n = createNode();
-    genSuccStates(n, b);
-    bool result = !isKingsExist(n, !b->whosTurn);
-    free(n);
-    return result;
-}
-
-T_Node *GameState::genValidFromPseudoValidStates(T_Node *n){
-    T_Node *result = createNode();
+    genSuccStates(n, input);
     for(int i = 0; i < n->fp; i++){
-        if(!isStateInCheck(&n->scc[i]->b)){
-            T_boardState cpy = n->scc[i]->b;
-            cpy.whosTurn++;//REFACTOR THIS PLEASE!
-            addStateNode(result, &cpy);
+        n->scc[i]->b.whosTurn++;
+        if(!isInCheck(n->scc[i]->b)){
+            n->scc[i]->b.whosTurn++;
+            result.push_back(n->scc[i]->b);
         }
     }
     return result;
-}
-
-T_Node *GameState::genValidStatesFromState(T_boardState *input){
-    T_Node *n = createNode();
-    genSuccStates(n, input);
-    T_Node *result = genValidFromPseudoValidStates(n);
-    return result;
-    //!!!Free the calling function!!!
 }
 
 //Change name to listOfValidNotations
@@ -230,13 +216,15 @@ T_Node *GameState::genValidStatesFromState(T_boardState *input){
 vector<string> GameState::genListOfValidMoves(T_boardState input){
     vector<string> result;
     string s;
-    T_Node *vs = genValidStatesFromState(&input);
-    for(int i = 0; i < vs->fp; i++){
-        s = toAlgebraicNotation(&(input), &vs->scc[i]->b);
+    vector<T_boardState> vs = genValidStatesFromState(&input);
+    for(int i = 0; i < vs.size(); i++){
+        //printState(vs->scc[i]->b);
+        s = toAlgebraicNotation(&(input), &vs[i]);
+        cout<< "TEST: " << s << endl;
         result.push_back(s);
     }
-    freeTreeNode(vs);
-    free(vs);
+    //freeTreeNode(vs);
+    //free(vs);
     return result;
     //!!!FREE V!!!
 }

@@ -393,7 +393,7 @@ void ICinitialiseWQueen(T_bitboard *result){
 
 void ICinitialiseWKing(T_bitboard *result){
     clearBits(result);
-    setBit(result, 25);
+    setBit(result, 45);
 }
 
 void ICinitialiseBPawns(T_bitboard *result){
@@ -418,7 +418,7 @@ void ICinitialiseBRooks(T_bitboard *result){
 
 void ICinitialiseBQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 24);
+    setBit(result, 8);
 }
 
 void ICinitialiseBKing(T_bitboard *result){

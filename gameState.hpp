@@ -34,11 +34,10 @@ public:
     bool isStaleMate();
     void moveCycle();
     std::string engineMove();
-    bool isStateInCheck(T_boardState *b);//Move back to Private
+    bool isInCheck(T_boardState b);//Move back to private
 private:
-    bool isInCheck(T_boardState b);
-    T_Node *genValidFromPseudoValidStates(T_Node *n);
-    T_Node *genValidStatesFromState(T_boardState *input);
+
+    std::vector<T_boardState> genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
@@ -47,7 +46,6 @@ private:
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
     bool isValidMoves();
-    bool isStateInCheck2();
     std::vector<std::string> genListOfValidMoves(T_boardState input);
     int turnTimeLeft;
     std::vector<std::string> validMoves;

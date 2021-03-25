@@ -71,7 +71,7 @@ void test(){
     GameState sc(0);
     T_boardState IC = ICinitialiseBoardState();
     printState(IC);
-    if(sc.isStateInCheck(&IC)){
+    if(sc.isInCheck(IC)){
         exit(-1);
     }
     else{
@@ -81,7 +81,7 @@ void test(){
 }
 
 int main(){
-    //test();
+//    test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);

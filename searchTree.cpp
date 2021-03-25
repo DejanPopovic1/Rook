@@ -255,7 +255,7 @@ T_Node* createNode(){
 void addStateNode(T_Node *dstNode, T_boardState *src){
     src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
     src->whosTurn++;
-    dstNode->scc[dstNode->fp] = createNode();//MEMORY LEAK
+    dstNode->scc[dstNode->fp] = createNode();
     dstNode->scc[dstNode->fp]->b = *src;
     (dstNode->fp)++;
 }
