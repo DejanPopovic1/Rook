@@ -36,6 +36,7 @@ public:
     std::string engineMove();
     bool isStateInCheck(T_boardState *b);//Move back to Private
 private:
+    bool isInCheck(T_boardState b);
     T_Node *genValidFromPseudoValidStates(T_Node *n);
     T_Node *genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);

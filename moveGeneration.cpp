@@ -523,6 +523,8 @@ bool genSuccStates(T_Node *node, T_boardState *b){
 }
 
 //THIS FUNCTION MUST BE CALLED AS OTHER PLAYER - RATHER BUILD THIS FACT INTO THIS FUNCTION
+//Take away whosKing parameter. This may be deduced from n->b->whosTurn
+//This function checks if the whosKing player has a king in any of the successor states
 bool isKingsExist(T_Node *n, bool whosKing){
     for(int i = 0; i < n->fp; i++){
         if(!isKingExist(n->scc[i], whosKing)){
