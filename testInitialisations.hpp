@@ -81,4 +81,24 @@ void ICinitialiseBEnPassants(unsigned char *c);
 void ICinitialiseCastlesTurnCheck(T_boardState *b);
 void ICinitialiseNoCapturesOrPawnMoves(unsigned char *c);
 //void PPinitialisePreviousStates(struct PrevStates **ps);
+
+T_boardState LKinitialiseBoardState();
+void LKinitialiseWPawns(T_bitboard *result);
+void LKinitialiseWBishops(T_bitboard *result);
+void LKinitialiseWKnights(T_bitboard *result);
+void LKinitialiseWRooks(T_bitboard *result);
+void LKinitialiseWQueen(T_bitboard *result);
+void LKinitialiseWKing(T_bitboard *result);
+void LKinitialiseBPawns(T_bitboard *result);
+void LKinitialiseBBishops(T_bitboard *result);
+void LKinitialiseBKnights(T_bitboard *result);
+void LKinitialiseBRooks(T_bitboard *result);
+void LKinitialiseBQueen(T_bitboard *result);
+void LKinitialiseBKing(T_bitboard *result);
+void LKinitialiseWEnPassants(unsigned char *c);
+void LKinitialiseBEnPassants(unsigned char *c);
+void LKinitialiseCastlesTurnCheck(T_boardState *b);
+void LKinitialiseNoCapturesOrPawnMoves(unsigned char *c);
+//void PPinitialisePreviousStates(struct PrevStates **ps);
+
 #endif // TEST_INITIALISATIONS_H

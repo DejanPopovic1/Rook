@@ -26,12 +26,12 @@ T_boardState GameState::getState(){
 }
 //Dont pass in board state, rather create it in this constructor
 //Add a class destructor that free's the randomKey malloc
-GameState::GameState(bool pA){
+GameState::GameState(T_boardState bs, bool pA){
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
     this->ply = 0;
     this->playingAs = pA;
-    this->c = initialiseBoardState();
+    this->c = bs;
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
@@ -221,7 +221,7 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     for(int i = 0; i < vs.size(); i++){
         //printState(vs->scc[i]->b);
         s = toAlgebraicNotation(&(input), &vs[i]);
-        cout<< "TEST: " << s << endl;
+        //cout<< "TEST: " << s << endl;
         result.push_back(s);
     }
     //freeTreeNode(vs);

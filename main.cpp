@@ -54,12 +54,12 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     //T_boardState s = initialiseBoardState();
-    GameState sc(playerColour);
+    GameState sc(initialiseBoardState(), playerColour);
     //sc.printGameState();
     string usrInput;
     //T_boardStates *bss = initialiseStates();
     //T_boardState c;
-    while(/*!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()*/true){
+    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
         sc.moveCycle();
     }
     //sc.printGameState();
@@ -68,20 +68,15 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    GameState sc(0);
-    T_boardState IC = ICinitialiseBoardState();
-    printState(IC);
-    if(sc.isInCheck(IC)){
-        exit(-1);
-    }
-    else{
-        ;
+    GameState sc(LKinitialiseBoardState(), asWhite);
+    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
+        sc.moveCycle();
     }
     std::cin.get();
 }
 
 int main(){
-//    test();
+    test();
 //    T_boardState s = initialiseBoardState();
 //    T_boardStates *bss = initialiseStates();
 //    genSuccStates(bss, &s);
