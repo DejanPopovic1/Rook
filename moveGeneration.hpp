@@ -54,6 +54,6 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **
 void (*genPieceSuccStates(int piece))(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece);
 bool isKingsExist(T_Node *n, bool whosKing);
 bool isKingExist(T_Node *n, bool whosKing);
-bool isInCheck(T_boardState *b/*, T_bitboard **jumps, T_bitboard **steps, T_bitboard **wPAttacks, T_bitboard **bPAttacks, T_bitboard **rays*/);
+//bool isInCheck(T_boardState *b/*, T_bitboard **jumps, T_bitboard **steps, T_bitboard **wPAttacks, T_bitboard **bPAttacks, T_bitboard **rays*/);
 
 #endif // MOVEGENERATION_H

@@ -114,7 +114,23 @@ bool GameState::isFiveFoldRepetition(){
     return false;
 }
 
+//Is the player, currently in turn, in check
+bool isInCheck(T_boardState b){
+    T_Node *n = createNode();
+    b.whosTurn++;
+    genSuccStates(n, &b);
+    if(isKingsExist(n, ++b.whosTurn)){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 bool GameState::isCheckMate(){
+    if(this->validMoves.empty()){
+        return true;
+    }
     return false;
     //return isStateInCheck() && !isValidMoves();
 }
