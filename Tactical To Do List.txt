@@ -1,5 +1,4 @@
-Pawn promotion without taking PP Test Case
-LK test case cant move queen next to opposing King
+Putting opponent in check: LK test case cant move queen next to opposing King
 Checkmate/Stalemate endgames (isCheckMate and isStaleMate)
 Remove help commands that wont be used and build on those that will
 Clean C like language where unecassary

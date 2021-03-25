@@ -73,7 +73,9 @@ bool GameState::changeState(string usrInput){
        return false;
     }
     T_boardState successorState = stateAtMoveIndex(&this->c, moveIndex(usrInput));
+    cout << "TESTING BEFORE:"; printState(successorState);
     updateMovesWithoutTakeOrPawnMove(&this->c, &successorState);
+    cout << "TESTING AFTER:";
     this->ply++;
     this->gameMoves.push_back(usrInput);
     uint64_t key = incrementKey(this->previousStates.back(), &this->c, &successorState, this->randomKey);
@@ -92,6 +94,7 @@ bool GameState::changeState(string usrInput){
     }
     this->c = successorState;
     this->validMoves = genListOfValidMoves(this->c);
+    cout << "Completed" << endl;
     return true;
 }
 
@@ -143,7 +146,9 @@ void GameState::printSuccStates(){
 
 //Move this to an interface file within the engine and NOT in this class
 string GameState::engineMove(){
+        cout << "Engine making move..." << endl;
     T_boardState cm = computerMove(&this->c);
+    cout << "Engine derived a successor state" << endl;
     return toAlgebraicNotation(&this->c, &cm);
 }
 
@@ -205,7 +210,9 @@ vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
     genSuccStates(n, input);
     for(int i = 0; i < n->fp; i++){
         n->scc[i]->b.whosTurn++;
-        if(/*!isInCheck(n->scc[i]->b)*/true){
+        if
+            //(true){
+            (!isInCheck(n->scc[i]->b)){
             n->scc[i]->b.whosTurn++;
             result.push_back(n->scc[i]->b);
         }
@@ -226,6 +233,7 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
         //cout<< "TEST: " << s << endl;
         result.push_back(s);
     }
+    cout << "Finished generating states" << endl;
     //freeTreeNode(vs);
     //free(vs);
     return result;

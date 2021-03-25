@@ -153,7 +153,15 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //    node->fp = 36;
 }
 
+bool isComputerInCheck(T_boardState *input){
+        if(isKingsExist){
+        T_Node *n = createNode();
+        genSuccStates()
 
+
+    }
+
+}
 
 
 
@@ -165,17 +173,36 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 
 //This function is agnostic to what colour AI is assigned to. It will be assigned to the coloour whos turn it currently is
 T_boardState computerMove(T_boardState *input){
+    //Assume the computer is white
+//    T_Node *n = createNode();
+//    T_boardState assumeOppMoves = *input;
+//    assumeOppMoves.whosTurn++;
+//    genSuccStates(n, &assumeOppMoves);
+//    if(!isKingsExist(n, input->whosTurn)){//Condition: Computer is in check before doing anything
+//        ;
+//    }
+
+
+
+
+
+
+
     T_Node *head = createNode();
     head->b = *input;
     int bestEval;
     int indexMaxMin;
     bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
     free(head);
+    cout << "In computer move 1" << endl;
     //cout << endl << bestEval << endl;
     //cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
-    T_boardState result = head2->scc[indexMaxMin]->b;
+        cout << "In computer move 2" << endl;
+        cout << indexMaxMin << endl;
+    T_boardState result = head2->scc[indexMaxMin]->b;//<---Bug when placing opponent in check
+            cout << "In computer move 3" << endl;
     freeTreeNode(head2);
     free(head2);
     return result;
@@ -192,11 +219,22 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
         return evaluateBoard(&(*iterator)->b);
     }
     bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
+
+    //~~~~~~~~~~
+//    T_boardState cpy = (*iterator)->b;
+//    cpy.whosTurn++;
+//
+//
+//
+//    bool isCurPlayerInCheck = genSuccStates(*iterator, &cpy;
+
+    //~~~~~~~~~~
     //Opposite player is in check, which means opposite player made a move that put them in check (illegal)
     //Thus, no further nodes may be generated
     //Since its illegal, its the same as losing the king, something to be avoided based on its value
     level++;
     if((*iterator)->b.whosTurn){
+            //cout << "Gen MinMax" << endl;
         if(isOppPlayerInCheck){//Condition: Black turn, White in check
             freeTreeNode(*iterator);
             return -1000;//This line is executed as black and returns to white code
