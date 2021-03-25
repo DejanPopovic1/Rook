@@ -68,7 +68,7 @@ void multiPlayerSession(char *playerColourInput){
 }
 
 void test(){
-    GameState sc(LKinitialiseBoardState(), asWhite);
+    GameState sc(PPinitialiseBoardState(), asWhite);
     while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
         sc.moveCycle();
     }

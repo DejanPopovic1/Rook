@@ -326,6 +326,7 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
     promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank, &fromPromotedFile);
     if(promotedPiece && !isPromoCapture){
+        exit(-1);
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
     }
     else if(promotedPiece && isPromoCapture){
@@ -337,13 +338,15 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     else if(isQueenSideCastle(c, ss)){
         return "O-O-O";
     }
-    string part1 = specifier(piece);
-    string part2 = disambiguate(c, from, to, isPieceCaptured);
-    string part3 = take(isPieceCaptured);
-    string part4 = toSpecifier(to);
-    result.append(part1);
-    result.append(part2);
-    result.append(part3);
-    result.append(part4);
-    return result;
+    else{
+        string part1 = specifier(piece);
+        string part2 = disambiguate(c, from, to, isPieceCaptured);
+        string part3 = take(isPieceCaptured);
+        string part4 = toSpecifier(to);
+        result.append(part1);
+        result.append(part2);
+        result.append(part3);
+        result.append(part4);
+        return result;
+    }
 }

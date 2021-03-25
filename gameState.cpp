@@ -35,6 +35,7 @@ GameState::GameState(T_boardState bs, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
+    cout << "Test";
     this->validMoves = genListOfValidMoves(this->c);
 }
 
@@ -204,7 +205,7 @@ vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
     genSuccStates(n, input);
     for(int i = 0; i < n->fp; i++){
         n->scc[i]->b.whosTurn++;
-        if(!isInCheck(n->scc[i]->b)){
+        if(/*!isInCheck(n->scc[i]->b)*/true){
             n->scc[i]->b.whosTurn++;
             result.push_back(n->scc[i]->b);
         }
@@ -219,8 +220,9 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);
     for(int i = 0; i < vs.size(); i++){
-        //printState(vs[i]);
+        printState(vs[i]);
         s = toAlgebraicNotation(&(input), &vs[i]);
+        cout << s << endl;
         //cout<< "TEST: " << s << endl;
         result.push_back(s);
     }

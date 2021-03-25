@@ -94,5 +94,5 @@ Killer Heuristics or knowing which alpha beta branches to prune
 Add statistics like average branching factor
 Opening book: https://www.chessprogramming.org/Opening_Book
 Statistical analysis of time taken for copying states, moveGeneration, heuristic evaluation and minimax algorithm
-
+"Normal" move notation
 toAlgNotation must specify # and +

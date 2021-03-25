@@ -35,11 +35,11 @@ std::string specifier(char piece);
 void whereFromTo(T_boardState *c, T_boardState *ss, char *from, char *to, char *piece, bool *isPieceCaptured, char* capturedPiece);
 std::string take(bool isTake);
 std::string toSpecifier(char to);
-char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *fromFile);
+char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isAlsoTake, char* promotedRank, char *from);
 bool isKingSideCastle(T_boardState *c, T_boardState *ss);
 bool isQueenSideCastle(T_boardState *c, T_boardState *ss);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
-extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
+//extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 
 #endif // TOALGNOTATION_HPP
 
