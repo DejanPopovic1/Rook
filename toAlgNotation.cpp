@@ -326,7 +326,6 @@ string toAlgebraicNotation(T_boardState *c, T_boardState *ss){
     whereFromTo(c, ss, &from, &to, &piece, &isPieceCaptured, &capturedPiece);
     promotedPiece = isPromoted(c, ss, &promotedFile, &isPromoCapture, &promotedRank, &fromPromotedFile);
     if(promotedPiece && !isPromoCapture){
-        exit(-1);
         return (formatFileDisplay(whatFile(promotedFile)) + formatRankDisplay(promotedRank) + "=" + specifier(promotedPiece));
     }
     else if(promotedPiece && isPromoCapture){
