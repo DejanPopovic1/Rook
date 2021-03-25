@@ -36,7 +36,6 @@ public:
     std::string engineMove();
     bool isInCheck(T_boardState b);//Move back to private
 private:
-
     std::vector<T_boardState> genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);

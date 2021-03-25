@@ -112,16 +112,17 @@ bool GameState::isFiveFoldRepetition(){
 
 
 bool GameState::isCheckMate(){
-    if(this->validMoves.empty()){
+    if(this->validMoves.empty() && isInCheck(this->c)){
         return true;
     }
     return false;
-    //return isStateInCheck() && !isValidMoves();
 }
 
 bool GameState::isStaleMate(){
+    if(this->validMoves.empty() && !isInCheck(this->c)){
+        return true;
+    }
     return false;
-    //return !isStateInCheck() && !isValidMoves();
 }
 
 bool GameState::isValidMoves(){
