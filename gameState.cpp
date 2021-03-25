@@ -194,7 +194,7 @@ bool GameState::isInCheck(T_boardState b){
     T_Node *n = createNode();
     b.whosTurn++;
     genSuccStates(n, &b);
-    return isKingsExist(n, ++b.whosTurn);
+    return !isKingsExist(n, ++b.whosTurn);
 }
 
 bool GameState::isStateInCheck(T_boardState *b){
