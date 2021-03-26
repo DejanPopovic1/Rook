@@ -4,6 +4,7 @@
 #include "moveGeneration.hpp"
 #include "keyUtilities.hpp"
 #include "searchTree.hpp"
+#include "state.hpp"
 
 #include <iostream>
 #include <algorithm>
@@ -141,9 +142,13 @@ void GameState::printSuccStates(){
     //printStates(this->ss, this->playingAs);
 }
 
+//pass in state rather than using "this->"
 //Move this to an interface file within the engine and NOT in this class
 string GameState::engineMove(){
     T_boardState cm = computerMove(&this->c);
+    if(isStatesEqual(cm, this->c)){
+        return "";
+    }
     return toAlgebraicNotation(&this->c, &cm);
 }
 

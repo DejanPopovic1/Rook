@@ -107,7 +107,7 @@
 	"bitUtilities.hpp"
 	<limits.h>
 
-1616571416 c:\c_c++ code\rook\state.hpp
+1616766852 c:\c_c++ code\rook\state.hpp
 	<stdint.h>
 	<stdbool.h>
 
@@ -166,7 +166,7 @@
 	<vector>
 	<string>
 
-1616708421 source:c:\c_c++ code\rook\state.cpp
+1616766724 source:c:\c_c++ code\rook\state.cpp
 	"state.hpp"
 	"bitUtilities.hpp"
 	"moveGeneration.hpp"

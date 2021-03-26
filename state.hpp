@@ -70,6 +70,7 @@ struct PrevStates{
 };
 
 //T_Node* initialiseNode();
+bool isStatesEqual(T_boardState a, T_boardState b);
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 bool isPawn(int p);
 T_bitboard wAll(const T_boardState *b);

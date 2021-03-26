@@ -119,6 +119,33 @@ T_bitboard oppositeAll(T_boardState *b){
 //    return list;
 //}
 
+bool isStatesEqual(T_boardState a, T_boardState b){
+    return
+        a.wPawn == b.wPawn &&
+        a.bPawn == b.bPawn &&
+        a.wBishop == b.wBishop &&
+        a.bBishop == b.bBishop &&
+        a.wKnight == b.wKnight &&
+        a.bKnight == b.bKnight &&
+        a.wRook == b.wRook &&
+        a.bRook == b.bRook &&
+        a.wQueen == b.wQueen &&
+        a.bQueen == b.bQueen &&
+        a.wKing == b.wKing &&
+        a.bKing == b.bKing &&
+        a.wEnPassants == b.wEnPassants &&
+        a.bEnPassants == b.bEnPassants &&
+        a.castlesLRWhite == b.castlesLRWhite &&
+        a.castlesRRWhite == b.castlesRRWhite &&
+        a.castlesKWhite == b.castlesKWhite &&
+        a.castlesLRBlack == b.castlesLRBlack &&
+        a.castlesRRBlack == b.castlesRRBlack &&
+        a.castlesKBlack == b.castlesKBlack &&
+        a.whosTurn == b.whosTurn &&
+        a.evaluateCheck == b.evaluateCheck &&
+        a.noCapturesOrPawnMoves == b.noCapturesOrPawnMoves;
+}
+
 bool isPawn(int p){
     return (p == whitePawn || p == blackPawn) ? true : false;
 }
