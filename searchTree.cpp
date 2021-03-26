@@ -162,7 +162,17 @@ bool isStateInCheck(T_boardState b){
     return !isKingsExist(n, b.whosTurn);
 }
 
-
+bool isAllSuccStatesInCheck(T_boardState *input){
+    T_Node *preCheck = createNode();
+    genSuccStates(preCheck, input);
+    for(int i = 0; i < preCheck->fp; i++){
+        preCheck->scc[i]->b.whosTurn++;
+        if(!isStateInCheck(preCheck->scc[i]->b)){
+            return false;
+        }
+    }
+    return true;
+}
 
 //Optimisation hack: Have two generateLinkedList functions - one for white and one for black. These then recursively call one another. More efficient because:
 //1) No need to conduct if statements below
@@ -173,32 +183,10 @@ bool isStateInCheck(T_boardState b){
 //This function is agnostic to what colour AI is assigned to. It will be assigned to the coloour whos turn it currently is
 //This function returns the same input if there are no valid moves to make - It doesnt care if this is due to stalemate or checkmate. Thats up to other code
 T_boardState computerMove(T_boardState *input){
-    //Assume the computer is white
-//    T_Node *n = createNode();
-//    T_boardState assumeOppMoves = *input;
-//    assumeOppMoves.whosTurn++;
-//    genSuccStates(n, &assumeOppMoves);
-//    if(!isKingsExist(n, input->whosTurn)){//Condition: Computer is in check before doing anything
-//        ;
-//    }
-
-
-    bool allSSInCheck = true;
-    T_Node *preCheck = createNode();
-    genSuccStates(preCheck, input);
-    for(int i = 0; i < preCheck->fp; i++){
-        preCheck->scc[i]->b.whosTurn++;
-        if(!isStateInCheck(preCheck->scc[i]->b)){
-            allSSInCheck = false;
-        }
-    }
-    if(allSSInCheck){
+    if(isAllSuccStatesInCheck(input)){
+        cout << "!!!CHECK/STALEMATE!!!" << endl;
         return *input;
     }
-
-
-
-
     T_Node *head = createNode();
     head->b = *input;
     int bestEval;
