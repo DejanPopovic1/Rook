@@ -54,7 +54,7 @@ void multiPlayerSession(char *playerColourInput){
         playerColour = asBlack;
     }
     //T_boardState s = initialiseBoardState();
-    GameState sc(LKinitialiseBoardState(), playerColour);
+    GameState sc(CMinitialiseBoardState(), playerColour);
     //sc.printGameState();
     string usrInput;
     //T_boardStates *bss = initialiseStates();

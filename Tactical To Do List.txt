@@ -1,4 +1,4 @@
-Putting opponent in check: LK test case cant move queen next to opposing King
+AI should return same board state if there are no valid moves
 Checkmate/Stalemate endgames (isCheckMate and isStaleMate)
 Remove help commands that wont be used and build on those that will
 Clean C like language where unecassary

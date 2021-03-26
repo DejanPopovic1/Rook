@@ -25,6 +25,8 @@ void multiPlayerPrompt(){
 //    return blackTurn;
 //}
 
+//Add in an assertion that the player in move cannot also hold a check on opponent
+
 //Rather use pointer to boardState
 int whatIsPiece(T_boardState b, int i){
     int result = empty;

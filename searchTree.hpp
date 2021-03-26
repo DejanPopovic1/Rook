@@ -15,6 +15,7 @@ struct Node{
     int fp;
 };
 
+bool isComputerInCheck(T_boardState b);
 T_Node* createNode();
 void freeTreeNode(T_Node *node);
 void genSuccStatesSTUB(T_Node *newNode);

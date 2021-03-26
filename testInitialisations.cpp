@@ -87,7 +87,7 @@ void CMinitialiseBBishops(T_bitboard *result){
 void CMinitialiseBKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 57);
-    setBit(result, 62);
+    //setBit(result, 62);
 }
 
 void CMinitialiseBRooks(T_bitboard *result){
@@ -492,9 +492,9 @@ void LKinitialiseWRooks(T_bitboard *result){
 
 void LKinitialiseWQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 45);
-    setBit(result, 49);
-    setBit(result, 1);
+    setBit(result, 11);
+    setBit(result, 13);
+    //setBit(result, 1);
 }
 
 void LKinitialiseWKing(T_bitboard *result){

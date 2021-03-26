@@ -153,14 +153,13 @@ void genSuccStatesSTUB(T_Node *node, T_boardState *b){
 //    node->fp = 36;
 }
 
-bool isComputerInCheck(T_boardState *input){
-        if(isKingsExist){
-        T_Node *n = createNode();
-        genSuccStates()
 
-
-    }
-
+bool isStateInCheck(T_boardState b){
+    T_Node *n = createNode();
+    b.whosTurn++;
+    genSuccStates(n, &b);
+    b.whosTurn++;
+    return !isKingsExist(n, b.whosTurn);
 }
 
 
@@ -172,6 +171,7 @@ bool isComputerInCheck(T_boardState *input){
 //4) You CAN free the whole tree when its the human players turn so dont worry about freeing this in the fucntion. Do later and see how much faster
 
 //This function is agnostic to what colour AI is assigned to. It will be assigned to the coloour whos turn it currently is
+//This function returns the same input if there are no valid moves to make - It doesnt care if this is due to stalemate or checkmate. Thats up to other code
 T_boardState computerMove(T_boardState *input){
     //Assume the computer is white
 //    T_Node *n = createNode();
@@ -183,7 +183,18 @@ T_boardState computerMove(T_boardState *input){
 //    }
 
 
-
+    bool allSSInCheck = true;
+    T_Node *preCheck = createNode();
+    genSuccStates(preCheck, input);
+    for(int i = 0; i < preCheck->fp; i++){
+        preCheck->scc[i]->b.whosTurn++;
+        if(!isStateInCheck(preCheck->scc[i]->b)){
+            allSSInCheck = false;
+        }
+    }
+    if(allSSInCheck){
+        return *input;
+    }
 
 
 
@@ -192,25 +203,35 @@ T_boardState computerMove(T_boardState *input){
     head->b = *input;
     int bestEval;
     int indexMaxMin;
-    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);
+    cout << "Index MaxMin before calling generateTreeNodeMinMax: "<< indexMaxMin << endl;
+    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);//<--- changes to faulty indexMaxMin value to cause crash later in evaluating "answer" variable
+//    if(!head->fp){
+//        exit(-1);
+//        return *input;
+//    }
+
     free(head);
     cout << "In computer move 1" << endl;
     //cout << endl << bestEval << endl;
     //cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
-        cout << "In computer move 2" << endl;
-        cout << indexMaxMin << endl;
+
+        cout << "In computer move 2. Value of index Man Min is:" << endl;
+        cout << indexMaxMin << endl << "Done printing MinMax index value" << endl;
     T_boardState result = head2->scc[indexMaxMin]->b;//<---Bug when placing opponent in check
             cout << "In computer move 3" << endl;
     freeTreeNode(head2);
     free(head2);
+        printState(result);
+        cout << "Above is result" << endl;
     return result;
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
 //Rather countdown to zero instead of specifying to start at zero
 //return NUMBER of moves - this is needed for mobility heuristics
+//These check exceptions can be REMOVED when doing Alpha/Beta pruning because they wont be analysed by virtue of the fact that King captures score 200 pts. This is not currently built in
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
         //int result =
@@ -221,24 +242,26 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
 
     //~~~~~~~~~~
-//    T_boardState cpy = (*iterator)->b;
-//    cpy.whosTurn++;
-//
-//
-//
-//    bool isCurPlayerInCheck = genSuccStates(*iterator, &cpy;
-
+        //bool isCurPlayerInCheck = isComputerInCheck((*iterator)->b);
     //~~~~~~~~~~
     //Opposite player is in check, which means opposite player made a move that put them in check (illegal)
     //Thus, no further nodes may be generated
     //Since its illegal, its the same as losing the king, something to be avoided based on its value
     level++;
+
     if((*iterator)->b.whosTurn){
             //cout << "Gen MinMax" << endl;
+//        if(isCurPlayerInCheck){//Condition: Black turn, Black in check
+//            cout << "Computer in check" << endl;
+//            freeTreeNode(*iterator);
+//            return 1001;//This line is executed as black and returns to white code
+//        }
+
         if(isOppPlayerInCheck){//Condition: Black turn, White in check
             freeTreeNode(*iterator);
             return -1000;//This line is executed as black and returns to white code
         }
+
         int min = 1000;
         int maybeNewMin;
         for(int i = 0; i < (*iterator)->fp; i++){
@@ -246,6 +269,7 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             if(maybeNewMin == 1000){//Condition: Black has just generated a tree node where it is in check
                 continue;
             }
+
             if(maybeNewMin < min){
                 min = maybeNewMin;
                 if(level == 1){
@@ -253,10 +277,17 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
                 }
             }
         }
+        if(min == 1000 && level == 1){
+            *indexMaxMin = 0;
+        }
         freeTreeNode(*iterator);
         return min;
     }
     else{
+//        if(isCurPlayerInCheck){//Condition: White turn, White in check
+//            freeTreeNode(*iterator);
+//            return -1001;//This line is executed as white and returns to black code
+//        }
         if(isOppPlayerInCheck){//Condition: White turn, Black in check
             freeTreeNode(*iterator);
             return 1000;//This line is executed as white and returns to black code
@@ -271,9 +302,13 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             if(maybeNewMax > max){
                 max = maybeNewMax;
                 if(level == 1){
+                        cout << "TESTING 1 2 3" << endl;
                     *indexMaxMin = i;
                 }
             }
+        }
+        if(max == -1000 && level == 1){
+            *indexMaxMin = 0;
         }
         freeTreeNode(*iterator);
         return max;

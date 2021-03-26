@@ -227,9 +227,9 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);
     for(int i = 0; i < vs.size(); i++){
-        printState(vs[i]);
+        //printState(vs[i]);
         s = toAlgebraicNotation(&(input), &vs[i]);
-        cout << s << endl;
+        //cout << s << endl;
         //cout<< "TEST: " << s << endl;
         result.push_back(s);
     }
