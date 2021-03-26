@@ -73,9 +73,7 @@ bool GameState::changeState(string usrInput){
        return false;
     }
     T_boardState successorState = stateAtMoveIndex(&this->c, moveIndex(usrInput));
-    cout << "TESTING BEFORE:"; printState(successorState);
     updateMovesWithoutTakeOrPawnMove(&this->c, &successorState);
-    cout << "TESTING AFTER:";
     this->ply++;
     this->gameMoves.push_back(usrInput);
     uint64_t key = incrementKey(this->previousStates.back(), &this->c, &successorState, this->randomKey);
@@ -94,7 +92,6 @@ bool GameState::changeState(string usrInput){
     }
     this->c = successorState;
     this->validMoves = genListOfValidMoves(this->c);
-    cout << "Completed" << endl;
     return true;
 }
 
@@ -157,6 +154,7 @@ void GameState::moveCycle(){
     if(this->playingAs){
         printGameState();
         changeState(engineMove());
+        cout << "TEST" << endl;
         printGameState();
         do{
             multiPlayerPrompt();
@@ -225,13 +223,9 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);
     for(int i = 0; i < vs.size(); i++){
-        //printState(vs[i]);
         s = toAlgebraicNotation(&(input), &vs[i]);
-        //cout << s << endl;
-        //cout<< "TEST: " << s << endl;
         result.push_back(s);
     }
-    cout << "Finished generating states" << endl;
     //freeTreeNode(vs);
     //free(vs);
     return result;
