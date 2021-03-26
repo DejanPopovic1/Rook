@@ -12,31 +12,20 @@
 #include <iostream>
 #include <cstdlib>
 
-#define MAIN_SELECTION 100
-#define MOVE_INPUT 100
+#define INPUT_LIMIT 100
 
 using namespace std;
 
-char* moveInput(){
-    char *moveInput = (char*)malloc(MOVE_INPUT * sizeof(char));
-    fgets(moveInput, MOVE_INPUT, stdin);
-    moveInput[strlen(moveInput) - 1] = '\0';
-    return moveInput;
-}
-
-//Minimise MOVE_INPUT to hold as few characters as possible
-//Need to NOT advance the turn colour when a wrong input is made
-//Rename player colour to playingAs
-void multiPlayerSession(char *playerColourInput){
-    if(strcmp(playerColourInput, "w") && strcmp(playerColourInput, "b")){
-        printf("Invalid multi_player argument. See \"help\" for more details\n");
+void multiPlayerSession(string playerColourInput){
+    if(playerColourInput != "w" && playerColourInput != "b"){
+        cout << "Invalid multi_player argument. See \"help\" for more details" << endl;
         return;
     }
     int playerColour;
-    if(!strcmp(playerColourInput, "w")){
+    if(playerColourInput == "w"){
         playerColour = asWhite;
     }
-    else if(!strcmp(playerColourInput, "b")){
+    else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
     GameState sc(LKinitialiseBoardState(), playerColour);
@@ -51,16 +40,16 @@ void multiPlayerSession(char *playerColourInput){
     return;
 }
 
-void singlePlayerSession(char *playerColourInput){
-    if(strcmp(playerColourInput, "w") && strcmp(playerColourInput, "b")){
-        printf("Invalid multi_player argument. See \"help\" for more details\n");
+void singlePlayerSession(string playerColourInput){
+    if(playerColourInput == "w" && playerColourInput == "b"){
+        cout << "Invalid multi_player argument. See \"help\" for more details" << endl;
         return;
     }
     int playerColour;
-    if(!strcmp(playerColourInput, "w")){
+    if(playerColourInput == "w"){
         playerColour = asWhite;
     }
-    else if(!strcmp(playerColourInput, "b")){
+    else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
     GameState sc(LKinitialiseBoardState(), playerColour);
@@ -84,13 +73,13 @@ int main(){
     string mainInputString;
     string commandString;
     string argument1String;
-    char mainInput[100];
-    char command[100];
-    char argument1[100];
+    char mainInput[INPUT_LIMIT];
+    char command[INPUT_LIMIT];
+    char argument1[INPUT_LIMIT];
     landingMessage();
     while(true){
         mainPrompt();
-        fgets(mainInput, 100, stdin);
+        fgets(mainInput, INPUT_LIMIT, stdin);
         mainInput[strlen(mainInput) - 1] = '\0';
         sscanf(mainInput, "%s %s", command, argument1);
         argument1String = argument1;
@@ -99,10 +88,10 @@ int main(){
             ;
         }
         else if(commandString == selection1){
-            multiPlayerSession(argument1);
+            multiPlayerSession(argument1String);
         }
         else if(commandString == selection2){
-            singlePlayerSession(argument1);
+            singlePlayerSession(argument1String);
         }
         else if(!strcmp(mainInput, selection3.c_str())){
             exit(0);
