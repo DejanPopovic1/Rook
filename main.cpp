@@ -18,7 +18,7 @@ using namespace std;
 
 void multiPlayerSession(string playerColourInput){
     if(playerColourInput != "w" && playerColourInput != "b"){
-        cout << "Invalid multi_player argument. See \"help\" for more details" << endl;
+        printInvalidArgumentAlert();
         return;
     }
     int playerColour;
@@ -42,7 +42,7 @@ void multiPlayerSession(string playerColourInput){
 
 void singlePlayerSession(string playerColourInput){
     if(playerColourInput == "w" && playerColourInput == "b"){
-        cout << "Invalid multi_player argument. See \"help\" for more details" << endl;
+        printInvalidArgumentAlert();
         return;
     }
     int playerColour;

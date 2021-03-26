@@ -38,5 +38,6 @@ void printGlyph(int, bool);
 void displayHelp();
 void invalidAlert();
 void mainPrompt();
+void printInvalidArgumentAlert();
 
 #endif // OUTPUT_H

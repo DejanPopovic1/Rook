@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <iostream>
 
+using namespace std;
 
 void multiPlayerPrompt(){
     printf(" -> ");
@@ -372,16 +373,20 @@ void displayHelp(){
 }
 
 void displayVersion(){
-    printf("Version: 1.1\nDate of version update: 2020/12/30\n");
+    cout << "Version: 1.1\nDate of version update: 2021/03/28" << endl;
     return;
 }
 
 void invalidAlert(){
-    printf("Invalid command - see help for valid commands\n");
+    cout << "Invalid command - see help for valid commands" << endl;
     return;
 }
 
 void mainPrompt(){
-    printf("Rook>");
+    cout << "Rook>";
     return;
+}
+
+void printInvalidArgumentAlert(){
+    cout << "Invalid multi_player argument. See \"help\" for more details" << endl;
 }
