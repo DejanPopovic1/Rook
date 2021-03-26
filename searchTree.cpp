@@ -207,29 +207,14 @@ T_boardState computerMove(T_boardState *input){
 //These check exceptions can be REMOVED when doing Alpha/Beta pruning because they wont be analysed by virtue of the fact that King captures score 200 pts. This is not currently built in
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     if(level == DEPTH_LIMIT_LEVEL){
-        //int result =
-                //freeTreeNode(*iterator);
-                //free(*iterator);
         return evaluateBoard(&(*iterator)->b);
     }
     bool isOppPlayerInCheck = genSuccStates(*iterator, &(*iterator)->b);
-
-    //~~~~~~~~~~
-        //bool isCurPlayerInCheck = isComputerInCheck((*iterator)->b);
-    //~~~~~~~~~~
     //Opposite player is in check, which means opposite player made a move that put them in check (illegal)
     //Thus, no further nodes may be generated
     //Since its illegal, its the same as losing the king, something to be avoided based on its value
     level++;
-
     if((*iterator)->b.whosTurn){
-            //cout << "Gen MinMax" << endl;
-//        if(isCurPlayerInCheck){//Condition: Black turn, Black in check
-//            cout << "Computer in check" << endl;
-//            freeTreeNode(*iterator);
-//            return 1001;//This line is executed as black and returns to white code
-//        }
-
         if(isOppPlayerInCheck){//Condition: Black turn, White in check
             freeTreeNode(*iterator);
             return -1000;//This line is executed as black and returns to white code
@@ -257,10 +242,6 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
         return min;
     }
     else{
-//        if(isCurPlayerInCheck){//Condition: White turn, White in check
-//            freeTreeNode(*iterator);
-//            return -1001;//This line is executed as white and returns to black code
-//        }
         if(isOppPlayerInCheck){//Condition: White turn, Black in check
             freeTreeNode(*iterator);
             return 1000;//This line is executed as white and returns to black code
