@@ -45,7 +45,6 @@ private:
     key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
-    bool isValidMoves();
     std::vector<std::string> genListOfValidMoves(T_boardState input);
     int turnTimeLeft;
     std::vector<std::string> validMoves;

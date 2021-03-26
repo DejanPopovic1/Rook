@@ -85,12 +85,12 @@ bool GameState::changeState(string usrInput){
     else{
         this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
     }
-    if(isCheckMate()){
-        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-    }
-    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
-        gameMoves.push_back("1/2 - 1/2");
-    }
+//    if(isCheckMate()){
+//        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+//    }
+//    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
+//        gameMoves.push_back("1/2 - 1/2");
+//    }
     this->c = successorState;
     this->validMoves = genListOfValidMoves(this->c);
     return true;
@@ -127,11 +127,6 @@ bool GameState::isStaleMate(){
     return false;
 }
 
-bool GameState::isValidMoves(){
-    return true;
-    //return this->ss->fi;
-}
-
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 //printValidmoves should be part of printState
 void GameState::printGameState(){
@@ -147,6 +142,7 @@ void GameState::printSuccStates(){
 string GameState::engineMove(){
     T_boardState cm = computerMove(&this->c);
     if(isStatesEqual(cm, this->c)){
+        //exit(-1);
         return "";
     }
     return toAlgebraicNotation(&this->c, &cm);
@@ -154,6 +150,7 @@ string GameState::engineMove(){
 
 //As per comment above, this needs refactoring to first determine if input is correct
 //Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate
+//Rather split this into two functions. One for white and one for black
 void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
