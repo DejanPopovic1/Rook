@@ -191,28 +191,13 @@ T_boardState computerMove(T_boardState *input){
     head->b = *input;
     int bestEval;
     int indexMaxMin;
-    cout << "Index MaxMin before calling generateTreeNodeMinMax: "<< indexMaxMin << endl;
     bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);//<--- changes to faulty indexMaxMin value to cause crash later in evaluating "answer" variable
-//    if(!head->fp){
-//        exit(-1);
-//        return *input;
-//    }
-
     free(head);
-    cout << "In computer move 1" << endl;
-    //cout << endl << bestEval << endl;
-    //cout << endl << indexMaxMin << endl;
     T_Node *head2 = createNode();
     genSuccStates(head2, input);
-
-        cout << "In computer move 2. Value of index Man Min is:" << endl;
-        cout << indexMaxMin << endl << "Done printing MinMax index value" << endl;
     T_boardState result = head2->scc[indexMaxMin]->b;//<---Bug when placing opponent in check
-            cout << "In computer move 3" << endl;
     freeTreeNode(head2);
     free(head2);
-        printState(result);
-        cout << "Above is result" << endl;
     return result;
 }
 
@@ -290,7 +275,6 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
             if(maybeNewMax > max){
                 max = maybeNewMax;
                 if(level == 1){
-                        cout << "TESTING 1 2 3" << endl;
                     *indexMaxMin = i;
                 }
             }

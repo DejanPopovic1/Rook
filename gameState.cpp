@@ -146,9 +146,7 @@ void GameState::printSuccStates(){
 
 //Move this to an interface file within the engine and NOT in this class
 string GameState::engineMove(){
-        cout << "Engine making move..." << endl;
     T_boardState cm = computerMove(&this->c);
-    cout << "Engine derived a successor state" << endl;
     return toAlgebraicNotation(&this->c, &cm);
 }
 
