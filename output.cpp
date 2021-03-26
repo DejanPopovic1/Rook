@@ -358,17 +358,13 @@ void printGlyph(int piece, bool isWhiteTile){
 }
 
 void displayHelp(){
-    printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
-    printf("help\t\t\t-\tDisplay all Rook commands\n");
-    printf("single_player\t\t-\tBegins a single player game whereby the user plays against the Rook AI engine\n");
-    printf("multi_player\t\t-\tBegins a multiplayer game whereby the user plays against another user\n");
-    printf("configure Engine\t-\tConfigures various Rook AI engine parameters\n");
-    printf("configure Display\t-\tConfigures the output and display parameters\n");
-    printf("configure Input/Output\t-\tConfigures the methods in which user input is entered and output displayed\n");
-    printf("export\t\t\t-\tExport single or multiplayer game\n");
-    printf("gameplay settings\t-\tConfigures various gameplay settings\n");
-    printf("version\t\t\t-\tDisplay Rook version\n");
-    printf("exit\t\t\t-\tExit Rook\n");
+    printf("For detailed documentation and code base, please visit https://github.com/DejanPopovic1/Rook\n\n");
+    printf("help\t\t-\tDisplay all Rook commands\n");
+    printf("sp\t\t-\tBegins a single player game whereby the user plays against the Rook AI engine. Argument 'w' sets player as white. Argument 'b' sets player as black.\n");
+    printf("mp\t\t-\tBegins a multiplayer game whereby the user plays against another user/themselves. Argument 'w' faces white side down. Argument 'b' faces black side down. \n");
+    printf("version\t\t-\tDisplay Rook version\n");
+    printf("exit\t\t-\tExit Rook\n");
+    printf("\n");
     return;
 }
 

@@ -138,7 +138,7 @@
 	<stdbool.h>
 	<stdlib.h>
 
-1616782213 source:c:\c_c++ code\rook\output.cpp
+1616784406 source:c:\c_c++ code\rook\output.cpp
 	"output.hpp"
 	"toAlgNotation.hpp"
 	"state.hpp"
@@ -221,7 +221,7 @@
 	<stdio.h>
 	<iostream>
 
-1616777958 source:c:\c_c++ code\rook\gamestate.cpp
+1616784356 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"

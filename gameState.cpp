@@ -127,7 +127,6 @@ bool GameState::isStaleMate(){
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 //printValidmoves should be part of printState
 void GameState::printGameState(){
-    cout << "Test" << endl;
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
 
