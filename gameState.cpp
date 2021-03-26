@@ -23,7 +23,7 @@ GameState::GameState(){
 }
 
 T_boardState GameState::getState(){
-    return (this->c);
+    return this->c;
 }
 //Dont pass in board state, rather create it in this constructor
 //Add a class destructor that free's the randomKey malloc
@@ -36,7 +36,6 @@ GameState::GameState(T_boardState bs, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    cout << "Test";
     this->validMoves = genListOfValidMoves(this->c);
 }
 
@@ -111,8 +110,6 @@ bool GameState::isFiveFoldRepetition(){
     return false;
 }
 
-
-
 bool GameState::isCheckMate(){
     if(this->validMoves.empty() && isInCheck(this->c)){
         return true;
@@ -130,6 +127,7 @@ bool GameState::isStaleMate(){
 //gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
 //printValidmoves should be part of printState
 void GameState::printGameState(){
+    cout << "Test" << endl;
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
 
@@ -147,6 +145,8 @@ string GameState::engineMove(){
     }
     return toAlgebraicNotation(&this->c, &cm);
 }
+
+
 
 //As per comment above, this needs refactoring to first determine if input is correct
 //Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate

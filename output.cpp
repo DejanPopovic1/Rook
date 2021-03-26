@@ -370,3 +370,18 @@ void displayHelp(){
     printf("exit\t\t\t-\tExit Rook\n");
     return;
 }
+
+void displayVersion(){
+    printf("Version: 1.1\nDate of version update: 2020/12/30\n");
+    return;
+}
+
+void invalidAlert(){
+    printf("Invalid command - see help for valid commands\n");
+    return;
+}
+
+void mainPrompt(){
+    printf("Rook>");
+    return;
+}

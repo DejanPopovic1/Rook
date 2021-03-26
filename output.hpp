@@ -15,8 +15,8 @@
 
 typedef int T_chessboard[RANK_SIZE][FILE_SIZE];
 
+void displayVersion();
 void multiPlayerPrompt();
-//int whosTurn(const int halfPly);
 int whatIsPiece(T_boardState b, int i);
 T_chessboard *toIntArray(T_boardState b);
 void printTBitboardNumber(T_bitboard b);
@@ -26,7 +26,6 @@ void printStates(T_boardStates *b, int playerColour);
 void printBits(size_t const size, void const * const ptr);
 void printTBitboardNumbersBin(T_bitboard **b);
 void printTBitboardNumbersDec(T_bitboard **b);
-//void printPlayerTurn(int halfPly);
 void printMove(char* c);
 void landingMessage();
 void printBoard(int, T_chessboard);
@@ -37,5 +36,7 @@ void setColourForBlack(bool);
 void setColourForWhite(bool);
 void printGlyph(int, bool);
 void displayHelp();
+void invalidAlert();
+void mainPrompt();
 
 #endif // OUTPUT_H
