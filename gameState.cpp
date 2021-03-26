@@ -153,8 +153,9 @@ void GameState::moveCycle(){
     string usrInput;
     if(this->playingAs){
         printGameState();
+
         changeState(engineMove());
-        cout << "TEST" << endl;
+
         printGameState();
         do{
             multiPlayerPrompt();
@@ -222,6 +223,9 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     vector<string> result;
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);
+    if(!vs.size()){
+        return result;
+    }
     for(int i = 0; i < vs.size(); i++){
         s = toAlgebraicNotation(&(input), &vs[i]);
         result.push_back(s);
