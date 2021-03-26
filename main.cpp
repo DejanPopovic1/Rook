@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 
 #define INPUT_LIMIT 100
 
@@ -28,15 +29,24 @@ void multiPlayerSession(string playerColourInput){
     else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
-    GameState sc(LKinitialiseBoardState(), playerColour);
+    GameState sc(CMinitialiseBoardState(), playerColour);
     string usrInput;
-    while(true){
-        sc.printGameState();
-        do{
+    T_boardState s;
+    vector<string> l;
+    sc.printGameState();
+    while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
+        s = sc.getState();
+        l = sc.genListOfValidMoves(s);
+        multiPlayerPrompt();
+        cin >> usrInput;
+        while(!(find(l.begin(), l.end(), usrInput) != l.end())){
             multiPlayerPrompt();
-            std::cin >> usrInput;
-        }while(!sc.changeState(usrInput));
+            cin >> usrInput;
+        }
+        sc.changeState(usrInput);
+        sc.printGameState();
     }
+    cin.get();
     return;
 }
 
@@ -52,7 +62,7 @@ void singlePlayerSession(string playerColourInput){
     else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
-    GameState sc(initialiseBoardState(), playerColour);
+    GameState sc(LKinitialiseBoardState(), playerColour);
     string usrInput;
     while(true){
         sc.printGameState();
@@ -94,7 +104,7 @@ int main(){
             singlePlayerSession(argument1String);
         }
         else if(!strcmp(mainInput, selection3.c_str())){
-            exit(0);
+            break;
         }
         else if(!strcmp(mainInput, selection4.c_str())){
             displayHelp();

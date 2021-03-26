@@ -27,7 +27,6 @@ public:
     bool changeState(std::string usrInput);
     T_boardState getState();
     void printGameState();
-    void printSuccStates();
     bool isSeventyFiveMoveRule();
     bool isFiveFoldRepetition();
     bool isCheckMate();
@@ -36,6 +35,7 @@ public:
     std::string engineMove();
     bool isInCheck(T_boardState b);//Move back to private
     T_boardState c;
+    std::vector<std::string> genListOfValidMoves(T_boardState input);
 private:
     std::vector<T_boardState> genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
@@ -45,7 +45,7 @@ private:
     key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
-    std::vector<std::string> genListOfValidMoves(T_boardState input);
+
     int turnTimeLeft;
     std::vector<std::string> validMoves;
     std::vector<std::string> gameMoves;

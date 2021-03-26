@@ -138,7 +138,7 @@
 	<stdbool.h>
 	<stdlib.h>
 
-1616784406 source:c:\c_c++ code\rook\output.cpp
+1616785345 source:c:\c_c++ code\rook\output.cpp
 	"output.hpp"
 	"toAlgNotation.hpp"
 	"state.hpp"
@@ -196,7 +196,7 @@
 	<assert.h>
 	<iostream>
 
-1616784852 source:c:\c_c++ code\rook\main.cpp
+1616794021 source:c:\c_c++ code\rook\main.cpp
 	"searchTree.hpp"
 	"state.hpp"
 	"moveGeneration.hpp"
@@ -209,6 +209,7 @@
 	"keyUtilities.hpp"
 	<iostream>
 	<cstdlib>
+	<algorithm>
 
 1616574648 source:c:\c_c++ code\rook\keyutilities.cpp
 	"keyUtilities.hpp"
@@ -221,7 +222,7 @@
 	<stdio.h>
 	<iostream>
 
-1616784356 source:c:\c_c++ code\rook\gamestate.cpp
+1616793630 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
@@ -233,7 +234,7 @@
 	<algorithm>
 	<iterator>
 
-1616767887 c:\c_c++ code\rook\gamestate.hpp
+1616786453 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	"keyUtilities.hpp"
 	"searchTree.hpp"

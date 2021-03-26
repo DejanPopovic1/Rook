@@ -1,4 +1,4 @@
-Checkmate/Stalemate endgames (isCheckMate and isStaleMate)
+Checkmate/Stalemate endgames (isCheckMate and isStaleMate) for MP
+Checkmate/Stalemate endgames (isCheckMate and isStaleMate) for SP
 Clean C like language where unecassary
-
 Can castle twice

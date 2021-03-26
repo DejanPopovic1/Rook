@@ -67,7 +67,6 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
 
 //A map corresponding to moves and states should be made in change State
 bool GameState::changeState(string usrInput){
-    //genListOfValidMoves();
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
        return false;
@@ -84,14 +83,18 @@ bool GameState::changeState(string usrInput){
     else{
         this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
     }
-//    if(isCheckMate()){
-//        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-//    }
-//    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
-//        gameMoves.push_back("1/2 - 1/2");
-//    }
     this->c = successorState;
     this->validMoves = genListOfValidMoves(this->c);
+    if(isCheckMate()){
+        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
+        //exit(-1);
+        return false;
+    }
+    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
+        gameMoves.push_back("1/2 - 1/2");
+        //exit(-2);
+        return false;
+    }
     return true;
 }
 
@@ -130,9 +133,6 @@ void GameState::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
 
-void GameState::printSuccStates(){
-    //printStates(this->ss, this->playingAs);
-}
 
 //pass in state rather than using "this->"
 //Move this to an interface file within the engine and NOT in this class
