@@ -1,5 +1,4 @@
 Checkmate/Stalemate endgames (isCheckMate and isStaleMate)
-Remove help commands that wont be used and build on those that will
 Clean C like language where unecassary
 
 Can castle twice

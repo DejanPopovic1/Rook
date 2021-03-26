@@ -19,13 +19,6 @@ void multiPlayerPrompt(){
     return;
 }
 
-//int whosTurn(const int halfPly){
-//    if((halfPly % 2) == 1){
-//        return whiteTurn;
-//    }
-//    return blackTurn;
-//}
-
 //Add in an assertion that the player in move cannot also hold a check on opponent
 
 //Rather use pointer to boardState
@@ -196,9 +189,17 @@ void printTBitboard(T_bitboard b){
 }
 
 void landingMessage(){
-    printf("Rook Chess Engine (Open source version)\n2020-12-30\nAuthor - Dejan Popovic\n\nFor help on commands, type \"help\"\nFor detail about how to use a command, type \"man\" followed by a space and the command name\n");
-    printf("This open source version of Rook uses rudimentary chessboard position encoding\n\n");
-    printf("For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine\n\n");
+    cout << "Rook Chess Engine (Open source version)" << endl;
+    cout << "2021-03-28\nAuthor - Dejan Popovic" << endl;
+    cout << "For help on commands, type \"help\"" << endl;
+    cout << "This open source version of Rook excludes:" << endl;
+    cout << "*) Alpha Beta pruning" << endl;
+    cout << "*) Opening moves" << endl;
+    cout << "*) Advanced board evaluation heuristics" << endl;
+    cout << "*) Pruning heuristics" << endl;
+    cout << "*) Transposition tables" << endl;
+    cout << "*) Magic bitboards" << endl;
+    cout << "For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine" << endl << endl;
 }
 
 //void printPlayerTurn(int halfPly){

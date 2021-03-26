@@ -52,7 +52,7 @@ void singlePlayerSession(string playerColourInput){
     else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
-    GameState sc(LKinitialiseBoardState(), playerColour);
+    GameState sc(initialiseBoardState(), playerColour);
     string usrInput;
     while(true){
         sc.printGameState();
