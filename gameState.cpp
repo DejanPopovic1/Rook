@@ -223,7 +223,7 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     vector<string> result;
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);
-    if(!vs.size()){
+    if(vs.empty()){
         return result;
     }
     for(int i = 0; i < vs.size(); i++){
