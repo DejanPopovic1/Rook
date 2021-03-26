@@ -29,7 +29,7 @@ void multiPlayerSession(string playerColourInput){
     else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
-    GameState sc(CMinitialiseBoardState(), playerColour);
+    GameState sc(initialiseBoardState(), playerColour);
     string usrInput;
     T_boardState s;
     vector<string> l;
@@ -51,7 +51,7 @@ void multiPlayerSession(string playerColourInput){
 }
 
 void singlePlayerSession(string playerColourInput){
-    if(playerColourInput == "w" && playerColourInput == "b"){
+    if(playerColourInput != "w" && playerColourInput != "b"){
         printInvalidArgumentAlert();
         return;
     }
@@ -64,13 +64,31 @@ void singlePlayerSession(string playerColourInput){
     }
     GameState sc(LKinitialiseBoardState(), playerColour);
     string usrInput;
+    T_boardState s;
+    vector<string> l;
+    sc.printGameState();
     while(true){
-        sc.printGameState();
-        do{
+        if(sc.isCheckMate() || sc.isStaleMate() || sc.isFiveFoldRepetition() || sc.isSeventyFiveMoveRule()){
+            break;
+        }
+        s = sc.getState();
+        l = sc.genListOfValidMoves(s);
+        multiPlayerPrompt();
+        cin >> usrInput;
+        while(!(find(l.begin(), l.end(), usrInput) != l.end())){
             multiPlayerPrompt();
-            std::cin >> usrInput;
-        }while(!sc.changeState(usrInput));
+            cin >> usrInput;
+        }
+        sc.changeState(usrInput);
+        sc.printGameState();
+        if(sc.isCheckMate() || sc.isStaleMate() || sc.isFiveFoldRepetition() || sc.isSeventyFiveMoveRule()){
+            break;
+        }
+        //cout << sc.engineMove();
+        sc.changeState(sc.engineMove());
+        sc.printGameState();
     }
+    cin.get();
     return;
 }
 
