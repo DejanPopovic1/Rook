@@ -197,13 +197,14 @@ T_boardState computerMove(T_boardState *input){
 
 int max(T_Node **n, int level){
     if(!level){
+            exit(-1);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
     int maxEval = -1000;
     int maybeNewMaxEval;
     for(int i = 0; (*n)->fp; i++){
-        maybeNewMaxEval = min(&(*n)->scc[i], level - 1);
+        maybeNewMaxEval = min(&(*n)->scc[i], level--);
         if(maybeNewMaxEval > maxEval){
             maxEval = maybeNewMaxEval;
         }
@@ -215,15 +216,15 @@ int max(T_Node **n, int level){
 }
 
 int min(T_Node **n, int level){
-    cout << level << endl;
     if(!level){
+            exit(-1);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
     int minEval = 1000;
     int maybeNewMinEval;
     for(int i = 0; (*n)->fp; i++){
-        maybeNewMinEval = max(&(*n)->scc[i], level - 1);
+        maybeNewMinEval = max(&(*n)->scc[i], level--);
         if(maybeNewMinEval < minEval){
             minEval = maybeNewMinEval;
         }
