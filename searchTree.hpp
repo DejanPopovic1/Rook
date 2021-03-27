@@ -15,6 +15,8 @@ struct Node{
     int fp;
 };
 
+int min(T_Node **n, int level);
+int max(T_Node **n, int level);
 T_Node* createNodeParent(T_boardState *input);
 bool isAllSuccStatesInCheck(T_boardState *input);
 bool isComputerInCheck(T_boardState b);

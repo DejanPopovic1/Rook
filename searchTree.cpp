@@ -188,11 +188,18 @@ T_boardState computerMove(T_boardState *input){
         return *input;
     }
     int index;
-//    input->whosTurn ? index = min(input, DEPTH_LIMIT_LEVEL) : index = max(input, DEPTH_LIMIT_LEVEL);
-    T_Node *head = createNode();
-    head->b = *input;
+    T_Node *head = createNodeParent(input);
+    input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
     genSuccStates(head, input);
-//    return head->scc[index];
+    return head->scc[index]->b;
+}
+
+int min(T_Node **n, int level){
+    return 0;
+}
+
+int max(T_Node **n, int level){
+    return 0;
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
