@@ -15,7 +15,7 @@
 using namespace std;
 
 void multiPlayerPrompt(){
-    printf(" -> ");
+    cout << " -> ";
     return;
 }
 
@@ -74,7 +74,7 @@ int whatIsPiece(T_boardState b, int i){
         resultCount++;
     }
     if(resultCount >= 2){
-        std::cout << std::endl << i << std::endl;
+        cout << endl << i << endl;
         assert(false);
     }
     return result;
@@ -92,52 +92,43 @@ T_chessboard *toIntArray(T_boardState b){
 void printTBitboardNumbersBin(T_bitboard **b){
     for(int i = 0; i < 64; i++){
         printTBitboardNumber(*(b[i]));
-        printf("\n");
+        cout << endl;
     }
 }
 
 //To-do: Omit leading zero in printing castling state
-void printState(T_boardState b, int playerColour, std::vector<std::string> gameMoves, unsigned short int ply, std::vector<uint64_t> previousStates, std::vector<std::string> vm){
+void printState(T_boardState b, int playerColour, vector<string> gameMoves, unsigned short int ply, vector<uint64_t> previousStates, vector<string> vm){
     T_chessboard *c = toIntArray(b);
     printBoard(playerColour, *c);
     free(c);
-    printf("Ply: %d\n", ply);
-    (!b.whosTurn) ? printf("White Turn\n") : printf("Black Turn\n");
-    printf("State of white en Passants: ");
+    cout << "Ply: " << ply << endl;
+    (!b.whosTurn) ? cout << "White Turn" << endl : cout << "Black Turn" << endl;
+    cout << "State of white en Passants: ";
     printBits(sizeof(b.wEnPassants), &(b.wEnPassants));
-    printf("State of white castling: "); printf("%d", b.castlesLRWhite); printf("%d", b.castlesKWhite); printf("%d\n", b.castlesRRWhite);
-    printf("State of black en Passants: ");
+    cout << "State of white castling: " << (int)b.castlesLRWhite << (int)b.castlesKWhite << (int)b.castlesRRWhite << endl;
+    cout << "State of black en Passants: ";
     printBits(sizeof(b.bEnPassants), &(b.bEnPassants));
-    printf("State of black castling: "); printf("%d", b.castlesLRBlack); printf("%d", b.castlesKBlack); printf("%d\n", b.castlesRRBlack);
-    printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
-    printf("Hash table of previous chess states:\n");
+    cout << "State of black castling: " << (int)b.castlesLRBlack << (int)b.castlesKBlack << (int)b.castlesRRBlack << endl;
+    cout << "No captures or pawn moves: "<< (int)b.noCapturesOrPawnMoves << endl;
+    cout << "Hash table of previous chess states:" << endl;
     for(unsigned int i = 0; i < previousStates.size(); i++){
-        std::cout << "- " << std::hex << previousStates[i] << std::endl << std::dec ;
+        cout << "- " << hex << previousStates[i] << endl << dec ;
     }
     printf("Game moves: ");
     for(unsigned int i = 0; i < gameMoves.size(); i++){
-        std::cout << gameMoves[i] << " ";
+        cout << gameMoves[i] << " ";
     }
-    std::cout << std::endl;
-    std::cout << "Valid moves: ";
+    cout << endl;
+    cout << "Valid moves: ";
     for(unsigned int i = 0; i < vm.size(); i++){
-        std::cout << vm[i] << " ";
+        cout << vm[i] << " ";
     }
-    std::cout << std::endl << std::endl;
-
+    cout << endl << endl;
 }
 
-//void GameState::printValidMoves(){
-//    cout << "Valid moves: ";
-//    for(int i = 0; i < this->validMoves.size(); i++){
-//        cout << this->validMoves[i] << " ";
-//    }
-//    cout << endl << endl;
-//}
-
 void printStates(T_boardStates *b, int playerColour){
-    std::vector<std::string> v;
-    std::vector<uint64_t> p;
+    vector<string> v;
+    vector<uint64_t> p;
     for(int i = 0; i < length(b); i++){
         printState((b->bs)[i], playerColour, v, 0, p);
     }
