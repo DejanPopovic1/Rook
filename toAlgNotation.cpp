@@ -20,7 +20,6 @@ using std::endl;
 char piece(T_boardState *c, char pos){
     for(char i = 1; i < 13; i++){
         if(isBitSet(*pieceBitboard(c, i), pos)){
-            //cout << (int) i << endl;
             return i;
         }
     }
@@ -139,12 +138,9 @@ bool doesStateChangeDepartFromPos(T_boardState *f, T_boardState *t, char pos){
 bool doesDepartureGoToArrival(T_boardState *b, char d, char a){
     T_Node *head = createNode();
     char p = piece(b, d);
-    //T_boardStates *bss = initialiseStates();
     T_boardState *state;
     T_bitboard stateDepPcs;
     genSuccStates(head, b);
-//        for(int i = 0; i < bss->fi; i++){
-//        state = &((bss->bs)[i]);
     for(int i = 0; i < head->fp ; i++){
         state = &head->scc[i]->b;
         if(!doesStateChangeDepartFromPos(b, state, d)){

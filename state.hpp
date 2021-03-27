@@ -7,8 +7,6 @@
 #define BITBOARD_INDEX_SIZE BITBOARD_SIZE - 1
 #define NUM_PIECE_TYPES 12
 
-//#include "searchTree.hpp"
-
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -55,8 +53,6 @@ struct BoardState{
     unsigned char whosTurn : 1; //0 Indicates white and 1 indicates black move
     unsigned char evaluateCheck : 1;
     unsigned char noCapturesOrPawnMoves;
-    //struct PrevStates *ps;
-  //  unsigned short ply;
 };
 
 struct BoardStates{
@@ -69,7 +65,6 @@ struct PrevStates{
     int fp;
 };
 
-//T_Node* initialiseNode();
 bool isStatesEqual(T_boardState a, T_boardState b);
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 bool isPawn(int p);
@@ -78,8 +73,6 @@ T_bitboard bAll(const T_boardState *b);
 T_bitboard all(const T_boardState *b);
 T_bitboard sameAll(const T_boardState *b);
 T_bitboard oppositeAll(T_boardState *b);
-//void removeOpponent(T_boardState *b, int pos);
-//int whosTurnNEW(const int ply);
 bool isRankFive(char n);
 bool isRankFour(char n);
 bool isRankSeven(char n);
@@ -87,9 +80,6 @@ bool isRankTwo(char n);
 char whatRank(char n);
 char whatFile(char n);
 bool isPosEmpty(const T_boardState *b, int n);
-//void addStateNode(T_Node *dstNode, T_boardState *src);
-//void addState(T_boardStates *dst, T_boardState *src);
-//T_boardStates *initialiseStates();
 int length(T_boardStates *bss);
 T_boardState initialiseBoardState();
 void initialiseWPawns(T_bitboard *result);
@@ -109,6 +99,5 @@ void initialiseBEnPassants(unsigned char *c);
 void initialiseCastlesTurnCheck(T_boardState *b);
 void initialiseNoCapturesOrPawnMoves(unsigned char *c);
 void initialisePreviousStates(struct PrevStates **ps);
-//void initialisePly(unsigned short *i);
 
 #endif // STATE_H

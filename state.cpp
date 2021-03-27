@@ -81,44 +81,6 @@ T_bitboard oppositeAll(T_boardState *b){
     }
 }
 
-//void removeOpponent(T_boardState *b, int pos){
-//    if(whosTurnNEW(b->ply) == whiteTurn){
-//        clearBit(&(b->bPawn), pos);
-//        clearBit(&(b->bBishop), pos);
-//        clearBit(&(b->bKnight), pos);
-//        clearBit(&(b->bRook), pos);
-//        clearBit(&(b->bQueen), pos);
-//        clearBit(&(b->bKing), pos);
-//    }
-//    if(whosTurnNEW(b->ply) == blackTurn){
-//        clearBit(&(b->wPawn), pos);
-//        clearBit(&(b->wBishop), pos);
-//        clearBit(&(b->wKnight), pos);
-//        clearBit(&(b->wRook), pos);
-//        clearBit(&(b->wQueen), pos);
-//        clearBit(&(b->wKing), pos);
-//    }
-//}
-
-
-//
-//void printStatesAndValidMoves(T_boardState *c, T_boardStates *b){
-//    for(int i = 0; i < length(b); i++){
-//        printStateAndValidMoves(*c, (b->bs)[i]);
-//    }
-//}
-
-//void printValidMoves(T_boardState *c, T_boardStates *ss){
-//    char **list = malloc(MAX_SUCCESSOR_STATES * sizeof(char*));
-//    T_chessboard *ssArr, *cArr = toIntArray(*c);
-//    for(int i = 0; i < length(ss); i++){
-//        ssArr = toIntArray(ss->bs[i]);
-//        list[i] = toAlgebraicNotation(cArr, ssArr);
-//    }
-//    //printf("%s", list[0]);
-//    return list;
-//}
-
 bool isStatesEqual(T_boardState a, T_boardState b){
     return
         a.wPawn == b.wPawn &&
@@ -149,13 +111,6 @@ bool isStatesEqual(T_boardState a, T_boardState b){
 bool isPawn(int p){
     return (p == whitePawn || p == blackPawn) ? true : false;
 }
-
-//int whosTurnNEW(const int ply){
-//    if((ply % 2) == 1){
-//        return whiteTurn;
-//    }
-//    return blackTurn;
-//}
 
 bool isRankFive(char n){
     if(n <= 39 && n >= 32){
@@ -201,33 +156,6 @@ bool isPosEmpty(const T_boardState *b, int n){
     }
     return false;
 }
-
-//Need to change player turn when adding state
-//At this point in time, the state that is input, src, is pseudo valid. We must now make it valid.
-//This complication, with the flag aswell, I think will be avoided when we have a proper searchTree in place
-//void addState(T_boardStates *dst, T_boardState *src){
-//    if(src->evaluateCheck){
-//        src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-//        //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
-//        (dst->bs)[dst->fi] = *src;
-//        (dst->fi)++;
-//    }
-//    else {
-//        T_boardState cpy = *src;//A copy was already passed in. Do we need a copy of a copy? I think yes, because it is going down into the *next* level
-//        if(!isInCheck(&cpy)){
-//            src->whosTurn ? src->bEnPassants = 0 : src->wEnPassants = 0;
-//            //src->evaluateCheck = 0;//Doesnt do anything. Can leave out
-//            (dst->bs)[dst->fi] = *src;
-//            (dst->fi)++;
-//        }
-//    }
-//}
-
-//T_boardStates *initialiseStates(){
-//    T_boardStates *bss = (T_boardStates *)malloc(sizeof(T_boardStates));
-//    bss->fi = 0;
-//    return bss;
-//}
 
 int length(T_boardStates *bss){
     return bss->fi;
@@ -365,7 +293,3 @@ void initialisePreviousStates(struct PrevStates **ps){
     (*ps)->fp = 0;
     return;
 }
-
-//void initialisePly(unsigned short *i){
-//    *i = 1;
-//}

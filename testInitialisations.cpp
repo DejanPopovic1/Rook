@@ -23,7 +23,6 @@ T_boardState CMinitialiseBoardState(){
     CMinitialiseBEnPassants(&(result.bEnPassants));
     CMinitialiseCastlesTurnCheck(&result);
     CMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-//    CMinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -129,13 +128,6 @@ void CMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
 
-//Need to add in this functionality later
-//void CMinitialisePreviousStates(struct PrevStates **ps){
-//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-//    (*ps)->fp = 0;
-//    return;
-//}
-
 T_boardState SMinitialiseBoardState(){
     T_boardState result;
     SMinitialiseWPawns(&(result.wPawn));
@@ -154,7 +146,6 @@ T_boardState SMinitialiseBoardState(){
     SMinitialiseBEnPassants(&(result.bEnPassants));
     SMinitialiseCastlesTurnCheck(&result);
     SMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-//    SMinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -235,13 +226,6 @@ void SMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
 
-//Need to add in this functionality later
-//void SMinitialisePreviousStates(struct PrevStates **ps){
-//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-//    (*ps)->fp = 0;
-//    return;
-//}
-
 T_boardState PPinitialiseBoardState(){
     T_boardState result;
     PPinitialiseWPawns(&(result.wPawn));
@@ -260,7 +244,6 @@ T_boardState PPinitialiseBoardState(){
     PPinitialiseBEnPassants(&(result.bEnPassants));
     PPinitialiseCastlesTurnCheck(&result);
     PPinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-//    PPinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -342,13 +325,6 @@ void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
 
-//Need to add in this functionality later
-//void PPinitialisePreviousStates(struct PrevStates **ps){
-//    *ps = (struct PrevStates *)malloc(MAX_PREV_STATES * sizeof(struct PrevStates));
-//    (*ps)->fp = 0;
-//    return;
-//}
-
 T_boardState ICinitialiseBoardState(){
     T_boardState result;
     ICinitialiseWPawns(&(result.wPawn));
@@ -367,7 +343,6 @@ T_boardState ICinitialiseBoardState(){
     ICinitialiseBEnPassants(&(result.bEnPassants));
     ICinitialiseCastlesTurnCheck(&result);
     ICinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-//    PPinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -449,9 +424,6 @@ void ICinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
 
-
-
-
 T_boardState LKinitialiseBoardState(){
     T_boardState result;
     LKinitialiseWPawns(&(result.wPawn));
@@ -470,7 +442,6 @@ T_boardState LKinitialiseBoardState(){
     LKinitialiseBEnPassants(&(result.bEnPassants));
     LKinitialiseCastlesTurnCheck(&result);
     LKinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
-//    PPinitialisePreviousStates(&(result.ps));
     return result;
 }
 
@@ -554,6 +525,3 @@ void LKinitialiseCastlesTurnCheck(T_boardState *b){
 void LKinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
-
-
-

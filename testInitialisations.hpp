@@ -2,9 +2,6 @@
 #define TEST_INITIALISATIONS_H
 
 #include "state.hpp"
-//#include "bitUtilities.hpp"
-//#include "assert.h"
-//#include "moveGeneration.hpp"
 
 T_boardState CMinitialiseBoardState();
 void CMinitialiseWPawns(T_bitboard *result);
@@ -23,7 +20,6 @@ void CMinitialiseWEnPassants(unsigned char *c);
 void CMinitialiseBEnPassants(unsigned char *c);
 void CMinitialiseCastlesTurnCheck(T_boardState *b);
 void CMinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-//void CMinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState SMinitialiseBoardState();
 void SMinitialiseWPawns(T_bitboard *result);
@@ -42,7 +38,6 @@ void SMinitialiseWEnPassants(unsigned char *c);
 void SMinitialiseBEnPassants(unsigned char *c);
 void SMinitialiseCastlesTurnCheck(T_boardState *b);
 void SMinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-//void SMinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState PPinitialiseBoardState();
 void PPinitialiseWPawns(T_bitboard *result);
@@ -61,7 +56,6 @@ void PPinitialiseWEnPassants(unsigned char *c);
 void PPinitialiseBEnPassants(unsigned char *c);
 void PPinitialiseCastlesTurnCheck(T_boardState *b);
 void PPinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-//void PPinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState ICinitialiseBoardState();
 void ICinitialiseWPawns(T_bitboard *result);
@@ -80,7 +74,6 @@ void ICinitialiseWEnPassants(unsigned char *c);
 void ICinitialiseBEnPassants(unsigned char *c);
 void ICinitialiseCastlesTurnCheck(T_boardState *b);
 void ICinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-//void PPinitialisePreviousStates(struct PrevStates **ps);
 
 T_boardState LKinitialiseBoardState();
 void LKinitialiseWPawns(T_bitboard *result);
@@ -99,6 +92,5 @@ void LKinitialiseWEnPassants(unsigned char *c);
 void LKinitialiseBEnPassants(unsigned char *c);
 void LKinitialiseCastlesTurnCheck(T_boardState *b);
 void LKinitialiseNoCapturesOrPawnMoves(unsigned char *c);
-//void PPinitialisePreviousStates(struct PrevStates **ps);
 
 #endif // TEST_INITIALISATIONS_H

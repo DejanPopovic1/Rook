@@ -1,12 +1,8 @@
-
 #ifndef TOALGNOTATION_HPP
 #define TOALGNOTATION_HPP
-
-
 #define ASCII_CHARACTER_OFFSET 97
 #define ASCII_NUMBER_OFFSET 49
 
-//We need to investigate why this works. It should work without extern because the .c file repeates the step after this with extern
 #include "state.hpp"
 
 #include <string>
@@ -39,7 +35,6 @@ char isPromoted(T_boardState *c, T_boardState *ss, char *promotedFile, bool *isA
 bool isKingSideCastle(T_boardState *c, T_boardState *ss);
 bool isQueenSideCastle(T_boardState *c, T_boardState *ss);
 std::string toAlgebraicNotation(T_boardState *c, T_boardState *ss);
-//extern "C" const char* toAlgebraicNotation_C_WRAPPER(T_boardState *c, T_boardState *ss);
 
 #endif // TOALGNOTATION_HPP
 
