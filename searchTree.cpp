@@ -194,12 +194,40 @@ T_boardState computerMove(T_boardState *input){
     return head->scc[index]->b;
 }
 
-int min(T_Node **n, int level){
-    return 0;
+int max(T_Node **n, int level){
+    if(!level){
+        return evaluateBoard(&(*n)->b);
+    }
+    int maxEval = -1000;
+    int maybeNewMaxEval;
+    for(int i = 0; (*n)->fp; i++){
+        maybeNewMaxEval = min(&(*n)->scc[i], level--);
+        if(maybeNewMaxEval > maxEval){
+            maxEval = maybeNewMaxEval;
+        }
+        if(level == 3){
+            return i;
+        }
+    }
+    return maxEval;
 }
 
-int max(T_Node **n, int level){
-    return 0;
+int min(T_Node **n, int level){
+    if(!level){
+        return evaluateBoard(&(*n)->b);
+    }
+    int minEval = 1000;
+    int maybeNewMinEval;
+    for(int i = 0; (*n)->fp; i++){
+        maybeNewMinEval = min(&(*n)->scc[i], level--);
+        if(maybeNewMinEval < minEval){
+            minEval = maybeNewMinEval;
+        }
+        if(level == 3){
+            return i;
+        }
+    }
+    return minEval;
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
