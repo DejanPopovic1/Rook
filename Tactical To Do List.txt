@@ -1,3 +1,2 @@
 Fix black (AI) in check use case bug
-Clean code and in process convert to idiomatic C++
-Can castle twice
+

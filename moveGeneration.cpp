@@ -358,13 +358,11 @@ void genDirStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int d
     else if(isPosEmpty(b, lastPos)){
         T_boardState cpy = *b;
         move(&cpy, lastPos, n, piece);
-
         addStateNode(node, &cpy);
     }
     else{
         T_boardState cpy = *b;
         moveAndAttack(&cpy, lastPos, n, piece);
-
         addStateNode(node, &cpy);
     }
 }
@@ -549,7 +547,6 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
     if(b->whosTurn && (castlePass == BLACK_KINGSIDE_PASS || castlePass == BLACK_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
-        //
         bool cnd3 = true;
         if(castlePass == BLACK_KINGSIDE_PASS && (BLACK_KINGSIDE_ATTACKING & (b->wPawn | b->wKing) || BLACK_KINGSIDE_ATTACKING_K & b->wKnight)){
             cnd3 = false;
@@ -615,7 +612,6 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
     else if(!b->whosTurn && (castlePass == WHITE_KINGSIDE_PASS || castlePass == WHITE_QUEENSIDE_PASS)){
         bool cnd1 = !(all(b) & castlePass);
         bool cnd2 = true;
-        //
         bool cnd3 = true;
         if(castlePass == WHITE_KINGSIDE_PASS && (WHITE_KINGSIDE_ATTACKING & (b->bPawn | b->bKing) || WHITE_KINGSIDE_ATTACKING_K & b->bKnight)){
             cnd3 = false;
@@ -623,7 +619,6 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
         else if(castlePass == WHITE_QUEENSIDE_PASS && (WHITE_QUEENSIDE_ATTACKING & (b->bPawn | b->bKing) || WHITE_QUEENSIDE_ATTACKING_K & b->bKnight)){
             cnd3 = false;
         }
-        //
         int j, k, l;
         T_bitboard a = all(b);
         while(tmp.bBishop){
