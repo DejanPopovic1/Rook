@@ -22,8 +22,8 @@ public:
     bool isFiveFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
-    std::string engineMove();
-    std::vector<std::string> genListOfValidMoves(T_boardState input);
+    std::string engineMove(T_boardState s);
+    std::vector<std::string> genListOfValidNotations(T_boardState input);
     ~GameState();
 private:
     T_boardState c;

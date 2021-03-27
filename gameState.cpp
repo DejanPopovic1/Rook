@@ -31,7 +31,7 @@ GameState::GameState(T_boardState bs, bool pA){
     uint64_t initialKey = generateKey(&this->c);
     this->previousStates.push_back(initialKey);
     this->previousStatesCount.insert(pair<uint64_t, int>(initialKey, 1));
-    this->validMoves = genListOfValidMoves(this->c);
+    this->validMoves = genListOfValidNotations(this->c);
 }
 
 bool GameState::isValidMove(string s){
@@ -96,7 +96,7 @@ bool GameState::changeState(string usrInput){
     this->previousStates.push_back(key);
     updatePreviousStatesCount(key);
     this->c = successorState;
-    this->validMoves = genListOfValidMoves(this->c);
+    this->validMoves = genListOfValidNotations(this->c);
     isMatesOrRepetitions();
 }
 
@@ -133,18 +133,14 @@ void GameState::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
 
-//pass in state rather than using "this->"
-//Move this to an interface file within the engine and NOT in this class
-string GameState::engineMove(){
-    T_boardState cm = computerMove(&this->c);
+string GameState::engineMove(T_boardState s){
+    T_boardState cm = computerMove(&s);
     if(isStatesEqual(cm, this->c)){
         return "";
     }
-    cout << toAlgebraicNotation(&this->c, &cm);
-    return toAlgebraicNotation(&this->c, &cm);
+    return toAlgebraicNotation(&s, &cm);
 }
 
-//implement isPawn function
 bool GameState::isPawnMoveOrCapture(T_boardState *c, T_boardState *ss){
     char from, to, piece, capturedPiece;
     bool isPieceCaptured;
@@ -178,8 +174,7 @@ vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
     return result;
 }
 
-//Change name to listOfValidNotations
-vector<string> GameState::genListOfValidMoves(T_boardState input){
+vector<string> GameState::genListOfValidNotations(T_boardState input){
     vector<string> result;
     string s;
     vector<T_boardState> vs = genValidStatesFromState(&input);

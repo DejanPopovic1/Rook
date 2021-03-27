@@ -36,7 +36,7 @@ void multiPlayerSession(string playerColourInput){
     sc.printGameState();
     while(!sc.isCheckMate() && !sc.isStaleMate() && !sc.isFiveFoldRepetition() && !sc.isSeventyFiveMoveRule()){
         s = sc.getState();
-        l = sc.genListOfValidMoves(s);
+        l = sc.genListOfValidNotations(s);
         multiPlayerPrompt();
         cin >> usrInput;
         while(!(find(l.begin(), l.end(), usrInput) != l.end())){
@@ -72,7 +72,7 @@ void singlePlayerSession(string playerColourInput){
             break;
         }
         s = sc.getState();
-        l = sc.genListOfValidMoves(s);
+        l = sc.genListOfValidNotations(s);
         multiPlayerPrompt();
         cin >> usrInput;
         while(!(find(l.begin(), l.end(), usrInput) != l.end())){
@@ -84,8 +84,7 @@ void singlePlayerSession(string playerColourInput){
         if(sc.isCheckMate() || sc.isStaleMate() || sc.isFiveFoldRepetition() || sc.isSeventyFiveMoveRule()){
             break;
         }
-        //cout << sc.engineMove();
-        sc.changeState(sc.engineMove());
+        sc.changeState(sc.engineMove(sc.getState()));
         sc.printGameState();
     }
     cin.get();
