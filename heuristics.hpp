@@ -8,7 +8,7 @@
 #define KNIGHT_VALUE 3
 #define ROOK_VALUE 5
 #define QUEEN_VALUE 9
-#define KING_VALUE 200
+#define KING_VALUE 2000
 
 int evaluateWhiteMaterial(T_boardState *c);
 int evaluateBlackMaterial(T_boardState *c);

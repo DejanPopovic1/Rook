@@ -184,54 +184,69 @@ bool isAllSuccStatesInCheck(T_boardState *input){
 //This function returns the same input if there are no valid moves to make - It doesnt care if this is due to stalemate or checkmate. Thats up to other code
 T_boardState computerMove(T_boardState *input){
     if(isAllSuccStatesInCheck(input)){
-        cout << "!!!CHECK/STALEMATE!!!" << endl;
+        exit(-1);
+        cout << endl << "!!!CHECK/STALEMATE!!!" << endl << endl;
         return *input;
     }
     int index;
     T_Node *head = createNodeParent(input);
     input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
-    //genSuccStates(head, input);
-    //return head->scc[index]->b;
-    return *input;
+    genSuccStates(head, input);
+    T_boardState result = head->scc[index]->b;
+    free(head);
+//    cout << "Computer Selection: " << endl;
+//    printState(result);
+    return result;
 }
 
 int max(T_Node **n, int level){
     if(!level){
+        freeTreeNode(*n);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
-    int maxEval = -1000;
+    int maxEval = -1000000;
     int maybeNewMaxEval;
-    for(int i = 0; (*n)->fp; i++){
+    int maxEvalIndex;
+    for(int i = 0; i < (*n)->fp; i++){
         maybeNewMaxEval = min(&(*n)->scc[i], level - 1);
         if(maybeNewMaxEval > maxEval){
             maxEval = maybeNewMaxEval;
-        }
-        if(level == DEPTH_LIMIT_LEVEL){
-            return i;
+            maxEvalIndex = i;
         }
     }
-    return maxEval;
+    freeTreeNode(*n);
+    if(level == DEPTH_LIMIT_LEVEL){
+        return maxEvalIndex;
+    }
+    else{
+        return maxEval;
+    }
 }
 
 int min(T_Node **n, int level){
-    cout << level << endl;
     if(!level){
+        freeTreeNode(*n);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
-    int minEval = 1000;
+    int minEval = 1000000;
     int maybeNewMinEval;
-    for(int i = 0; (*n)->fp; i++){
+    int minEvalIndex;
+    for(int i = 0; i < (*n)->fp; i++){
         maybeNewMinEval = max(&(*n)->scc[i], level - 1);
         if(maybeNewMinEval < minEval){
             minEval = maybeNewMinEval;
-        }
-        if(level == DEPTH_LIMIT_LEVEL){
-            return i;
+            minEvalIndex = i;
         }
     }
-    return minEval;
+    freeTreeNode(*n);
+    if(level == DEPTH_LIMIT_LEVEL){
+        return minEvalIndex;
+    }
+    else{
+        return minEval;
+    }
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
