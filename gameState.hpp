@@ -11,15 +11,7 @@
 #include <map>
 
 enum PlayingAs{asWhite, asBlack};
-//What state does state changer keep that stat doesnt? There are three
-//1. Playing As
-//2. Ply number
-//3. List of valid moves
-//4. List of all game moves
-//5. Time left in current move (if there is a time limit imposed)
 
-
-//Create a MAP that has all successor states and associated moves
 class GameState{
 public:
     GameState(T_boardState bs, bool pA);
@@ -30,32 +22,29 @@ public:
     bool isFiveFoldRepetition();
     bool isCheckMate();
     bool isStaleMate();
-    void moveCycle();
     std::string engineMove();
-    bool isInCheck(T_boardState b);//Move back to private
-    T_boardState c;
     std::vector<std::string> genListOfValidMoves(T_boardState input);
     ~GameState();
 private:
+    T_boardState c;
+    key *randomKey;
+    std::vector<std::string> validMoves;
+    std::vector<std::string> gameMoves;
+    std::vector<uint64_t> previousStates;
+    std::map<uint64_t, int> previousStatesCount;
+    bool playingAs;
+    unsigned short int ply;
+    char movesWithoutTakeOrPawnMove;
+    bool isMatesOrRepetitions();
+    void updatePreviousStatesCount(uint64_t key);
     std::vector<T_boardState> genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
     void updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *s);
     int moveIndex(std::string s);
     bool isValidMove(std::string s);
-    key *randomKey;
     bool isPawnMoveOrCapture(T_boardState *frm, T_boardState *to);
     void printValidMoves();
-
-    int turnTimeLeft;
-    std::vector<std::string> validMoves;
-    std::vector<std::string> gameMoves;
-    std::vector<uint64_t> previousStates;
-    std::map<uint64_t, int> previousStatesCount;
-
-    //T_boardStates *ss;
-    bool playingAs;
-    unsigned short int ply;
-    char movesWithoutTakeOrPawnMove;
+    bool isInCheck(T_boardState b);
 };
 
 #endif //GAME_STATE_H

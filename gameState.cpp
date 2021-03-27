@@ -22,7 +22,6 @@ T_boardState GameState::getState(){
     return this->c;
 }
 
-//Add a class destructor that free's the randomKey malloc
 GameState::GameState(T_boardState bs, bool pA){
     this->randomKey = createRandomKey();
     this->movesWithoutTakeOrPawnMove = 0;
@@ -61,7 +60,29 @@ void GameState::updateMovesWithoutTakeOrPawnMove(T_boardState *c, T_boardState *
     }
 }
 
-//A map corresponding to moves and states should be made in change State
+void GameState::updatePreviousStatesCount(uint64_t key){
+    if(this->previousStatesCount.count(key)){
+        this->previousStatesCount[key] += 1;
+    }
+    else{
+        this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
+    }
+}
+
+bool GameState::isMatesOrRepetitions(){
+    if(isCheckMate()){
+        this->c.whosTurn ? this->gameMoves.push_back("1 - 0") : this->gameMoves.push_back("0 - 1");
+        return false;
+    }
+    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
+        this->gameMoves.push_back("1/2 - 1/2");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 bool GameState::changeState(string usrInput){
     if(!isValidMove(usrInput)){
        cout << "Invalid move\n" << endl;
@@ -73,25 +94,10 @@ bool GameState::changeState(string usrInput){
     this->gameMoves.push_back(usrInput);
     uint64_t key = incrementKey(this->previousStates.back(), &this->c, &successorState, this->randomKey);
     this->previousStates.push_back(key);
-    if(this->previousStatesCount.count(key)){
-        previousStatesCount[key] += 1;
-    }
-    else{
-        this->previousStatesCount.insert(pair<uint64_t, int>(key, 1));
-    }
+    updatePreviousStatesCount(key);
     this->c = successorState;
     this->validMoves = genListOfValidMoves(this->c);
-    if(isCheckMate()){
-        this->c.whosTurn ? gameMoves.push_back("1 - 0") : gameMoves.push_back("0 - 1");
-        //exit(-1);
-        return false;
-    }
-    else if(isStaleMate() || isFiveFoldRepetition() || isSeventyFiveMoveRule()){
-        gameMoves.push_back("1/2 - 1/2");
-        //exit(-2);
-        return false;
-    }
-    return true;
+    isMatesOrRepetitions();
 }
 
 bool GameState::isSeventyFiveMoveRule(){
@@ -123,52 +129,19 @@ bool GameState::isStaleMate(){
     return false;
 }
 
-//gameMoves must be in .PGN notation. i.e. 1. a4 d6 2. a5 d5 3. ...
-//printValidmoves should be part of printState
 void GameState::printGameState(){
     printState(this->c, this->playingAs, this->gameMoves, this->ply, this->previousStates, this->validMoves);
 }
-
 
 //pass in state rather than using "this->"
 //Move this to an interface file within the engine and NOT in this class
 string GameState::engineMove(){
     T_boardState cm = computerMove(&this->c);
     if(isStatesEqual(cm, this->c)){
-        //exit(-1);
         return "";
     }
     cout << toAlgebraicNotation(&this->c, &cm);
     return toAlgebraicNotation(&this->c, &cm);
-}
-
-
-
-//As per comment above, this needs refactoring to first determine if input is correct
-//Refactor move cycle into white and then black move and in the main loop to check for is check or is stalemate
-//Rather split this into two functions. One for white and one for black
-void GameState::moveCycle(){
-    string usrInput;
-    if(this->playingAs){
-        printGameState();
-
-        changeState(engineMove());
-
-        printGameState();
-        do{
-            multiPlayerPrompt();
-            std::cin >> usrInput;
-        }while(!changeState(usrInput));
-    }
-    else{
-        printGameState();
-        do{
-            multiPlayerPrompt();
-            std::cin >> usrInput;
-        }while(!changeState(usrInput));
-        //cout << "HUMAN TURN COMPLETE" << endl;
-        changeState(engineMove());
-    }
 }
 
 //implement isPawn function
@@ -191,23 +164,13 @@ bool GameState::isInCheck(T_boardState b){
     return !isKingsExist(n, b.whosTurn);
 }
 
-//bool GameState::isStateInCheck(T_boardState *b){
-//    T_Node *n = createNode();
-//    genSuccStates(n, b);
-//    bool result = !isKingsExist(n, !b->whosTurn);
-//    //free(n);
-//    return result;
-//}
-
 vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
     vector<T_boardState> result;
     T_Node *n = createNode();
     genSuccStates(n, input);
     for(int i = 0; i < n->fp; i++){
         n->scc[i]->b.whosTurn++;
-        if
-            //(true){
-            (!isInCheck(n->scc[i]->b)){
+        if(!isInCheck(n->scc[i]->b)){
             n->scc[i]->b.whosTurn++;
             result.push_back(n->scc[i]->b);
         }
@@ -216,7 +179,6 @@ vector<T_boardState> GameState::genValidStatesFromState(T_boardState *input){
 }
 
 //Change name to listOfValidNotations
-//Calling this as AI wont produce a check state in genSuccStates. But, as a human player it will, and thus we need an additional check
 vector<string> GameState::genListOfValidMoves(T_boardState input){
     vector<string> result;
     string s;
@@ -228,10 +190,7 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
         s = toAlgebraicNotation(&(input), &vs[i]);
         result.push_back(s);
     }
-    //freeTreeNode(vs);
-    //free(vs);
     return result;
-    //!!!FREE V!!!
 }
 
 GameState::~GameState(){
