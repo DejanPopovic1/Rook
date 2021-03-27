@@ -15,6 +15,7 @@ struct Node{
     int fp;
 };
 
+T_Node* createNodeParent(T_boardState *input);
 bool isAllSuccStatesInCheck(T_boardState *input);
 bool isComputerInCheck(T_boardState b);
 T_Node* createNode();
