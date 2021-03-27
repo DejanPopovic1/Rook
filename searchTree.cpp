@@ -187,18 +187,12 @@ T_boardState computerMove(T_boardState *input){
         cout << "!!!CHECK/STALEMATE!!!" << endl;
         return *input;
     }
+    int index;
+//    input->whosTurn ? index = min(input, DEPTH_LIMIT_LEVEL) : index = max(input, DEPTH_LIMIT_LEVEL);
     T_Node *head = createNode();
     head->b = *input;
-    int bestEval;
-    int indexMaxMin;
-    bestEval = generateTreeNodeMinMax(&head, 0, &indexMaxMin);//<--- changes to faulty indexMaxMin value to cause crash later in evaluating "answer" variable
-    free(head);
-    T_Node *head2 = createNode();
-    genSuccStates(head2, input);
-    T_boardState result = head2->scc[indexMaxMin]->b;//<---Bug when placing opponent in check
-    freeTreeNode(head2);
-    free(head2);
-    return result;
+    genSuccStates(head, input);
+//    return head->scc[index];
 }
 
 //If depth limit is reached for one node, then exit for loop for all nodes in that loop - you can do this by testing a return code
@@ -271,6 +265,12 @@ int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin){
     //generateLinkedList(iterator, level); //Iterate through all the pointers. The function returns an int value so you must add in if statement to say if white then if result of function is greater than current max, then set new current max
         //End for
         //Return min/max
+
+T_Node* createNodeParent(T_boardState *input){
+    T_Node *result = createNode();
+    result->b = (*input);
+    return result;
+}
 
 T_Node* createNode(){
     T_Node *result = (T_Node*)malloc(sizeof(T_Node));

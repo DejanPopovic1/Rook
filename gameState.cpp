@@ -142,6 +142,7 @@ string GameState::engineMove(){
         //exit(-1);
         return "";
     }
+    cout << toAlgebraicNotation(&this->c, &cm);
     return toAlgebraicNotation(&this->c, &cm);
 }
 
