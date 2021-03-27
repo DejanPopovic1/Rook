@@ -96,15 +96,15 @@
 	<string>
 	<vector>
 
-1616267075 source:c:\c_c++ code\rook\bitutilities.cpp
+1616860760 source:c:\c_c++ code\rook\bitutilities.cpp
 	"bitUtilities.hpp"
 	<limits.h>
 	<stdio.h>
 
-1616267324 c:\c_c++ code\rook\bitutilities.hpp
+1616860760 c:\c_c++ code\rook\bitutilities.hpp
 	"state.hpp"
-	<stdbool.h>
 	"bitUtilities.hpp"
+	<stdbool.h>
 	<limits.h>
 
 1616766852 c:\c_c++ code\rook\state.hpp
@@ -138,7 +138,7 @@
 	<stdbool.h>
 	<stdlib.h>
 
-1616785345 source:c:\c_c++ code\rook\output.cpp
+1616861199 source:c:\c_c++ code\rook\output.cpp
 	"output.hpp"
 	"toAlgNotation.hpp"
 	"state.hpp"
@@ -196,7 +196,7 @@
 	<assert.h>
 	<iostream>
 
-1616855103 source:c:\c_c++ code\rook\main.cpp
+1616857696 source:c:\c_c++ code\rook\main.cpp
 	"searchTree.hpp"
 	"state.hpp"
 	"moveGeneration.hpp"
@@ -222,7 +222,7 @@
 	<stdio.h>
 	<iostream>
 
-1616797993 source:c:\c_c++ code\rook\gamestate.cpp
+1616861461 source:c:\c_c++ code\rook\gamestate.cpp
 	"gameState.hpp"
 	"ToAlgNotation.hpp"
 	"output.hpp"
@@ -234,7 +234,7 @@
 	<algorithm>
 	<iterator>
 
-1616786453 c:\c_c++ code\rook\gamestate.hpp
+1616861485 c:\c_c++ code\rook\gamestate.hpp
 	"state.hpp"
 	"keyUtilities.hpp"
 	"searchTree.hpp"
@@ -243,7 +243,7 @@
 	<vector>
 	<map>
 
-1616759983 source:c:\c_c++ code\rook\testinitialisations.cpp
+1616857437 source:c:\c_c++ code\rook\testinitialisations.cpp
 	"testInitialisations.hpp"
 	"bitUtilities.hpp"
 	"moveGeneration.hpp"
@@ -263,7 +263,7 @@
 1616855255 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
-1616855539 source:c:\c_c++ code\rook\searchtree.cpp
+1616860286 source:c:\c_c++ code\rook\searchtree.cpp
 	"searchTree.hpp"
 	"moveGeneration.hpp"
 	"testInitialisations.hpp"
@@ -271,6 +271,6 @@
 	"heuristics.hpp"
 	<iostream>
 
-1616855138 c:\c_c++ code\rook\searchtree.hpp
+1616859932 c:\c_c++ code\rook\searchtree.hpp
 	"state.hpp"
 

@@ -1,22 +1,6 @@
 #include "bitUtilities.hpp"
 #include <limits.h>
 #include <stdio.h>
-//#include "moveGeneration.h"
-
-//rather make this a number for efficiency
-T_bitboard createSecondLastColumnMask(){
-    T_bitboard result;
-    clearBits(&result);
-    setBit(&result, 48);
-    setBit(&result, 49);
-    setBit(&result, 50);
-    setBit(&result, 51);
-    setBit(&result, 52);
-    setBit(&result, 53);
-    setBit(&result, 54);
-    setBit(&result, 55);
-    return result;
-}
 
 void setBit(T_bitboard *number, int n){
     *number ^= (-1ULL ^ *number) & (1ULL << n);
@@ -67,13 +51,3 @@ bool isBitSet(T_bitboard number, int n){
     }
     return false;
 }
-
-#if 0
-void toggleBit(T_bitboard *number, int n){
-    *number ^= 1UL << n;
-}
-
-T_bitboard checkBit(T_bitboard number, int n){
-    return (number >> n) & 1ULL;
-}
-#endif

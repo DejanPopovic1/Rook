@@ -2,16 +2,10 @@
 #define BITUTILITIES_H
 
 #include "state.hpp"
-
-#include <stdbool.h>
-
-#define incl 1
-
 #include "bitUtilities.hpp"
+#include <stdbool.h>
 #include <limits.h>
 
-
-T_bitboard createSecondLastColumnMask();
 void setBit(T_bitboard *number, int n);
 void setCharBit(unsigned char *number, int n);
 void clearBit(T_bitboard *number, int n);

@@ -87,7 +87,7 @@ void CMinitialiseBBishops(T_bitboard *result){
 void CMinitialiseBKnights(T_bitboard *result){
     clearBits(result);
     setBit(result, 57);
-    //setBit(result, 62);
+    setBit(result, 62);
 }
 
 void CMinitialiseBRooks(T_bitboard *result){

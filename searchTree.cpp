@@ -196,6 +196,7 @@ T_boardState computerMove(T_boardState *input){
     free(head);
 //    cout << "Computer Selection: " << endl;
 //    printState(result);
+    cout << index << endl;
     return result;
 }
 

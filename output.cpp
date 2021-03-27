@@ -111,16 +111,16 @@ void printState(T_boardState b, int playerColour, std::vector<std::string> gameM
     printf("State of black castling: "); printf("%d", b.castlesLRBlack); printf("%d", b.castlesKBlack); printf("%d\n", b.castlesRRBlack);
     printf("No captures or pawn moves: %d\n", b.noCapturesOrPawnMoves);
     printf("Hash table of previous chess states:\n");
-    for(int i = 0; i < previousStates.size(); i++){
+    for(unsigned int i = 0; i < previousStates.size(); i++){
         std::cout << "- " << std::hex << previousStates[i] << std::endl << std::dec ;
     }
     printf("Game moves: ");
-    for(int i = 0; i < gameMoves.size(); i++){
+    for(unsigned int i = 0; i < gameMoves.size(); i++){
         std::cout << gameMoves[i] << " ";
     }
     std::cout << std::endl;
     std::cout << "Valid moves: ";
-    for(int i = 0; i < vm.size(); i++){
+    for(unsigned int i = 0; i < vm.size(); i++){
         std::cout << vm[i] << " ";
     }
     std::cout << std::endl << std::endl;
@@ -168,7 +168,7 @@ void printTBitboardNumber(T_bitboard b){
     T_bitboard bit;
     for(int i = 63; i >= 0; i--){
         bit = (b >> i) & 1UL;
-        printf("%d", bit);
+        printf("%llu", bit);
     }
     printf("\n");
 }
@@ -180,7 +180,7 @@ void printTBitboard(T_bitboard b){
         for(int j = 0; j <= FILE_SIZE - 1; j++){
             index = (i * FILE_SIZE) + j;
             bit = (b >> index) & 1U;
-            printf("%d ", bit);
+            printf("%llu ", bit);
         }
         printf("\n");
     }
@@ -202,16 +202,6 @@ void landingMessage(){
     cout << "For detailed documentation and code base, please visit github.com/users/DeanPopovic/RookEngine" << endl << endl;
 }
 
-//void printPlayerTurn(int halfPly){
-//    if(whosTurn(halfPly) == whiteTurn){
-//        printf("W: ");
-//    }
-//    else if(whosTurn(halfPly) == blackTurn){
-//        printf("B: ");
-//    }
-//    return;
-//}
-
 void printBoard(int playingAs, T_chessboard chessboard){
     playingAs == asWhite ? printBoardPlayingAsWhite(chessboard) : printBoardPlayingAsBlack(chessboard);
     return;
@@ -231,7 +221,7 @@ void printBoardPlayingAsBlack(T_chessboard chessboard){
     HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD n;
     int rankIndex = 1;
-    char* fileIndex = "   h g f e d c b a";
+    const char* fileIndex = "   h g f e d c b a";
     printf("\n%s\n", fileIndex);
     WriteConsoleW(cons, L"  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557",
                   wcslen(L"\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659"), &n, NULL );
@@ -255,7 +245,7 @@ void printBoardPlayingAsWhite(T_chessboard chessboard){
     HANDLE cons = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD n;
     int rankIndex = 8;
-    char* fileIndex = "   a b c d e f g h";
+    const char* fileIndex = "   a b c d e f g h";
     printf("\n%s\n", fileIndex);
     WriteConsoleW(cons, L"  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557",
                   wcslen(L"\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659\u2659"), &n, NULL );

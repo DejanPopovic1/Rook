@@ -18,14 +18,10 @@ using std::pair;
 using std::find;
 using std::iterator;
 
-GameState::GameState(){
-
-}
-
 T_boardState GameState::getState(){
     return this->c;
 }
-//Dont pass in board state, rather create it in this constructor
+
 //Add a class destructor that free's the randomKey malloc
 GameState::GameState(T_boardState bs, bool pA){
     this->randomKey = createRandomKey();
@@ -236,4 +232,8 @@ vector<string> GameState::genListOfValidMoves(T_boardState input){
     //free(vs);
     return result;
     //!!!FREE V!!!
+}
+
+GameState::~GameState(){
+    free(this->randomKey);
 }

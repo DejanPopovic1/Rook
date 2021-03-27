@@ -22,7 +22,6 @@ enum PlayingAs{asWhite, asBlack};
 //Create a MAP that has all successor states and associated moves
 class GameState{
 public:
-    GameState();
     GameState(T_boardState bs, bool pA);
     bool changeState(std::string usrInput);
     T_boardState getState();
@@ -36,6 +35,7 @@ public:
     bool isInCheck(T_boardState b);//Move back to private
     T_boardState c;
     std::vector<std::string> genListOfValidMoves(T_boardState input);
+    ~GameState();
 private:
     std::vector<T_boardState> genValidStatesFromState(T_boardState *input);
     T_boardState stateAtMoveIndex(T_boardState *s, int i);
