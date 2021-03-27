@@ -198,6 +198,7 @@ int max(T_Node **n, int level){
     if(!level){
         return evaluateBoard(&(*n)->b);
     }
+    genSuccStates(*n, &(*n)->b);
     int maxEval = -1000;
     int maybeNewMaxEval;
     for(int i = 0; (*n)->fp; i++){
@@ -205,7 +206,7 @@ int max(T_Node **n, int level){
         if(maybeNewMaxEval > maxEval){
             maxEval = maybeNewMaxEval;
         }
-        if(level == 3){
+        if(level == DEPTH_LIMIT_LEVEL){
             return i;
         }
     }
@@ -213,17 +214,19 @@ int max(T_Node **n, int level){
 }
 
 int min(T_Node **n, int level){
+    cout << "Test" << endl;
     if(!level){
         return evaluateBoard(&(*n)->b);
     }
+    genSuccStates(*n, &(*n)->b);
     int minEval = 1000;
     int maybeNewMinEval;
     for(int i = 0; (*n)->fp; i++){
-        maybeNewMinEval = min(&(*n)->scc[i], level--);
+        maybeNewMinEval = max(&(*n)->scc[i], level--);
         if(maybeNewMinEval < minEval){
             minEval = maybeNewMinEval;
         }
-        if(level == 3){
+        if(level == DEPTH_LIMIT_LEVEL){
             return i;
         }
     }
