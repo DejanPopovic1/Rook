@@ -5,20 +5,6 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-//    T_bitboard t = 0;
-//    T_bitboard u = 0;
-//    T_bitboard v = 0;
-//    T_bitboard w = 0;
-//    setBit(&t, 5);
-//    setBit(&t, 6);
-//    setBit(&u, 1);
-//    setBit(&u, 2);
-//    setBit(&u, 3);
-//    setBit(&v, 61);
-//    setBit(&v, 62);
-//    setBit(&w, 57);
-//    setBit(&w, 58);
-//    setBit(&w, 59);
 
 //Remove returning bools from the jump casts
 bool cast1(int *index){
@@ -275,16 +261,6 @@ void freeJumps(T_bitboard **jumps){
     free(jumps);
 }
 
-
-//T_bitboard *castWPawnAttacks(bool (*castDir)(int *)){
-//    T_bitboard *result = (T_bitboard *)malloc(BITBOARD_SIZE * sizeof(T_bitboard));
-//    for(int i = 0; i < BITBOARD_SIZE; i++){
-//        result[i] = castStep(castDir, i);
-//    }
-//    return result;
-//}
-
-
 //Use this in moveGeneration
 T_bitboard **createWPawnAttacks(){
     T_bitboard **pAttacks = (T_bitboard **)malloc(2 * sizeof(T_bitboard*));
@@ -292,7 +268,6 @@ T_bitboard **createWPawnAttacks(){
     pAttacks[1] = castSteps(&castNW);
     return pAttacks;
 }
-
 
 T_bitboard **createBPawnAttacks(){
     T_bitboard **pAttacks = (T_bitboard **)malloc(2 * sizeof(T_bitboard*));

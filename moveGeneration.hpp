@@ -6,7 +6,6 @@
 
 #include <stdbool.h>
 
-//FIX THESE, THEY ARE ERRORS - I think its fixed now. Check
 #define WHITE_KINGSIDE_PASS 96
 #define WHITE_QUEENSIDE_PASS 12
 #define BLACK_KINGSIDE_PASS 6917529027641081856
@@ -54,6 +53,5 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **
 void (*genPieceSuccStates(int piece))(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece);
 bool isKingsExist(T_Node *n, bool whosKing);
 bool isKingExist(T_Node *n, bool whosKing);
-//bool isInCheck(T_boardState *b/*, T_bitboard **jumps, T_bitboard **steps, T_bitboard **wPAttacks, T_bitboard **bPAttacks, T_bitboard **rays*/);
 
 #endif // MOVEGENERATION_H

@@ -8,9 +8,8 @@
 #include <assert.h>
 #include <iostream>
 
-//Use MovePiece function to simplify statements
 //see if more state functions can come in here so they may be inlined
-
+//Alot of state recalculations in functions. Rather calculate them once and store them in state
 //Alot of the functions here should be defined in state.cpp so move them there
 
 //Use the fact that this returns zero in the function that calls it
@@ -176,7 +175,6 @@ void promote(T_Node *node, T_boardState *b, int n, int piece){
     T_bitboard *sm = pieceBitboard(&cpy, piece);
     b->whosTurn ? setBit(sm, n - 8) : setBit(sm, n + 8);
     b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
-
     addStateNode(node, &cpy);
 }
 
@@ -185,7 +183,6 @@ void takePromote(T_Node *node, T_boardState *b, int n, int piece){
     T_bitboard *sm = pieceBitboard(&cpy, piece);
     setBit(sm, n);
     b->whosTurn ? clearBit(&(cpy.bPawn), n) : clearBit(&(cpy.wPawn), n);
-
     addStateNode(node, &cpy);
 }
 
@@ -203,13 +200,8 @@ void genWPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
     if(isUpEmpty(b, n) && isUpUpEmpty(b, n) && !isSecondLastRank(n) && isSecondRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n + 16, n, whitePawn);
-
         addStateNode(node, &cpy);
-
-        //setCharBit(&((dst->bs[dst->fi - 1]).wEnPassants), 7 - (n % 8));
-
         setCharBit(&node->scc[node->fp - 1]->b.wEnPassants, 7 - (n % 8));
-
     }
     //CAPTURE LEFT
     if(isPosBlack(b, n + 7) && (n % 8)){
@@ -222,9 +214,7 @@ void genWPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
             takePromote(node, &cpy, n + 7, whiteQueen);
         }
         else{
-
             addStateNode(node, &cpy);
-
         }
     }
     //CAPTURE RIGHT
@@ -238,9 +228,7 @@ void genWPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
             takePromote(node, &cpy, n + 9, whiteQueen);
         }
         else{
-
             addStateNode(node, &cpy);
-
         }
     }
     //EN PASSANT LEFT
@@ -272,16 +260,13 @@ void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
     if(isDownEmpty(b, n) && !isSecondRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n - 8, n, blackPawn);
-
         addStateNode(node, &cpy);
     }
     //MOVE DOWN DOWN
     if(isDownEmpty(b, n) && isDownDownEmpty(b, n) && !isSecondRank(n) && isSecondLastRank(n)){
         T_boardState cpy = *b;
         move(&cpy, n - 16, n, blackPawn);
-
         addStateNode(node, &cpy);
-        //setCharBit(&((dst->bs[dst->fi - 1]).bEnPassants), 7 - (n % 8));
         setCharBit(&node->scc[node->fp - 1]->b.bEnPassants, 7 - (n % 8));
     }
     //CAPTURE RIGHT
@@ -295,7 +280,6 @@ void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
             takePromote(node, &cpy, n - 7, blackQueen);
         }
         else{
-
             addStateNode(node, &cpy);
         }
     }
@@ -310,7 +294,6 @@ void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
             takePromote(node, &cpy, n - 9, blackQueen);
         }
         else{
-
             addStateNode(node, &cpy);
         }
     }
@@ -320,7 +303,6 @@ void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
         T_boardState cpy = *b;
         clearBit(&(cpy.wPawn), n + 1);
         move(&cpy, n - 7, n, blackPawn);
-
         addStateNode(node, &cpy);
     }
     //EN PASSANT LEFT
@@ -328,7 +310,6 @@ void genBPawnSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays,
         T_boardState cpy = *b;
         clearBit(&(cpy.wPawn), n - 1);
         move(&cpy, n - 9, n, blackPawn);
-
         addStateNode(node, &cpy);
     }
     //PROMOTIONS
@@ -389,7 +370,6 @@ void genDirStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int d
 }
 
 void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, int piece){
-    //int numOfBeforeStates = dst->fi;
     int numOfBeforeStatesN = node->fp;
     switch(piece){
         case whiteBishop:
@@ -437,30 +417,7 @@ void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, i
             genDirStates(node, b, n, rays, northWest, blackQueen);
             break;
     }
-    //int numOfAfterStates = dst->fi;
     int numOfAfterStatesN = node->fp;
-//    if(piece == whiteRook && n == 0){
-//        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
-//            dst->bs[i].castlesLRWhite = 0;
-//        }
-//    }
-//    else if(piece == whiteRook && n == 7){
-//        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
-//            dst->bs[i].castlesRRWhite = 0;
-//        }
-//    }
-//    else if(piece == blackRook && n == 56){
-//        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
-//            dst->bs[i].castlesLRBlack = 0;
-//        }
-//    }
-//    else if(piece == blackRook && n == 63){
-//        for(int i = numOfBeforeStates; i < numOfAfterStates; i++){
-//            dst->bs[i].castlesRRBlack = 0;
-//        }
-//    }
-
-
     if(piece == whiteRook && n == 0){
         for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
             node->scc[i]->b.castlesLRWhite = 0;
@@ -481,14 +438,6 @@ void genRaySuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **rays, i
             node->scc[i]->b.castlesRRBlack = 0;
         }
     }
-
-
-
-
-
-
-
-
 }
 
 //Rename this to genPseudoValidStates
@@ -522,11 +471,6 @@ bool genSuccStates(T_Node *node, T_boardState *b){
         return true;//Current opposite player is not in check
 }
 
-//THIS FUNCTION MUST BE CALLED AS OTHER PLAYER - RATHER BUILD THIS FACT INTO THIS FUNCTION
-//Take away whosKing parameter. This may be deduced from n->b->whosTurn++
-//This function checks if the whosKing player has a king in any of the successor states. It has nothing to do with n itself but rather its successor states!
-//If false with current player argument, then current turn player is in check
-//If false with opposite player argument, then opposite turn player is in check
 bool isKingsExist(T_Node *n, bool whosKing){
     for(int i = 0; i < n->fp; i++){
         if(!isKingExist(n->scc[i], whosKing)){
@@ -549,10 +493,6 @@ bool isKingExist(T_Node *n, bool whosKing){
     }
     return false;
 }
-
-
-
-
 
 //Refactor out the castling into a seperate function
 //Use get piece from pieces
@@ -617,7 +557,6 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
         else if(castlePass == BLACK_QUEENSIDE_PASS && (BLACK_QUEENSIDE_ATTACKING & (b->wPawn | b->wKing) || BLACK_QUEENSIDE_ATTACKING_K & b->wKnight)){
             cnd3 = false;
         }
-        //
         int j, k, l;
         T_bitboard a = all(b);
         while(tmp.wBishop){
@@ -744,7 +683,6 @@ void generateCastlingStates(T_Node *node, T_boardState *b, T_bitboard **moveRule
 
 //Remove mentions of white and black generations of castling at the bottom of this functionS
 void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **moveRules, int piece){
-    //int numOfBeforeStates = dst->fi;
     int numOfBeforeStatesN = node->fp;
     T_boardState cpy = *b;
     int j;
@@ -763,18 +701,15 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, T_bitboard **
         moveAndAttack(&cpy, j, n, piece);
         addStateNode(node, &cpy);
     }
-    //int numOfAfterStates = dst->fi;
     int numOfAfterStatesN = node->fp;
 
     if(piece == whiteKing && n == 4){
         for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
-            //dst->bs[i].castlesKWhite = 0;
             node->scc[i]->b.castlesKWhite = 0;
         }
     }
     else if(piece == blackKing && n == 60){
         for(int i = numOfBeforeStatesN; i < numOfAfterStatesN; i++){
-            //dst->bs[i].castlesKBlack = 0;
             node->scc[i]->b.castlesKBlack = 0;
         }
     }
@@ -818,47 +753,3 @@ void (*genPieceSuccStates(int piece))(T_Node *node, T_boardState *b, int n, T_bi
             assert(false);
     }
 }
-
-//bool isKingsExist(T_boardStates *bss, bool whosKing){
-//    for(int i; i < bss->fi; i++){
-//        if(!isKingExist(&bss->bs[i], whosKing)){
-//            return false;
-//        }
-//    }
-//    return true;
-//}
-
-//bool isKingExist(T_boardState *b, bool whosKing){
-//    if(whosKing){
-//        if(b->bKing){
-//            return true;
-//        }
-//    }
-//    else{
-//        if(b->wKing){
-//            return true;
-//        }
-//    }
-//    return false;
-//}
-
-//!!!!!!!!!!!!!!!
-//CHANGE BSS TO NODE!!!!!!!!!!!!!!
-//!!!!!!!!!!!!!!!
-//bool isInCheck(T_boardState *b){
-//    bool result;
-//    bool whosTurn = b->whosTurn;
-//    b->whosTurn++;
-//    b->evaluateCheck = 1;
-//    T_boardStates *bss = initialiseStates();
-//    T_Node node;
-//    genSuccStates(&node, bss, b);
-//    if(!isKingsExist(bss, whosTurn)){
-//        b->whosTurn++;
-//        b->evaluateCheck = 0;
-//        return true;
-//    }
-//    b->whosTurn++;
-//    b->evaluateCheck = 0;
-//    return false;
-//}
