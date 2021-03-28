@@ -22,6 +22,7 @@ bool isAllSuccStatesInCheck(T_boardState *input);
 bool isComputerInCheck(T_boardState b);
 T_Node* createNode();
 void freeTreeNode(T_Node *node);
+void freeTreeNodeOptimised(T_Node *node);
 void genSuccStatesSTUB(T_Node *newNode);
 int generateTreeNodeMinMax(T_Node **iterator, int level, int *indexMaxMin);
 void addStateNode(T_Node *dstNode, T_boardState *src);

@@ -13,6 +13,13 @@ void freeTreeNode(T_Node *node){
     for(int i = 0; i < node->fp; i++){
         free(node->scc[i]);
     }
+    node->fp = 0;
+}
+
+void freeTreeNodeOptimised(T_Node *node){
+    for(int i = 0; i < node->fp; i++){
+        free(node->scc[i]);
+    }
 }
 
 bool isStateInCheck(T_boardState b){
@@ -53,12 +60,11 @@ T_boardState computerMove(T_boardState *input){
     T_Node *head = createNodeParent(input);
     cout << "Evaluation of board is: " << evaluateBoard(&head->b) << endl;
     input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
+    freeTreeNode(head);
+    genSuccStates(head, input);
+    T_boardState result = head->scc[index]->b;
+    freeTreeNode(head);
     free(head);
-
-    T_Node *head2 = createNodeParent(input);
-    genSuccStates(head2, input);
-    T_boardState result = head2->scc[index]->b;
-    free(head2);
     cout << "RESULT OF AI" << endl;
     cout << "RESULT INDEX " << index << endl;
     printState(result);
@@ -67,7 +73,7 @@ T_boardState computerMove(T_boardState *input){
 
 int max(T_Node **n, int level){
     if(!level){
-        freeTreeNode(*n);
+        freeTreeNodeOptimised(*n);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
@@ -81,7 +87,7 @@ int max(T_Node **n, int level){
             maxEvalIndex = i;
         }
     }
-    freeTreeNode(*n);
+    freeTreeNodeOptimised(*n);
     if(level == DEPTH_LIMIT_LEVEL){
         return maxEvalIndex;
     }
@@ -92,7 +98,7 @@ int max(T_Node **n, int level){
 
 int min(T_Node **n, int level){
     if(!level){
-        freeTreeNode(*n);
+        freeTreeNodeOptimised(*n);
         return evaluateBoard(&(*n)->b);
     }
     genSuccStates(*n, &(*n)->b);
@@ -110,7 +116,7 @@ int min(T_Node **n, int level){
             minEvalIndex = i;
         }
     }
-    freeTreeNode(*n);
+    freeTreeNodeOptimised(*n);
     if(level == DEPTH_LIMIT_LEVEL){
         cout << minEvalIndex << endl;
         return minEvalIndex;
