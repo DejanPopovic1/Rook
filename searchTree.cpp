@@ -55,9 +55,10 @@ T_boardState computerMove(T_boardState *input){
     input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
     free(head);
 
-    genSuccStates(head, input);
-    T_boardState result = head->scc[index]->b;
-    free(head);
+    T_Node *head2 = createNodeParent(input);
+    genSuccStates(head2, input);
+    T_boardState result = head2->scc[index]->b;
+    free(head2);
     cout << "RESULT OF AI" << endl;
     cout << "RESULT INDEX " << index << endl;
     printState(result);
