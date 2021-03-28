@@ -93,4 +93,23 @@ void LKinitialiseBEnPassants(unsigned char *c);
 void LKinitialiseCastlesTurnCheck(T_boardState *b);
 void LKinitialiseNoCapturesOrPawnMoves(unsigned char *c);
 
+T_boardState MMinitialiseBoardState();
+void MMinitialiseWPawns(T_bitboard *result);
+void MMinitialiseWBishops(T_bitboard *result);
+void MMinitialiseWKnights(T_bitboard *result);
+void MMinitialiseWRooks(T_bitboard *result);
+void MMinitialiseWQueen(T_bitboard *result);
+void MMinitialiseWKing(T_bitboard *result);
+void MMinitialiseBPawns(T_bitboard *result);
+void MMinitialiseBBishops(T_bitboard *result);
+void MMinitialiseBKnights(T_bitboard *result);
+void MMinitialiseBRooks(T_bitboard *result);
+void MMinitialiseBQueen(T_bitboard *result);
+void MMinitialiseBKing(T_bitboard *result);
+void MMinitialiseWEnPassants(unsigned char *c);
+void MMinitialiseBEnPassants(unsigned char *c);
+void MMinitialiseCastlesTurnCheck(T_boardState *b);
+void MMinitialiseNoCapturesOrPawnMoves(unsigned char *c);
+
+
 #endif // TEST_INITIALISATIONS_H

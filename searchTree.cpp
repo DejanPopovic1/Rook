@@ -45,18 +45,22 @@ bool isAllSuccStatesInCheck(T_boardState *input){
 //This function returns the same input if there are no valid moves to make - It doesnt care if this is due to stalemate or checkmate. Thats up to other code
 T_boardState computerMove(T_boardState *input){
     if(isAllSuccStatesInCheck(input)){
-        exit(-1);
         cout << endl << "!!!CHECK/STALEMATE!!!" << endl << endl;
+        exit(-1);
         return *input;
     }
     int index;
     T_Node *head = createNodeParent(input);
+    cout << "Evaluation of board is: " << evaluateBoard(&head->b) << endl;
     input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
+    free(head);
+
     genSuccStates(head, input);
     T_boardState result = head->scc[index]->b;
     free(head);
-//    cout << "RESULT OF AI" << endl;
-//    printState(result);
+    cout << "RESULT OF AI" << endl;
+    cout << "RESULT INDEX " << index << endl;
+    printState(result);
     return result;
 }
 
@@ -96,6 +100,10 @@ int min(T_Node **n, int level){
     int minEvalIndex;
     for(int i = 0; i < (*n)->fp; i++){
         maybeNewMinEval = max(&(*n)->scc[i], level - 1);
+        if(level == DEPTH_LIMIT_LEVEL){///////////
+            cout << "Index: " << i << " value is: " << maybeNewMinEval << endl;////////////
+            printState((*n)->scc[i]->b);///////////////
+        }////////////////
         if(maybeNewMinEval < minEval){
             minEval = maybeNewMinEval;
             minEvalIndex = i;
@@ -103,6 +111,7 @@ int min(T_Node **n, int level){
     }
     freeTreeNode(*n);
     if(level == DEPTH_LIMIT_LEVEL){
+        cout << minEvalIndex << endl;
         return minEvalIndex;
     }
     else{

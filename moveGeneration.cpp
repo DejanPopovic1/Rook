@@ -756,10 +756,10 @@ void genJumpOrStepSuccStates(T_Node *node, T_boardState *b, int n, int piece){
         }
     }
     if(piece == whiteKing || piece == blackKing){
-        generateCastlingStates(node, b, piece, BLACK_KINGSIDE_PASS);
-        generateCastlingStates(node, b, piece, BLACK_QUEENSIDE_PASS);
-        generateCastlingStates(node, b, piece, WHITE_KINGSIDE_PASS);
-        generateCastlingStates(node, b, piece, WHITE_QUEENSIDE_PASS);
+        //generateCastlingStates(node, b, piece, BLACK_KINGSIDE_PASS);
+        //generateCastlingStates(node, b, piece, BLACK_QUEENSIDE_PASS);
+        //generateCastlingStates(node, b, piece, WHITE_KINGSIDE_PASS);
+        //generateCastlingStates(node, b, piece, WHITE_QUEENSIDE_PASS);
     }
 }
 

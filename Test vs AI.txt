@@ -8,3 +8,11 @@ Depth 5
 Rc5 Rf4 Nh3 d6 c3 Bxh3 Rh5 Bg4 Rh4 e6 d3 h6 g3 g5 gxf4 gxh4 Qa4 b5 Qxb5 Nd7 Bg2 c6 Bxc6 Rb8 Qa4 Bh3 <----- At this point take the knight
 
 Rc5 Rf4 Nh3 d6 c3 Bxh3 Rh5 Bg4 Rh4 e6 d3 h6 g3 g5 gxf4 gxh4 Qa4 b5 Qxb5 Nd7 Bg2 c6 Bxc6 Rb8 Qa4 Bh3
+
+c3 f5 Nf3 b6 d3 g5 Nxg5 b5 Be3 c5 g3 c4 d4 Bb7 Bg2 Bc8 Bxa8 a6
+
+g3 c6 Nf3 c5 b3 a6 Ba3 b5 Bxc5 h6
+
+CM Board
+h4 Qa5 Re4
+h4 Qa5 Re4

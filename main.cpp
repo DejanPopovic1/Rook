@@ -62,7 +62,7 @@ void singlePlayerSession(string playerColourInput){
     else if(playerColourInput == "b"){
         playerColour = asBlack;
     }
-    GameState sc(initialiseBoardState(), playerColour);
+    GameState sc(CMinitialiseBoardState(), playerColour);
     string usrInput;
     T_boardState s;
     vector<string> l;

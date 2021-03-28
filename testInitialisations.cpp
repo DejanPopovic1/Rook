@@ -33,7 +33,7 @@ void CMinitialiseWPawns(T_bitboard *result){
     setBit(result, 10);
     setBit(result, 11);
     setBit(result, 13);
-    setBit(result, 14);
+    /*setBit(result, 14);*/setBit(result, 22);
     setBit(result, 15);
     setBit(result, 3);
     setBit(result, 5);
@@ -53,11 +53,12 @@ void CMinitialiseWRooks(T_bitboard *result){
     clearBits(result);
     setBit(result, 0);
     setBit(result, 7);
+    setBit(result, 29);
 }
 
 void CMinitialiseWQueen(T_bitboard *result){
     clearBits(result);
-    setBit(result, 37);
+    //setBit(result, 37);
     //setBit(result, 3);
 }
 
@@ -523,5 +524,129 @@ void LKinitialiseCastlesTurnCheck(T_boardState *b){
 }
 
 void LKinitialiseNoCapturesOrPawnMoves(unsigned char *c){
+    *c = 0;
+}
+
+T_boardState MMinitialiseBoardState(){
+    T_boardState result;
+    MMinitialiseWPawns(&(result.wPawn));
+    MMinitialiseWBishops(&(result.wBishop));
+    MMinitialiseWKnights(&(result.wKnight));
+    MMinitialiseWRooks(&(result.wRook));
+    MMinitialiseWQueen(&(result.wQueen));
+    MMinitialiseWKing(&(result.wKing));
+    MMinitialiseBPawns(&(result.bPawn));
+    MMinitialiseBBishops(&(result.bBishop));
+    MMinitialiseBKnights(&(result.bKnight));
+    MMinitialiseBRooks(&(result.bRook));
+    MMinitialiseBQueen(&(result.bQueen));
+    MMinitialiseBKing(&(result.bKing));
+    MMinitialiseWEnPassants(&(result.wEnPassants));
+    MMinitialiseBEnPassants(&(result.bEnPassants));
+    MMinitialiseCastlesTurnCheck(&result);
+    MMinitialiseNoCapturesOrPawnMoves(&(result.noCapturesOrPawnMoves));
+    return result;
+}
+
+void MMinitialiseWPawns(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 8);
+    setBit(result, 9);
+    setBit(result, 10);
+    setBit(result, 11);
+    setBit(result, 13);
+    /*setBit(result, 14);*/setBit(result, 22);
+    setBit(result, 15);
+    setBit(result, 3);
+    setBit(result, 5);
+}
+void MMinitialiseWBishops(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 2);
+}
+
+void MMinitialiseWKnights(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 1);
+    setBit(result, 6);
+}
+
+void MMinitialiseWRooks(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 0);
+    setBit(result, 7);
+    setBit(result, 29);
+}
+
+void MMinitialiseWQueen(T_bitboard *result){
+    clearBits(result);
+    //setBit(result, 37);
+    //setBit(result, 3);
+}
+
+void MMinitialiseWKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 4);
+}
+
+void MMinitialiseBPawns(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 48);
+    setBit(result, 49);
+    setBit(result, 50);
+    setBit(result, 51);
+    setBit(result, 53);
+    setBit(result, 54);
+    setBit(result, 55);
+    setBit(result, 59);
+    setBit(result, 61);
+}
+void MMinitialiseBBishops(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 58);
+}
+
+void MMinitialiseBKnights(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 57);
+    setBit(result, 62);
+}
+
+void MMinitialiseBRooks(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 56);
+    setBit(result, 63);
+}
+
+void MMinitialiseBQueen(T_bitboard *result){
+    clearBits(result);
+    //setBit(result, 24);
+}
+
+void MMinitialiseBKing(T_bitboard *result){
+    clearBits(result);
+    setBit(result, 60);
+}
+
+void MMinitialiseWEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void MMinitialiseBEnPassants(unsigned char *c){
+    clearCharBits(c);
+}
+
+void MMinitialiseCastlesTurnCheck(T_boardState *b){
+    b->castlesLRWhite = 1;
+    b->castlesRRWhite = 1;
+    b->castlesKWhite = 1;
+    b->castlesLRBlack = 1;
+    b->castlesRRBlack = 1;
+    b->castlesKBlack = 1;
+    b->whosTurn = 0;
+    b->evaluateCheck = 0;
+}
+
+void MMinitialiseNoCapturesOrPawnMoves(unsigned char *c){
     *c = 0;
 }
