@@ -91,7 +91,12 @@ void singlePlayerSession(string playerColourInput){
     return;
 }
 
+void test(){
+    printMoveRuleValues();
+}
+
 int main(){
+    test();
     string selection1 = "mp";
     string selection2 = "sp";
     string selection3 = "exit";

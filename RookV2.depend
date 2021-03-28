@@ -111,7 +111,7 @@
 	<stdint.h>
 	<stdbool.h>
 
-1616863797 source:c:\c_c++ code\rook\movegeneration.cpp
+1616868291 source:c:\c_c++ code\rook\movegeneration.cpp
 	"moveGeneration.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
@@ -126,17 +126,19 @@
 	"searchTree.hpp"
 	<stdbool.h>
 
-1616330067 c:\c_c++ code\rook\moverules.hpp
+1616929414 c:\c_c++ code\rook\moverules.hpp
 	"state.hpp"
 	<stdbool.h>
 
-1616863897 source:c:\c_c++ code\rook\moverules.cpp
+1616933878 source:c:\c_c++ code\rook\moverules.cpp
 	"moveRules.hpp"
 	"state.hpp"
 	"bitUtilities.hpp"
 	"output.hpp"
+	<stdio.h>
 	<stdbool.h>
 	<stdlib.h>
+	<iostream>
 
 1616865825 source:c:\c_c++ code\rook\output.cpp
 	"output.hpp"
@@ -196,7 +198,7 @@
 	<assert.h>
 	<iostream>
 
-1616867445 source:c:\c_c++ code\rook\main.cpp
+1616929353 source:c:\c_c++ code\rook\main.cpp
 	"searchTree.hpp"
 	"state.hpp"
 	"moveGeneration.hpp"
@@ -263,7 +265,7 @@
 1616855255 c:\c_c++ code\rook\heuristics.hpp
 	"state.hpp"
 
-1616866012 source:c:\c_c++ code\rook\searchtree.cpp
+1616868069 source:c:\c_c++ code\rook\searchtree.cpp
 	"searchTree.hpp"
 	"moveGeneration.hpp"
 	"testInitialisations.hpp"

@@ -35,5 +35,6 @@ T_bitboard** createBPawnAttacks();
 void freeRays(T_bitboard **rays);
 void freeSteps(T_bitboard **steps);
 void freeJumps(T_bitboard **jumps);
+void printMoveRuleValues();
 
 #endif // MOVERULES_H
