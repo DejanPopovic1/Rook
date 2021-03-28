@@ -55,8 +55,8 @@ T_boardState computerMove(T_boardState *input){
     genSuccStates(head, input);
     T_boardState result = head->scc[index]->b;
     free(head);
-    cout << "RESULT OF AI" << endl;
-    printState(result);
+//    cout << "RESULT OF AI" << endl;
+//    printState(result);
     return result;
 }
 

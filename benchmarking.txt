@@ -1,0 +1,5 @@
+Passing in movement rules:
+It takes 6 seconds to generate a c3 move using 5 level depth
+
+Hard-coding movement rules
+It takes 2 seconds to generate a c3 move using 5 level depth
