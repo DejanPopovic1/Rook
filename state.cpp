@@ -47,6 +47,8 @@ T_bitboard *pieceBitboard(T_boardState *b, char piece){
     }
 }
 
+
+
 //bAll and wAll might need to be done immediately after a state generatioin and saved as a state
 T_bitboard wAll(const T_boardState *b){
     T_bitboard o = b->wPawn | b->wBishop | b->wKnight | b->wRook | b->wQueen | b->wKing;
@@ -106,6 +108,14 @@ bool isStatesEqual(T_boardState a, T_boardState b){
         a.whosTurn == b.whosTurn &&
         a.evaluateCheck == b.evaluateCheck &&
         a.noCapturesOrPawnMoves == b.noCapturesOrPawnMoves;
+}
+
+bool isInCheck(T_boardState b){
+    T_Node *n = createNode();
+    b.whosTurn++;
+    genSuccStates(n, &b);
+    b.whosTurn++;
+    return !isKingsExist(n, b.whosTurn);
 }
 
 bool isPawn(int p){

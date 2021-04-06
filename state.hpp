@@ -65,6 +65,7 @@ struct PrevStates{
     int fp;
 };
 
+bool isInCheck(T_boardState b);
 bool isStatesEqual(T_boardState a, T_boardState b);
 T_bitboard *pieceBitboard(T_boardState *b, char piece);
 bool isPawn(int p);

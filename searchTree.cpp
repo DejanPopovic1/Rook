@@ -65,7 +65,16 @@ T_boardState computerMove(T_boardState *input){
     T_Node *head2 = createNodeParent(input);
     genSuccStates(head2, input);
     if(index >= head2->fp){//This code is executed typically when a loss is imminent because the search tree returns a garbage index value due to lack of search tree depth. Instead of crashing the program, a legal index value is selected
-        index = 0;
+        cout << "LARGE INDEX PRESENT!! Index is: " << index << " # of legal positions is: " << head2->fp << endl << endl;
+        for(int i = 0; i < head2->fp; i++){
+            T_boardState test = head2->scc[i]->b;
+            test.whosTurn++;
+            if(!isInCheck(test)){
+                index = i;
+                cout << "Selected index is: " << i << endl;
+                break;
+            }
+        }
     }
     T_boardState result = head2->scc[index]->b;
 
