@@ -60,11 +60,17 @@ T_boardState computerMove(T_boardState *input){
     T_Node *head = createNodeParent(input);
     cout << "Evaluation of board is: " << evaluateBoard(&head->b) << endl;
     input->whosTurn ? index = min(&head, DEPTH_LIMIT_LEVEL) : index = max(&head, DEPTH_LIMIT_LEVEL);
-    freeTreeNode(head);
-    genSuccStates(head, input);
-    T_boardState result = head->scc[index]->b;
-    freeTreeNode(head);
     free(head);
+    //freeTreeNode(head);
+    T_Node *head2 = createNodeParent(input);
+    genSuccStates(head2, input);
+    if(index >= head2->fp){//This code is executed typically when a loss is imminent because the search tree returns a garbage index value due to lack of search tree depth. Instead of crashing the program, a legal index value is selected
+        index = 0;
+    }
+    T_boardState result = head2->scc[index]->b;
+
+    //freeTreeNode(head);
+    free(head2);
     cout << "RESULT OF AI" << endl;
     cout << "RESULT INDEX " << index << endl;
     printState(result);
@@ -107,10 +113,10 @@ int min(T_Node **n, int level){
     int minEvalIndex;
     for(int i = 0; i < (*n)->fp; i++){
         maybeNewMinEval = max(&(*n)->scc[i], level - 1);
-        if(level == DEPTH_LIMIT_LEVEL){///////////
-            cout << "Index: " << i << " value is: " << maybeNewMinEval << endl;////////////
-            printState((*n)->scc[i]->b);///////////////
-        }////////////////
+//        if(level == DEPTH_LIMIT_LEVEL){///////////
+//            cout << "Index: " << i << " value is: " << maybeNewMinEval << endl;////////////
+//            printState((*n)->scc[i]->b);///////////////
+//        }////////////////
         if(maybeNewMinEval < minEval){
             minEval = maybeNewMinEval;
             minEvalIndex = i;
@@ -118,7 +124,7 @@ int min(T_Node **n, int level){
     }
     freeTreeNodeOptimised(*n);
     if(level == DEPTH_LIMIT_LEVEL){
-        cout << minEvalIndex << endl;
+//        cout << minEvalIndex << endl;
         return minEvalIndex;
     }
     else{
